@@ -43,7 +43,7 @@ export default {
                     <form @submit.prevent="setLevel">
                         <div class="mb-3">
                             <label for="level" class="form-label">{{ $t("main.level") }}</label>
-                            <input v-model="level" id="level" type="number" min="0" max="100" step="1" class="form-control" required>
+                            <input id="level" v-model="level" type="number" min="0" max="100" step="1" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary">{{ $t("main.apply") }}</button>
                     </form>
@@ -52,7 +52,7 @@ export default {
                     <form @submit.prevent="setInfamyRank">
                         <div class="mb-3">
                             <label for="infamy-rank" class="form-label">{{ $t("main.infamy_rank") }}</label>
-                            <input v-model="infamyRank" id="infamy-rank" type="number" min="0" max="500" step="1" class="form-control" required>
+                            <input id="infamy-rank" v-model="infamyRank" type="number" min="0" max="500" step="1" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary">{{ $t("main.apply") }}</button>
                     </form>

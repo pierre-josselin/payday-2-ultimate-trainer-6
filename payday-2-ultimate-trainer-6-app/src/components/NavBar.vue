@@ -15,7 +15,7 @@ export default {
         <div class="container-fluid">
             <span class="navbar-brand">Ultimate Trainer 6</span>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-supported-content">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" />
             </button>
             <div id="navbar-supported-content" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -24,7 +24,7 @@ export default {
                     </li>
                 </ul>
                 <button class="btn btn-primary btn-sm" @click="closeWebSocket">
-                    <font-awesome-icon icon="fa-solid fa-right-from-bracket" />
+                    <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
                 </button>
             </div>
         </div>

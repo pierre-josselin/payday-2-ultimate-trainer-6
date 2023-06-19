@@ -41,14 +41,14 @@ export default {
                 <form @submit.prevent="connect">
                     <div class="mb-3">
                         <label for="host" class="form-label">{{ $t("main.host") }}</label>
-                        <input v-model="host" id="host" type="text" maxlength="255" class="form-control" :disabled="connecting" required>
+                        <input id="host" v-model="host" type="text" maxlength="255" class="form-control" :disabled="connecting" required>
                     </div>
                     <div class="mb-3">
                         <label for="port" class="form-label">{{ $t("main.port") }}</label>
-                        <input v-model="port" id="port" type="number" min="0" max="65535" step="1" class="form-control" :disabled="connecting" required>
+                        <input id="port" v-model="port" type="number" min="0" max="65535" step="1" class="form-control" :disabled="connecting" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100" :disabled="connecting">
-                        <span class="spinner-border spinner-border-sm" v-if="connecting"></span>
+                        <span v-if="connecting" class="spinner-border spinner-border-sm" />
                         <template v-else>{{ $t("main.connect") }}</template>
                     </button>
                 </form>
