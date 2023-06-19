@@ -2,6 +2,7 @@
     "main": {
         "apply": "Apply",
         "connect": "Connect",
+        "connection_failed": "Connection failed",
         "host": "Host",
         "infamy_rank": "Infamy rank",
         "level": "Level",
