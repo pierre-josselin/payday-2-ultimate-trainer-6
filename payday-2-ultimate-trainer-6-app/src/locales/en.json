@@ -1,0 +1,12 @@
+{
+    "main": {
+        "apply": "Apply",
+        "connect": "Connect",
+        "host": "Host",
+        "infamy_rank": "Infamy rank",
+        "level": "Level",
+        "player": "Player",
+        "port": "Port",
+        "server_connection": "Server connection"
+    }
+}

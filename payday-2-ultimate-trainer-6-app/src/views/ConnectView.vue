@@ -1,0 +1,66 @@
+<script>
+import Swal from "sweetalert2";
+
+import { createWebSocket } from "@/web-socket";
+
+export default {
+    data() {
+        return {
+            connecting: false,
+            host: "localhost",
+            port: 1138
+        };
+    },
+    methods: {
+        connect() {
+            this.connecting = true;
+
+            createWebSocket({
+                host: this.host,
+                port: this.port,
+                router: this.$router,
+                connectionErrorCallback: () => {
+                    this.connecting = false;
+                    Swal.fire({
+                        icon: "error",
+                        title: this.$t("main.connection_failed")
+                    });
+                }
+            });
+        }
+    }
+}
+</script>
+
+<template>
+    <div class="d-flex align-items-center justify-content-center h-100">
+        <div style="min-width: 450px;" class="card">
+            <div class="card-header">PAYDAY 2 - Ultimate Trainer 6</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ $t("main.server_connection") }}</h5>
+                <form @submit.prevent="connect">
+                    <div class="mb-3">
+                        <label for="host" class="form-label">{{ $t("main.host") }}</label>
+                        <input v-model="host" id="host" type="text" maxlength="255" class="form-control" :disabled="connecting" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="port" class="form-label">{{ $t("main.port") }}</label>
+                        <input v-model="port" id="port" type="number" min="0" max="65535" step="1" class="form-control" :disabled="connecting" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" :disabled="connecting">
+                        <span class="spinner-border spinner-border-sm" v-if="connecting"></span>
+                        <template v-else>{{ $t("main.connect") }}</template>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style>
+html,
+body,
+#app {
+    height: 100%;
+}
+</style>
