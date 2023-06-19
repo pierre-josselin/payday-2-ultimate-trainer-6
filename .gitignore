@@ -2,3 +2,4 @@ node_modules/
 /.env
 /settings.json
 /payday-2-ultimate-trainer-6-mod/config.lua
+/payday-2-ultimate-trainer-6-mod/keybinds/test.lua

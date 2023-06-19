@@ -14,5 +14,15 @@
             "global": "ut_persist_scripts_update",
             "script_path": "persist-scripts/update.lua"
         }
+    ],
+    "keybinds": [
+        {
+            "keybind_id": "ut_keybinds_test",
+            "name": "Test",
+            "script_path": "keybinds/test.lua",
+            "run_in_menu": true,
+            "run_in_game": true,
+            "localized": false
+        }
     ]
 }
