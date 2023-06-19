@@ -47,3 +47,47 @@ function UT:setInfamyRank(infamyRank)
     UT:refreshPlayerProfileGUI()
     UT:saveProgress()
 end
+
+function UT:addSpendingMoney(amount)
+    managers.money:add_to_spending(amount)
+    UT:refreshPlayerProfileGUI()
+    UT:saveProgress()
+end
+
+function UT:addOffshoreMoney(amount)
+    managers.money:add_to_offshore(amount)
+    UT:refreshPlayerProfileGUI()
+    UT:saveProgress()
+end
+
+function UT:resetMoney()
+    managers.money:reset()
+    UT:refreshPlayerProfileGUI()
+    UT:saveProgress()
+end
+
+function UT:addContinentalCoins(amount)
+    managers.custom_safehouse:add_coins(amount)
+    UT:refreshPlayerProfileGUI()
+    UT:saveProgress()
+end
+
+function UT:resetContinentalCoins()
+    Global.custom_safehouse_manager.total = 0
+    Global.custom_safehouse_manager.total_collected = 0
+    UT:refreshPlayerProfileGUI()
+    UT:saveProgress()
+end
+
+function UT:addPerkPoints(amount)
+    managers.skilltree:give_specialization_points(amount)
+    UT:refreshPlayerProfileGUI()
+    UT:saveProgress()
+end
+
+function UT:resetPerkPoints()
+    Global.skilltree_manager.specializations.total_points = 0
+    managers.skilltree:reset_specializations()
+    UT:refreshPlayerProfileGUI()
+    UT:saveProgress()
+end
