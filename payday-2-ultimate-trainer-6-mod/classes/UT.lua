@@ -1,24 +1,29 @@
 UT = {}
 
+UT.lastCallClock = 0;
+
 function UT:requestCalls()
     local url = UT_SERVER_URL .. "/calls"
     local callback = function(data)
         if not data then
             return
         end
-        calls = UT.Utils:jsonDecode(data)
+        local calls = UT.Utils:jsonDecode(data)
         if not calls or UT.Utils:isEmptyTable(calls) then
             return
         end
-        for key, call in pairs(calls) do
+        for index, call in pairs(calls) do
             UT.Utils:callFunction(unpack(call))
         end
     end
     UT.Utils:httpRequest(url, callback)
+    UT.lastCallClock = UT.Utils:getClock()
 end
 
-function UT.update()
-    UT:requestCalls()
+function UT:update()
+    if UT.Utils:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
+        UT:requestCalls()
+    end
 end
 
 function UT:refreshPlayerProfileGUI()
@@ -38,56 +43,124 @@ function UT:setLevel(level)
     managers.experience:reset()
     managers.experience:_set_current_level(level)
     managers.experience:set_current_rank(rank)
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
 end
 
 function UT:setInfamyRank(infamyRank)
     managers.experience:set_current_rank(infamyRank)
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
 end
 
 function UT:addSpendingMoney(amount)
     managers.money:add_to_spending(amount)
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
 end
 
 function UT:addOffshoreMoney(amount)
     managers.money:add_to_offshore(amount)
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
 end
 
 function UT:resetMoney()
     managers.money:reset()
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
 end
 
 function UT:addContinentalCoins(amount)
     managers.custom_safehouse:add_coins(amount)
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
 end
 
 function UT:resetContinentalCoins()
     Global.custom_safehouse_manager.total = 0
     Global.custom_safehouse_manager.total_collected = 0
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
 end
 
 function UT:addPerkPoints(amount)
-    managers.skilltree:give_specialization_points(amount)
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
+    managers.skilltree:give_specialization_points(amount * 1000)
 end
 
 function UT:resetPerkPoints()
     Global.skilltree_manager.specializations.total_points = 0
     managers.skilltree:reset_specializations()
-    UT:refreshPlayerProfileGUI()
-    UT:saveProgress()
+end
+
+function UT:getBlackMarketItem(blackMarketCategory, itemId)
+    if not tweak_data.blackmarket[blackMarketCategory] then
+        return
+    end
+    return tweak_data.blackmarket[blackMarketCategory][itemId]
+end
+
+function UT:getBlackMarketItemGlobalValue(item)
+    local globalValue = "normal"
+    if item.global_value then
+        globalValue = item.global_value
+    elseif item.infamous then
+        globalValue = "infamous"
+    elseif item.dlc then
+        globalValue = item.dlc
+    end
+    return globalValue
+end
+
+function UT:addItemToBlackMarket(blackMarketCategory, itemId)
+    local item = UT:getBlackMarketItem(blackMarketCategory, itemId)
+    if not item then
+        return
+    end
+    local globalValue = UT:getBlackMarketItemGlobalValue(item)
+    managers.blackmarket:add_to_inventory(globalValue, blackMarketCategory, itemId, false)
+end
+
+function UT:removeItemFromBlackMarket(blackMarketCategory, itemId)
+    local item = UT:getBlackMarketItem(blackMarketCategory, itemId)
+    if not item then
+        return
+    end
+    local globalValue = UT:getBlackMarketItemGlobalValue(item)
+    if not Global.blackmarket_manager.inventory[globalValue]
+        or not Global.blackmarket_manager.inventory[globalValue][blackMarketCategory] then
+        return
+    end
+    Global.blackmarket_manager.inventory[globalValue][blackMarketCategory][itemId] = nil
+end
+
+function UT:setBlackMarketSlotsLock(value)
+    for i = 1, 160 do
+        Global.blackmarket_manager.unlocked_weapon_slots.primaries[i] = value
+        Global.blackmarket_manager.unlocked_weapon_slots.secondaries[i] = value
+        Global.blackmarket_manager.unlocked_mask_slots[i] = value
+    end
+end
+
+function UT:removeBlackMarketExclamationMarks()
+    Global.blackmarket_manager.new_drops = {}
+end
+
+function UT:getTrophy(trophyId)
+    local trophies = Global.custom_safehouse_manager.trophies
+    for index, trophy in pairs(trophies) do
+        if trophy.id == trophyId then
+            return trophy
+        end
+    end
+end
+
+function UT:unlockTrophy(trophyId)
+    local trophy = UT:getTrophy(trophyId)
+    if not trophy then
+        return
+    end
+    trophy.completed = true
+end
+
+function UT:lockTrophy(trophyId)
+    local trophy = UT:getTrophy(trophyId)
+    if not trophy then
+        return
+    end
+    trophy.completed = false
+end
+
+function UT:unlockSteamAchievement(achievementId)
+    managers.achievment:award(achievementId)
+end
+
+function UT:lockSteamAchievement(achievementId)
+    managers.achievment:clear_steam(achievementId)
 end

@@ -19,3 +19,7 @@ end
 function UT.Utils:httpRequest(url, callback)
     dohttpreq(url, callback)
 end
+
+function UT.Utils:getClock()
+    return os.clock()
+end

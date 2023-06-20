@@ -1,1 +1,2 @@
 UT_SERVER_URL = "http://localhost:1139"
+UT_CALLS_REQUESTS_PER_SECOND = 10
