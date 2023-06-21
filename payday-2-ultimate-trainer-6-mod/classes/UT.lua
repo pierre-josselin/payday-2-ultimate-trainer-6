@@ -3,6 +3,7 @@ UT = {}
 UT.lastCallClock = 0
 UT.environment = nil
 UT.initialEnvironment = nil
+UT.previousGameState = nil
 
 function UT:requestCalls()
     local url = UT_SERVER_URL .. "/calls"
@@ -22,7 +23,31 @@ function UT:requestCalls()
     UT.lastCallClock = UT.Utils:getClock()
 end
 
+function UT:sendMessage(message)
+    local queryString = UT.Utils:buildQueryString(message)
+    local url = UT_SERVER_URL .. "/send-message?" .. queryString
+    UT.Utils:httpRequest(url)
+end
+
+function UT:sendGameState()
+    local gameState = UT:getGameState()
+    if not gameState then
+        return
+    end
+    local message = {
+        type = "game-state",
+        data = gameState
+    }
+    UT:sendMessage(message)
+end
+
 function UT:update()
+    local gameState = UT:getGameState()
+    if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
+        UT:sendGameState()
+    end
+    UT.previousGameState = gameState
+
     if UT.Utils:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
         UT:requestCalls()
     end
@@ -40,6 +65,13 @@ function UT:update()
             end
         end
     end
+end
+
+function UT:getGameState()
+    if not game_state_machine then
+        return
+    end
+    return game_state_machine:current_state_name()
 end
 
 function UT:isInGame()

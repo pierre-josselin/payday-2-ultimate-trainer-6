@@ -1,6 +1,8 @@
 <script>
 import { RouterLink } from "vue-router";
 
+import { useMainStore } from "@/stores/main";
+
 import { closeWebSocket } from "@/web-socket";
 
 export default {
@@ -13,6 +15,8 @@ export default {
         };
     },
     created() {
+        this.mainStore = useMainStore();
+
         this.closeWebSocket = closeWebSocket;
     }
 }
@@ -31,6 +35,11 @@ export default {
                         <RouterLink :to="{ name: navItem }" class="nav-link" :class="{ active: $route.name === navItem }">{{ $t(`main.${navItem}`) }}</RouterLink>
                     </li>
                 </ul>
+                <span class="me-3">
+                    <template v-if="mainStore.isInMainMenu">{{ $t("main.in_main_menu") }}</template>
+                    <template v-else-if="mainStore.isInPrePlanning">{{ $t("main.in_pre_planning") }}</template>
+                    <template v-else-if="mainStore.isInGame">{{ $t("main.in_game") }}</template>
+                </span>
                 <button class="btn btn-primary btn-sm" @click="closeWebSocket">
                     <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
                 </button>

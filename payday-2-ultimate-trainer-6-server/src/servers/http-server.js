@@ -24,13 +24,23 @@ class HttpServer {
                 response.writeHead(200);
                 response.end(body);
             }
+        },
+        "/send-message": {
+            method: "GET",
+            handler: (request, response) => {
+                this.messageManager.sendMessage(request.query);
+
+                response.writeHead(204);
+                response.end();
+            }
         }
     };
 
-    constructor(port, callManager, settingsManager) {
+    constructor(port, callManager, settingsManager, messageManager) {
         this.port = port;
         this.callManager = callManager;
         this.settingsManager = settingsManager;
+        this.messageManager = messageManager;
 
         this.httpRequestListener = this.httpRequestListener.bind(this);
         this.server = http.createServer(this.httpRequestListener);

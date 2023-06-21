@@ -27,6 +27,23 @@ export function createWebSocket(options) {
         connected.value = false;
         ws = null;
         options.router.push({ name: "connect" });
+        options.mainStore.$reset();
+    });
+
+    ws.addEventListener("message", (messageEvent) => {
+        const rawMessage = messageEvent.data;
+        const message = JSON.parse(rawMessage);
+
+        if (!message || !message.type || !message.data) {
+            return;
+        }
+
+        switch (message.type) {
+            case "game-state": {
+                options.mainStore.setGameState(message.data);
+                break;
+            }
+        }
     });
 }
 

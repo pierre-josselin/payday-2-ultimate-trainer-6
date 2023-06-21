@@ -1,6 +1,8 @@
 <script>
 import Swal from "sweetalert2";
 
+import { useMainStore } from "@/stores/main";
+
 import { createWebSocket } from "@/web-socket";
 
 export default {
@@ -11,6 +13,9 @@ export default {
             port: 1138
         };
     },
+    created() {
+        this.mainStore = useMainStore();
+    },
     methods: {
         connect() {
             this.connecting = true;
@@ -19,6 +24,7 @@ export default {
                 host: this.host,
                 port: this.port,
                 router: this.$router,
+                mainStore: this.mainStore,
                 connectionErrorCallback: () => {
                     this.connecting = false;
                     Swal.fire({
