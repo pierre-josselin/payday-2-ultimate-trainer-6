@@ -4,6 +4,13 @@ import { RouterLink } from "vue-router";
 import { closeWebSocket } from "@/web-socket";
 
 export default {
+    data() {
+        return {
+            navItems: [
+                "player"
+            ]
+        };
+    },
     created() {
         this.closeWebSocket = closeWebSocket;
     }
@@ -19,8 +26,8 @@ export default {
             </button>
             <div id="navbar-supported-content" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <RouterLink :to="{ name: 'player' }" class="nav-link" :class="{ active: $route.name === 'player' }">{{ $t("main.player") }}</RouterLink>
+                    <li v-for="(navItem, index) in navItems" :key="index" class="nav-item">
+                        <RouterLink :to="{ name: navItem }" class="nav-link" :class="{ active: $route.name === navItem }">{{ $t(`main.${navItem}`) }}</RouterLink>
                     </li>
                 </ul>
                 <button class="btn btn-primary btn-sm" @click="closeWebSocket">

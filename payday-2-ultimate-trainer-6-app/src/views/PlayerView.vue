@@ -3,6 +3,14 @@ import { useCallStore } from "@/stores/calls";
 
 import NavBar from "@/components/NavBar.vue";
 
+import colors from "@/data/colors.json";
+import masks from "@/data/masks.json";
+import materials from "@/data/materials.json";
+import textures from "@/data/textures.json";
+import weaponMods from "@/data/weapon-mods.json";
+import trophies from "@/data/trophies.json";
+import steamAchievements from "@/data/steam-achievements.json";
+
 export default {
     components: {
         NavBar
@@ -14,45 +22,221 @@ export default {
             spendingMoney: null,
             offshoreMoney: null,
             continentalCoins: null,
-            perkPoints: null
+            perkPoints: null,
+            blackMarketCategory: null,
+            selectAllBlackMarketItems: false,
+            blackMarketItemsSearch: null,
+            selectedBlackMarketItems: [],
+            selectAllTrophies: false,
+            trophiesSearch: null,
+            selectedTrophies: [],
+            selectAllSteamAchievements: false,
+            steamAchievementsSearch: null,
+            selectedSteamAchievements: []
         };
+    },
+    computed: {
+        filteredBlackMarketItems() {
+            if (!this.blackMarketCategory) {
+                return null;
+            }
+
+            if (!this.blackMarketItemsSearch) {
+                return this.blackMarketItems[this.blackMarketCategory];
+            }
+
+            return Object.entries(this.$i18n.messages.en[this.blackMarketCategory])
+                .filter(([itemId, itemName]) => itemName.toLowerCase().includes(this.blackMarketItemsSearch))
+                .map(([itemId]) => itemId);
+        },
+        filteredTrophies() {
+            if (!this.trophiesSearch) {
+                return this.trophies;
+            }
+
+            return Object.entries(this.$i18n.messages.en.trophies)
+                .filter(([trophyId, trophyName]) => trophyName.toLowerCase().includes(this.trophiesSearch))
+                .map(([trophyId]) => trophyId);
+        },
+        filteredSteamAchievements() {
+            if (!this.steamAchievementsSearch) {
+                return this.steamAchievements;
+            }
+
+            return Object.entries(this.$i18n.messages.en.steam_achievements)
+                .filter(([steamAchievementId, steamAchievementName]) => steamAchievementName.toLowerCase().includes(this.steamAchievementsSearch))
+                .map(([steamAchievementId]) => steamAchievementId);
+        }
+    },
+    watch: {
+        blackMarketCategory() {
+            this.selectedBlackMarketItems = [];
+            this.selectAllBlackMarketItems = false;
+        }
     },
     created() {
         this.callStore = useCallStore();
+
+        this.blackMarketItems = { colors, masks, materials, textures, weaponMods };
+        this.trophies = trophies;
+        this.steamAchievements = steamAchievements;
     },
     methods: {
         setLevel() {
             this.callStore.addCall(["UT:setLevel", this.level]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
             this.level = null;
         },
         setInfamyRank() {
             this.callStore.addCall(["UT:setInfamyRank", this.infamyRank]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
             this.infamyRank = null;
         },
         addSpendingMoney() {
             this.callStore.addCall(["UT:addSpendingMoney", this.spendingMoney]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
             this.spendingMoney = null;
         },
         addOffshoreMoney() {
             this.callStore.addCall(["UT:addOffshoreMoney", this.offshoreMoney]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
             this.offshoreMoney = null;
         },
         resetMoney() {
             this.callStore.addCall(["UT:resetMoney"]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
         },
         addContinentalCoins() {
             this.callStore.addCall(["UT:addContinentalCoins", this.continentalCoins]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
             this.continentalCoins = null;
         },
         resetContinentalCoins() {
             this.callStore.addCall(["UT:resetContinentalCoins"]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
         },
         addPerkPoints() {
             this.callStore.addCall(["UT:addPerkPoints", this.perkPoints]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
             this.perkPoints = null;
         },
         resetPerkPoints() {
             this.callStore.addCall(["UT:resetPerkPoints"]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        addItemsToBlackMarket() {
+            for (const itemId of this.selectedBlackMarketItems) {
+                this.callStore.addCall(["UT:addItemToBlackMarket", this.blackMarketCategory, itemId]);
+            }
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        removeItemsFromBlackMarket() {
+            for (const itemId of this.selectedBlackMarketItems) {
+                this.callStore.addCall(["UT:removeItemFromBlackMarket", this.blackMarketCategory, itemId]);
+            }
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        unlockBlackMarketSlots() {
+            this.callStore.addCall(["UT:setBlackMarketSlotsLock", true]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        lockBlackMarketSlots() {
+            this.callStore.addCall(["UT:setBlackMarketSlotsLock", false]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        removeBlackMarketExclamationMarks() {
+            this.callStore.addCall(["UT:removeBlackMarketExclamationMarks"]);
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        unlockTrophies() {
+            for (const trophyId of this.selectedTrophies) {
+                this.callStore.addCall(["UT:unlockTrophy", trophyId]);
+            }
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        lockTrophies() {
+            for (const trophyId of this.selectedTrophies) {
+                this.callStore.addCall(["UT:lockTrophy", trophyId]);
+            }
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        unlockSteamAchievements() {
+            for (const steamAchievementId of this.selectedSteamAchievements) {
+                this.callStore.addCall(["UT:unlockSteamAchievement", steamAchievementId]);
+            }
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        lockSteamAchievements() {
+            for (const steamAchievementId of this.selectedSteamAchievements) {
+                this.callStore.addCall(["UT:lockSteamAchievement", steamAchievementId]);
+            }
+            this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
+            this.callStore.addCall(["UT:saveProgress"]);
+        },
+        toggleAllBlackMarketItems() {
+            this.selectedBlackMarketItems = [];
+            if (this.selectAllBlackMarketItems) {
+                for (const itemId of this.blackMarketItems[this.blackMarketCategory]) {
+                    this.selectedBlackMarketItems.push(itemId);
+                }
+            }
+        },
+        toggleAllTrophies() {
+            this.selectedTrophies = [];
+            if (this.selectAllTrophies) {
+                for (const trophyId of this.trophies) {
+                    this.selectedTrophies.push(trophyId);
+                }
+            }
+        },
+        toggleAllSteamAchievements() {
+            this.selectedSteamAchievements = [];
+            if (this.selectAllSteamAchievements) {
+                for (const steamAchievementId of this.steamAchievements) {
+                    this.selectedSteamAchievements.push(steamAchievementId);
+                }
+            }
+        },
+        toggleSelectedBlackMarketItem(itemId) {
+            const index = this.selectedBlackMarketItems.indexOf(itemId);
+            if (index !== -1) {
+                this.selectedBlackMarketItems.splice(index, 1);
+            } else {
+                this.selectedBlackMarketItems.push(itemId);
+            }
+        },
+        toggleSelectedTrophy(trophyId) {
+            const index = this.selectedTrophies.indexOf(trophyId);
+            if (index !== -1) {
+                this.selectedTrophies.splice(index, 1);
+            } else {
+                this.selectedTrophies.push(trophyId);
+            }
+        },
+        toggleSelectedSteamAchievement(steamAchievementId) {
+            const index = this.selectedSteamAchievements.indexOf(steamAchievementId);
+            if (index !== -1) {
+                this.selectedSteamAchievements.splice(index, 1);
+            } else {
+                this.selectedSteamAchievements.push(steamAchievementId);
+            }
         }
     }
 }
@@ -61,78 +245,236 @@ export default {
 <template>
     <NavBar />
 
-    <div style="max-width: 800px;" class="container my-5">
-        <div class="d-flex align-items-start">
-            <div style="width: 300px;" class="nav flex-column nav-pills me-3">
-                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#level-tab">{{ $t("main.level") }}</button>
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#infamy-rank-tab">{{ $t("main.infamy_rank") }}</button>
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#money-tab">{{ $t("main.money") }}</button>
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#continental-coins-tab">{{ $t("main.continental_coins") }}</button>
-                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#perk-points-tab">{{ $t("main.perk_points") }}</button>
-            </div>
-            <div class="tab-content w-100">
-                <div id="level-tab" class="tab-pane fade show active" tabindex="0">
-                    <form @submit.prevent="setLevel">
-                        <div class="mb-3">
-                            <label for="level" class="form-label">{{ $t("main.level") }}</label>
-                            <input id="level" v-model="level" type="number" min="0" max="100" step="1" class="form-control" required>
+    <div style="max-width: 850px;" class="container my-5">
+        <div class="card p-3">
+            <div class="card-body">
+                <div class="d-flex align-items-start">
+                    <div style="width: 300px;" class="nav flex-column nav-pills me-3">
+                        <button class="nav-link text-start active" data-bs-toggle="pill" data-bs-target="#level-tab">{{ $t("main.level") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#infamy-rank-tab">{{ $t("main.infamy_rank") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#money-tab">{{ $t("main.money") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#continental-coins-tab">{{ $t("main.continental_coins") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#perk-points-tab">{{ $t("main.perk_points") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#inventory-tab">{{ $t("main.inventory") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#trophies-tab">{{ $t("main.trophies") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#steam-achievements-tab">{{ $t("main.steam_achievements") }}</button>
+                    </div>
+                    <div class="tab-content w-100">
+                        <div id="level-tab" class="tab-pane show active" tabindex="0">
+                            <form @submit.prevent="setLevel">
+                                <div class="row align-items-end">
+                                    <div class="col-8">
+                                        <label for="level" class="form-label">{{ $t("main.level") }}</label>
+                                        <input id="level" v-model="level" type="number" min="0" max="100" step="1" class="form-control" required>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary w-100">{{ $t("main.apply") }}</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">{{ $t("main.apply") }}</button>
-                    </form>
-                </div>
-                <div id="infamy-rank-tab" class="tab-pane fade" tabindex="0">
-                    <form @submit.prevent="setInfamyRank">
-                        <div class="mb-3">
-                            <label for="infamy-rank" class="form-label">{{ $t("main.infamy_rank") }}</label>
-                            <input id="infamy-rank" v-model="infamyRank" type="number" min="0" max="500" step="1" class="form-control" required>
+                        <div id="infamy-rank-tab" class="tab-pane" tabindex="0">
+                            <form @submit.prevent="setInfamyRank">
+                                <div class="row align-items-end">
+                                    <div class="col-8">
+                                        <label for="infamy-rank" class="form-label">{{ $t("main.infamy_rank") }}</label>
+                                        <input id="infamy-rank" v-model="infamyRank" type="number" min="0" max="500" step="1" class="form-control" required>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary w-100">{{ $t("main.apply") }}</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">{{ $t("main.apply") }}</button>
-                    </form>
-                </div>
-                <div id="money-tab" class="tab-pane fade" tabindex="0">
-                    <form @submit.prevent="addSpendingMoney" class="mb-4">
-                        <div class="mb-3">
-                            <label for="spending-money" class="form-label">{{ $t("main.spending_money") }}</label>
-                            <input id="spending-money" v-model="spendingMoney" type="number" min="1" step="1" class="form-control" required>
+                        <div id="money-tab" class="tab-pane" tabindex="0">
+                            <form class="mb-4" @submit.prevent="addSpendingMoney">
+                                <div class="row align-items-end">
+                                    <div class="col-8">
+                                        <label for="spending-money" class="form-label">{{ $t("main.spending_money") }}</label>
+                                        <input id="spending-money" v-model="spendingMoney" type="number" min="1" step="1" class="form-control" required>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary w-100">{{ $t("main.add") }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form class="mb-4" @submit.prevent="addOffshoreMoney">
+                                <div class="row align-items-end">
+                                    <div class="col-8">
+                                        <label for="offshore-money" class="form-label">{{ $t("main.offshore_money") }}</label>
+                                        <input id="offshore-money" v-model="offshoreMoney" type="number" min="1" step="1" class="form-control" required>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary w-100">{{ $t("main.add") }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form @submit.prevent="resetMoney">
+                                <button type="submit" class="btn btn-warning">{{ $t("main.reset_money") }}</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">{{ $t("main.add") }}</button>
-                    </form>
-                    <form @submit.prevent="addOffshoreMoney" class="mb-4">
-                        <div class="mb-3">
-                            <label for="offshore-money" class="form-label">{{ $t("main.offshore_money") }}</label>
-                            <input id="offshore-money" v-model="offshoreMoney" type="number" min="1" step="1" class="form-control" required>
+                        <div id="continental-coins-tab" class="tab-pane" tabindex="0">
+                            <form class="mb-4" @submit.prevent="addContinentalCoins">
+                                <div class="row align-items-end">
+                                    <div class="col-8">
+                                        <label for="continental-coins" class="form-label">{{ $t("main.continental_coins") }}</label>
+                                        <input id="continental-coins" v-model="continentalCoins" type="number" min="1" step="1" class="form-control" required>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary w-100">{{ $t("main.add") }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form @submit.prevent="resetContinentalCoins">
+                                <button type="submit" class="btn btn-warning">{{ $t("main.reset_continental_coins") }}</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">{{ $t("main.add") }}</button>
-                    </form>
-                    <form @submit.prevent="resetMoney">
-                        <button type="submit" class="btn btn-danger">{{ $t("main.reset_money") }}</button>
-                    </form>
-                </div>
-                <div id="continental-coins-tab" class="tab-pane fade" tabindex="0">
-                    <form @submit.prevent="addContinentalCoins" class="mb-4">
-                        <div class="mb-3">
-                            <label for="continental-coins" class="form-label">{{ $t("main.continental_coins") }}</label>
-                            <input id="continental-coins" v-model="continentalCoins" type="number" min="1" step="1" class="form-control" required>
+                        <div id="perk-points-tab" class="tab-pane" tabindex="0">
+                            <form class="mb-4" @submit.prevent="addPerkPoints">
+                                <div class="row align-items-end">
+                                    <div class="col-8">
+                                        <label for="perk-points" class="form-label">{{ $t("main.perk_points") }}</label>
+                                        <input id="perk-points" v-model="perkPoints" type="number" min="1" step="1" class="form-control" required>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-primary w-100">{{ $t("main.add") }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form @submit.prevent="resetPerkPoints">
+                                <button type="submit" class="btn btn-warning">{{ $t("main.reset_perk_points") }}</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">{{ $t("main.add") }}</button>
-                    </form>
-                    <form @submit.prevent="resetContinentalCoins">
-                        <button type="submit" class="btn btn-danger">{{ $t("main.reset_continental_coins") }}</button>
-                    </form>
-                </div>
-                <div id="perk-points-tab" class="tab-pane fade" tabindex="0">
-                    <form @submit.prevent="addPerkPoints" class="mb-4">
-                        <div class="mb-3">
-                            <label for="perk-points" class="form-label">{{ $t("main.perk_points") }}</label>
-                            <input id="perk-points" v-model="perkPoints" type="number" min="1" step="1" class="form-control" required>
+                        <div id="inventory-tab" class="tab-pane" tabindex="0">
+                            <form class="mb-4" @submit.prevent="addItemsToBlackMarket">
+                                <div class="mb-3">
+                                    <label for="black-market-category" class="form-label">{{ $t("main.category") }}</label>
+                                    <select id="black-market-category" v-model="blackMarketCategory" class="form-select">
+                                        <option value="masks">{{ $t("main.masks") }}</option>
+                                        <option value="materials">{{ $t("main.materials") }}</option>
+                                        <option value="textures">{{ $t("main.textures") }}</option>
+                                        <option value="colors">{{ $t("main.colors") }}</option>
+                                        <option value="weaponMods">{{ $t("main.weapon_mods") }}</option>
+                                    </select>
+                                </div>
+                                <template v-if="blackMarketCategory">
+                                    <div class="mb-3">
+                                        <div class="table-responsive">
+                                            <table class="table align-middle mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 40px;" class="bg-dark text-center align-middle">
+                                                            <input v-model="selectAllBlackMarketItems" class="form-check-input" type="checkbox" role="button" @change="toggleAllBlackMarketItems">
+                                                        </th>
+                                                        <th class="bg-dark">
+                                                            <input v-model="blackMarketItemsSearch" type="search" class="form-control form-control-sm">
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="itemId in filteredBlackMarketItems" :key="itemId" role="button" @click="toggleSelectedBlackMarketItem(itemId)">
+                                                        <td class="bg-transparent text-center align-middle">
+                                                            <input v-model="selectedBlackMarketItems" class="form-check-input" type="checkbox" :value="itemId" role="button">
+                                                        </td>
+                                                        <td class="bg-transparent">{{ $t(`${blackMarketCategory === "weaponMods" ? "weapon_mods" : blackMarketCategory}.${itemId}`) }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary me-3">{{ $t("main.add") }}</button>
+                                    <button type="button" class="btn btn-warning" @click="removeItemsFromBlackMarket">{{ $t("main.remove") }}</button>
+                                </template>
+                            </form>
+                            <div class="mb-4">
+                                <button type="button" class="btn btn-primary me-3" @click="unlockBlackMarketSlots">{{ $t("main.unlock_slots") }}</button>
+                                <button type="button" class="btn btn-primary" @click="lockBlackMarketSlots">{{ $t("main.lock_slots") }}</button>
+                            </div>
+                            <form @submit.prevent="removeBlackMarketExclamationMarks">
+                                <button type="submit" class="btn btn-primary">{{ $t("main.remove_exclamation_marks") }}</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">{{ $t("main.add") }}</button>
-                    </form>
-                    <form @submit.prevent="resetPerkPoints">
-                        <button type="submit" class="btn btn-danger">{{ $t("main.reset_perk_points") }}</button>
-                    </form>
+                        <div id="trophies-tab" class="tab-pane" tabindex="0">
+                            <form @submit.prevent="unlockTrophies">
+                                <div class="mb-3">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 40px;" class="bg-dark text-center align-middle">
+                                                        <input v-model="selectAllTrophies" class="form-check-input" type="checkbox" role="button" @change="toggleAllTrophies">
+                                                    </th>
+                                                    <th class="bg-dark">
+                                                        <input v-model="trophiesSearch" type="search" class="form-control form-control-sm">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="trophyId in filteredTrophies" :key="trophyId" role="button" @click="toggleSelectedTrophy(trophyId)">
+                                                    <td class="bg-transparent text-center align-middle">
+                                                        <input v-model="selectedTrophies" class="form-check-input" type="checkbox" :value="trophyId" role="button">
+                                                    </td>
+                                                    <td class="bg-transparent">{{ $t(`trophies.${trophyId}`) }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary me-3">{{ $t("main.unlock") }}</button>
+                                <button type="button" class="btn btn-primary" @click="lockTrophies">{{ $t("main.lock") }}</button>
+                            </form>
+                        </div>
+                        <div id="steam-achievements-tab" class="tab-pane" tabindex="0">
+                            <form @submit.prevent="unlockSteamAchievements">
+                                <div class="mb-3">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 40px;" class="bg-dark text-center align-middle">
+                                                        <input v-model="selectAllSteamAchievements" class="form-check-input" type="checkbox" role="button" @change="toggleAllSteamAchievements">
+                                                    </th>
+                                                    <th class="bg-dark"><input v-model="steamAchievementsSearch" type="search" class="form-control form-control-sm"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="steamAchievementId in filteredSteamAchievements" :key="steamAchievementId" role="button" @click="toggleSelectedSteamAchievement(steamAchievementId)">
+                                                    <td class="bg-transparent text-center align-middle">
+                                                        <input v-model="selectedSteamAchievements" class="form-check-input" type="checkbox" :value="steamAchievementId" role="button">
+                                                    </td>
+                                                    <td class="bg-transparent">{{ $t(`steam_achievements.${steamAchievementId}`) }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-danger me-3">{{ $t("main.unlock") }}</button>
+                                <button type="button" class="btn btn-danger" @click="lockSteamAchievements">{{ $t("main.lock") }}</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+.nav-link {
+    transition: none;
+}
+
+.table-responsive {
+    max-height: 400px;
+}
+
+thead {
+    overflow: auto;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+</style>
