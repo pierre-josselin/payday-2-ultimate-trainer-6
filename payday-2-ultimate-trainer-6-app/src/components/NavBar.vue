@@ -40,6 +40,9 @@ export default {
                     <template v-else-if="mainStore.isInPrePlanning">{{ $t("main.in_pre_planning") }}</template>
                     <template v-else-if="mainStore.isInGame">{{ $t("main.in_game") }}</template>
                 </span>
+                <a class="btn btn-primary btn-sm me-3" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" target="_blank">
+                    <FontAwesomeIcon icon="fa-brands fa-github" />
+                </a>
                 <button class="btn btn-primary btn-sm" @click="closeWebSocket">
                     <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
                 </button>
