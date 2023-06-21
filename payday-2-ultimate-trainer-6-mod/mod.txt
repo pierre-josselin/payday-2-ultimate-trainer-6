@@ -7,6 +7,10 @@
         {
             "hook_id": "core/lib/setups/coresetup",
             "script_path": "hooks/core/lib/setups/coresetup.lua"
+        },
+        {
+            "hook_id": "lib/setups/gamesetup",
+            "script_path": "hooks/lib/setups/gamesetup.lua"
         }
     ],
     "persist_scripts": [

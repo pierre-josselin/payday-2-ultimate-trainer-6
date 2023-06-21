@@ -4,6 +4,7 @@ import { webSocketConnected } from "@/web-socket";
 
 import ConnectView from "@/views/ConnectView.vue";
 import PlayerView from "@/views/PlayerView.vue";
+import EnvironmentView from "@/views/EnvironmentView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,11 @@ const router = createRouter({
             path: "/player",
             name: "player",
             component: PlayerView
+        },
+        {
+            path: "/environment",
+            name: "environment",
+            component: EnvironmentView
         }
     ]
 });

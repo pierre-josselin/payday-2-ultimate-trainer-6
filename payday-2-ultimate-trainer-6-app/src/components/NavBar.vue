@@ -7,7 +7,8 @@ export default {
     data() {
         return {
             navItems: [
-                "player"
+                "player",
+                "environment"
             ]
         };
     },

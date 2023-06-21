@@ -1,6 +1,8 @@
 UT = {}
 
-UT.lastCallClock = 0;
+UT.lastCallClock = 0
+UT.environment = nil
+UT.initialEnvironment = nil
 
 function UT:requestCalls()
     local url = UT_SERVER_URL .. "/calls"
@@ -24,6 +26,28 @@ function UT:update()
     if UT.Utils:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
         UT:requestCalls()
     end
+
+    if UT:isInGame() then
+        if UT:isInHeist() then
+            if UT.environment then
+                if UT:getEnvironment() ~= UT.environment then
+                    UT:setEnvironment(UT.environment)
+                end
+            end
+
+            if not UT.initialEnvironment then
+                UT.initialEnvironment = UT:getEnvironment()
+            end
+        end
+    end
+end
+
+function UT:isInGame()
+    return Utils:IsInGameState()
+end
+
+function UT:isInHeist()
+    return Utils:IsInHeist()
 end
 
 function UT:refreshPlayerProfileGUI()
@@ -163,4 +187,17 @@ end
 
 function UT:lockSteamAchievement(achievementId)
     managers.achievment:clear_steam(achievementId)
+end
+
+function UT:getEnvironment()
+    return managers.viewport:first_active_viewport():get_environment_path()
+end
+
+function UT:setEnvironment(environment)
+    managers.viewport:first_active_viewport():set_environment(environment)
+    UT.environment = environment
+end
+
+function UT:setInitialEnvironment()
+    UT:setEnvironment(UT.initialEnvironment)
 end
