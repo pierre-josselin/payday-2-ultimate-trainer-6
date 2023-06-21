@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { webSocketConnected } from "@/web-socket";
 
 import ConnectView from "@/views/ConnectView.vue";
-import PlayerView from "@/views/PlayerView.vue";
+import CareerView from "@/views/CareerView.vue";
 import EnvironmentView from "@/views/EnvironmentView.vue";
 
 const router = createRouter({
@@ -12,7 +12,7 @@ const router = createRouter({
         {
             path: "/",
             name: "home",
-            redirect: { name: "player" }
+            redirect: { name: "career" }
         },
         {
             path: "/connect",
@@ -20,9 +20,9 @@ const router = createRouter({
             component: ConnectView
         },
         {
-            path: "/player",
-            name: "player",
-            component: PlayerView
+            path: "/career",
+            name: "career",
+            component: CareerView
         },
         {
             path: "/environment",
