@@ -246,8 +246,9 @@ export default {
     <NavBar />
 
     <div style="max-width: 850px;" class="container my-5">
-        <div class="card p-3">
-            <div class="card-body">
+        <div class="card">
+            <div class="card-header">{{ $t("main.career") }}</div>
+            <div class="card-body p-4">
                 <div class="d-flex align-items-start">
                     <div style="width: 300px;" class="nav flex-column nav-pills me-3">
                         <button class="nav-link text-start active" data-bs-toggle="pill" data-bs-target="#level-tab">{{ $t("main.level") }}</button>

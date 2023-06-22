@@ -116,8 +116,9 @@ export default {
     <NavBar />
 
     <div style="max-width: 1000px;" class="container my-5">
-        <div class="card p-3">
-            <div class="card-body">
+        <div class="card">
+            <div class="card-header">{{ $t("main.cheats") }}</div>
+            <div class="card-body p-4">
                 <div class="row row-cols-2">
                     <div class="col mb-3">
                         <div class="form-check form-switch">
