@@ -57,7 +57,7 @@ export default {
                 <div class="card mb-4" @click="setInitialEnvironment" role="button">
                     <img src="@/assets/environments/default.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.default") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.default") }}</h5>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentEarlyMorning" role="button">
                     <img src="@/assets/environments/early-morning.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.early_morning") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.early_morning") }}</h5>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentMorning" role="button">
                     <img src="@/assets/environments/morning.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.morning") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.morning") }}</h5>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentMidDay" role="button">
                     <img src="@/assets/environments/mid-day.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.mid_day") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.mid_day") }}</h5>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentAfternoon" role="button">
                     <img src="@/assets/environments/afternoon.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.afternoon") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.afternoon") }}</h5>
                     </div>
                 </div>
             </div>
@@ -97,7 +97,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentBrightDay" role="button">
                     <img src="@/assets/environments/bright-day.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.bright_day") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.bright_day") }}</h5>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentCloudyDay" role="button">
                     <img src="@/assets/environments/cloudy-day.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.cloudy_day") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.cloudy_day") }}</h5>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentNight" role="button">
                     <img src="@/assets/environments/night.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.night") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.night") }}</h5>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentMistyNight" role="button">
                     <img src="@/assets/environments/misty-night.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.misty_night") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.misty_night") }}</h5>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@ export default {
                 <div class="card mb-4" @click="setEnvironmentFoggyNight" role="button">
                     <img src="@/assets/environments/foggy-night.jpg" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t("main.foggy_night") }}</h5>
+                        <h5 class="card-title mb-0">{{ $t("environments.foggy_night") }}</h5>
                     </div>
                 </div>
             </div>
