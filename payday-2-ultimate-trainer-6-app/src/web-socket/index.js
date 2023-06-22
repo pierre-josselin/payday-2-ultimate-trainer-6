@@ -14,6 +14,7 @@ export function createWebSocket(options) {
     ws.addEventListener("open", () => {
         connected.value = true;
         options.connectionErrorCallback = null;
+        options.callStore.addCall(["UT:sendGameState"]);
         options.router.push({ name: "home" });
     });
 
