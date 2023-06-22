@@ -10,7 +10,8 @@ export default {
         return {
             navItems: [
                 "career",
-                "environment"
+                "environment",
+                "cheats"
             ]
         };
     },

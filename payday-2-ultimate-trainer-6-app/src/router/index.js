@@ -5,6 +5,7 @@ import { webSocketConnected } from "@/web-socket";
 import ConnectView from "@/views/ConnectView.vue";
 import CareerView from "@/views/CareerView.vue";
 import EnvironmentView from "@/views/EnvironmentView.vue";
+import CheatsView from "@/views/CheatsView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
             path: "/environment",
             name: "environment",
             component: EnvironmentView
+        },
+        {
+            path: "/cheats",
+            name: "cheats",
+            component: CheatsView
         }
     ]
 });

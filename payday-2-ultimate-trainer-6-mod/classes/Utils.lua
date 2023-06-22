@@ -40,3 +40,11 @@ function UT.Utils:buildQueryString(query)
     end
     return UT.Utils:tableJoin(parts, "&")
 end
+
+function UT.Utils:cloneClass(class)
+    _G.CloneClass(class)
+end
+
+function UT.Utils:deepClone(element)
+    return deep_clone(element)
+end

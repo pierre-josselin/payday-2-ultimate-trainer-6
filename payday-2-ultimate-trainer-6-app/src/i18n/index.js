@@ -8,6 +8,7 @@ import enSteamAchievements from "@/locales/en/steam-achievements.json";
 import enTextures from "@/locales/en/textures.json";
 import enTrophies from "@/locales/en/trophies.json";
 import enWeaponMods from "@/locales/en/weapon-mods.json";
+import enCheats from "@/locales/en/cheats.json";
 
 export default createI18n({
     locale: "en",
@@ -22,7 +23,8 @@ export default createI18n({
             steam_achievements: enSteamAchievements,
             textures: enTextures,
             trophies: enTrophies,
-            weapon_mods: enWeaponMods
+            weapon_mods: enWeaponMods,
+            cheats: enCheats
         }
     }
 });
