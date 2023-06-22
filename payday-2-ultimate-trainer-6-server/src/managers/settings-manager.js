@@ -27,6 +27,10 @@ class SettingsManager {
         return this.settings;
     }
 
+    setSettings(settings) {
+        this.settings = settings;
+    }
+
     setSetting(name, value) {
         this.settings[name] = value;
     }

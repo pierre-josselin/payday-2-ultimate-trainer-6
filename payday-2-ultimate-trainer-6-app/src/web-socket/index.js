@@ -44,6 +44,10 @@ export function createWebSocket(options) {
                 options.mainStore.setGameState(message.data);
                 break;
             }
+            case "settings": {
+                options.settingsStore.setSettings(message.data);
+                break;
+            }
         }
     });
 }

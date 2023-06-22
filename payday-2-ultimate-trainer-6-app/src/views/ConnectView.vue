@@ -1,8 +1,9 @@
 <script>
 import Swal from "sweetalert2";
 
-import { useCallStore } from "@/stores/calls";
 import { useMainStore } from "@/stores/main";
+import { useCallStore } from "@/stores/calls";
+import { useSettingsStore } from "@/stores/settings";
 
 import { createWebSocket } from "@/web-socket";
 
@@ -17,6 +18,7 @@ export default {
     created() {
         this.callStore = useCallStore();
         this.mainStore = useMainStore();
+        this.settingsStore = useSettingsStore();
     },
     methods: {
         connect() {
@@ -26,8 +28,9 @@ export default {
                 host: this.host,
                 port: this.port,
                 router: this.$router,
-                callStore: this.callStore,
                 mainStore: this.mainStore,
+                callStore: this.callStore,
+                settingsStore: this.settingsStore,
                 connectionErrorCallback: () => {
                     this.connecting = false;
                     Swal.fire({

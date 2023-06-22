@@ -3,14 +3,14 @@ import { createPinia } from "pinia";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import App from "@/App.vue";
 import i18n from "@/i18n";
 import router from "@/router";
 
-library.add(faRightFromBracket, faGithub);
+library.add(faRightFromBracket, faTriangleExclamation, faGithub);
 
 const app = createApp(App);
 const pinia = createPinia();

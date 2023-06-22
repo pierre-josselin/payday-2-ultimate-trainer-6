@@ -4,6 +4,9 @@ UT.lastCallClock = 0
 UT.environment = nil
 UT.initialEnvironment = nil
 UT.previousGameState = nil
+UT.inHeistEventTriggered = false
+
+UT.settings = {}
 UT.tweakData = {}
 
 function UT:requestCalls()
@@ -24,6 +27,21 @@ function UT:requestCalls()
     UT.lastCallClock = UT.Utils:getClock()
 end
 
+function UT:requestSettings()
+    local url = UT_SERVER_URL .. "/settings"
+    local callback = function(data)
+        if not data then
+            return
+        end
+        local settings = UT.Utils:jsonDecode(data)
+        if not settings then
+            return
+        end
+        UT.settings = settings
+    end
+    UT.Utils:httpRequest(url, callback)
+end
+
 function UT:sendMessage(message)
     local queryString = UT.Utils:buildQueryString(message)
     local url = UT_SERVER_URL .. "/send-message?" .. queryString
@@ -42,9 +60,76 @@ function UT:sendGameState()
     UT:sendMessage(message)
 end
 
+function UT:triggerInHeistEvent()
+    UT.initialEnvironment = UT:getEnvironment()
+
+    if UT.settings["enable-god-mode"] then
+        UT:setGodMode(true)
+    end
+    if UT.settings["enable-infinite-stamina"] then
+        UT:setInfiniteStamina(true)
+    end
+    if UT.settings["enable-can-run-directional"] then
+        UT:setCanRunDirectional(true)
+    end
+    if UT.settings["enable-can-run-with-any-bag"] then
+        UT:setCanRunDirectional(true)
+    end
+    if UT.settings["enable-instant-mask-on"] then
+        UT:setInstantMaskOn(true)
+    end
+    if UT.settings["enable-no-carry-cooldown"] then
+        UT:setNoCarryCooldown(true)
+    end
+    if UT.settings["enable-no-flashbangs"] then
+        UT:setNoFlashbangs(true)
+    end
+    if UT.settings["enable-instant-interaction"] then
+        UT:setInstantInteraction(true)
+    end
+    if UT.settings["enable-instant-deployment"] then
+        UT:setInstantDeployment(true)
+    end
+    if UT.settings["enable-unlimited-equipment"] then
+        UT:setUnlimitedEquipment(true)
+    end
+    if UT.settings["enable-instant-weapon-swap"] then
+        UT:setInstantWeaponSwap(true)
+    end
+    if UT.settings["enable-instant-weapon-reload"] then
+        UT:setInstantWeaponReload(true)
+    end
+    if UT.settings["enable-no-weapon-recoil"] then
+        UT:setNoWeaponRecoil(true)
+    end
+    if UT.settings["enable-no-weapon-spread"] then
+        UT:setNoWeaponSpread(true)
+    end
+    if UT.settings["enable-shoot-through-walls"] then
+        UT:setShootThroughWalls(true)
+    end
+    if UT.settings["enable-unlimited-ammo"] then
+        UT:setUnlimitedAmmo(true)
+    end
+    if UT.settings["enable-move-speed-multiplier"] and UT.settings["move-speed-multiplier"] then
+        UT:setMoveSpeedMultiplier(true, UT.settings["move-speed-multiplier"])
+    end
+    if UT.settings["enable-throw-distance-multiplier"] and UT.settings["throw-distance-multiplier"] then
+        UT:setThrowDistanceMultiplier(true, UT.settings["throw-distance-multiplier"])
+    end
+    if UT.settings["enable-fire-rate-multiplier"] and UT.settings["fire-rate-multiplier"] then
+        UT:setFireRateMultiplier(true, UT.settings["fire-rate-multiplier"])
+    end
+    if UT.settings["enable-damage-multiplier"] and UT.settings["damage-multiplier"] then
+        UT:setDamageMultiplier(true, UT.settings["damage-multiplier"])
+    end
+
+    UT.inHeistEventTriggered = true
+end
+
 function UT:update()
     local gameState = UT:getGameState()
-    if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
+    if gameState and gameState ~= UT.previousGameState then
         UT:sendGameState()
     end
     UT.previousGameState = gameState
@@ -55,14 +140,14 @@ function UT:update()
 
     if UT:isInGame() then
         if UT:isInHeist() then
+            if not UT.inHeistEventTriggered then
+                UT:triggerInHeistEvent()
+            end
+
             if UT.environment then
                 if UT:getEnvironment() ~= UT.environment then
                     UT:setEnvironment(UT.environment)
                 end
-            end
-
-            if not UT.initialEnvironment then
-                UT.initialEnvironment = UT:getEnvironment()
             end
         end
     end

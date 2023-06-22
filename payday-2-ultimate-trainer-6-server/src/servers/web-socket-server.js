@@ -5,8 +5,8 @@ class WebSocketServer {
         call: (data) => {
             this.callManager.addCall(data);
         },
-        setting: (data) => {
-            this.settingsManager.setSetting(data.name, data.value);
+        settings: (data) => {
+            this.settingsManager.setSettings(data);
             this.settingsManager.saveSettings();
         }
     };
