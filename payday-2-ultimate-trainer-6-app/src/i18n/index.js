@@ -10,6 +10,7 @@ import enTrophies from "@/locales/en/trophies.json";
 import enWeaponMods from "@/locales/en/weapon-mods.json";
 import enEnvironments from "@/locales/en/environments.json";
 import enCheats from "@/locales/en/cheats.json";
+import enMission from "@/locales/en/mission.json";
 
 export default createI18n({
     locale: "en",
@@ -26,7 +27,8 @@ export default createI18n({
             trophies: enTrophies,
             weapon_mods: enWeaponMods,
             environments: enEnvironments,
-            cheats: enCheats
+            cheats: enCheats,
+            mission: enMission
         }
     }
 });

@@ -11,7 +11,8 @@ export default {
             navItems: [
                 "career",
                 "environment",
-                "cheats"
+                "cheats",
+                "mission"
             ]
         };
     },

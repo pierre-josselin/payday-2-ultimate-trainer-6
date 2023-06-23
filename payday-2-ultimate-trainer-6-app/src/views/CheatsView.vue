@@ -3,10 +3,12 @@ import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
+import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
 
 export default {
     components: {
-        NavBar
+        NavBar,
+        AntiCheatDetectedIcon
     },
     data() {
         return {
@@ -293,7 +295,7 @@ export default {
                         <div class="form-check form-switch">
                             <input id="enable-unlimited-equipment" class="form-check-input" type="checkbox" v-model="enableUnlimitedEquipment" @change="setUnlimitedEquipment">
                             <label for="enable-unlimited-equipment" class="form-check-label">{{ $t("cheats.unlimited_equipment") }}</label>
-                            <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation" class="text-warning ms-3" />
+                            <AntiCheatDetectedIcon class="ms-3" />
                         </div>
                     </div>
                     <div class="col mb-3">

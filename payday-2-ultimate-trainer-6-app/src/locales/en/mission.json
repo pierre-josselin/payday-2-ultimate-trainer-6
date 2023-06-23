@@ -1,0 +1,15 @@
+{
+    "access_cameras": "Access cameras",
+    "convert_all_enemies": "Convert all enemies",
+    "disable_ai": "Disable AI",
+    "instant_drilling": "Instant drilling",
+    "invisible_player": "Invisible player",
+    "kill_all_civilians": "Kill all civilians",
+    "kill_all_enemies": "Kill all enemies",
+    "prevent_alarm_triggering": "Prevent alarm triggering",
+    "remove_invisible_walls": "Remove invisible walls",
+    "tie_all_civilians": "Tie all civilians",
+    "trigger_the_alarm": "Trigger the alarm",
+    "unlimited_pagers": "Unlimited pagers",
+    "x_ray": "X-Ray"
+}

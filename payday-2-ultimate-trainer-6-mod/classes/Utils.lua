@@ -1,5 +1,14 @@
 UT.Utils = {}
 
+function UT.Utils:inTable(element, table)
+    for key, value in pairs(table) do
+        if value == element then
+            return true
+        end
+    end
+    return false
+end
+
 function UT.Utils:isEmptyTable(value)
     return next(value) == nil
 end

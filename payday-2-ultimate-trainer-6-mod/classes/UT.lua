@@ -5,9 +5,10 @@ UT.environment = nil
 UT.initialEnvironment = nil
 UT.previousGameState = nil
 UT.inHeistEventTriggered = false
+UT.maxInteger = math.huge
 
 UT.settings = {}
-UT.tweakData = {}
+UT.backup = {}
 
 function UT:requestCalls()
     local url = UT_SERVER_URL .. "/calls"
@@ -149,6 +150,10 @@ function UT:update()
                     UT:setEnvironment(UT.environment)
                 end
             end
+
+            if UT.enableDisableAi then
+                UT:disableAI()
+            end
         end
     end
 end
@@ -178,6 +183,33 @@ function UT:saveProgress()
     if managers.savefile then
         managers.savefile:save_progress()
     end
+end
+
+function UT:playerUnit()
+    return managers.player:player_unit()
+end
+
+function UT:deleteUnit(unit)
+    if not alive(unit) then
+        return
+    end
+    World:delete_unit(unit)
+    managers.network:session():send_to_peers_synched("remove_unit", unit)
+end
+
+function UT:killUnit(unit)
+    if not alive(unit) then
+        return
+    end
+
+    unit:character_damage():damage_explosion({
+        variant = "explosion",
+        damage = UT.maxInteger,
+        col_ray = {
+            ray = Vector3(1, 0, 0),
+            position = unit:position()
+        }
+    })
 end
 
 function UT:setLevel(level)
@@ -321,7 +353,7 @@ function UT:setInitialEnvironment()
 end
 
 function UT:setGodMode(enabled)
-    managers.player:player_unit():character_damage():set_god_mode(enabled)
+    UT:playerUnit():character_damage():set_god_mode(enabled)
 end
 
 function UT:setInfiniteStamina(enabled)
@@ -346,20 +378,20 @@ function UT:setCanRunDirectional(enabled)
 end
 
 function UT:setCanRunWithAnyBag(enabled)
-    UT.tweakData.carryTypes = UT.tweakData.carryTypes or UT.Utils:deepClone(tweak_data.carry.types)
+    UT.backup.tweakDataCarryTypes = UT.backup.tweakDataCarryTypes or UT.Utils:deepClone(tweak_data.carry.types)
     if enabled then
         for type, data in pairs(tweak_data.carry.types) do
             tweak_data.carry.types[type].can_run = true
         end
     else
-        for type, data in pairs(UT.tweakData.carryTypes) do
+        for type, data in pairs(UT.backup.tweakDataCarryTypes) do
             tweak_data.carry.types[type].can_run = data.can_run
         end
     end
 end
 
 function UT:setInstantMaskOn(enabled)
-    UT.tweakData.playerPutOnMaskTime = UT.tweakData.playerPutOnMaskTime or tweak_data.player.put_on_mask_time
+    UT.backup.tweakDataPlayerPutOnMaskTime = UT.backup.tweakDataPlayerPutOnMaskTime or tweak_data.player.put_on_mask_time
     if enabled then
         tweak_data.player.put_on_mask_time = 0.01
     else
@@ -429,10 +461,8 @@ function UT:setShootThroughWalls(enabled)
     UT.Utils:cloneClass(RaycastWeaponBase)
     UT.Utils:cloneClass(NewRaycastWeaponBase)
 
-    local player = managers.player:player_unit()
-
     if enabled then
-        if not player or not alive(player) then
+        if not UT:playerUnit() or not alive(UT:playerUnit()) then
             return
         end
 
@@ -447,7 +477,7 @@ function UT:setShootThroughWalls(enabled)
         NewRaycastWeaponBase._can_shoot_through_wall = NewRaycastWeaponBase.orig._can_shoot_through_wall
     end
 
-    for _, selection in pairs(player:inventory()._available_selections) do
+    for _, selection in pairs(UT:playerUnit():inventory()._available_selections) do
         local unitBase = selection.unit:base()
         if enabled then
             unitBase._bullet_slotmask_old = unitBase._bullet_slotmask
@@ -533,13 +563,13 @@ function UT:setMoveSpeedMultiplier(enabled, multiplier)
 end
 
 function UT:setThrowDistanceMultiplier(enabled, multiplier)
-    UT.tweakData.carryTypes = UT.tweakData.carryTypes or UT.Utils:deepClone(tweak_data.carry.types)
+    UT.backup.tweakDataCarryTypes = UT.backup.tweakDataCarryTypes or UT.Utils:deepClone(tweak_data.carry.types)
     if enabled then
         for type, data in pairs(tweak_data.carry.types) do
             tweak_data.carry.types[type].throw_distance_multiplier = multiplier
         end
     else
-        for type, data in pairs(UT.tweakData.carryTypes) do
+        for type, data in pairs(UT.backup.tweakDataCarryTypes) do
             tweak_data.carry.types[type].throw_distance_multiplier = data.throw_distance_multiplier
         end
     end
@@ -558,14 +588,14 @@ function UT:setDamageMultiplier(enabled, multiplier)
     UT.Utils:cloneClass(CopDamage)
     if enabled then
         function CopDamage:damage_bullet(attack_data)
-            if attack_data.attacker_unit == managers.player:player_unit() then
+            if attack_data.attacker_unit == UT:playerUnit() then
                 attack_data.damage = multiplier * 10
             end
             return self.orig.damage_bullet(self, attack_data)
         end
 
         function CopDamage:damage_melee(attack_data)
-            if attack_data.attacker_unit == managers.player:player_unit() then
+            if attack_data.attacker_unit == UT:playerUnit() then
                 attack_data.damage = multiplier * 10
             end
             return self.orig.damage_melee(self, attack_data)
@@ -573,5 +603,262 @@ function UT:setDamageMultiplier(enabled, multiplier)
     else
         CopDamage.damage_bullet = CopDamage.orig.damage_bullet
         CopDamage.damage_melee = CopDamage.orig.damage_melee
+    end
+end
+
+function UT:setUnlimitedConversion(enabled)
+    UT.Utils:cloneClass(PlayerManager)
+    if enabled then
+        function PlayerManager:upgrade_value(category, upgrade, default)
+            if category == "player" and upgrade == "convert_enemies" then
+                return true
+            elseif category == "player" and upgrade == "convert_enemies_max_minions" then
+                return UT.maxInteger
+            else
+                return PlayerManager.orig.upgrade_value(self, category, upgrade, default)
+            end
+        end
+    else
+        PlayerManager.upgrade_value = PlayerManager.orig.upgrade_value
+    end
+end
+
+function UT:startTheHeist()
+    managers.network:session():spawn_players()
+end
+
+function UT:restartTheHeist()
+    managers.game_play_central:restart_the_game()
+end
+
+function UT:finishTheHeist()
+    local amountOfAlivePlayers = managers.network:session():amount_of_alive_players()
+    managers.network:session():send_to_peers("mission_ended", true, amountOfAlivePlayers)
+    game_state_machine:change_state_by_name("victoryscreen", {
+        num_winners = amountOfAlivePlayers,
+        personal_win = alive(UT:playerUnit())
+    })
+end
+
+function UT:leaveTheHeist()
+    MenuCallbackHandler:_dialog_end_game_yes()
+end
+
+function UT:accessCameras()
+    game_state_machine:change_state_by_name("ingame_access_camera")
+end
+
+function UT:triggerTheAlarm()
+    managers.groupai:state():on_police_called("empty")
+end
+
+function UT:removeInvisibleWalls()
+    local units = World:find_units_quick("all", 1)
+    for index, unit in pairs(units) do
+        if UT.Utils:inTable(unit:name():key(), UT.Tables.invisibleWalls) then
+            UT:deleteUnit(unit)
+        end
+    end
+end
+
+function UT:killAllEnemies()
+    for key, data in pairs(managers.enemy:all_enemies()) do
+        UT:killUnit(data.unit)
+    end
+end
+
+function UT:killAllCivilians()
+    for key, data in pairs(managers.enemy:all_civilians()) do
+        UT:killUnit(data.unit)
+    end
+end
+
+function UT:tieAllCivilians()
+    for key, data in pairs(managers.enemy:all_civilians()) do
+        local brain = data.unit:brain()
+
+        if brain:is_tied() then
+            goto continue
+        end
+
+        brain:action_request({
+            clamp_to_graph = true,
+            variant = "halt",
+            body_part = 1,
+            type = "act"
+        })
+        brain._current_logic.on_intimidated(brain._logic_data, UT.maxInteger, UT:playerUnit(), true)
+        brain:on_tied(UT:playerUnit())
+
+        ::continue::
+    end
+end
+
+function UT:convertAllEnemies()
+    log(tostring(alive))
+    UT:setUnlimitedConversion(true)
+
+    for key, data in pairs(managers.enemy:all_enemies()) do
+        if not alive(data.unit) then
+            goto continue
+        end
+
+        managers.groupai:state():convert_hostage_to_criminal(data.unit)
+        managers.groupai:state():sync_converted_enemy(data.unit)
+        ::continue::
+    end
+
+    UT:setUnlimitedConversion(false)
+end
+
+function UT:setXRay(enabled)
+    if enabled then
+        UT.Utils:cloneClass(EnemyManager)
+
+        for key, data in pairs(managers.enemy:all_civilians()) do
+            data.unit:contour():add("mark_enemy", false, UT.maxInteger)
+        end
+
+        for key, data in pairs(managers.enemy:all_enemies()) do
+            data.unit:contour():add("mark_enemy", false, UT.maxInteger)
+        end
+
+        for key, unit in pairs(SecurityCamera.cameras) do
+            unit:contour():add("mark_unit", false, UT.maxInteger)
+        end
+
+        function EnemyManager:register_civilian(unit, ...)
+            EnemyManager.orig.register_civilian(self, unit, ...)
+            unit:contour():add("mark_enemy", false, UT.maxInteger)
+        end
+
+        function EnemyManager:register_enemy(unit, ...)
+            EnemyManager.orig.register_enemy(self, unit, ...)
+            unit:contour():add("mark_enemy", false, UT.maxInteger)
+        end
+
+        function EnemyManager:on_civilian_died(unit, ...)
+            EnemyManager.orig.on_civilian_died(self, unit, ...)
+            unit:contour():remove("mark_enemy", false)
+        end
+
+        function EnemyManager:on_enemy_died(unit, ...)
+            EnemyManager.orig.on_enemy_died(self, unit, ...)
+            unit:contour():remove("mark_enemy", false)
+        end
+    else
+        for key, data in pairs(managers.enemy:all_civilians()) do
+            data.unit:contour():remove("mark_enemy", false)
+        end
+
+        for key, data in pairs(managers.enemy:all_enemies()) do
+            data.unit:contour():remove("mark_enemy", false)
+        end
+
+        for key, unit in pairs(SecurityCamera.cameras) do
+            unit:contour():remove("mark_unit", false)
+        end
+
+        EnemyManager.register_enemy = EnemyManager.orig.register_enemy
+        EnemyManager.register_civilian = EnemyManager.orig.register_civilian
+        EnemyManager.on_enemy_died = EnemyManager.orig.on_enemy_died
+        EnemyManager.on_civilian_died = EnemyManager.orig.on_civilian_died
+    end
+end
+
+function UT:setPreventAlarmTriggering(enabled)
+    UT.Utils:cloneClass(GroupAIStateBase)
+    if enabled then
+        function GroupAIStateBase:on_police_called() end
+    else
+        GroupAIStateBase.on_police_called = GroupAIStateBase.orig.on_police_called
+    end
+end
+
+function UT:setInvisiblePlayer(enabled)
+    if not alive(UT:playerUnit()) then
+        return
+    end
+
+    local playerUnitKey = UT:playerUnit():key()
+    local groupAIState = managers.groupai:state()
+
+    if enabled then
+        UT.backup.playerAttentionObject = groupAIState._attention_objects.all[playerUnitKey]
+        groupAIState:unregister_AI_attention_object(playerUnitKey)
+    else
+        groupAIState._attention_objects.all[playerUnitKey] = UT.backup.playerAttentionObject
+        groupAIState:on_AI_attention_changed(playerUnitKey)
+    end
+end
+
+function UT:setDisableAI(enabled)
+    UT.enableDisableAi = enabled
+    if not enabled then
+        for key, value in pairs(managers.enemy:all_civilians()) do
+            value.unit:brain():set_active(true)
+        end
+
+        for key, value in pairs(managers.enemy:all_enemies()) do
+            value.unit:brain():set_active(true)
+        end
+
+        for key, unit in pairs(SecurityCamera.cameras) do
+            unit:base()._detection_interval = 0.1
+        end
+
+        if managers.groupai:state():turrets() then
+            for key, unit in pairs(managers.groupai:state():turrets()) do
+                unit:brain():set_active(true)
+            end
+        end
+    end
+end
+
+function UT:disableAI()
+    for key, data in pairs(managers.enemy:all_civilians()) do
+        if data.unit:brain():is_active() then
+            data.unit:brain():set_active(false)
+        end
+    end
+
+    for key, data in pairs(managers.enemy:all_enemies()) do
+        if data.unit:brain():is_active() then
+            data.unit:brain():set_active(false)
+        end
+    end
+
+    for key, unit in pairs(SecurityCamera.cameras) do
+        if unit:base()._detection_interval ~= UT.maxInteger then
+            unit:base()._detection_interval = UT.maxInteger
+        end
+    end
+
+    if managers.groupai:state():turrets() then
+        for key, unit in pairs(managers.groupai:state():turrets()) do
+            if unit:brain():is_active() then
+                unit:brain():set_active(false)
+            end
+        end
+    end
+end
+
+function UT:setUnlimitedPagers(enabled)
+    tweak_data.player.alarm_pager.bluff_success_chance = { 1, 1, 1, 1, enabled and 1 or 0 }
+end
+
+function UT:setInstantDrilling(enabled)
+    UT.Utils:cloneClass(TimerGui)
+    if enabled then
+        function TimerGui:_set_jamming_values() end
+
+        function TimerGui:start()
+            local timer = 0.01
+            self:_start(timer)
+            managers.network:session():send_to_peers_synched("start_timer_gui", self._unit, timer)
+        end
+    else
+        TimerGui._set_jamming_values = TimerGui.orig._set_jamming_values
+        TimerGui.start = TimerGui.orig.start
     end
 end
