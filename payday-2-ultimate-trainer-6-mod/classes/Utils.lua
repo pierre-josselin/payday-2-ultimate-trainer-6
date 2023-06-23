@@ -1,5 +1,9 @@
 UT.Utils = {}
 
+function UT.Utils:toString(value)
+    return tostring(value)
+end
+
 function UT.Utils:inTable(element, table)
     for key, value in pairs(table) do
         if value == element then
@@ -44,7 +48,7 @@ end
 function UT.Utils:buildQueryString(query)
     local parts = {}
     for key, value in pairs(query) do
-        local part = key .. "=" .. value
+        local part = UT.Utils:toString(key) .. "=" .. UT.Utils:toString(value)
         UT.Utils:tableInsert(parts, part)
     end
     return UT.Utils:tableJoin(parts, "&")

@@ -16,6 +16,17 @@ export default {
             ]
         };
     },
+    computed: {
+        isInMainMenu() {
+            return this.mainStore.getIsInMainMenu;
+        },
+        isInPrePlanning() {
+            return this.mainStore.getIsInPrePlanning;
+        },
+        isInHeist() {
+            return this.mainStore.getIsInHeist;
+        }
+    },
     created() {
         this.mainStore = useMainStore();
 
@@ -38,9 +49,9 @@ export default {
                     </li>
                 </ul>
                 <span class="me-3">
-                    <template v-if="mainStore.isInMainMenu">{{ $t("main.in_main_menu") }}</template>
-                    <template v-else-if="mainStore.isInPrePlanning">{{ $t("main.in_pre_planning") }}</template>
-                    <template v-else-if="mainStore.isInGame">{{ $t("main.in_game") }}</template>
+                    <template v-if="isInMainMenu">{{ $t("main.in_main_menu") }}</template>
+                    <template v-else-if="isInPrePlanning">{{ $t("main.in_pre_planning") }}</template>
+                    <template v-else-if="isInHeist">{{ $t("main.in_game") }}</template>
                 </span>
                 <a class="btn btn-primary btn-sm me-3" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />

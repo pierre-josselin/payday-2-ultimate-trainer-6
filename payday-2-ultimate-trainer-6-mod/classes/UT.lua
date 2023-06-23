@@ -50,13 +50,15 @@ function UT:sendMessage(message)
 end
 
 function UT:sendGameState()
-    local gameState = UT:getGameState()
-    if not gameState then
-        return
-    end
     local message = {
         type = "game-state",
-        data = gameState
+        data = UT:getGameState()
+    }
+    UT:sendMessage(message)
+
+    local message = {
+        type = "is-host",
+        data = UT:isHost() and 1 or 0
     }
     UT:sendMessage(message)
 end
@@ -171,6 +173,10 @@ end
 
 function UT:isInHeist()
     return Utils:IsInHeist()
+end
+
+function UT:isHost()
+    return Network:is_server()
 end
 
 function UT:refreshPlayerProfileGUI()

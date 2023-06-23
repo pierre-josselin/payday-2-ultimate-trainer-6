@@ -1,4 +1,5 @@
 <script>
+import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
 
 import NavBar from "@/components/NavBar.vue";
@@ -10,7 +11,16 @@ export default {
         BugIcon
     },
     created() {
+        this.mainStore = useMainStore();
         this.callStore = useCallStore();
+    },
+    computed: {
+        isInHeist() {
+            return this.mainStore.getIsInHeist;
+        },
+        isHost() {
+            return this.mainStore.getIsHost;
+        }
     },
     methods: {
         startTheHeist() {
@@ -75,81 +85,83 @@ export default {
         <div class="card">
             <div class="card-header">{{ $t("main.mission") }}</div>
             <div class="card-body p-4">
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-primary w-100" @click="startTheHeist">
-                            <FontAwesomeIcon icon="fa-solid fa-play" />
-                        </button>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-primary w-100" @click="restartTheHeist">
-                            <FontAwesomeIcon icon="fa-solid fa-rotate-right" />
-                        </button>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-primary w-100" @click="finishTheHeist">
-                            <FontAwesomeIcon icon="fa-solid fa-flag" />
-                        </button>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-primary w-100" @click="leaveTheHeist">
-                            <FontAwesomeIcon icon="fa-solid fa-person-running" />
-                        </button>
-                    </div>
-                </div>
-                <hr class="my-4" />
-                <div class="row">
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <button class="btn btn-primary w-100" @click="accessCameras">{{ $t("mission.access_cameras") }}</button>
+                <fieldset :disabled="!isInHeist">
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-primary w-100" @click="startTheHeist" :disabled="!isHost">
+                                <FontAwesomeIcon icon="fa-solid fa-play" />
+                            </button>
                         </div>
-                        <div class="mb-3">
-                            <button class="btn btn-warning w-100" @click="triggerTheAlarm">{{ $t("mission.trigger_the_alarm") }}</button>
+                        <div class="col">
+                            <button class="btn btn-primary w-100" @click="restartTheHeist" :disabled="!isHost">
+                                <FontAwesomeIcon icon="fa-solid fa-rotate-right" />
+                            </button>
                         </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary w-100" @click="removeInvisibleWalls">{{ $t("mission.remove_invisible_walls") }}</button>
+                        <div class="col">
+                            <button class="btn btn-primary w-100" @click="finishTheHeist" :disabled="!isHost">
+                                <FontAwesomeIcon icon="fa-solid fa-flag" />
+                            </button>
                         </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary w-100" @click="killAllEnemies">{{ $t("mission.kill_all_enemies") }}</button>
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary w-100" @click="killAllCivilians">{{ $t("mission.kill_all_civilians") }}</button>
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary w-100" @click="tieAllCivilians">{{ $t("mission.tie_all_civilians") }}</button>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary w-100" @click="convertAllEnemies">{{ $t("mission.convert_all_enemies") }}</button>
+                        <div class="col">
+                            <button class="btn btn-primary w-100" @click="leaveTheHeist">
+                                <FontAwesomeIcon icon="fa-solid fa-person-running" />
+                            </button>
                         </div>
                     </div>
-                    <div class="col-7">
-                        <div class="form-check form-switch mb-3" @change="setXRay($event.target.checked)">
-                            <input id="enable-x-ray" class="form-check-input" type="checkbox">
-                            <label for="enable-x-ray" class="form-check-label">{{ $t("mission.x_ray") }}</label>
+                    <hr class="my-4" />
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="mb-3">
+                                <button class="btn btn-primary w-100" @click="accessCameras">{{ $t("mission.access_cameras") }}</button>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-warning w-100" @click="triggerTheAlarm" :disabled="!isHost">{{ $t("mission.trigger_the_alarm") }}</button>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary w-100" @click="removeInvisibleWalls" :disabled="!isHost">{{ $t("mission.remove_invisible_walls") }}</button>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary w-100" @click="killAllEnemies">{{ $t("mission.kill_all_enemies") }}</button>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary w-100" @click="killAllCivilians">{{ $t("mission.kill_all_civilians") }}</button>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary w-100" @click="tieAllCivilians" :disabled="!isHost">{{ $t("mission.tie_all_civilians") }}</button>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary w-100" @click="convertAllEnemies" :disabled="!isHost">{{ $t("mission.convert_all_enemies") }}</button>
+                            </div>
                         </div>
-                        <div class="form-check form-switch mb-3" @change="setPreventAlarmTriggering($event.target.checked)">
-                            <input id="enable-prevent-alarm-triggering" class="form-check-input" type="checkbox">
-                            <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}</label>
-                        </div>
-                        <div class="form-check form-switch mb-3" @change="setInvisiblePlayer($event.target.checked)">
-                            <input id="enable-invisible-player" class="form-check-input" type="checkbox">
-                            <label for="enable-invisible-player" class="form-check-label">{{ $t("mission.invisible_player") }}</label>
-                        </div>
-                        <div class="form-check form-switch mb-3" @change="setDisableAI($event.target.checked)">
-                            <input id="enable-disable-ai" class="form-check-input" type="checkbox">
-                            <label for="enable-disable-ai" class="form-check-label">{{ $t("mission.disable_ai") }}</label>
-                        </div>
-                        <div class="form-check form-switch mb-3" @change="setUnlimitedPagers($event.target.checked)">
-                            <input id="enable-unlimited-pagers" class="form-check-input" type="checkbox">
-                            <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("mission.unlimited_pagers") }}</label>
-                        </div>
-                        <div class="form-check form-switch" @change="setInstantDrilling($event.target.checked)">
-                            <input id="enable-instant-drilling" class="form-check-input" type="checkbox">
-                            <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
-                            <BugIcon class="ms-3" />
+                        <div class="col-7">
+                            <div class="form-check form-switch mb-3" @change="setXRay($event.target.checked)">
+                                <input id="enable-x-ray" class="form-check-input" type="checkbox">
+                                <label for="enable-x-ray" class="form-check-label">{{ $t("mission.x_ray") }}</label>
+                            </div>
+                            <div class="form-check form-switch mb-3" @change="setPreventAlarmTriggering($event.target.checked)">
+                                <input id="enable-prevent-alarm-triggering" class="form-check-input" type="checkbox" :disabled="!isHost">
+                                <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}</label>
+                            </div>
+                            <div class="form-check form-switch mb-3" @change="setInvisiblePlayer($event.target.checked)">
+                                <input id="enable-invisible-player" class="form-check-input" type="checkbox" :disabled="!isHost">
+                                <label for="enable-invisible-player" class="form-check-label">{{ $t("mission.invisible_player") }}</label>
+                            </div>
+                            <div class="form-check form-switch mb-3" @change="setDisableAI($event.target.checked)">
+                                <input id="enable-disable-ai" class="form-check-input" type="checkbox" :disabled="!isHost">
+                                <label for="enable-disable-ai" class="form-check-label">{{ $t("mission.disable_ai") }}</label>
+                            </div>
+                            <div class="form-check form-switch mb-3" @change="setUnlimitedPagers($event.target.checked)">
+                                <input id="enable-unlimited-pagers" class="form-check-input" type="checkbox" :disabled="!isHost">
+                                <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("mission.unlimited_pagers") }}</label>
+                            </div>
+                            <div class="form-check form-switch" @change="setInstantDrilling($event.target.checked)">
+                                <input id="enable-instant-drilling" class="form-check-input" type="checkbox" :disabled="!isHost">
+                                <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
+                                <BugIcon class="ms-3" />
+                            </div>
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </div>
         </div>
     </div>

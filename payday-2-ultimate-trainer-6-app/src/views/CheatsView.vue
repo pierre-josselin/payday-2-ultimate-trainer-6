@@ -1,4 +1,5 @@
 <script>
+import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
 
@@ -39,6 +40,7 @@ export default {
         };
     },
     created() {
+        this.mainStore = useMainStore();
         this.callStore = useCallStore();
         this.settingsStore = useSettingsStore();
 
@@ -67,6 +69,11 @@ export default {
         this.fireRateMultiplier = this.settingsStore.getSetting("fire-rate-multiplier");
         this.damageMultiplier = this.settingsStore.getSetting("damage-multiplier");
     },
+    computed: {
+        isInHeist() {
+            return this.mainStore.getIsInHeist;
+        }
+    },
     watch: {
         moveSpeedMultiplier(moveSpeedMultiplier) {
             if (moveSpeedMultiplier === "") {
@@ -91,87 +98,119 @@ export default {
     },
     methods: {
         setGodMode() {
-            this.callStore.addCall(["UT:setGodMode", this.enableGodMode]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setGodMode", this.enableGodMode]);
+            }
             this.settingsStore.setSetting("enable-god-mode", this.enableGodMode);
             this.settingsStore.saveSettings();
         },
         setInfiniteStamina() {
-            this.callStore.addCall(["UT:setInfiniteStamina", this.enableInfiniteStamina]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setInfiniteStamina", this.enableInfiniteStamina]);
+            }
             this.settingsStore.setSetting("enable-infinite-stamina", this.enableInfiniteStamina);
             this.settingsStore.saveSettings();
         },
         setCanRunDirectional() {
-            this.callStore.addCall(["UT:setCanRunDirectional", this.enableCanRunDirectional]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setCanRunDirectional", this.enableCanRunDirectional]);
+            }
             this.settingsStore.setSetting("enable-can-run-directional", this.enableCanRunDirectional);
             this.settingsStore.saveSettings();
         },
         setCanRunWithAnyBag() {
-            this.callStore.addCall(["UT:setCanRunWithAnyBag", this.enableCanRunWithAnyBag]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setCanRunWithAnyBag", this.enableCanRunWithAnyBag]);
+            }
             this.settingsStore.setSetting("enable-can-run-with-any-bag", this.enableCanRunWithAnyBag);
             this.settingsStore.saveSettings();
         },
         setInstantMaskOn() {
-            this.callStore.addCall(["UT:setInstantMaskOn", this.enableInstantMaskOn]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setInstantMaskOn", this.enableInstantMaskOn]);
+            }
             this.settingsStore.setSetting("enable-instant-mask-on", this.enableInstantMaskOn);
             this.settingsStore.saveSettings();
         },
         setNoCarryCooldown() {
-            this.callStore.addCall(["UT:setNoCarryCooldown", this.enableNoCarryCooldown]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setNoCarryCooldown", this.enableNoCarryCooldown]);
+            }
             this.settingsStore.setSetting("enable-no-carry-cooldown", this.enableNoCarryCooldown);
             this.settingsStore.saveSettings();
         },
         setNoFlashbangs() {
-            this.callStore.addCall(["UT:setNoFlashbangs", this.enableNoFlashbangs]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setNoFlashbangs", this.enableNoFlashbangs]);
+            }
             this.settingsStore.setSetting("enable-no-flashbangs", this.enableNoFlashbangs);
             this.settingsStore.saveSettings();
         },
         setInstantInteraction() {
-            this.callStore.addCall(["UT:setInstantInteraction", this.enableInstantInteraction]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setInstantInteraction", this.enableInstantInteraction]);
+            }
             this.settingsStore.setSetting("enable-instant-interaction", this.enableInstantInteraction);
             this.settingsStore.saveSettings();
         },
         setInstantDeployment() {
-            this.callStore.addCall(["UT:setInstantDeployment", this.enableInstantDeployment]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setInstantDeployment", this.enableInstantDeployment]);
+            }
             this.settingsStore.setSetting("enable-instant-deployment", this.enableInstantDeployment);
             this.settingsStore.saveSettings();
         },
         setUnlimitedEquipment() {
-            this.callStore.addCall(["UT:setUnlimitedEquipment", this.enableUnlimitedEquipment]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setUnlimitedEquipment", this.enableUnlimitedEquipment]);
+            }
             this.settingsStore.setSetting("enable-unlimited-equipment", this.enableUnlimitedEquipment);
             this.settingsStore.saveSettings();
         },
         setInstantWeaponSwap() {
-            this.callStore.addCall(["UT:setInstantWeaponSwap", this.enableInstantWeaponSwap]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setInstantWeaponSwap", this.enableInstantWeaponSwap]);
+            }
             this.settingsStore.setSetting("enable-instant-weapon-swap", this.enableInstantWeaponSwap);
             this.settingsStore.saveSettings();
         },
         setInstantWeaponReload() {
-            this.callStore.addCall(["UT:setInstantWeaponReload", this.enableInstantWeaponReload]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setInstantWeaponReload", this.enableInstantWeaponReload]);
+            }
             this.settingsStore.setSetting("enable-instant-weapon-reload", this.enableInstantWeaponReload);
             this.settingsStore.saveSettings();
         },
         setNoWeaponRecoil() {
-            this.callStore.addCall(["UT:setNoWeaponRecoil", this.enableNoWeaponRecoil]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setNoWeaponRecoil", this.enableNoWeaponRecoil]);
+            }
             this.settingsStore.setSetting("enable-no-weapon-recoil", this.enableNoWeaponRecoil);
             this.settingsStore.saveSettings();
         },
         setNoWeaponSpread() {
-            this.callStore.addCall(["UT:setNoWeaponSpread", this.enableNoWeaponSpread]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setNoWeaponSpread", this.enableNoWeaponSpread]);
+            }
             this.settingsStore.setSetting("enable-no-weapon-spread", this.enableNoWeaponSpread);
             this.settingsStore.saveSettings();
         },
         setShootThroughWalls() {
-            this.callStore.addCall(["UT:setShootThroughWalls", this.enableShootThroughWalls]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setShootThroughWalls", this.enableShootThroughWalls]);
+            }
             this.settingsStore.setSetting("enable-shoot-through-walls", this.enableShootThroughWalls);
             this.settingsStore.saveSettings();
         },
         setUnlimitedAmmo() {
-            this.callStore.addCall(["UT:setUnlimitedAmmo", this.enableUnlimitedAmmo]);
+            if (this.isInHeist) {
+                this.callStore.addCall(["UT:setUnlimitedAmmo", this.enableUnlimitedAmmo]);
+            }
             this.settingsStore.setSetting("enable-unlimited-ammo", this.enableUnlimitedAmmo);
             this.settingsStore.saveSettings();
         },
         setMoveSpeedMultiplier() {
-            if (this.enableMoveSpeedMultiplier && this.moveSpeedMultiplier || !this.enableMoveSpeedMultiplier) {
+            if (this.isInHeist && ((this.enableMoveSpeedMultiplier && this.moveSpeedMultiplier) || !this.enableMoveSpeedMultiplier)) {
                 this.callStore.addCall(["UT:setMoveSpeedMultiplier", this.enableMoveSpeedMultiplier, this.moveSpeedMultiplier]);
             }
             this.settingsStore.setSetting("enable-move-speed-multiplier", this.enableMoveSpeedMultiplier);
@@ -179,7 +218,7 @@ export default {
             this.settingsStore.saveSettings();
         },
         setThrowDistanceMultiplier() {
-            if (this.enableThrowDistanceMultiplier && this.throwDistanceMultiplier || !this.enableThrowDistanceMultiplier) {
+            if (this.isInHeist && ((this.enableThrowDistanceMultiplier && this.throwDistanceMultiplier) || !this.enableThrowDistanceMultiplier)) {
                 this.callStore.addCall(["UT:setThrowDistanceMultiplier", this.enableThrowDistanceMultiplier, this.throwDistanceMultiplier]);
             }
             this.settingsStore.setSetting("enable-throw-distance-multiplier", this.enableThrowDistanceMultiplier);
@@ -187,7 +226,7 @@ export default {
             this.settingsStore.saveSettings();
         },
         setFireRateMultiplier() {
-            if (this.enableFireRateMultiplier && this.fireRateMultiplier || !this.enableFireRateMultiplier) {
+            if (this.isInHeist && ((this.enableFireRateMultiplier && this.fireRateMultiplier) || !this.enableFireRateMultiplier)) {
                 this.callStore.addCall(["UT:setFireRateMultiplier", this.enableFireRateMultiplier, this.fireRateMultiplier]);
             }
             this.settingsStore.setSetting("enable-fire-rate-multiplier", this.enableFireRateMultiplier);
@@ -195,7 +234,7 @@ export default {
             this.settingsStore.saveSettings();
         },
         setDamageMultiplier() {
-            if (this.enableDamageMultiplier && this.damageMultiplier || !this.enableDamageMultiplier) {
+            if (this.isInHeist && ((this.enableDamageMultiplier && this.damageMultiplier) || !this.enableDamageMultiplier)) {
                 this.callStore.addCall(["UT:setDamageMultiplier", this.enableDamageMultiplier, this.damageMultiplier]);
             }
             this.settingsStore.setSetting("enable-damage-multiplier", this.enableDamageMultiplier);
