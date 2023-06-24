@@ -21,6 +21,14 @@
     ],
     "keybinds": [
         {
+            "keybind_id": "ut_keybinds_open_app",
+            "name": "Open the app",
+            "script_path": "keybinds/open-app.lua",
+            "run_in_menu": true,
+            "run_in_game": true,
+            "localized": false
+        },
+        {
             "keybind_id": "ut_keybinds_test",
             "name": "Test",
             "script_path": "keybinds/test.lua",

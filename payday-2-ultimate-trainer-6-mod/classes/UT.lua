@@ -10,6 +10,10 @@ UT.maxInteger = math.huge
 UT.settings = {}
 UT.backup = {}
 
+function UT:openApp()
+    Steam:overlay_activate("url", UT_APP_URL)
+end
+
 function UT:requestCalls()
     local url = UT_SERVER_URL .. "/calls"
     local callback = function(data)
