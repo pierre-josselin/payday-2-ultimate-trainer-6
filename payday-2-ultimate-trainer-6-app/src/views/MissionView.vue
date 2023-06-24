@@ -45,8 +45,8 @@ export default {
         this.enableInstantDrilling = enableInstantDrilling;
     },
     computed: {
-        isInHeist() {
-            return this.mainStore.getIsInHeist;
+        isPlaying() {
+            return this.mainStore.getIsPlaying;
         },
         isHost() {
             return this.mainStore.getIsHost;
@@ -115,7 +115,7 @@ export default {
         <div class="card">
             <div class="card-header">{{ $t("main.mission") }}</div>
             <div class="card-body p-4">
-                <fieldset :disabled="!isInHeist">
+                <fieldset :disabled="!isPlaying">
                     <div class="row">
                         <div class="col">
                             <button class="btn btn-primary w-100" @click="startTheHeist" :disabled="!isHost">

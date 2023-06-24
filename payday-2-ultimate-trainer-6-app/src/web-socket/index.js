@@ -15,6 +15,7 @@ export function createWebSocket(options) {
         connected.value = true;
         options.connectionErrorCallback = null;
         options.callStore.addCall(["UT:sendGameState"]);
+        options.callStore.addCall(["UT:sendIsHost"]);
         options.router.push({ name: "home" });
     });
 

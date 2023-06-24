@@ -17,14 +17,20 @@ export default {
         };
     },
     computed: {
+        isInBootup() {
+            return this.mainStore.getIsInBootup;
+        },
         isInMainMenu() {
             return this.mainStore.getIsInMainMenu;
         },
-        isInPrePlanning() {
-            return this.mainStore.getIsInPrePlanning;
+        isInGame() {
+            return this.mainStore.getIsInGame;
         },
-        isInHeist() {
-            return this.mainStore.getIsInHeist;
+        isPlaying() {
+            return this.mainStore.getIsPlaying;
+        },
+        isAtEndGame() {
+            return this.mainStore.getIsAtEndGame;
         }
     },
     created() {
@@ -49,9 +55,11 @@ export default {
                     </li>
                 </ul>
                 <span class="me-3">
-                    <template v-if="isInMainMenu">{{ $t("main.in_main_menu") }}</template>
-                    <template v-else-if="isInPrePlanning">{{ $t("main.in_pre_planning") }}</template>
-                    <template v-else-if="isInHeist">{{ $t("main.in_game") }}</template>
+                    <template v-if="isInBootup">{{ $t("main.bootup") }}</template>
+                    <template v-else-if="isInMainMenu">{{ $t("main.main_menu") }}</template>
+                    <template v-else-if="isPlaying">{{ $t("main.playing") }}</template>
+                    <template v-else-if="isInGame">{{ $t("main.in_game") }}</template>
+                    <template v-else-if="isAtEndGame">{{ $t("main.end_game") }}</template>
                 </span>
                 <a class="btn btn-primary btn-sm me-3" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />

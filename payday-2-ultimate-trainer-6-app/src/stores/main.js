@@ -8,17 +8,23 @@ export const useMainStore = defineStore("main", {
         isHost: null
     }),
     getters: {
-        getGameState() {
-            return this.gameState;
+        getIsInBootup() {
+            return this.gameState === "bootup";
         },
         getIsInMainMenu() {
-            return Boolean(this.gameState === "menu_main");
+            return typeof this.gameState === "string" && this.gameState.startsWith("menu_");
         },
-        getIsInPrePlanning() {
-            return Boolean(this.gameState === "ingame_waiting_for_players");
+        getIsInGame() {
+            return typeof this.gameState === "string" && this.gameState.startsWith("ingame_");
+        },
+        getIsPlaying() {
+            return typeof this.gameState === "string" && this.gameState.startsWith("ingame_") && !this.gameState.startsWith("ingame_waiting_");
         },
         getIsInHeist() {
-            return Boolean(typeof this.gameState === "string" && this.gameState.startsWith("ingame_") && this.gameState !== "ingame_waiting_for_players");
+            return typeof this.gameState === "string" && this.gameState.startsWith("ingame_") && this.gameState !== "ingame_waiting_for_players";
+        },
+        getIsAtEndGame() {
+            return ["victoryscreen", "gameoverscreen", "disconnected", "server_left", "kicked"].includes(this.gameState);
         },
         getIsHost() {
             return this.isHost;
@@ -26,7 +32,7 @@ export const useMainStore = defineStore("main", {
     },
     actions: {
         setGameState(gameState) {
-            if (this.getIsInHeist && typeof gameState === "string" && (!gameState.startsWith("ingame_") || gameState === "ingame_waiting_for_players")) {
+            if (this.getIsInGame && typeof gameState === "string" && !gameState.startsWith("ingame_")) {
                 const missionStore = useMissionStore();
                 missionStore.$reset();
             }

@@ -4,6 +4,7 @@ UT.lastCallClock = 0
 UT.environment = nil
 UT.initialEnvironment = nil
 UT.previousGameState = nil
+UT.previousIsHost = nil
 UT.inHeistEventTriggered = false
 UT.maxInteger = math.huge
 
@@ -59,7 +60,9 @@ function UT:sendGameState()
         data = UT:getGameState()
     }
     UT:sendMessage(message)
+end
 
+function UT:sendIsHost()
     local message = {
         type = "is-host",
         data = UT:isHost() and 1 or 0
@@ -140,10 +143,16 @@ end
 
 function UT:update()
     local gameState = UT:getGameState()
-    if gameState and gameState ~= UT.previousGameState then
+    if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
         UT:sendGameState()
     end
     UT.previousGameState = gameState
+
+    local isHost = UT:isHost()
+    if UT.previousIsHost == nil or isHost ~= UT.previousIsHost then
+        UT:sendIsHost()
+    end
+    UT.previousIsHost = isHost
 
     if UT.Utils:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
         UT:requestCalls()
