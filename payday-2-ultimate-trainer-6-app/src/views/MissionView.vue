@@ -1,6 +1,9 @@
 <script>
+import { storeToRefs } from "pinia";
+
 import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
+import { useMissionStore } from "@/stores/mission";
 
 import NavBar from "@/components/NavBar.vue";
 import BugIcon from "@/components/icons/BugIcon.vue";
@@ -10,9 +13,36 @@ export default {
         NavBar,
         BugIcon
     },
+    data() {
+        return {
+            enableXRay: false,
+            enablePreventAlarmTriggering: false,
+            enableInvisiblePlayer: false,
+            enableDisableAI: false,
+            enableUnlimitedPagers: false,
+            enableInstantDrilling: false
+        };
+    },
     created() {
         this.mainStore = useMainStore();
         this.callStore = useCallStore();
+        this.missionStore = useMissionStore();
+
+        const {
+            enableXRay,
+            enablePreventAlarmTriggering,
+            enableInvisiblePlayer,
+            enableDisableAI,
+            enableUnlimitedPagers,
+            enableInstantDrilling
+        } = storeToRefs(this.missionStore);
+
+        this.enableXRay = enableXRay;
+        this.enablePreventAlarmTriggering = enablePreventAlarmTriggering;
+        this.enableInvisiblePlayer = enableInvisiblePlayer;
+        this.enableDisableAI = enableDisableAI;
+        this.enableUnlimitedPagers = enableUnlimitedPagers;
+        this.enableInstantDrilling = enableInstantDrilling;
     },
     computed: {
         isInHeist() {
@@ -56,23 +86,23 @@ export default {
         convertAllEnemies() {
             this.callStore.addCall(["UT:convertAllEnemies"]);
         },
-        setXRay(enabled) {
-            this.callStore.addCall(["UT:setXRay", enabled]);
+        setXRay() {
+            this.callStore.addCall(["UT:setXRay", this.enableXRay]);
         },
-        setPreventAlarmTriggering(enabled) {
-            this.callStore.addCall(["UT:setPreventAlarmTriggering", enabled]);
+        setPreventAlarmTriggering() {
+            this.callStore.addCall(["UT:setPreventAlarmTriggering", this.enablePreventAlarmTriggering]);
         },
-        setInvisiblePlayer(enabled) {
-            this.callStore.addCall(["UT:setInvisiblePlayer", enabled]);
+        setInvisiblePlayer() {
+            this.callStore.addCall(["UT:setInvisiblePlayer", this.enableInvisiblePlayer]);
         },
-        setDisableAI(enabled) {
-            this.callStore.addCall(["UT:setDisableAI", enabled]);
+        setDisableAI() {
+            this.callStore.addCall(["UT:setDisableAI", this.enableDisableAI]);
         },
-        setUnlimitedPagers(enabled) {
-            this.callStore.addCall(["UT:setUnlimitedPagers", enabled]);
+        setUnlimitedPagers() {
+            this.callStore.addCall(["UT:setUnlimitedPagers", this.enableUnlimitedPagers]);
         },
-        setInstantDrilling(enabled) {
-            this.callStore.addCall(["UT:setInstantDrilling", enabled]);
+        setInstantDrilling() {
+            this.callStore.addCall(["UT:setInstantDrilling", this.enableInstantDrilling]);
         }
     }
 }
@@ -134,28 +164,28 @@ export default {
                             </div>
                         </div>
                         <div class="col-7">
-                            <div class="form-check form-switch mb-3" @change="setXRay($event.target.checked)">
-                                <input id="enable-x-ray" class="form-check-input" type="checkbox">
+                            <div class="form-check form-switch mb-3" @change="setXRay">
+                                <input id="enable-x-ray" class="form-check-input" type="checkbox" v-model="enableXRay">
                                 <label for="enable-x-ray" class="form-check-label">{{ $t("mission.x_ray") }}</label>
                             </div>
-                            <div class="form-check form-switch mb-3" @change="setPreventAlarmTriggering($event.target.checked)">
-                                <input id="enable-prevent-alarm-triggering" class="form-check-input" type="checkbox" :disabled="!isHost">
+                            <div class="form-check form-switch mb-3" @change="setPreventAlarmTriggering">
+                                <input id="enable-prevent-alarm-triggering" class="form-check-input" type="checkbox" :disabled="!isHost" v-model="enablePreventAlarmTriggering">
                                 <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}</label>
                             </div>
-                            <div class="form-check form-switch mb-3" @change="setInvisiblePlayer($event.target.checked)">
-                                <input id="enable-invisible-player" class="form-check-input" type="checkbox" :disabled="!isHost">
+                            <div class="form-check form-switch mb-3" @change="setInvisiblePlayer">
+                                <input id="enable-invisible-player" class="form-check-input" type="checkbox" :disabled="!isHost" v-model="enableInvisiblePlayer">
                                 <label for="enable-invisible-player" class="form-check-label">{{ $t("mission.invisible_player") }}</label>
                             </div>
-                            <div class="form-check form-switch mb-3" @change="setDisableAI($event.target.checked)">
-                                <input id="enable-disable-ai" class="form-check-input" type="checkbox" :disabled="!isHost">
+                            <div class="form-check form-switch mb-3" @change="setDisableAI">
+                                <input id="enable-disable-ai" class="form-check-input" type="checkbox" :disabled="!isHost" v-model="enableDisableAI">
                                 <label for="enable-disable-ai" class="form-check-label">{{ $t("mission.disable_ai") }}</label>
                             </div>
-                            <div class="form-check form-switch mb-3" @change="setUnlimitedPagers($event.target.checked)">
-                                <input id="enable-unlimited-pagers" class="form-check-input" type="checkbox" :disabled="!isHost">
+                            <div class="form-check form-switch mb-3" @change="setUnlimitedPagers">
+                                <input id="enable-unlimited-pagers" class="form-check-input" type="checkbox" :disabled="!isHost" v-model="enableUnlimitedPagers">
                                 <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("mission.unlimited_pagers") }}</label>
                             </div>
-                            <div class="form-check form-switch" @change="setInstantDrilling($event.target.checked)">
-                                <input id="enable-instant-drilling" class="form-check-input" type="checkbox" :disabled="!isHost">
+                            <div class="form-check form-switch" @change="setInstantDrilling">
+                                <input id="enable-instant-drilling" class="form-check-input" type="checkbox" :disabled="!isHost" v-model="enableInstantDrilling">
                                 <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
                                 <BugIcon class="ms-3" />
                             </div>
