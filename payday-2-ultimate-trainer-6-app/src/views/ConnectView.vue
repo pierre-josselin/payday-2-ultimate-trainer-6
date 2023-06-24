@@ -19,6 +19,8 @@ export default {
         this.callStore = useCallStore();
         this.mainStore = useMainStore();
         this.settingsStore = useSettingsStore();
+
+        this.host = window.location.hostname;
     },
     methods: {
         connect() {
