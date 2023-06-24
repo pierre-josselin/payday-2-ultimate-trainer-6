@@ -68,6 +68,10 @@ function UT:triggerInHeistEvent()
 
     if UT.settings["enable-god-mode"] then
         UT:setGodMode(true)
+    else
+        if UT:playerUnit():character_damage():god_mode() then
+            UT:setGodMode(false)
+        end
     end
     if UT.settings["enable-infinite-stamina"] then
         UT:setInfiniteStamina(true)
