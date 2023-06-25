@@ -38,6 +38,9 @@ function UT.Utils:callFunction(name, ...)
 end
 
 function UT.Utils:httpRequest(url, callback)
+    if not callback then
+        callback = function() end
+    end
     dohttpreq(url, callback)
 end
 
