@@ -13,12 +13,30 @@ export default {
         return {
             enableVehiclesPackagesLoading: false,
             vehicles: [
-                "units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1",
-                "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1",
-                "units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2",
-                "units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1",
-                "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1",
-                "units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1"
+                {
+                    id: "units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1",
+                    imagePath: "/src/assets/vehicles/sport-car.jpg"
+                },
+                {
+                    id: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1",
+                    imagePath: "/SRC/assets/vehicles/muscle-car.jpg"
+                },
+                {
+                    id: "units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2",
+                    imagePath: "/SRC/assets/vehicles/bike.jpg"
+                },
+                {
+                    id: "units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1",
+                    imagePath: "/SRC/assets/vehicles/truck.jpg"
+                },
+                {
+                    id: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1",
+                    imagePath: "/SRC/assets/vehicles/forklift.jpg"
+                },
+                {
+                    id: "units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1",
+                    imagePath: "/SRC/assets/vehicles/boat.jpg"
+                }
             ]
         };
     },
@@ -70,58 +88,13 @@ export default {
                 <fieldset :disabled="!vehiclesPackagesLoaded || !isPlaying">
                     <div id="carousel" class="carousel slide">
                         <div class="carousel-indicators">
-                            <button data-bs-target="#carousel" data-bs-slide-to="0" class="active"></button>
-                            <button data-bs-target="#carousel" data-bs-slide-to="1"></button>
-                            <button data-bs-target="#carousel" data-bs-slide-to="2"></button>
-                            <button data-bs-target="#carousel" data-bs-slide-to="3"></button>
-                            <button data-bs-target="#carousel" data-bs-slide-to="4"></button>
-                            <button data-bs-target="#carousel" data-bs-slide-to="5"></button>
+                            <button data-bs-target="#carousel" v-for="(vehicle, index) in vehicles" :data-bs-slide-to="index" :class="{ 'active': index === 0 }" :key="index"></button>
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="@/assets/vehicles/sport-car.jpg" class="d-block w-100">
+                            <div class="carousel-item" v-for="(vehicle, index) in vehicles" :class="{ 'active': index === 0 }" :key="index">
+                                <img :src="vehicle.imagePath" class="d-block w-100">
                                 <div class="carousel-caption mb-3">
-                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle('units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1')">
-                                        <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="@/assets/vehicles/muscle-car.jpg" class="d-block w-100">
-                                <div class="carousel-caption mb-3">
-                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle('units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1')">
-                                        <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="@/assets/vehicles/bike.jpg" class="d-block w-100">
-                                <div class="carousel-caption mb-3">
-                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle('units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2')">
-                                        <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="@/assets/vehicles/truck.jpg" class="d-block w-100">
-                                <div class="carousel-caption mb-3">
-                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle('units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1')">
-                                        <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="@/assets/vehicles/forklift.jpg" class="d-block w-100">
-                                <div class="carousel-caption mb-3">
-                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle('units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1')">
-                                        <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="@/assets/vehicles/boat.jpg" class="d-block w-100">
-                                <div class="carousel-caption mb-3">
-                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle('units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1')">
+                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle(vehicle.id)">
                                         <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
                                     </button>
                                 </div>
