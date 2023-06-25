@@ -794,7 +794,6 @@ function UT:tieAllCivilians()
 end
 
 function UT:convertAllEnemies()
-    log(tostring(alive))
     UT:setUnlimitedConversion(true)
 
     for key, data in pairs(managers.enemy:all_enemies()) do
