@@ -65,6 +65,9 @@ export default {
                 <a class="btn btn-primary btn-sm me-3" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
                 </a>
+                <RouterLink :to="{ name: 'settings' }" class="btn btn-primary btn-sm me-3">
+                    <FontAwesomeIcon icon="fa-solid fa-gear" />
+                </RouterLink>
                 <button class="btn btn-primary btn-sm" @click="closeWebSocket">
                     <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
                 </button>

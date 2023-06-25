@@ -1,5 +1,6 @@
 {
     "add": "Add",
+    "app_theme": "App theme",
     "apply": "Apply",
     "bootup": "Bootup",
     "career": "Career",
@@ -9,6 +10,7 @@
     "connect": "Connect",
     "connection_failed": "Connection failed",
     "continental_coins": "Continental coins",
+    "delete_all_spawned_vehicles": "Delete all spawned vehicles",
     "disable_all_cheats": "Disable all cheats",
     "drive": "Drive",
     "driving": "Driving",
@@ -38,6 +40,7 @@
     "reset_money": "Reset money",
     "reset_perk_points": "Reset perk points",
     "server_connection": "Server connection",
+    "settings": "Settings",
     "spending_money": "Spending money",
     "steam_achievements": "Steam achievements",
     "textures": "Textures",
