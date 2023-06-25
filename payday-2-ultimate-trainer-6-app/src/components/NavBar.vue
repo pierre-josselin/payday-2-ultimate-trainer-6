@@ -18,6 +18,9 @@ export default {
         };
     },
     computed: {
+        isOffline() {
+            return this.mainStore.getIsOffline;
+        },
         isInBootup() {
             return this.mainStore.getIsInBootup;
         },
@@ -56,7 +59,8 @@ export default {
                     </li>
                 </ul>
                 <span class="me-3">
-                    <template v-if="isInBootup">{{ $t("main.bootup") }}</template>
+                    <template v-if="isOffline">{{ $t("main.offline") }}</template>
+                    <template v-else-if="isInBootup">{{ $t("main.bootup") }}</template>
                     <template v-else-if="isInMainMenu">{{ $t("main.main_menu") }}</template>
                     <template v-else-if="isPlaying">{{ $t("main.playing") }}</template>
                     <template v-else-if="isInGame">{{ $t("main.in_game") }}</template>

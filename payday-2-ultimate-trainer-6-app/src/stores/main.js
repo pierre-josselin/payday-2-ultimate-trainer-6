@@ -9,6 +9,9 @@ export const useMainStore = defineStore("main", {
         vehiclesPackagesLoaded: null
     }),
     getters: {
+        getIsOffline() {
+            return this.gameState === "offline";
+        },
         getIsInBootup() {
             return this.gameState === "bootup";
         },

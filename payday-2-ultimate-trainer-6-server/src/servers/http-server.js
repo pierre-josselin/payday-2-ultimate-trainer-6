@@ -2,6 +2,8 @@ const http = require("http");
 const url = require("url");
 
 class HttpServer {
+    lastCallRequestTime = -1;
+
     routes = {
         "/calls": {
             method: "GET",
@@ -44,6 +46,16 @@ class HttpServer {
 
         this.httpRequestListener = this.httpRequestListener.bind(this);
         this.server = http.createServer(this.httpRequestListener);
+
+        setInterval(() => {
+            if (this.lastCallRequestTime !== -1 && Date.now() - this.lastCallRequestTime > 1000) {
+                this.messageManager.sendMessage({
+                    type: "game-state",
+                    data: "offline"
+                });
+                this.lastCallRequestTime = -1;
+            }
+        }, 1000);
     }
 
     httpRequestListener(request, response) {
@@ -63,6 +75,10 @@ class HttpServer {
             response.writeHead(405);
             response.end();
             return;
+        }
+
+        if (request.path) {
+            this.lastCallRequestTime = Date.now();
         }
 
         route.handler(request, response);
