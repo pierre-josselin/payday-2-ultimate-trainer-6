@@ -22,6 +22,16 @@ export default {
 
         this.host = window.location.hostname;
     },
+    mounted() {
+        document.documentElement.style.height = "100%";
+        document.body.style.height = "100%";
+        document.getElementById("app").style.height = "100%";
+    },
+    beforeUnmount() {
+        document.documentElement.style.height = null;
+        document.body.style.height = null;
+        document.getElementById("app").style.height = null;
+    },
     methods: {
         connect() {
             this.connecting = true;
@@ -70,11 +80,3 @@ export default {
         </div>
     </div>
 </template>
-
-<style>
-html,
-body,
-#app {
-    height: 100%;
-}
-</style>
