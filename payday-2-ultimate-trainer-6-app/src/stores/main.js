@@ -36,7 +36,7 @@ export const useMainStore = defineStore("main", {
     },
     actions: {
         setGameState(gameState) {
-            if (this.getIsInGame && typeof gameState === "string" && !gameState.startsWith("ingame_")) {
+            if (this.getIsInGame && typeof gameState === "string" && (!gameState.startsWith("ingame_") || gameState === "ingame_waiting_for_players")) {
                 const missionStore = useMissionStore();
                 missionStore.$reset();
             }
