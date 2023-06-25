@@ -11,8 +11,8 @@ export default {
         return {
             theme: null,
             themes: [
-                "cyborg",
                 "darkly",
+                "cyborg",
                 "slate",
                 "solar",
                 "superhero",
