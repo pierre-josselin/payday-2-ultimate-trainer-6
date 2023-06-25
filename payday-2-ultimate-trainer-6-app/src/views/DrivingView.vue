@@ -140,3 +140,9 @@ export default {
         </div>
     </div>
 </template>
+
+<style scoped>
+.carousel-item {
+    transition: transform 0.3s ease;
+}
+</style>
