@@ -12,7 +12,8 @@ export default {
                 "career",
                 "environment",
                 "cheats",
-                "mission"
+                "mission",
+                "driving"
             ]
         };
     },

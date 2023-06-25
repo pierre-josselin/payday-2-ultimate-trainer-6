@@ -29,6 +29,14 @@
             "localized": false
         },
         {
+            "keybind_id": "ut_keybinds_teleport_player_to_crosshair",
+            "name": "Teleport player to crosshair",
+            "script_path": "keybinds/teleport-player-to-crosshair.lua",
+            "run_in_menu": false,
+            "run_in_game": true,
+            "localized": false
+        },
+        {
             "keybind_id": "ut_keybinds_test",
             "name": "Test",
             "script_path": "keybinds/test.lua",

@@ -16,6 +16,7 @@ export function createWebSocket(options) {
         options.connectionErrorCallback = null;
         options.callStore.addCall(["UT:sendGameState"]);
         options.callStore.addCall(["UT:sendIsHost"]);
+        options.callStore.addCall(["UT:sendVehiclesPackagesLoaded"]);
         options.router.push({ name: "home" });
     });
 
@@ -46,7 +47,11 @@ export function createWebSocket(options) {
                 break;
             }
             case "is-host": {
-                options.mainStore.setIsHost(message.data);
+                options.mainStore.setIsHost(message.data === "true");
+                break;
+            }
+            case "vehicles-packages-loaded": {
+                options.mainStore.setVehiclesPackagesLoaded(message.data === "true");
                 break;
             }
             case "settings": {

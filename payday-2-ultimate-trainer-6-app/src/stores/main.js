@@ -5,7 +5,8 @@ import { useMissionStore } from "@/stores/mission";
 export const useMainStore = defineStore("main", {
     state: () => ({
         gameState: null,
-        isHost: null
+        isHost: null,
+        vehiclesPackagesLoaded: null
     }),
     getters: {
         getIsInBootup() {
@@ -28,6 +29,9 @@ export const useMainStore = defineStore("main", {
         },
         getIsHost() {
             return this.isHost;
+        },
+        getVehiclesPackagesLoaded() {
+            return this.vehiclesPackagesLoaded;
         }
     },
     actions: {
@@ -41,6 +45,9 @@ export const useMainStore = defineStore("main", {
         },
         setIsHost(isHost) {
             this.isHost = isHost;
+        },
+        setVehiclesPackagesLoaded(vehiclesPackagesLoaded) {
+            this.vehiclesPackagesLoaded = vehiclesPackagesLoaded;
         }
     }
 });

@@ -7,6 +7,7 @@ import CareerView from "@/views/CareerView.vue";
 import EnvironmentView from "@/views/EnvironmentView.vue";
 import CheatsView from "@/views/CheatsView.vue";
 import MissionView from "@/views/MissionView.vue";
+import DrivingView from "@/views/DrivingView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,11 @@ const router = createRouter({
             path: "/mission",
             name: "mission",
             component: MissionView
+        },
+        {
+            path: "/driving",
+            name: "driving",
+            component: DrivingView
         }
     ]
 });

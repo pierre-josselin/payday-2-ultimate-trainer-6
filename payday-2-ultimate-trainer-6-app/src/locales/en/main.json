@@ -10,6 +10,8 @@
     "connection_failed": "Connection failed",
     "continental_coins": "Continental coins",
     "disable_all_cheats": "Disable all cheats",
+    "drive": "Drive",
+    "driving": "Driving",
     "end_game": "End game",
     "environment": "Environment",
     "host": "Host",
@@ -42,5 +44,8 @@
     "trophies": "Trophies",
     "unlock": "Unlock",
     "unlock_slots": "Unlock slots",
+    "vehicles_packages_loaded": "Vehicles packages loaded",
+    "vehicles_packages_loading": "Vehicles packages loading",
+    "vehicles_packages_not_loaded": "Vehicles packages not loaded",
     "weapon_mods": "Weapon mods"
 }

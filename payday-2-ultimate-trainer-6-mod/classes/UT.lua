@@ -6,10 +6,13 @@ UT.initialEnvironment = nil
 UT.previousGameState = nil
 UT.previousIsHost = nil
 UT.inHeistEventTriggered = false
+UT.vehiclesPackagesLoaded = false
+UT.initialized = false
 UT.maxInteger = math.huge
 
 UT.settings = {}
 UT.backup = {}
+UT.spawnedVehicleUnits = {}
 
 function UT:openApp()
     Steam:overlay_activate("url", UT_APP_URL)
@@ -65,9 +68,23 @@ end
 function UT:sendIsHost()
     local message = {
         type = "is-host",
-        data = UT:isHost() and 1 or 0
+        data = UT:isHost()
     }
     UT:sendMessage(message)
+end
+
+function UT:sendVehiclesPackagesLoaded()
+    local message = {
+        type = "vehicles-packages-loaded",
+        data = UT.vehiclesPackagesLoaded
+    }
+    UT:sendMessage(message)
+end
+
+function UT:init()
+    UT:sendVehiclesPackagesLoaded()
+
+    UT.initialized = true
 end
 
 function UT:triggerInHeistEvent()
@@ -142,6 +159,10 @@ function UT:triggerInHeistEvent()
 end
 
 function UT:update()
+    if not UT.initialized then
+        UT:init()
+    end
+
     local gameState = UT:getGameState()
     if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
         UT:sendGameState()
@@ -192,6 +213,10 @@ function UT:isInHeist()
     return Utils:IsInHeist()
 end
 
+function UT:isDriving()
+    return game_state_machine:current_state_name() == "ingame_driving"
+end
+
 function UT:isHost()
     return Network:is_server()
 end
@@ -208,8 +233,59 @@ function UT:saveProgress()
     end
 end
 
+function UT:idString(id)
+    return Idstring(id)
+end
+
 function UT:playerUnit()
     return managers.player:player_unit()
+end
+
+function UT:getCrosshairRay()
+    return Utils:GetCrosshairRay()
+end
+
+function UT:getPlayerPosition()
+    return UT:playerUnit():position()
+end
+
+function UT:getPlayerRotation()
+    return UT:playerUnit():rotation()
+end
+
+function UT:getPlayerCamera()
+    return UT:playerUnit():camera()
+end
+
+function UT:getPlayerCameraForward()
+    return UT:getPlayerCamera():forward()
+end
+
+function UT:getPlayerCameraPosition()
+    return UT:getPlayerCamera():position()
+end
+
+function UT:getPlayerCameraRotation()
+    return UT:getPlayerCamera():rotation()
+end
+
+function UT:setPlayerState(state)
+    managers.player:set_player_state(state)
+end
+
+function UT:teleportPlayer(position, rotation)
+    managers.player:warp_to(position, rotation)
+end
+
+function UT:isUnitLoaded(name)
+    return PackageManager:has(Idstring("unit"), name)
+end
+
+function UT:spawnUnit(name, position, rotation)
+    if not UT:isUnitLoaded(name) then
+        return false
+    end
+    return World:spawn_unit(name, position, rotation)
 end
 
 function UT:deleteUnit(unit)
@@ -884,4 +960,75 @@ function UT:setInstantDrilling(enabled)
         TimerGui._set_jamming_values = TimerGui.orig._set_jamming_values
         TimerGui.start = TimerGui.orig.start
     end
+end
+
+function UT:teleportPlayerToCrosshair()
+    local crosshairRay = UT:getCrosshairRay()
+
+    if not crosshairRay then
+        return
+    end
+
+    local offset = Vector3()
+    mvector3.set(offset, UT:getPlayerCameraForward())
+    mvector3.multiply(offset, 100)
+    mvector3.add(crosshairRay.hit_position, offset)
+
+    UT:teleportPlayer(crosshairRay.hit_position, UT:getPlayerCameraRotation())
+end
+
+function UT:spawnAndEnterVehicle(id)
+    if UT:isDriving() then
+        UT:setPlayerState("standard")
+    end
+
+    if UT.Utils:isEmptyTable(UT.spawnedVehicleUnits) then
+        UT.Utils:cloneClass(BaseNetworkSession)
+        function BaseNetworkSession:send_to_peers_synched(name, ...)
+            if UT.Utils:inTable(name, {
+                    "sync_vehicle_driving",
+                    "sync_vehicle_set_input",
+                    "sync_vehicle_state",
+                    "sync_vehicle_player",
+                    "sync_ai_vehicle_action",
+                    "sync_vehicle_change_stance",
+                    "sync_store_loot_in_vehicle",
+                    "sync_give_vehicle_loot_to_player",
+                    "sync_vehicle_interact_trunk"
+                }) then
+                return
+            end
+
+            self.orig.send_to_peers_synched(self, name, ...)
+        end
+    end
+
+    local idString = UT:idString(id)
+    local position = UT:getPlayerPosition()
+    local rotation = Rotation(UT:getPlayerCameraRotation():yaw(), 0, 0)
+    local vehicleUnit = UT:spawnUnit(idString, position, rotation)
+
+    if not vehicleUnit then
+        return
+    end
+
+    managers.player:enter_vehicle(vehicleUnit, UT:playerUnit())
+
+    UT.Utils:tableInsert(UT.spawnedVehicleUnits, vehicleUnit)
+end
+
+function UT:removeSpawnedVehicles()
+    if UT:isDriving() then
+        UT:setPlayerState("standard")
+    end
+
+    if not UT.Utils:isEmptyTable(UT.spawnedVehicleUnits) then
+        BaseNetworkSession.send_to_peers_synched = BaseNetworkSession.orig.send_to_peers_synched
+    end
+
+    for index, unit in pairs(UT.spawnedVehicleUnits) do
+        UT:deleteUnit(unit)
+    end
+
+    UT.spawnedVehicleUnits = {}
 end
