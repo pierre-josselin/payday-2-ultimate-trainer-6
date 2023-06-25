@@ -11,6 +11,7 @@ import enWeaponMods from "@/locales/en/weapon-mods.json";
 import enEnvironments from "@/locales/en/environments.json";
 import enCheats from "@/locales/en/cheats.json";
 import enMission from "@/locales/en/mission.json";
+import enDialogs from "@/locales/en/dialogs.json";
 
 export default createI18n({
     locale: "en",
@@ -28,7 +29,8 @@ export default createI18n({
             weapon_mods: enWeaponMods,
             environments: enEnvironments,
             cheats: enCheats,
-            mission: enMission
+            mission: enMission,
+            dialogs: enDialogs
         }
     }
 });

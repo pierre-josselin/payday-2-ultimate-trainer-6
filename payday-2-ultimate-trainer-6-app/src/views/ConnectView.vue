@@ -1,6 +1,4 @@
 <script>
-import Swal from "sweetalert2";
-
 import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
@@ -45,10 +43,7 @@ export default {
                 settingsStore: this.settingsStore,
                 connectionErrorCallback: () => {
                     this.connecting = false;
-                    Swal.fire({
-                        icon: "error",
-                        title: this.$t("main.connection_failed")
-                    });
+                    alert(this.$t("main.connection_failed"));
                 }
             });
         }
