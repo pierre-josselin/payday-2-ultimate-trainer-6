@@ -1,0 +1,19 @@
+{
+  "name": "payday-2-ultimate-trainer-6",
+  "version": "6.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pierre-josselin/payday-2-ultimate-trainer-6.git"
+  },
+  "author": "Pierre Josselin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues"
+  },
+  "homepage": "https://github.com/pierre-josselin/payday-2-ultimate-trainer-6#readme"
+}

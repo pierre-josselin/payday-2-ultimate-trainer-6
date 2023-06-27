@@ -6,24 +6,24 @@
     "hooks": [
         {
             "hook_id": "core/lib/setups/coresetup",
-            "script_path": "hooks/core/lib/setups/coresetup.lua"
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/core/lib/setups/coresetup.lua"
         },
         {
             "hook_id": "lib/setups/gamesetup",
-            "script_path": "hooks/lib/setups/gamesetup.lua"
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/setups/gamesetup.lua"
         }
     ],
     "persist_scripts": [
         {
             "global": "ut_persist_scripts_update",
-            "script_path": "persist-scripts/update.lua"
+            "script_path": "payday-2-ultimate-trainer-6-mod/persist-scripts/update.lua"
         }
     ],
     "keybinds": [
         {
             "keybind_id": "ut_keybinds_open_app",
             "name": "Open the app",
-            "script_path": "keybinds/open-app.lua",
+            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/open-app.lua",
             "run_in_menu": true,
             "run_in_game": true,
             "localized": false
@@ -31,7 +31,7 @@
         {
             "keybind_id": "ut_keybinds_teleport_player_to_crosshair",
             "name": "Teleport player to crosshair",
-            "script_path": "keybinds/teleport-player-to-crosshair.lua",
+            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/teleport-player-to-crosshair.lua",
             "run_in_menu": false,
             "run_in_game": true,
             "localized": false
@@ -39,7 +39,7 @@
         {
             "keybind_id": "ut_keybinds_test",
             "name": "Test",
-            "script_path": "keybinds/test.lua",
+            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/test.lua",
             "run_in_menu": true,
             "run_in_game": true,
             "localized": false
