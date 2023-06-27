@@ -44,8 +44,6 @@ async function install() {
 }
 
 async function run() {
-    process.stdout.write("Reading environment file...");
-
     const data = await fs.readFile(path.join(__dirname, ".env"), { encoding: "utf-8" });
 
     const env = data
@@ -54,20 +52,15 @@ async function run() {
         .map(element => element.split("="))
         .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
-    process.stdout.write(" OK\n");
-
-    process.stdout.write("Running server...");
-
     exec(["cd", `"${path.join(__dirname, "payday-2-ultimate-trainer-6-server")}"`, "&&", "npm", "run", "start"].join(" "));
-
-    process.stdout.write(" OK\n");
-
-    process.stdout.write("Running application...");
 
     const port = env.APP_PORT || 1140;
     exec(["http-server", "--port", port, "--proxy", `"http://127.0.0.1:${port}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" "));
 
-    process.stdout.write(" OK\n");
+    console.log("Server running...");
+    console.log("Application running...\n");
+    console.log(`http://127.0.0.1:${port}\n`);
+    console.log("Close this window before restarting the game.");
 }
 
 async function main() {

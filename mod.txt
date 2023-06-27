@@ -11,6 +11,10 @@
         {
             "hook_id": "lib/setups/gamesetup",
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/setups/gamesetup.lua"
+        },
+        {
+            "hook_id": "lib/states/bootupstate",
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/states/bootupstate.lua"
         }
     ],
     "persist_scripts": [

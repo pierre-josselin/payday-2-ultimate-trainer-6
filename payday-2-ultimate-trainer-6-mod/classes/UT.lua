@@ -14,6 +14,10 @@ UT.settings = {}
 UT.backup = {}
 UT.spawnedVehicleUnits = {}
 
+function UT:runServer()
+    os.execute("start /B node \"" .. UT.modPathWindows .. "\\index.js\" run")
+end
+
 function UT:openApp()
     Steam:overlay_activate("url", UT_APP_URL)
 end

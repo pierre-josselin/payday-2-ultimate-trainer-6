@@ -11,3 +11,5 @@ dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Utils.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Tables.lua")
 
 UT:requestSettings()
+
+UT.modPathWindows = modPath:gsub("/", "\\")
