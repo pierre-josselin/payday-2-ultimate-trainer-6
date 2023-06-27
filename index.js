@@ -64,7 +64,8 @@ async function run() {
 
     process.stdout.write("Running application...");
 
-    exec(["http-server", "-p", env.APP_PORT || 1140, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" "));
+    const port = env.APP_PORT || 1140;
+    exec(["http-server", "--port", port, "--proxy", `"http://127.0.0.1:${port}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" "));
 
     process.stdout.write(" OK\n");
 }

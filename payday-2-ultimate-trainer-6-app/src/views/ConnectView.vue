@@ -9,7 +9,7 @@ export default {
     data() {
         return {
             connecting: false,
-            host: "localhost",
+            host: "127.0.0.1",
             port: 1138
         };
     },
