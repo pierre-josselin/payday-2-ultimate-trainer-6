@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 
 import { useMissionStore } from "@/stores/mission";
+import { useSpawnStore } from "@/stores/spawn";
 
 export const useMainStore = defineStore("main", {
     state: () => ({
@@ -41,7 +42,10 @@ export const useMainStore = defineStore("main", {
         setGameState(gameState) {
             if (this.getIsInGame && typeof gameState === "string" && (!gameState.startsWith("ingame_") || gameState === "ingame_waiting_for_players")) {
                 const missionStore = useMissionStore();
+                const spawnStore = useSpawnStore();
+
                 missionStore.$reset();
+                spawnStore.id = null;
             }
 
             this.gameState = gameState;

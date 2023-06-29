@@ -41,6 +41,14 @@
             "localized": false
         },
         {
+            "keybind_id": "ut_keybinds_spawn",
+            "name": "Spawn",
+            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/spawn.lua",
+            "run_in_menu": false,
+            "run_in_game": true,
+            "localized": false
+        },
+        {
             "keybind_id": "ut_keybinds_test",
             "name": "Test",
             "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/test.lua",

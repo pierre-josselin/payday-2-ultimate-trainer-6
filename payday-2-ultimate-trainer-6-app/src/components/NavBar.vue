@@ -13,7 +13,8 @@ export default {
                 "environment",
                 "cheats",
                 "mission",
-                "driving"
+                "driving",
+                "spawn"
             ]
         };
     },

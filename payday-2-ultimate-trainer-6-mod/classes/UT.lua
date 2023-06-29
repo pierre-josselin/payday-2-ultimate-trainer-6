@@ -249,6 +249,14 @@ function UT:getCrosshairRay()
     return Utils:GetCrosshairRay()
 end
 
+function UT:getCrosshairRayPosition()
+    local crosshairRay = UT:getCrosshairRay()
+    if not crosshairRay then
+        return nil
+    end
+    return crosshairRay.position
+end
+
 function UT:getPlayerPosition()
     return UT:playerUnit():position()
 end
@@ -273,12 +281,20 @@ function UT:getPlayerCameraRotation()
     return UT:getPlayerCamera():rotation()
 end
 
+function UT:getPlayerCameraRotationYaw()
+    return Rotation(UT:getPlayerCameraRotation():yaw(), 0, 0)
+end
+
 function UT:setPlayerState(state)
     managers.player:set_player_state(state)
 end
 
 function UT:teleportPlayer(position, rotation)
     managers.player:warp_to(position, rotation)
+end
+
+function UT:getLocalPeerId()
+    return managers.network:session():local_peer():id()
 end
 
 function UT:isUnitLoaded(name)
@@ -313,6 +329,31 @@ function UT:killUnit(unit)
             position = unit:position()
         }
     })
+end
+
+function UT:setUnitTeam(unit, team)
+    if not alive(unit) then
+        return
+    end
+
+    local teamId = tweak_data.levels:get_default_team_ID(team)
+    local teamData = managers.groupai:state():team_data(teamId)
+    unit:movement():set_team(teamData)
+end
+
+function UT:convertEnemy(unit)
+    if not alive(unit) then
+        return
+    end
+
+    managers.groupai:state():convert_hostage_to_criminal(unit)
+    managers.groupai:state():sync_converted_enemy(unit)
+    unit:contour():add("friendly", true)
+end
+
+function UT:disableSentryGunPickup()
+    UT.Utils:cloneClass(SentryGunBase)
+    function SentryGunBase.on_picked_up() end
 end
 
 function UT:setLevel(level)
@@ -723,6 +764,17 @@ function UT:setUnlimitedConversion(enabled)
         end
     else
         PlayerManager.upgrade_value = PlayerManager.orig.upgrade_value
+    end
+end
+
+function UT:setUnlimitedGagePackages(enabled)
+    UT.Utils:cloneClass(GageAssignmentTweakData)
+    if enabled then
+        function GageAssignmentTweakData:get_num_assignment_units()
+            return UT.maxInteger
+        end
+    else
+        GageAssignmentTweakData.get_num_assignment_units = GageAssignmentTweakData.orig.get_num_assignment_units
     end
 end
 

@@ -8,6 +8,7 @@ import EnvironmentView from "@/views/EnvironmentView.vue";
 import CheatsView from "@/views/CheatsView.vue";
 import MissionView from "@/views/MissionView.vue";
 import DrivingView from "@/views/DrivingView.vue";
+import SpawnView from "@/views/SpawnView.vue";
 import SettingsView from "@/views/SettingsView.vue";
 
 const router = createRouter({
@@ -52,6 +53,11 @@ const router = createRouter({
             path: "/driving",
             name: "driving",
             component: DrivingView
+        },
+        {
+            path: "/spawn",
+            name: "spawn",
+            component: SpawnView
         }
     ]
 });

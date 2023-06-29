@@ -9,6 +9,7 @@ dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/config.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/UT.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Utils.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Tables.lua")
+dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Spawn.lua")
 
 UT:requestSettings()
 
