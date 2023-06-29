@@ -4,6 +4,17 @@ import { useCallStore } from "@/stores/calls";
 
 import NavBar from "@/components/NavBar.vue";
 
+import defaultEnvironmentImagePath from "@/assets/environments/default.jpg";
+import earlyMorningEnvironmentImagePath from "@/assets/environments/early-morning.jpg";
+import morningEnvironmentImagePath from "@/assets/environments/morning.jpg";
+import midDayEnvironmentImagePath from "@/assets/environments/mid-day.jpg";
+import afternoonEnvironmentImagePath from "@/assets/environments/afternoon.jpg";
+import brightDayEnvironmentImagePath from "@/assets/environments/bright-day.jpg";
+import cloudyDayEnvironmentImagePath from "@/assets/environments/cloudy-day.jpg";
+import nightEnvironmentImagePath from "@/assets/environments/night.jpg";
+import mistyNightEnvironmentImagePath from "@/assets/environments/misty-night.jpg";
+import foggyNightEnvironmentImagePath from "@/assets/environments/foggy-night.jpg";
+
 export default {
     components: {
         NavBar
@@ -13,52 +24,52 @@ export default {
             environments: [
                 {
                     id: null,
-                    imagePath: "/src/assets/environments/default.jpg",
+                    imagePath: defaultEnvironmentImagePath,
                     title: "environments.default"
                 },
                 {
                     id: "environments/pd2_env_hox_02/pd2_env_hox_02",
-                    imagePath: "/src/assets/environments/early-morning.jpg",
+                    imagePath: earlyMorningEnvironmentImagePath,
                     title: "environments.early_morning"
                 },
                 {
                     id: "environments/pd2_env_morning_02/pd2_env_morning_02",
-                    imagePath: "/src/assets/environments/morning.jpg",
+                    imagePath: morningEnvironmentImagePath,
                     title: "environments.morning"
                 },
                 {
                     id: "environments/pd2_env_mid_day/pd2_env_mid_day",
-                    imagePath: "/src/assets/environments/mid-day.jpg",
+                    imagePath: midDayEnvironmentImagePath,
                     title: "environments.mid_day"
                 },
                 {
                     id: "environments/pd2_env_afternoon/pd2_env_afternoon",
-                    imagePath: "/src/assets/environments/afternoon.jpg",
+                    imagePath: afternoonEnvironmentImagePath,
                     title: "environments.afternoon"
                 },
                 {
                     id: "environments/pd2_env_jry_plane/pd2_env_jry_plane",
-                    imagePath: "/src/assets/environments/bright-day.jpg",
+                    imagePath: brightDayEnvironmentImagePath,
                     title: "environments.bright_day"
                 },
                 {
                     id: "environments/pd2_env_docks/pd2_env_docks",
-                    imagePath: "/src/assets/environments/cloudy-day.jpg",
+                    imagePath: cloudyDayEnvironmentImagePath,
                     title: "environments.cloudy_day"
                 },
                 {
                     id: "environments/pd2_env_n2/pd2_env_n2",
-                    imagePath: "/src/assets/environments/night.jpg",
+                    imagePath: nightEnvironmentImagePath,
                     title: "environments.night"
                 },
                 {
                     id: "environments/pd2_env_arm_hcm_02/pd2_env_arm_hcm_02",
-                    imagePath: "/src/assets/environments/misty-night.jpg",
+                    imagePath: mistyNightEnvironmentImagePath,
                     title: "environments.misty_night"
                 },
                 {
                     id: "environments/pd2_env_foggy_bright/pd2_env_foggy_bright",
-                    imagePath: "/src/assets/environments/foggy-night.jpg",
+                    imagePath: foggyNightEnvironmentImagePath,
                     title: "environments.foggy_night"
                 }
             ]
