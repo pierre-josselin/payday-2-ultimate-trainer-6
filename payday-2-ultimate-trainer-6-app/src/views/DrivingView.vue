@@ -40,13 +40,6 @@ export default {
             ]
         };
     },
-    created() {
-        this.mainStore = useMainStore();
-        this.callStore = useCallStore();
-        this.settingsStore = useSettingsStore();
-
-        this.enableVehiclesPackagesLoading = this.settingsStore.getSetting("enable-vehicles-packages-loading");
-    },
     computed: {
         isInGame() {
             return this.mainStore.getIsInGame;
@@ -57,6 +50,13 @@ export default {
         vehiclesPackagesLoaded() {
             return this.mainStore.getVehiclesPackagesLoaded;
         }
+    },
+    created() {
+        this.mainStore = useMainStore();
+        this.callStore = useCallStore();
+        this.settingsStore = useSettingsStore();
+
+        this.enableVehiclesPackagesLoading = this.settingsStore.getSetting("enable-vehicles-packages-loading");
     },
     methods: {
         setVehiclesPackagesLoading() {
@@ -84,21 +84,21 @@ export default {
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 {{ $t("main.driving") }}
-                <span class="badge text-bg-success" v-if="vehiclesPackagesLoaded">{{ $t("main.vehicles_packages_loaded") }}</span>
-                <span class="badge text-bg-warning" v-else>{{ $t("main.vehicles_packages_not_loaded") }}</span>
+                <span v-if="vehiclesPackagesLoaded" class="badge text-bg-success">{{ $t("main.vehicles_packages_loaded") }}</span>
+                <span v-else class="badge text-bg-warning">{{ $t("main.vehicles_packages_not_loaded") }}</span>
             </div>
             <div class="card-body p-4">
                 <div class="form-check form-switch mb-3">
-                    <input id="enable-vehicles-packages-loading" class="form-check-input" type="checkbox" v-model="enableVehiclesPackagesLoading" @change="setVehiclesPackagesLoading">
+                    <input id="enable-vehicles-packages-loading" v-model="enableVehiclesPackagesLoading" class="form-check-input" type="checkbox" @change="setVehiclesPackagesLoading">
                     <label for="enable-vehicles-packages-loading" class="form-check-label">{{ $t("main.vehicles_packages_loading") }}</label>
                 </div>
                 <fieldset :disabled="!vehiclesPackagesLoaded || !isPlaying">
                     <div id="carousel" class="carousel slide">
                         <div class="carousel-indicators">
-                            <button data-bs-target="#carousel" v-for="(vehicle, index) in vehicles" :data-bs-slide-to="index" :class="{ 'active': index === 0 }" :key="index"></button>
+                            <button v-for="(vehicle, index) in vehicles" :key="index" data-bs-target="#carousel" :data-bs-slide-to="index" :class="{ 'active': index === 0 }" />
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item" v-for="(vehicle, index) in vehicles" :class="{ 'active': index === 0 }" :key="index">
+                            <div v-for="(vehicle, index) in vehicles" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
                                 <img :src="vehicle.imagePath" class="d-block w-100">
                                 <div class="carousel-caption mb-3">
                                     <button class="btn btn-dark" @click="spawnAndEnterVehicle(vehicle.id)">
@@ -108,10 +108,10 @@ export default {
                             </div>
                         </div>
                         <button class="carousel-control-prev" data-bs-target="#carousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-prev-icon" aria-hidden="true" />
                         </button>
                         <button class="carousel-control-next" data-bs-target="#carousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-next-icon" aria-hidden="true" />
                         </button>
                     </div>
                     <button class="btn btn-primary mt-3" @click="removeSpawnedVehicles">{{ $t("main.delete_all_spawned_vehicles") }}</button>

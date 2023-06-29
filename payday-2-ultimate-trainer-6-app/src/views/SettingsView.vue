@@ -62,8 +62,8 @@ export default {
             <div class="card-body p-4">
                 <div>
                     <label for="theme" class="form-label">{{ $t("main.app_theme") }}</label>
-                    <select id="theme" class="form-select" v-model="theme" @change="setTheme">
-                        <option v-for="theme in themes" :value="theme" :key="theme">{{ theme.capitalize() }}</option>
+                    <select id="theme" v-model="theme" class="form-select" @change="setTheme">
+                        <option v-for="theme in themes" :key="theme" :value="theme">{{ theme.capitalize() }}</option>
                     </select>
                 </div>
             </div>

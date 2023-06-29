@@ -229,29 +229,29 @@ export default {
                 <div class="mb-3">
                     <label class="form-label me-4">{{ $t("main.position") }}</label>
                     <div class="form-check form-check-inline">
-                        <input id="position-type-on-crosshair" class="form-check-input" type="radio" name="position-type" value="on-crosshair" v-model="spawnStore.positionType">
+                        <input id="position-type-on-crosshair" v-model="spawnStore.positionType" class="form-check-input" type="radio" name="position-type" value="on-crosshair">
                         <label for="position-type-on-crosshair" class="form-check-label">{{ $t("main.on_crosshair") }}</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input id="position-type-on-self" class="form-check-input" type="radio" name="position-type" value="on-self" v-model="spawnStore.positionType">
+                        <input id="position-type-on-self" v-model="spawnStore.positionType" class="form-check-input" type="radio" name="position-type" value="on-self">
                         <label for="position-type-on-self" class="form-check-label">{{ $t("main.on_self") }}</label>
                     </div>
                 </div>
                 <div class="mb-3">
                     <nav>
                         <div class="nav nav-tabs">
-                            <button class="nav-link" data-bs-toggle="tab" v-for="category in categories" :key="category.id" :class="{ active: category.id === spawnStore.categoryId }" :data-bs-target="`#${category.elementId}`" @click="setCategoryId(category.id)">{{ $t(category.label) }}</button>
+                            <button v-for="category in categories" :key="category.id" class="nav-link" data-bs-toggle="tab" :class="{ active: category.id === spawnStore.categoryId }" :data-bs-target="`#${category.elementId}`" @click="setCategoryId(category.id)">{{ $t(category.label) }}</button>
                         </div>
                     </nav>
                     <div class="tab-content">
-                        <div class="tab-pane pt-4" v-for="category in categories" :id="category.elementId" :class="{ 'show active': category.id === spawnStore.categoryId }" tabindex="0">
-                            <div class="form-check form-switch mb-3" v-if="category.id === 'enemies'">
-                                <input id="converted-enemies" class="form-check-input" type="checkbox" v-model="spawnStore.convertedEnemies">
+                        <div v-for="category in categories" :id="category.elementId" class="tab-pane pt-4" :class="{ 'show active': category.id === spawnStore.categoryId }" tabindex="0">
+                            <div v-if="category.id === 'enemies'" class="form-check form-switch mb-3">
+                                <input id="converted-enemies" v-model="spawnStore.convertedEnemies" class="form-check-input" type="checkbox">
                                 <label for="converted-enemies" class="form-check-label">{{ $t("main.converted_enemies") }}</label>
                             </div>
                             <div class="row row-cols-5">
-                                <div class="col mb-4" role="button" v-for="(unit, index) in category.units" :key="index" @click="setId(unit.id)">
-                                    <div :style="`background-image: url(${unit.imagePath})`" class="ratio ratio-1x1 border border-3 rounded shadow unit-image" :class="{ 'border-dark': unit.id !== spawnStore.id, 'border-success active': unit.id === spawnStore.id, 'equipment-image': category.id === 'equipment' }"></div>
+                                <div v-for="(unit, index) in category.units" :key="index" class="col mb-4" role="button" @click="setId(unit.id)">
+                                    <div :style="`background-image: url(${unit.imagePath})`" class="ratio ratio-1x1 border border-3 rounded shadow unit-image" :class="{ 'border-dark': unit.id !== spawnStore.id, 'border-success active': unit.id === spawnStore.id, 'equipment-image': category.id === 'equipment' }" />
                                 </div>
                             </div>
                         </div>
