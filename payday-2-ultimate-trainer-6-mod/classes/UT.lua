@@ -938,7 +938,7 @@ function UT:spawnAndEnterVehicle(id)
 
     local idString = UT.GameUtility:idString(id)
     local position = UT.GameUtility:getPlayerPosition()
-    local rotation = Rotation(UT.GameUtility:getPlayerCameraRotation():yaw(), 0, 0)
+    local rotation = UT.GameUtility:getPlayerCameraYawRotation()
     local vehicleUnit = UT.GameUtility:spawnUnit(idString, position, rotation)
 
     if not vehicleUnit then
