@@ -70,7 +70,7 @@ function UT:loadPackages()
     table.insert(packages, "levels/instances/unique/hlm_vault/world")
     table.insert(packages, "levels/instances/unique/san_box001/world")
 
-    if UT.settings["enable-vehicles-packages-loading"] then
+    if UT:getSetting("enable-vehicles-packages-loading") then
         table.insert(packages, "levels/narratives/bain/cage/world/world")
         table.insert(packages, "levels/narratives/vlad/shout/world/world")
         table.insert(packages, "levels/narratives/vlad/jolly/world/world")
@@ -89,7 +89,7 @@ function UT:loadPackages()
         ::continue::
     end
 
-    if UT.settings["enable-vehicles-packages-loading"] then
+    if UT:getSetting("enable-vehicles-packages-loading") then
         UT.vehiclesPackagesLoaded = true
     end
 end
@@ -131,6 +131,10 @@ function UT:requestSettings()
     UT.Utility:httpRequest(url, callback)
 end
 
+function UT:getSetting(name)
+    return UT.settings[name]
+end
+
 function UT:sendMessage(message)
     local queryString = UT.Utility:buildQueryString(message)
     local url = UT_SERVER_URL .. "/send-message?" .. queryString
@@ -168,69 +172,69 @@ end
 function UT:enterHeist()
     UT.initialEnvironment = UT:getEnvironment()
 
-    if UT.settings["enable-god-mode"] then
+    if UT:getSetting("enable-god-mode") then
         UT:setGodMode(true)
     else
         if UT.GameUtility:playerUnit():character_damage():god_mode() then
             UT:setGodMode(false)
         end
     end
-    if UT.settings["enable-infinite-stamina"] then
+    if UT:getSetting("enable-infinite-stamina") then
         UT:setInfiniteStamina(true)
     end
-    if UT.settings["enable-can-run-directional"] then
+    if UT:getSetting("enable-can-run-directional") then
         UT:setCanRunDirectional(true)
     end
-    if UT.settings["enable-can-run-with-any-bag"] then
+    if UT:getSetting("enable-can-run-with-any-bag") then
         UT:setCanRunDirectional(true)
     end
-    if UT.settings["enable-instant-mask-on"] then
+    if UT:getSetting("enable-instant-mask-on") then
         UT:setInstantMaskOn(true)
     end
-    if UT.settings["enable-no-carry-cooldown"] then
+    if UT:getSetting("enable-no-carry-cooldown") then
         UT:setNoCarryCooldown(true)
     end
-    if UT.settings["enable-no-flashbangs"] then
+    if UT:getSetting("enable-no-flashbangs") then
         UT:setNoFlashbangs(true)
     end
-    if UT.settings["enable-instant-interaction"] then
+    if UT:getSetting("enable-instant-interaction") then
         UT:setInstantInteraction(true)
     end
-    if UT.settings["enable-instant-deployment"] then
+    if UT:getSetting("enable-instant-deployment") then
         UT:setInstantDeployment(true)
     end
-    if UT.settings["enable-unlimited-equipment"] then
+    if UT:getSetting("enable-unlimited-equipment") then
         UT:setUnlimitedEquipment(true)
     end
-    if UT.settings["enable-instant-weapon-swap"] then
+    if UT:getSetting("enable-instant-weapon-swap") then
         UT:setInstantWeaponSwap(true)
     end
-    if UT.settings["enable-instant-weapon-reload"] then
+    if UT:getSetting("enable-instant-weapon-reload") then
         UT:setInstantWeaponReload(true)
     end
-    if UT.settings["enable-no-weapon-recoil"] then
+    if UT:getSetting("enable-no-weapon-recoil") then
         UT:setNoWeaponRecoil(true)
     end
-    if UT.settings["enable-no-weapon-spread"] then
+    if UT:getSetting("enable-no-weapon-spread") then
         UT:setNoWeaponSpread(true)
     end
-    if UT.settings["enable-shoot-through-walls"] then
+    if UT:getSetting("enable-shoot-through-walls") then
         UT:setShootThroughWalls(true)
     end
-    if UT.settings["enable-unlimited-ammo"] then
+    if UT:getSetting("enable-unlimited-ammo") then
         UT:setUnlimitedAmmo(true)
     end
-    if UT.settings["enable-move-speed-multiplier"] and UT.settings["move-speed-multiplier"] then
-        UT:setMoveSpeedMultiplier(true, UT.settings["move-speed-multiplier"])
+    if UT:getSetting("enable-move-speed-multiplier") and UT:getSetting("move-speed-multiplier") then
+        UT:setMoveSpeedMultiplier(true, UT:getSetting("move-speed-multiplier"))
     end
-    if UT.settings["enable-throw-distance-multiplier"] and UT.settings["throw-distance-multiplier"] then
-        UT:setThrowDistanceMultiplier(true, UT.settings["throw-distance-multiplier"])
+    if UT:getSetting("enable-throw-distance-multiplier") and UT:getSetting("throw-distance-multiplier") then
+        UT:setThrowDistanceMultiplier(true, UT:getSetting("throw-distance-multiplier"))
     end
-    if UT.settings["enable-fire-rate-multiplier"] and UT.settings["fire-rate-multiplier"] then
-        UT:setFireRateMultiplier(true, UT.settings["fire-rate-multiplier"])
+    if UT:getSetting("enable-fire-rate-multiplier") and UT:getSetting("fire-rate-multiplier") then
+        UT:setFireRateMultiplier(true, UT:getSetting("fire-rate-multiplier"))
     end
-    if UT.settings["enable-damage-multiplier"] and UT.settings["damage-multiplier"] then
-        UT:setDamageMultiplier(true, UT.settings["damage-multiplier"])
+    if UT:getSetting("enable-damage-multiplier") and UT:getSetting("damage-multiplier") then
+        UT:setDamageMultiplier(true, UT:getSetting("damage-multiplier"))
     end
 end
 
