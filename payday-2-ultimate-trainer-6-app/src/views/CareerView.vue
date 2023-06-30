@@ -37,9 +37,6 @@ export default {
         };
     },
     computed: {
-        isInMainMenu() {
-            return this.mainStore.getIsInMainMenu;
-        },
         filteredBlackMarketItems() {
             if (!this.blackMarketCategory) {
                 return null;
@@ -89,7 +86,7 @@ export default {
     methods: {
         setLevel() {
             this.callStore.addCall(["UT:setLevel", this.level]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -97,7 +94,7 @@ export default {
         },
         setInfamyRank() {
             this.callStore.addCall(["UT:setInfamyRank", this.infamyRank]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -105,7 +102,7 @@ export default {
         },
         addSpendingMoney() {
             this.callStore.addCall(["UT:addSpendingMoney", this.spendingMoney]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -113,7 +110,7 @@ export default {
         },
         addOffshoreMoney() {
             this.callStore.addCall(["UT:addOffshoreMoney", this.offshoreMoney]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -121,14 +118,14 @@ export default {
         },
         resetMoney() {
             this.callStore.addCall(["UT:resetMoney"]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
         },
         addContinentalCoins() {
             this.callStore.addCall(["UT:addContinentalCoins", this.continentalCoins]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -136,14 +133,14 @@ export default {
         },
         resetContinentalCoins() {
             this.callStore.addCall(["UT:resetContinentalCoins"]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
         },
         addPerkPoints() {
             this.callStore.addCall(["UT:addPerkPoints", this.perkPoints]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -151,7 +148,7 @@ export default {
         },
         resetPerkPoints() {
             this.callStore.addCall(["UT:resetPerkPoints"]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -160,7 +157,7 @@ export default {
             for (const itemId of this.selectedBlackMarketItems) {
                 this.callStore.addCall(["UT:addItemToBlackMarket", this.blackMarketCategory, itemId]);
             }
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -169,28 +166,28 @@ export default {
             for (const itemId of this.selectedBlackMarketItems) {
                 this.callStore.addCall(["UT:removeItemFromBlackMarket", this.blackMarketCategory, itemId]);
             }
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
         },
         unlockBlackMarketSlots() {
             this.callStore.addCall(["UT:setBlackMarketSlotsLock", true]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
         },
         lockBlackMarketSlots() {
             this.callStore.addCall(["UT:setBlackMarketSlotsLock", false]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
         },
         removeBlackMarketExclamationMarks() {
             this.callStore.addCall(["UT:removeBlackMarketExclamationMarks"]);
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -199,7 +196,7 @@ export default {
             for (const trophyId of this.selectedTrophies) {
                 this.callStore.addCall(["UT:unlockTrophy", trophyId]);
             }
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -208,7 +205,7 @@ export default {
             for (const trophyId of this.selectedTrophies) {
                 this.callStore.addCall(["UT:lockTrophy", trophyId]);
             }
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -217,7 +214,7 @@ export default {
             for (const steamAchievementId of this.selectedSteamAchievements) {
                 this.callStore.addCall(["UT:unlockSteamAchievement", steamAchievementId]);
             }
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);
@@ -226,7 +223,7 @@ export default {
             for (const steamAchievementId of this.selectedSteamAchievements) {
                 this.callStore.addCall(["UT:lockSteamAchievement", steamAchievementId]);
             }
-            if (this.isInMainMenu) {
+            if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT:saveProgress"]);

@@ -1,5 +1,11 @@
 import { ref } from "vue";
 
+import { useMainStore } from "@/stores/main";
+import { useCallStore } from "@/stores/calls";
+import { useSettingsStore } from "@/stores/settings";
+import { useMissionStore } from "@/stores/mission";
+import { useSpawnStore } from "@/stores/spawn";
+
 let ws = null;
 const connected = ref(false);
 
@@ -8,15 +14,21 @@ export function getWebSocket() {
 }
 
 export function createWebSocket(options) {
+    const mainStore = useMainStore();
+    const callStore = useCallStore();
+    const settingsStore = useSettingsStore();
+    const missionStore = useMissionStore();
+    const spawnStore = useSpawnStore();
+
     const url = `ws://${options.host}:${options.port}`;
     ws = new WebSocket(url);
 
     ws.addEventListener("open", () => {
         connected.value = true;
         options.connectionErrorCallback = null;
-        options.callStore.addCall(["UT:sendGameState"]);
-        options.callStore.addCall(["UT:sendIsHost"]);
-        options.callStore.addCall(["UT:sendVehiclesPackagesLoaded"]);
+        callStore.addCall(["UT:sendGameState"]);
+        callStore.addCall(["UT:sendIsHost"]);
+        callStore.addCall(["UT:sendVehiclesPackagesLoaded"]);
         options.router.push({ name: "home" });
     });
 
@@ -30,7 +42,11 @@ export function createWebSocket(options) {
         connected.value = false;
         ws = null;
         options.router.push({ name: "connect" });
-        options.mainStore.$reset();
+        mainStore.$reset();
+        callStore.$reset();
+        settingsStore.$reset();
+        missionStore.$reset();
+        spawnStore.$reset();
     });
 
     ws.addEventListener("message", (messageEvent) => {
@@ -43,19 +59,26 @@ export function createWebSocket(options) {
 
         switch (message.type) {
             case "game-state": {
-                options.mainStore.setGameState(message.data);
+                const gameState = message.data;
+
+                if (mainStore.isInGame && typeof gameState === "string" && (!gameState.startsWith("ingame_") || gameState === "ingame_waiting_for_players")) {
+                    missionStore.$reset();
+                    spawnStore.id = null;
+                }
+
+                mainStore.gameState = gameState;
                 break;
             }
             case "is-host": {
-                options.mainStore.setIsHost(message.data === "true");
+                mainStore.isHost = message.data === "true";
                 break;
             }
             case "vehicles-packages-loaded": {
-                options.mainStore.setVehiclesPackagesLoaded(message.data === "true");
+                mainStore.vehiclesPackagesLoaded = message.data === "true";
                 break;
             }
             case "settings": {
-                options.settingsStore.setSettings(message.data);
+                settingsStore.setSettings(message.data);
                 break;
             }
         }

@@ -1,8 +1,4 @@
 <script>
-import { useMainStore } from "@/stores/main";
-import { useCallStore } from "@/stores/calls";
-import { useSettingsStore } from "@/stores/settings";
-
 import { createWebSocket } from "@/web-socket";
 
 export default {
@@ -14,10 +10,6 @@ export default {
         };
     },
     created() {
-        this.callStore = useCallStore();
-        this.mainStore = useMainStore();
-        this.settingsStore = useSettingsStore();
-
         this.host = window.location.hostname;
     },
     mounted() {
@@ -38,9 +30,6 @@ export default {
                 host: this.host,
                 port: this.port,
                 router: this.$router,
-                mainStore: this.mainStore,
-                callStore: this.callStore,
-                settingsStore: this.settingsStore,
                 connectionErrorCallback: () => {
                     this.connecting = false;
                     alert(this.$t("main.connection_failed"));

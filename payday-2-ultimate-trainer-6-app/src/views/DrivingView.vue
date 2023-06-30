@@ -40,17 +40,6 @@ export default {
             ]
         };
     },
-    computed: {
-        isInGame() {
-            return this.mainStore.getIsInGame;
-        },
-        isPlaying() {
-            return this.mainStore.getIsPlaying;
-        },
-        vehiclesPackagesLoaded() {
-            return this.mainStore.getVehiclesPackagesLoaded;
-        }
-    },
     created() {
         this.mainStore = useMainStore();
         this.callStore = useCallStore();
@@ -63,7 +52,7 @@ export default {
             this.settingsStore.setSetting("enable-vehicles-packages-loading", this.enableVehiclesPackagesLoading);
             this.settingsStore.saveSettings();
 
-            if (this.isInGame) {
+            if (this.mainStore.isInGame) {
                 alert(this.$t("main.heist_restart_required"));
             }
         },
@@ -84,7 +73,7 @@ export default {
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 {{ $t("main.driving") }}
-                <span v-if="vehiclesPackagesLoaded" class="badge text-bg-success">{{ $t("main.vehicles_packages_loaded") }}</span>
+                <span v-if="mainStore.vehiclesPackagesLoaded" class="badge text-bg-success">{{ $t("main.vehicles_packages_loaded") }}</span>
                 <span v-else class="badge text-bg-warning">{{ $t("main.vehicles_packages_not_loaded") }}</span>
             </div>
             <div class="card-body p-4">
@@ -92,7 +81,7 @@ export default {
                     <input id="enable-vehicles-packages-loading" v-model="enableVehiclesPackagesLoading" class="form-check-input" type="checkbox" @change="setVehiclesPackagesLoading">
                     <label for="enable-vehicles-packages-loading" class="form-check-label">{{ $t("main.vehicles_packages_loading") }}</label>
                 </div>
-                <fieldset :disabled="!vehiclesPackagesLoaded || !isPlaying">
+                <fieldset :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">
                     <div id="carousel" class="carousel slide">
                         <div class="carousel-indicators">
                             <button v-for="(vehicle, index) in vehicles" :key="index" data-bs-target="#carousel" :data-bs-slide-to="index" :class="{ 'active': index === 0 }" />

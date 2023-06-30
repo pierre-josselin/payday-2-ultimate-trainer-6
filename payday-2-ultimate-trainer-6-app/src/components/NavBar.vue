@@ -18,26 +18,6 @@ export default {
             ]
         };
     },
-    computed: {
-        isOffline() {
-            return this.mainStore.getIsOffline;
-        },
-        isInBootup() {
-            return this.mainStore.getIsInBootup;
-        },
-        isInMainMenu() {
-            return this.mainStore.getIsInMainMenu;
-        },
-        isInGame() {
-            return this.mainStore.getIsInGame;
-        },
-        isPlaying() {
-            return this.mainStore.getIsPlaying;
-        },
-        isAtEndGame() {
-            return this.mainStore.getIsAtEndGame;
-        }
-    },
     created() {
         this.mainStore = useMainStore();
 
@@ -60,12 +40,12 @@ export default {
                     </li>
                 </ul>
                 <span class="me-3">
-                    <template v-if="isOffline">{{ $t("main.offline") }}</template>
-                    <template v-else-if="isInBootup">{{ $t("main.bootup") }}</template>
-                    <template v-else-if="isInMainMenu">{{ $t("main.main_menu") }}</template>
-                    <template v-else-if="isPlaying">{{ $t("main.playing") }}</template>
-                    <template v-else-if="isInGame">{{ $t("main.in_game") }}</template>
-                    <template v-else-if="isAtEndGame">{{ $t("main.end_game") }}</template>
+                    <template v-if="mainStore.isOffline">{{ $t("main.offline") }}</template>
+                    <template v-else-if="mainStore.isInBootup">{{ $t("main.bootup") }}</template>
+                    <template v-else-if="mainStore.isInMainMenu">{{ $t("main.main_menu") }}</template>
+                    <template v-else-if="mainStore.isPlaying">{{ $t("main.playing") }}</template>
+                    <template v-else-if="mainStore.isInGame">{{ $t("main.in_game") }}</template>
+                    <template v-else-if="mainStore.isAtEndGame">{{ $t("main.end_game") }}</template>
                 </span>
                 <a class="btn btn-primary btn-sm me-3" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
