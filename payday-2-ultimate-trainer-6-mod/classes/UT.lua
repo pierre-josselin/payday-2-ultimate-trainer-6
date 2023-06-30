@@ -28,16 +28,16 @@ function UT:requestCalls()
         if not data then
             return
         end
-        local calls = UT.Utils:jsonDecode(data)
-        if not calls or UT.Utils:isEmptyTable(calls) then
+        local calls = UT.Utility:jsonDecode(data)
+        if not calls or UT.Utility:isEmptyTable(calls) then
             return
         end
         for index, call in pairs(calls) do
-            UT.Utils:callFunction(unpack(call))
+            UT.Utility:callFunction(unpack(call))
         end
     end
-    UT.Utils:httpRequest(url, callback)
-    UT.lastCallClock = UT.Utils:getClock()
+    UT.Utility:httpRequest(url, callback)
+    UT.lastCallClock = UT.Utility:getClock()
 end
 
 function UT:requestSettings()
@@ -46,19 +46,19 @@ function UT:requestSettings()
         if not data then
             return
         end
-        local settings = UT.Utils:jsonDecode(data)
+        local settings = UT.Utility:jsonDecode(data)
         if not settings then
             return
         end
         UT.settings = settings
     end
-    UT.Utils:httpRequest(url, callback)
+    UT.Utility:httpRequest(url, callback)
 end
 
 function UT:sendMessage(message)
-    local queryString = UT.Utils:buildQueryString(message)
+    local queryString = UT.Utility:buildQueryString(message)
     local url = UT_SERVER_URL .. "/send-message?" .. queryString
-    UT.Utils:httpRequest(url)
+    UT.Utility:httpRequest(url)
 end
 
 function UT:sendGameState()
@@ -179,7 +179,7 @@ function UT:update()
     end
     UT.previousIsHost = isHost
 
-    if UT.Utils:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
+    if UT.Utility:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
         UT:requestCalls()
     end
 
@@ -352,7 +352,7 @@ function UT:convertEnemy(unit)
 end
 
 function UT:disableSentryGunPickup()
-    UT.Utils:cloneClass(SentryGunBase)
+    UT.Utility:cloneClass(SentryGunBase)
     function SentryGunBase.on_picked_up() end
 end
 
@@ -501,7 +501,7 @@ function UT:setGodMode(enabled)
 end
 
 function UT:setInfiniteStamina(enabled)
-    UT.Utils:cloneClass(PlayerMovement)
+    UT.Utility:cloneClass(PlayerMovement)
     if enabled then
         function PlayerMovement:_change_stamina() end
 
@@ -513,7 +513,7 @@ function UT:setInfiniteStamina(enabled)
 end
 
 function UT:setCanRunDirectional(enabled)
-    UT.Utils:cloneClass(PlayerStandard)
+    UT.Utility:cloneClass(PlayerStandard)
     if enabled then
         function PlayerStandard:_can_run_directional() return true end
     else
@@ -522,7 +522,7 @@ function UT:setCanRunDirectional(enabled)
 end
 
 function UT:setCanRunWithAnyBag(enabled)
-    UT.backup.tweakDataCarryTypes = UT.backup.tweakDataCarryTypes or UT.Utils:deepClone(tweak_data.carry.types)
+    UT.backup.tweakDataCarryTypes = UT.backup.tweakDataCarryTypes or UT.Utility:deepClone(tweak_data.carry.types)
     if enabled then
         for type, data in pairs(tweak_data.carry.types) do
             tweak_data.carry.types[type].can_run = true
@@ -544,7 +544,7 @@ function UT:setInstantMaskOn(enabled)
 end
 
 function UT:setNoCarryCooldown(enabled)
-    UT.Utils:cloneClass(PlayerManager)
+    UT.Utility:cloneClass(PlayerManager)
     if enabled then
         function PlayerManager:carry_blocked_by_cooldown() return false end
     else
@@ -553,7 +553,7 @@ function UT:setNoCarryCooldown(enabled)
 end
 
 function UT:setNoFlashbangs(enabled)
-    UT.Utils:cloneClass(CoreEnvironmentControllerManager)
+    UT.Utility:cloneClass(CoreEnvironmentControllerManager)
     if enabled then
         function CoreEnvironmentControllerManager:set_flashbang() end
     else
@@ -562,7 +562,7 @@ function UT:setNoFlashbangs(enabled)
 end
 
 function UT:setInstantWeaponSwap(enabled)
-    UT.Utils:cloneClass(PlayerStandard)
+    UT.Utility:cloneClass(PlayerStandard)
     if enabled then
         function PlayerStandard:_get_swap_speed_multiplier() return 1000 end
     else
@@ -571,7 +571,7 @@ function UT:setInstantWeaponSwap(enabled)
 end
 
 function UT:setInstantWeaponReload(enabled)
-    UT.Utils:cloneClass(RaycastWeaponBase)
+    UT.Utility:cloneClass(RaycastWeaponBase)
     if enabled then
         function RaycastWeaponBase:can_reload()
             self:on_reload()
@@ -584,7 +584,7 @@ function UT:setInstantWeaponReload(enabled)
 end
 
 function UT:setNoWeaponRecoil(enabled)
-    UT.Utils:cloneClass(NewRaycastWeaponBase)
+    UT.Utility:cloneClass(NewRaycastWeaponBase)
     if enabled then
         function NewRaycastWeaponBase:recoil_multiplier() return 0 end
     else
@@ -593,7 +593,7 @@ function UT:setNoWeaponRecoil(enabled)
 end
 
 function UT:setNoWeaponSpread(enabled)
-    UT.Utils:cloneClass(NewRaycastWeaponBase)
+    UT.Utility:cloneClass(NewRaycastWeaponBase)
     if enabled then
         function NewRaycastWeaponBase:spread_multiplier() return 0 end
     else
@@ -602,8 +602,8 @@ function UT:setNoWeaponSpread(enabled)
 end
 
 function UT:setShootThroughWalls(enabled)
-    UT.Utils:cloneClass(RaycastWeaponBase)
-    UT.Utils:cloneClass(NewRaycastWeaponBase)
+    UT.Utility:cloneClass(RaycastWeaponBase)
+    UT.Utility:cloneClass(NewRaycastWeaponBase)
 
     if enabled then
         if not UT:playerUnit() or not alive(UT:playerUnit()) then
@@ -636,8 +636,8 @@ function UT:setShootThroughWalls(enabled)
 end
 
 function UT:setUnlimitedAmmo(enabled)
-    UT.Utils:cloneClass(RaycastWeaponBase)
-    UT.Utils:cloneClass(SawWeaponBase)
+    UT.Utility:cloneClass(RaycastWeaponBase)
+    UT.Utility:cloneClass(SawWeaponBase)
     if enabled then
         function RaycastWeaponBase:clip_empty()
             self:set_ammo_total(self:get_ammo_max())
@@ -655,7 +655,7 @@ function UT:setUnlimitedAmmo(enabled)
 end
 
 function UT:setInstantInteraction(enabled)
-    UT.Utils:cloneClass(BaseInteractionExt)
+    UT.Utility:cloneClass(BaseInteractionExt)
     if enabled then
         function BaseInteractionExt:_get_timer() return 0.001 end
     else
@@ -664,7 +664,7 @@ function UT:setInstantInteraction(enabled)
 end
 
 function UT:setInstantDeployment(enabled)
-    UT.Utils:cloneClass(PlayerManager)
+    UT.Utility:cloneClass(PlayerManager)
     if enabled then
         function PlayerManager:selected_equipment_deploy_timer() return 0.001 end
     else
@@ -673,8 +673,8 @@ function UT:setInstantDeployment(enabled)
 end
 
 function UT:setUnlimitedEquipment(enabled)
-    UT.Utils:cloneClass(BaseInteractionExt)
-    UT.Utils:cloneClass(PlayerManager)
+    UT.Utility:cloneClass(BaseInteractionExt)
+    UT.Utility:cloneClass(PlayerManager)
     if enabled then
         function BaseInteractionExt:_has_required_upgrade() return true end
 
@@ -698,7 +698,7 @@ function UT:setUnlimitedEquipment(enabled)
 end
 
 function UT:setMoveSpeedMultiplier(enabled, multiplier)
-    UT.Utils:cloneClass(PlayerManager)
+    UT.Utility:cloneClass(PlayerManager)
     if enabled then
         function PlayerManager:movement_speed_multiplier() return multiplier end
     else
@@ -707,7 +707,7 @@ function UT:setMoveSpeedMultiplier(enabled, multiplier)
 end
 
 function UT:setThrowDistanceMultiplier(enabled, multiplier)
-    UT.backup.tweakDataCarryTypes = UT.backup.tweakDataCarryTypes or UT.Utils:deepClone(tweak_data.carry.types)
+    UT.backup.tweakDataCarryTypes = UT.backup.tweakDataCarryTypes or UT.Utility:deepClone(tweak_data.carry.types)
     if enabled then
         for type, data in pairs(tweak_data.carry.types) do
             tweak_data.carry.types[type].throw_distance_multiplier = multiplier
@@ -720,7 +720,7 @@ function UT:setThrowDistanceMultiplier(enabled, multiplier)
 end
 
 function UT:setFireRateMultiplier(enabled, multiplier)
-    UT.Utils:cloneClass(NewRaycastWeaponBase)
+    UT.Utility:cloneClass(NewRaycastWeaponBase)
     if enabled then
         function NewRaycastWeaponBase:fire_rate_multiplier() return multiplier end
     else
@@ -729,7 +729,7 @@ function UT:setFireRateMultiplier(enabled, multiplier)
 end
 
 function UT:setDamageMultiplier(enabled, multiplier)
-    UT.Utils:cloneClass(CopDamage)
+    UT.Utility:cloneClass(CopDamage)
     if enabled then
         function CopDamage:damage_bullet(attack_data)
             if attack_data.attacker_unit == UT:playerUnit() then
@@ -751,7 +751,7 @@ function UT:setDamageMultiplier(enabled, multiplier)
 end
 
 function UT:setUnlimitedConversion(enabled)
-    UT.Utils:cloneClass(PlayerManager)
+    UT.Utility:cloneClass(PlayerManager)
     if enabled then
         function PlayerManager:upgrade_value(category, upgrade, default)
             if category == "player" and upgrade == "convert_enemies" then
@@ -768,7 +768,7 @@ function UT:setUnlimitedConversion(enabled)
 end
 
 function UT:setUnlimitedGagePackages(enabled)
-    UT.Utils:cloneClass(GageAssignmentTweakData)
+    UT.Utility:cloneClass(GageAssignmentTweakData)
     if enabled then
         function GageAssignmentTweakData:get_num_assignment_units()
             return UT.maxInteger
@@ -810,7 +810,7 @@ end
 function UT:removeInvisibleWalls()
     local units = World:find_units_quick("all", 1)
     for index, unit in pairs(units) do
-        if UT.Utils:inTable(unit:name():key(), UT.Tables.invisibleWalls) then
+        if UT.Utility:inTable(unit:name():key(), UT.Tables.invisibleWalls) then
             UT:deleteUnit(unit)
         end
     end
@@ -867,7 +867,7 @@ end
 
 function UT:setXRay(enabled)
     if enabled then
-        UT.Utils:cloneClass(EnemyManager)
+        UT.Utility:cloneClass(EnemyManager)
 
         for key, data in pairs(managers.enemy:all_civilians()) do
             data.unit:contour():add("mark_enemy", false, UT.maxInteger)
@@ -921,7 +921,7 @@ function UT:setXRay(enabled)
 end
 
 function UT:setPreventAlarmTriggering(enabled)
-    UT.Utils:cloneClass(GroupAIStateBase)
+    UT.Utility:cloneClass(GroupAIStateBase)
     if enabled then
         function GroupAIStateBase:on_police_called() end
     else
@@ -1002,7 +1002,7 @@ function UT:setUnlimitedPagers(enabled)
 end
 
 function UT:setInstantDrilling(enabled)
-    UT.Utils:cloneClass(TimerGui)
+    UT.Utility:cloneClass(TimerGui)
     if enabled then
         function TimerGui:_set_jamming_values() end
 
@@ -1037,10 +1037,10 @@ function UT:spawnAndEnterVehicle(id)
         UT:setPlayerState("standard")
     end
 
-    if UT.Utils:isEmptyTable(UT.spawnedVehicleUnits) then
-        UT.Utils:cloneClass(BaseNetworkSession)
+    if UT.Utility:isEmptyTable(UT.spawnedVehicleUnits) then
+        UT.Utility:cloneClass(BaseNetworkSession)
         function BaseNetworkSession:send_to_peers_synched(name, ...)
-            if UT.Utils:inTable(name, {
+            if UT.Utility:inTable(name, {
                     "sync_vehicle_driving",
                     "sync_vehicle_set_input",
                     "sync_vehicle_state",
@@ -1069,7 +1069,7 @@ function UT:spawnAndEnterVehicle(id)
 
     managers.player:enter_vehicle(vehicleUnit, UT:playerUnit())
 
-    UT.Utils:tableInsert(UT.spawnedVehicleUnits, vehicleUnit)
+    UT.Utility:tableInsert(UT.spawnedVehicleUnits, vehicleUnit)
 end
 
 function UT:removeSpawnedVehicles()
@@ -1077,7 +1077,7 @@ function UT:removeSpawnedVehicles()
         UT:setPlayerState("standard")
     end
 
-    if not UT.Utils:isEmptyTable(UT.spawnedVehicleUnits) then
+    if not UT.Utility:isEmptyTable(UT.spawnedVehicleUnits) then
         BaseNetworkSession.send_to_peers_synched = BaseNetworkSession.orig.send_to_peers_synched
     end
 

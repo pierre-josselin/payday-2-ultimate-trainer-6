@@ -1,4 +1,4 @@
-UT.Utils:cloneClass(BootupState)
+UT.Utility:cloneClass(BootupState)
 function BootupState:setup()
     UT:runServer()
 
