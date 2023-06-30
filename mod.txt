@@ -15,6 +15,10 @@
         {
             "hook_id": "lib/states/bootupstate",
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/states/bootupstate.lua"
+        },
+        {
+            "hook_id": "lib/states/ingamewaitingforplayers",
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/states/ingamewaitingforplayers.lua"
         }
     ],
     "persist_scripts": [

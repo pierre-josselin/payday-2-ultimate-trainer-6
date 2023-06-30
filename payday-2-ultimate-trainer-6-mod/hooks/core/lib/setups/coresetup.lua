@@ -9,9 +9,9 @@ dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/config.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/UT.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Utility.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/GameUtility.lua")
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Tables.lua")
 dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Spawn.lua")
+dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Keybind.lua")
 
-UT:requestSettings()
+UT.modPath = modPath
 
-UT.modPathWindows = modPath:gsub("/", "\\")
+UT:init()

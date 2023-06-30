@@ -44,6 +44,19 @@ function UT.Utility:httpRequest(url, callback)
     dohttpreq(url, callback)
 end
 
+function UT.Utility:readFile(filePath)
+    if not io.file_is_readable(filePath) then
+        return false
+    end
+    local file = io.open(filePath, "r")
+    if not file then
+        return false
+    end
+    local content = file:read("*all")
+    file:close()
+    return content
+end
+
 function UT.Utility:getClock()
     return os.clock()
 end

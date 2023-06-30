@@ -1,29 +1,101 @@
 UT = {}
 
+UT.maxInteger = math.huge
+
+UT.modPath = nil
 UT.lastCallClock = 0
-UT.environment = nil
-UT.initialEnvironment = nil
 UT.previousGameState = nil
 UT.previousIsHost = nil
-UT.inHeistEventTriggered = false
 UT.vehiclesPackagesLoaded = false
-UT.initialized = false
-UT.maxInteger = math.huge
+UT.environment = nil
+UT.initialEnvironment = nil
 
 UT.settings = {}
 UT.backup = {}
 UT.spawnedVehicleUnits = {}
 
-function UT:log(message)
-    log(message)
+UT.invisibleWalls = {}
+
+function UT:init()
+    UT:requestSettings()
+
+    local content = UT.Utility:readFile(UT.modPath .. "/payday-2-ultimate-trainer-6-mod/data/invisible-walls.json")
+    if content then
+        UT.invisibleWalls = UT.Utility:jsonDecode(content)
+    end
+end
+
+function UT:update()
+    local gameState = UT.GameUtility:getGameState()
+    if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
+        UT:sendGameState()
+    end
+    UT.previousGameState = gameState
+
+    local isHost = UT.GameUtility:isHost()
+    if UT.previousIsHost == nil or isHost ~= UT.previousIsHost then
+        UT:sendIsHost()
+    end
+    UT.previousIsHost = isHost
+
+    if UT.Utility:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
+        UT:requestCalls()
+    end
+
+    if UT.GameUtility:isInGame() then
+        if UT.GameUtility:isInHeist() then
+            if UT.environment then
+                if UT:getEnvironment() ~= UT.environment then
+                    UT:setEnvironment(UT.environment)
+                end
+            end
+
+            if UT.enableDisableAi then
+                UT:disableAI()
+            end
+        end
+    end
+end
+
+function UT:loadPackages()
+    local packages = {}
+
+    table.insert(packages, "levels/instances/unique/hox_fbi_armory/world")
+    table.insert(packages, "levels/instances/unique/hlm_reader/world")
+    table.insert(packages, "levels/instances/unique/mus_security_barrier/world")
+    table.insert(packages, "levels/instances/unique/hlm_box_contraband001/world")
+    table.insert(packages, "levels/instances/unique/pbr/pbr_plane/world")
+    table.insert(packages, "levels/instances/unique/hlm_random_right003/world")
+    table.insert(packages, "levels/instances/unique/hlm_door_wooden_white_green/world")
+    table.insert(packages, "levels/instances/unique/hlm_vault/world")
+    table.insert(packages, "levels/instances/unique/san_box001/world")
+
+    if UT.settings["enable-vehicles-packages-loading"] then
+        table.insert(packages, "levels/narratives/bain/cage/world/world")
+        table.insert(packages, "levels/narratives/vlad/shout/world/world")
+        table.insert(packages, "levels/narratives/vlad/jolly/world/world")
+        table.insert(packages, "levels/narratives/pbr/jerry/world/world")
+        table.insert(packages, "levels/narratives/elephant/born/world/world")
+    end
+
+    for index, value in pairs(packages) do
+        if not PackageManager:package_exists(value) then
+            goto continue
+        end
+        if PackageManager:loaded(value) then
+            goto continue
+        end
+        PackageManager:load(value)
+        ::continue::
+    end
+
+    if UT.settings["enable-vehicles-packages-loading"] then
+        UT.vehiclesPackagesLoaded = true
+    end
 end
 
 function UT:runServer()
-    os.execute("start /B node \"" .. UT.modPathWindows .. "\\index.js\" run")
-end
-
-function UT:openApp()
-    Steam:overlay_activate("url", UT_APP_URL)
+    os.execute("start /B node \"" .. UT.modPath:gsub("/", "\\") .. "\\index.js\" run")
 end
 
 function UT:requestCalls()
@@ -89,13 +161,11 @@ function UT:sendVehiclesPackagesLoaded()
     UT:sendMessage(message)
 end
 
-function UT:init()
+function UT:enterGame()
     UT:sendVehiclesPackagesLoaded()
-
-    UT.initialized = true
 end
 
-function UT:triggerInHeistEvent()
+function UT:enterHeist()
     UT.initialEnvironment = UT:getEnvironment()
 
     if UT.settings["enable-god-mode"] then
@@ -162,47 +232,33 @@ function UT:triggerInHeistEvent()
     if UT.settings["enable-damage-multiplier"] and UT.settings["damage-multiplier"] then
         UT:setDamageMultiplier(true, UT.settings["damage-multiplier"])
     end
-
-    UT.inHeistEventTriggered = true
 end
 
-function UT:update()
-    if not UT.initialized then
-        UT:init()
-    end
-
-    local gameState = UT.GameUtility:getGameState()
-    if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
-        UT:sendGameState()
-    end
-    UT.previousGameState = gameState
-
-    local isHost = UT.GameUtility:isHost()
-    if UT.previousIsHost == nil or isHost ~= UT.previousIsHost then
-        UT:sendIsHost()
-    end
-    UT.previousIsHost = isHost
-
-    if UT.Utility:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
-        UT:requestCalls()
-    end
-
-    if UT.GameUtility:isInGame() then
-        if UT.GameUtility:isInHeist() then
-            if not UT.inHeistEventTriggered then
-                UT:triggerInHeistEvent()
-            end
-
-            if UT.environment then
-                if UT:getEnvironment() ~= UT.environment then
-                    UT:setEnvironment(UT.environment)
-                end
-            end
-
-            if UT.enableDisableAi then
-                UT:disableAI()
+function UT:setUnlimitedConversion(enabled)
+    UT.Utility:cloneClass(PlayerManager)
+    if enabled then
+        function PlayerManager:upgrade_value(category, upgrade, default)
+            if category == "player" and upgrade == "convert_enemies" then
+                return true
+            elseif category == "player" and upgrade == "convert_enemies_max_minions" then
+                return UT.maxInteger
+            else
+                return PlayerManager.orig.upgrade_value(self, category, upgrade, default)
             end
         end
+    else
+        PlayerManager.upgrade_value = PlayerManager.orig.upgrade_value
+    end
+end
+
+function UT:setUnlimitedGagePackages(enabled)
+    UT.Utility:cloneClass(GageAssignmentTweakData)
+    if enabled then
+        function GageAssignmentTweakData:get_num_assignment_units()
+            return UT.maxInteger
+        end
+    else
+        GageAssignmentTweakData.get_num_assignment_units = GageAssignmentTweakData.orig.get_num_assignment_units
     end
 end
 
@@ -210,6 +266,8 @@ function UT:disableSentryGunPickup()
     UT.Utility:cloneClass(SentryGunBase)
     function SentryGunBase.on_picked_up() end
 end
+
+-- Career
 
 function UT:setLevel(level)
     local rank = managers.experience:current_rank()
@@ -338,6 +396,8 @@ function UT:lockSteamAchievement(achievementId)
     managers.achievment:clear_steam(achievementId)
 end
 
+-- Environment
+
 function UT:getEnvironment()
     return managers.viewport:first_active_viewport():get_environment_path()
 end
@@ -350,6 +410,8 @@ end
 function UT:setInitialEnvironment()
     UT:setEnvironment(UT.initialEnvironment)
 end
+
+-- Cheats
 
 function UT:setGodMode(enabled)
     UT.GameUtility:playerUnit():character_damage():set_god_mode(enabled)
@@ -413,6 +475,49 @@ function UT:setNoFlashbangs(enabled)
         function CoreEnvironmentControllerManager:set_flashbang() end
     else
         CoreEnvironmentControllerManager.set_flashbang = CoreEnvironmentControllerManager.orig.set_flashbang
+    end
+end
+
+function UT:setInstantInteraction(enabled)
+    UT.Utility:cloneClass(BaseInteractionExt)
+    if enabled then
+        function BaseInteractionExt:_get_timer() return 0.001 end
+    else
+        BaseInteractionExt._get_timer = BaseInteractionExt.orig._get_timer
+    end
+end
+
+function UT:setInstantDeployment(enabled)
+    UT.Utility:cloneClass(PlayerManager)
+    if enabled then
+        function PlayerManager:selected_equipment_deploy_timer() return 0.001 end
+    else
+        PlayerManager.selected_equipment_deploy_timer = PlayerManager.orig.selected_equipment_deploy_timer
+    end
+end
+
+function UT:setUnlimitedEquipment(enabled)
+    UT.Utility:cloneClass(BaseInteractionExt)
+    UT.Utility:cloneClass(PlayerManager)
+    if enabled then
+        function BaseInteractionExt:_has_required_upgrade() return true end
+
+        function BaseInteractionExt:_has_required_deployable() return true end
+
+        function BaseInteractionExt:can_interact() return true end
+
+        function PlayerManager:on_used_body_bag() end
+
+        function PlayerManager:remove_equipment() end
+
+        function PlayerManager:remove_special() end
+    else
+        BaseInteractionExt._has_required_upgrade = BaseInteractionExt.orig._has_required_upgrade
+        BaseInteractionExt._has_required_deployable = BaseInteractionExt.orig._has_required_deployable
+        BaseInteractionExt.can_interact = BaseInteractionExt.orig.can_interact
+        PlayerManager.on_used_body_bag = PlayerManager.orig.on_used_body_bag
+        PlayerManager.remove_equipment = PlayerManager.orig.remove_equipment
+        PlayerManager.remove_special = PlayerManager.orig.remove_special
     end
 end
 
@@ -509,49 +614,6 @@ function UT:setUnlimitedAmmo(enabled)
     end
 end
 
-function UT:setInstantInteraction(enabled)
-    UT.Utility:cloneClass(BaseInteractionExt)
-    if enabled then
-        function BaseInteractionExt:_get_timer() return 0.001 end
-    else
-        BaseInteractionExt._get_timer = BaseInteractionExt.orig._get_timer
-    end
-end
-
-function UT:setInstantDeployment(enabled)
-    UT.Utility:cloneClass(PlayerManager)
-    if enabled then
-        function PlayerManager:selected_equipment_deploy_timer() return 0.001 end
-    else
-        PlayerManager.selected_equipment_deploy_timer = PlayerManager.orig.selected_equipment_deploy_timer
-    end
-end
-
-function UT:setUnlimitedEquipment(enabled)
-    UT.Utility:cloneClass(BaseInteractionExt)
-    UT.Utility:cloneClass(PlayerManager)
-    if enabled then
-        function BaseInteractionExt:_has_required_upgrade() return true end
-
-        function BaseInteractionExt:_has_required_deployable() return true end
-
-        function BaseInteractionExt:can_interact() return true end
-
-        function PlayerManager:on_used_body_bag() end
-
-        function PlayerManager:remove_equipment() end
-
-        function PlayerManager:remove_special() end
-    else
-        BaseInteractionExt._has_required_upgrade = BaseInteractionExt.orig._has_required_upgrade
-        BaseInteractionExt._has_required_deployable = BaseInteractionExt.orig._has_required_deployable
-        BaseInteractionExt.can_interact = BaseInteractionExt.orig.can_interact
-        PlayerManager.on_used_body_bag = PlayerManager.orig.on_used_body_bag
-        PlayerManager.remove_equipment = PlayerManager.orig.remove_equipment
-        PlayerManager.remove_special = PlayerManager.orig.remove_special
-    end
-end
-
 function UT:setMoveSpeedMultiplier(enabled, multiplier)
     UT.Utility:cloneClass(PlayerManager)
     if enabled then
@@ -605,33 +667,7 @@ function UT:setDamageMultiplier(enabled, multiplier)
     end
 end
 
-function UT:setUnlimitedConversion(enabled)
-    UT.Utility:cloneClass(PlayerManager)
-    if enabled then
-        function PlayerManager:upgrade_value(category, upgrade, default)
-            if category == "player" and upgrade == "convert_enemies" then
-                return true
-            elseif category == "player" and upgrade == "convert_enemies_max_minions" then
-                return UT.maxInteger
-            else
-                return PlayerManager.orig.upgrade_value(self, category, upgrade, default)
-            end
-        end
-    else
-        PlayerManager.upgrade_value = PlayerManager.orig.upgrade_value
-    end
-end
-
-function UT:setUnlimitedGagePackages(enabled)
-    UT.Utility:cloneClass(GageAssignmentTweakData)
-    if enabled then
-        function GageAssignmentTweakData:get_num_assignment_units()
-            return UT.maxInteger
-        end
-    else
-        GageAssignmentTweakData.get_num_assignment_units = GageAssignmentTweakData.orig.get_num_assignment_units
-    end
-end
+-- Mission
 
 function UT:startTheHeist()
     managers.network:session():spawn_players()
@@ -665,7 +701,7 @@ end
 function UT:removeInvisibleWalls()
     local units = World:find_units_quick("all", 1)
     for index, unit in pairs(units) do
-        if UT.Utility:inTable(unit:name():key(), UT.Tables.invisibleWalls) then
+        if UT.Utility:inTable(unit:name():key(), UT.invisibleWalls) then
             UT.GameUtility:deleteUnit(unit)
         end
     end
@@ -872,20 +908,7 @@ function UT:setInstantDrilling(enabled)
     end
 end
 
-function UT:teleportPlayerToCrosshair()
-    local crosshairRay = UT.GameUtility:getCrosshairRay()
-
-    if not crosshairRay then
-        return
-    end
-
-    local offset = Vector3()
-    mvector3.set(offset, UT.GameUtility:getPlayerCameraForward())
-    mvector3.multiply(offset, 100)
-    mvector3.add(crosshairRay.hit_position, offset)
-
-    UT.GameUtility:teleportPlayer(crosshairRay.hit_position, UT.GameUtility:getPlayerCameraRotation())
-end
+-- Driving
 
 function UT:spawnAndEnterVehicle(id)
     if UT.GameUtility:isDriving() then
