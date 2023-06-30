@@ -1,7 +1,19 @@
 UT.Utility = {}
 
+function UT.Utility:cloneClass(class)
+    _G.CloneClass(class)
+end
+
+function UT.Utility:deepClone(element)
+    return deep_clone(element)
+end
+
 function UT.Utility:toString(value)
     return tostring(value)
+end
+
+function UT.Utility:isEmptyTable(value)
+    return next(value) == nil
 end
 
 function UT.Utility:inTable(element, table)
@@ -11,10 +23,6 @@ function UT.Utility:inTable(element, table)
         end
     end
     return false
-end
-
-function UT.Utility:isEmptyTable(value)
-    return next(value) == nil
 end
 
 function UT.Utility:tableInsert(_table, value)
@@ -31,6 +39,15 @@ end
 
 function UT.Utility:jsonDecode(value)
     return json.decode(value)
+end
+
+function UT.Utility:buildQueryString(query)
+    local parts = {}
+    for key, value in pairs(query) do
+        local part = UT.Utility:toString(key) .. "=" .. UT.Utility:toString(value)
+        UT.Utility:tableInsert(parts, part)
+    end
+    return UT.Utility:tableJoin(parts, "&")
 end
 
 function UT.Utility:callFunction(name, ...)
@@ -59,21 +76,4 @@ end
 
 function UT.Utility:getClock()
     return os.clock()
-end
-
-function UT.Utility:buildQueryString(query)
-    local parts = {}
-    for key, value in pairs(query) do
-        local part = UT.Utility:toString(key) .. "=" .. UT.Utility:toString(value)
-        UT.Utility:tableInsert(parts, part)
-    end
-    return UT.Utility:tableJoin(parts, "&")
-end
-
-function UT.Utility:cloneClass(class)
-    _G.CloneClass(class)
-end
-
-function UT.Utility:deepClone(element)
-    return deep_clone(element)
 end
