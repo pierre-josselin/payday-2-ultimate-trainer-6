@@ -4,6 +4,46 @@ import NavBar from "@/components/NavBar.vue";
 import { useCallStore } from "@/stores/calls";
 import { useSpawnStore } from "@/stores/spawn";
 
+import cop1EnemyImagePath from "@/assets/enemies/cop-1.jpg";
+import cop2EnemyImagePath from "@/assets/enemies/cop-2.jpg";
+import cop3EnemyImagePath from "@/assets/enemies/cop-3.jpg";
+import cop4EnemyImagePath from "@/assets/enemies/cop-4.jpg";
+import fbi1EnemyImagePath from "@/assets/enemies/fbi-1.jpg";
+import fbi2EnemyImagePath from "@/assets/enemies/fbi-2.jpg";
+import fbi3EnemyImagePath from "@/assets/enemies/fbi-3.jpg";
+import fbiHeavyEnemyImagePath from "@/assets/enemies/fbi-heavy.jpg";
+import fbiSwat1EnemyImagePath from "@/assets/enemies/fbi-swat-1.jpg";
+import fbiSwat2EnemyImagePath from "@/assets/enemies/fbi-swat-2.jpg";
+import swatHeavyEnemyImagePath from "@/assets/enemies/swat-heavy.jpg";
+import shield1EnemyImagePath from "@/assets/enemies/shield-1.jpg";
+import shield2EnemyImagePath from "@/assets/enemies/shield-2.jpg";
+import tazerEnemyImagePath from "@/assets/enemies/tazer.jpg";
+import sniper1EnemyImagePath from "@/assets/enemies/sniper-1.jpg";
+import sniper2EnemyImagePath from "@/assets/enemies/sniper-2.jpg";
+import cloackerEnemyImagePath from "@/assets/enemies/cloacker.jpg";
+import medicEnemyImagePath from "@/assets/enemies/medic.jpg";
+import bulldozer1EnemyImagePath from "@/assets/enemies/bulldozer-1.jpg";
+import bulldozer2EnemyImagePath from "@/assets/enemies/bulldozer-2.jpg";
+import bulldozer3EnemyImagePath from "@/assets/enemies/bulldozer-3.jpg";
+import bulldozerMedicEnemyImagePath from "@/assets/enemies/bulldozer-medic.jpg";
+import bulldozerMinigunEnemyImagePath from "@/assets/enemies/bulldozer-minigun.jpg";
+
+import greenMantisGagePackageImagePath from "@/assets/gage-packages/green-mantis.jpg";
+import yellowBullGagePackageImagePath from "@/assets/gage-packages/yellow-bull.jpg";
+import redSpiderGagePackageImagePath from "@/assets/gage-packages/red-spider.jpg";
+import blueEagleGagePackageImagePath from "@/assets/gage-packages/blue-eagle.jpg";
+import purpleSnakeGagePackageImagePath from "@/assets/gage-packages/purple-snake.jpg";
+
+import ammoBagEquipmentImagePath from "@/assets/equipment/ammo-bag.png";
+import doctorBagEnemyImagePath from "@/assets/equipment/doctor-bag.png";
+import firstAidKitEnemyImagePath from "@/assets/equipment/first-aid-kit.png";
+import ordnanceBagEnemyImagePath from "@/assets/equipment/ordnance-bag.png";
+import bodyBagCaseEnemyImagePath from "@/assets/equipment/body-bag-case.png";
+import ecmJammerEnemyImagePath from "@/assets/equipment/ecm-jammer.png";
+import tripMineEnemyImagePath from "@/assets/equipment/trip-mine.png";
+import sentryGunEnemyImagePath from "@/assets/equipment/sentry-gun.png";
+import suppressedSentryGunEnemyImagePath from "@/assets/equipment/suppressed-sentry-gun.png";
+
 export default {
     components: {
         NavBar
@@ -18,95 +58,95 @@ export default {
                     units: [
                         {
                             id: "units/payday2/characters/ene_cop_1/ene_cop_1",
-                            imagePath: "/src/assets/enemies/cop-1.jpg"
+                            imagePath: cop1EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_cop_2/ene_cop_2",
-                            imagePath: "/src/assets/enemies/cop-2.jpg"
+                            imagePath: cop2EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_cop_3/ene_cop_3",
-                            imagePath: "/src/assets/enemies/cop-3.jpg"
+                            imagePath: cop3EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_cop_4/ene_cop_4",
-                            imagePath: "/src/assets/enemies/cop-4.jpg"
+                            imagePath: cop4EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_fbi_1/ene_fbi_1",
-                            imagePath: "/src/assets/enemies/fbi-1.jpg"
+                            imagePath: fbi1EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_fbi_2/ene_fbi_2",
-                            imagePath: "/src/assets/enemies/fbi-2.jpg"
+                            imagePath: fbi2EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_fbi_3/ene_fbi_3",
-                            imagePath: "/src/assets/enemies/fbi-3.jpg"
+                            imagePath: fbi3EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
-                            imagePath: "/src/assets/enemies/fbi-heavy.jpg"
+                            imagePath: fbiHeavyEnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
-                            imagePath: "/src/assets/enemies/fbi-swat-1.jpg"
+                            imagePath: fbiSwat1EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2",
-                            imagePath: "/src/assets/enemies/fbi-swat-2.jpg"
+                            imagePath: fbiSwat2EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
-                            imagePath: "/src/assets/enemies/swat-heavy.jpg"
+                            imagePath: swatHeavyEnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_shield_1/ene_shield_1",
-                            imagePath: "/src/assets/enemies/shield-1.jpg"
+                            imagePath: shield1EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_shield_2/ene_shield_2",
-                            imagePath: "/src/assets/enemies/shield-2.jpg"
+                            imagePath: shield2EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_tazer_1/ene_tazer_1",
-                            imagePath: "/src/assets/enemies/tazer.jpg"
+                            imagePath: tazerEnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_sniper_1/ene_sniper_1",
-                            imagePath: "/src/assets/enemies/sniper-1.jpg"
+                            imagePath: sniper1EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_sniper_2/ene_sniper_2",
-                            imagePath: "/src/assets/enemies/sniper-2.jpg"
+                            imagePath: sniper2EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_spook_1/ene_spook_1",
-                            imagePath: "/src/assets/enemies/cloacker.jpg"
+                            imagePath: cloackerEnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_medic_m4/ene_medic_m4",
-                            imagePath: "/src/assets/enemies/medic.jpg"
+                            imagePath: medicEnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-                            imagePath: "/src/assets/enemies/bulldozer-1.jpg"
+                            imagePath: bulldozer1EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
-                            imagePath: "/src/assets/enemies/bulldozer-2.jpg"
+                            imagePath: bulldozer2EnemyImagePath
                         },
                         {
                             id: "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
-                            imagePath: "/src/assets/enemies/bulldozer-3.jpg"
+                            imagePath: bulldozer3EnemyImagePath
                         },
                         {
                             id: "units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic",
-                            imagePath: "/src/assets/enemies/bulldozer-medic.jpg"
+                            imagePath: bulldozerMedicEnemyImagePath
                         },
                         {
                             id: "units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun",
-                            imagePath: "/src/assets/enemies/bulldozer-minigun.jpg"
+                            imagePath: bulldozerMinigunEnemyImagePath
                         }
                     ]
                 },
@@ -117,23 +157,23 @@ export default {
                     units: [
                         {
                             id: "units/pd2_dlc_gage_jobs/pickups/gen_pku_gage_green/gen_pku_gage_green",
-                            imagePath: "/src/assets/gage-packages/green-mantis.jpg"
+                            imagePath: greenMantisGagePackageImagePath
                         },
                         {
                             id: "units/pd2_dlc_gage_jobs/pickups/gen_pku_gage_yellow/gen_pku_gage_yellow",
-                            imagePath: "/src/assets/gage-packages/yellow-bull.jpg"
+                            imagePath: yellowBullGagePackageImagePath
                         },
                         {
                             id: "units/pd2_dlc_gage_jobs/pickups/gen_pku_gage_red/gen_pku_gage_red",
-                            imagePath: "/src/assets/gage-packages/red-spider.jpg"
+                            imagePath: redSpiderGagePackageImagePath
                         },
                         {
                             id: "units/pd2_dlc_gage_jobs/pickups/gen_pku_gage_blue/gen_pku_gage_blue",
-                            imagePath: "/src/assets/gage-packages/blue-eagle.jpg"
+                            imagePath: blueEagleGagePackageImagePath
                         },
                         {
                             id: "units/pd2_dlc_gage_jobs/pickups/gen_pku_gage_purple/gen_pku_gage_purple",
-                            imagePath: "/src/assets/gage-packages/purple-snake.jpg"
+                            imagePath: purpleSnakeGagePackageImagePath
                         }
                     ]
                 },
@@ -144,39 +184,39 @@ export default {
                     units: [
                         {
                             id: "ammo-bag",
-                            imagePath: "/src/assets/equipment/ammo-bag.png"
+                            imagePath: ammoBagEquipmentImagePath
                         },
                         {
                             id: "doctor-bag",
-                            imagePath: "/src/assets/equipment/doctor-bag.png"
+                            imagePath: doctorBagEnemyImagePath
                         },
                         {
                             id: "first-aid-kit",
-                            imagePath: "/src/assets/equipment/first-aid-kit.png"
+                            imagePath: firstAidKitEnemyImagePath
                         },
                         {
                             id: "ordnance-bag",
-                            imagePath: "/src/assets/equipment/ordnance-bag.png"
+                            imagePath: ordnanceBagEnemyImagePath
                         },
                         {
                             id: "body-bag-case",
-                            imagePath: "/src/assets/equipment/body-bag-case.png"
+                            imagePath: bodyBagCaseEnemyImagePath
                         },
                         {
                             id: "ecm-jammer",
-                            imagePath: "/src/assets/equipment/ecm-jammer.png"
+                            imagePath: ecmJammerEnemyImagePath
                         },
                         {
                             id: "trip-mine",
-                            imagePath: "/src/assets/equipment/trip-mine.png"
+                            imagePath: tripMineEnemyImagePath
                         },
                         {
                             id: "sentry-gun",
-                            imagePath: "/src/assets/equipment/sentry-gun.png"
+                            imagePath: sentryGunEnemyImagePath
                         },
                         {
                             id: "suppressed-sentry-gun",
-                            imagePath: "/src/assets/equipment/suppressed-sentry-gun.png"
+                            imagePath: suppressedSentryGunEnemyImagePath
                         }
                     ]
                 }

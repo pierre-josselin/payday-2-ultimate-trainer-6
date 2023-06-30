@@ -5,6 +5,13 @@ import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
 
+import sportCarVehicleImagePath from "@/assets/vehicles/sport-car.jpg";
+import muscleCarVehicleImagePath from "@/assets/vehicles/muscle-car.jpg";
+import bikeVehicleImagePath from "@/assets/vehicles/bike.jpg";
+import truckVehicleImagePath from "@/assets/vehicles/truck.jpg";
+import forkliftVehicleImagePath from "@/assets/vehicles/forklift.jpg";
+import boatVehicleImagePath from "@/assets/vehicles/boat.jpg";
+
 export default {
     components: {
         NavBar
@@ -15,27 +22,27 @@ export default {
             vehicles: [
                 {
                     id: "units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1",
-                    imagePath: "/src/assets/vehicles/sport-car.jpg"
+                    imagePath: sportCarVehicleImagePath
                 },
                 {
                     id: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1",
-                    imagePath: "/SRC/assets/vehicles/muscle-car.jpg"
+                    imagePath: muscleCarVehicleImagePath
                 },
                 {
                     id: "units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2",
-                    imagePath: "/SRC/assets/vehicles/bike.jpg"
+                    imagePath: bikeVehicleImagePath
                 },
                 {
                     id: "units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1",
-                    imagePath: "/SRC/assets/vehicles/truck.jpg"
+                    imagePath: truckVehicleImagePath
                 },
                 {
                     id: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1",
-                    imagePath: "/SRC/assets/vehicles/forklift.jpg"
+                    imagePath: forkliftVehicleImagePath
                 },
                 {
                     id: "units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1",
-                    imagePath: "/SRC/assets/vehicles/boat.jpg"
+                    imagePath: boatVehicleImagePath
                 }
             ]
         };
@@ -81,30 +88,28 @@ export default {
                     <input id="enable-vehicles-packages-loading" v-model="enableVehiclesPackagesLoading" class="form-check-input" type="checkbox" @change="setVehiclesPackagesLoading">
                     <label for="enable-vehicles-packages-loading" class="form-check-label">{{ $t("main.vehicles_packages_loading") }}</label>
                 </div>
-                <fieldset :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">
-                    <div id="carousel" class="carousel slide">
-                        <div class="carousel-indicators">
-                            <button v-for="(vehicle, index) in vehicles" :key="index" data-bs-target="#carousel" :data-bs-slide-to="index" :class="{ 'active': index === 0 }" />
-                        </div>
-                        <div class="carousel-inner">
-                            <div v-for="(vehicle, index) in vehicles" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
-                                <img :src="vehicle.imagePath" class="d-block w-100">
-                                <div class="carousel-caption mb-3">
-                                    <button class="btn btn-dark" @click="spawnAndEnterVehicle(vehicle.id)">
-                                        <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
-                                    </button>
-                                </div>
+                <div id="carousel" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button v-for="(vehicle, index) in vehicles" :key="index" data-bs-target="#carousel" :data-bs-slide-to="index" :class="{ 'active': index === 0 }"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div v-for="(vehicle, index) in vehicles" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
+                            <img :src="vehicle.imagePath" class="d-block w-100">
+                            <div class="carousel-caption mb-3">
+                                <button class="btn btn-dark" @click="spawnAndEnterVehicle(vehicle.id)" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">
+                                    <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
+                                </button>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" data-bs-target="#carousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true" />
-                        </button>
-                        <button class="carousel-control-next" data-bs-target="#carousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true" />
-                        </button>
                     </div>
-                    <button class="btn btn-primary mt-3" @click="removeSpawnedVehicles">{{ $t("main.delete_all_spawned_vehicles") }}</button>
-                </fieldset>
+                    <button class="carousel-control-prev" data-bs-target="#carousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true" />
+                    </button>
+                    <button class="carousel-control-next" data-bs-target="#carousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true" />
+                    </button>
+                </div>
+                <button class="btn btn-primary mt-3" @click="removeSpawnedVehicles" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">{{ $t("main.delete_all_spawned_vehicles") }}</button>
             </div>
         </div>
     </div>
