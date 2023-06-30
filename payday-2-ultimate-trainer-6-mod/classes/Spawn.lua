@@ -16,11 +16,11 @@ function UT.Spawn:getPosition()
     local position = nil
 
     if UT.Spawn.positionType == "on-self" then
-        position = UT:getPlayerPosition()
+        position = UT.GameUtility:getPlayerPosition()
     end
 
     if UT.Spawn.positionType == "on-crosshair" then
-        position = UT:getCrosshairRayPosition()
+        position = UT.GameUtility:getCrosshairRayPosition()
     end
 
     return position
@@ -30,30 +30,30 @@ function UT.Spawn:getRotation(id, categoryId, positionType)
     local rotation = nil
 
     if categoryId == "equipment" and (id == "ecm-jammer" or id == "trip-mine") and positionType == "on-crosshair" then
-        local crosshairRay = UT:getCrosshairRay()
+        local crosshairRay = UT.GameUtility:getCrosshairRay()
         if crosshairRay then
             rotation = Rotation(crosshairRay.normal, math.UP)
         end
     else
-        rotation = UT:getPlayerCameraRotationYaw()
+        rotation = UT.GameUtility:getPlayerCameraYawRotation()
     end
 
     return rotation or Rotation(0, 0, 0)
 end
 
 function UT.Spawn.spawnEnemy(id, position, rotation)
-    local idString = UT:idString(id)
-    local unit = UT:spawnUnit(idString, position, rotation)
+    local idString = UT.GameUtility:idString(id)
+    local unit = UT.GameUtility:spawnUnit(idString, position, rotation)
 
     if not unit then
         return
     end
 
-    UT:setUnitTeam(unit, "combatant")
+    UT.GameUtility:setUnitTeam(unit, "combatant")
 
     if UT.Spawn.convertedEnemies then
         UT:setUnlimitedConversion(true)
-        UT:convertEnemy(unit)
+        UT.GameUtility:convertEnemy(unit)
         UT:setUnlimitedConversion(false)
     end
 end
@@ -61,13 +61,13 @@ end
 function UT.Spawn.spawnPackage(id, position, rotation)
     UT:setUnlimitedGagePackages(true)
 
-    local idString = UT:idString(id)
-    UT:spawnUnit(idString, position, rotation)
+    local idString = UT.GameUtility:idString(id)
+    UT.GameUtility:spawnUnit(idString, position, rotation)
 end
 
 function UT.Spawn.spawnEquipment(id, position, rotation)
-    local playerUnit = UT:playerUnit()
-    local localPeerId = UT:getLocalPeerId()
+    local playerUnit = UT.GameUtility:playerUnit()
+    local localPeerId = UT.GameUtility:getLocalPeerId()
 
     if id == "ammo-bag" then
         AmmoBagBase.spawn(position, rotation, 1, localPeerId, 2)

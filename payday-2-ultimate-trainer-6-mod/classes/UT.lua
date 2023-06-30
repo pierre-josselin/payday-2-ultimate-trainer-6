@@ -14,6 +14,10 @@ UT.settings = {}
 UT.backup = {}
 UT.spawnedVehicleUnits = {}
 
+function UT:log(message)
+    log(message)
+end
+
 function UT:runServer()
     os.execute("start /B node \"" .. UT.modPathWindows .. "\\index.js\" run")
 end
@@ -64,7 +68,7 @@ end
 function UT:sendGameState()
     local message = {
         type = "game-state",
-        data = UT:getGameState()
+        data = UT.GameUtility:getGameState()
     }
     UT:sendMessage(message)
 end
@@ -72,7 +76,7 @@ end
 function UT:sendIsHost()
     local message = {
         type = "is-host",
-        data = UT:isHost()
+        data = UT.GameUtility:isHost()
     }
     UT:sendMessage(message)
 end
@@ -97,7 +101,7 @@ function UT:triggerInHeistEvent()
     if UT.settings["enable-god-mode"] then
         UT:setGodMode(true)
     else
-        if UT:playerUnit():character_damage():god_mode() then
+        if UT.GameUtility:playerUnit():character_damage():god_mode() then
             UT:setGodMode(false)
         end
     end
@@ -167,13 +171,13 @@ function UT:update()
         UT:init()
     end
 
-    local gameState = UT:getGameState()
+    local gameState = UT.GameUtility:getGameState()
     if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
         UT:sendGameState()
     end
     UT.previousGameState = gameState
 
-    local isHost = UT:isHost()
+    local isHost = UT.GameUtility:isHost()
     if UT.previousIsHost == nil or isHost ~= UT.previousIsHost then
         UT:sendIsHost()
     end
@@ -183,8 +187,8 @@ function UT:update()
         UT:requestCalls()
     end
 
-    if UT:isInGame() then
-        if UT:isInHeist() then
+    if UT.GameUtility:isInGame() then
+        if UT.GameUtility:isInHeist() then
             if not UT.inHeistEventTriggered then
                 UT:triggerInHeistEvent()
             end
@@ -200,155 +204,6 @@ function UT:update()
             end
         end
     end
-end
-
-function UT:getGameState()
-    if not game_state_machine then
-        return
-    end
-    return game_state_machine:current_state_name()
-end
-
-function UT:isInGame()
-    return Utils:IsInGameState()
-end
-
-function UT:isInHeist()
-    return Utils:IsInHeist()
-end
-
-function UT:isDriving()
-    return game_state_machine:current_state_name() == "ingame_driving"
-end
-
-function UT:isHost()
-    return Network:is_server()
-end
-
-function UT:refreshPlayerProfileGUI()
-    if managers.menu_component then
-        managers.menu_component:refresh_player_profile_gui()
-    end
-end
-
-function UT:saveProgress()
-    if managers.savefile then
-        managers.savefile:save_progress()
-    end
-end
-
-function UT:idString(id)
-    return Idstring(id)
-end
-
-function UT:playerUnit()
-    return managers.player:player_unit()
-end
-
-function UT:getCrosshairRay()
-    return Utils:GetCrosshairRay()
-end
-
-function UT:getCrosshairRayPosition()
-    local crosshairRay = UT:getCrosshairRay()
-    if not crosshairRay then
-        return nil
-    end
-    return crosshairRay.position
-end
-
-function UT:getPlayerPosition()
-    return UT:playerUnit():position()
-end
-
-function UT:getPlayerRotation()
-    return UT:playerUnit():rotation()
-end
-
-function UT:getPlayerCamera()
-    return UT:playerUnit():camera()
-end
-
-function UT:getPlayerCameraForward()
-    return UT:getPlayerCamera():forward()
-end
-
-function UT:getPlayerCameraPosition()
-    return UT:getPlayerCamera():position()
-end
-
-function UT:getPlayerCameraRotation()
-    return UT:getPlayerCamera():rotation()
-end
-
-function UT:getPlayerCameraRotationYaw()
-    return Rotation(UT:getPlayerCameraRotation():yaw(), 0, 0)
-end
-
-function UT:setPlayerState(state)
-    managers.player:set_player_state(state)
-end
-
-function UT:teleportPlayer(position, rotation)
-    managers.player:warp_to(position, rotation)
-end
-
-function UT:getLocalPeerId()
-    return managers.network:session():local_peer():id()
-end
-
-function UT:isUnitLoaded(name)
-    return PackageManager:has(Idstring("unit"), name)
-end
-
-function UT:spawnUnit(name, position, rotation)
-    if not UT:isUnitLoaded(name) then
-        return false
-    end
-    return World:spawn_unit(name, position, rotation)
-end
-
-function UT:deleteUnit(unit)
-    if not alive(unit) then
-        return
-    end
-    World:delete_unit(unit)
-    managers.network:session():send_to_peers_synched("remove_unit", unit)
-end
-
-function UT:killUnit(unit)
-    if not alive(unit) then
-        return
-    end
-
-    unit:character_damage():damage_explosion({
-        variant = "explosion",
-        damage = UT.maxInteger,
-        col_ray = {
-            ray = Vector3(1, 0, 0),
-            position = unit:position()
-        }
-    })
-end
-
-function UT:setUnitTeam(unit, team)
-    if not alive(unit) then
-        return
-    end
-
-    local teamId = tweak_data.levels:get_default_team_ID(team)
-    local teamData = managers.groupai:state():team_data(teamId)
-    unit:movement():set_team(teamData)
-end
-
-function UT:convertEnemy(unit)
-    if not alive(unit) then
-        return
-    end
-
-    managers.groupai:state():convert_hostage_to_criminal(unit)
-    managers.groupai:state():sync_converted_enemy(unit)
-    unit:contour():add("friendly", true)
 end
 
 function UT:disableSentryGunPickup()
@@ -497,7 +352,7 @@ function UT:setInitialEnvironment()
 end
 
 function UT:setGodMode(enabled)
-    UT:playerUnit():character_damage():set_god_mode(enabled)
+    UT.GameUtility:playerUnit():character_damage():set_god_mode(enabled)
 end
 
 function UT:setInfiniteStamina(enabled)
@@ -606,7 +461,7 @@ function UT:setShootThroughWalls(enabled)
     UT.Utility:cloneClass(NewRaycastWeaponBase)
 
     if enabled then
-        if not UT:playerUnit() or not alive(UT:playerUnit()) then
+        if not UT.GameUtility:playerUnit() or not UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit()) then
             return
         end
 
@@ -621,7 +476,7 @@ function UT:setShootThroughWalls(enabled)
         NewRaycastWeaponBase._can_shoot_through_wall = NewRaycastWeaponBase.orig._can_shoot_through_wall
     end
 
-    for _, selection in pairs(UT:playerUnit():inventory()._available_selections) do
+    for _, selection in pairs(UT.GameUtility:playerUnit():inventory()._available_selections) do
         local unitBase = selection.unit:base()
         if enabled then
             unitBase._bullet_slotmask_old = unitBase._bullet_slotmask
@@ -732,14 +587,14 @@ function UT:setDamageMultiplier(enabled, multiplier)
     UT.Utility:cloneClass(CopDamage)
     if enabled then
         function CopDamage:damage_bullet(attack_data)
-            if attack_data.attacker_unit == UT:playerUnit() then
+            if attack_data.attacker_unit == UT.GameUtility:playerUnit() then
                 attack_data.damage = multiplier * 10
             end
             return self.orig.damage_bullet(self, attack_data)
         end
 
         function CopDamage:damage_melee(attack_data)
-            if attack_data.attacker_unit == UT:playerUnit() then
+            if attack_data.attacker_unit == UT.GameUtility:playerUnit() then
                 attack_data.damage = multiplier * 10
             end
             return self.orig.damage_melee(self, attack_data)
@@ -791,7 +646,7 @@ function UT:finishTheHeist()
     managers.network:session():send_to_peers("mission_ended", true, amountOfAlivePlayers)
     game_state_machine:change_state_by_name("victoryscreen", {
         num_winners = amountOfAlivePlayers,
-        personal_win = alive(UT:playerUnit())
+        personal_win = UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit())
     })
 end
 
@@ -811,20 +666,20 @@ function UT:removeInvisibleWalls()
     local units = World:find_units_quick("all", 1)
     for index, unit in pairs(units) do
         if UT.Utility:inTable(unit:name():key(), UT.Tables.invisibleWalls) then
-            UT:deleteUnit(unit)
+            UT.GameUtility:deleteUnit(unit)
         end
     end
 end
 
 function UT:killAllEnemies()
     for key, data in pairs(managers.enemy:all_enemies()) do
-        UT:killUnit(data.unit)
+        UT.GameUtility:killUnit(data.unit)
     end
 end
 
 function UT:killAllCivilians()
     for key, data in pairs(managers.enemy:all_civilians()) do
-        UT:killUnit(data.unit)
+        UT.GameUtility:killUnit(data.unit)
     end
 end
 
@@ -842,8 +697,8 @@ function UT:tieAllCivilians()
             body_part = 1,
             type = "act"
         })
-        brain._current_logic.on_intimidated(brain._logic_data, UT.maxInteger, UT:playerUnit(), true)
-        brain:on_tied(UT:playerUnit())
+        brain._current_logic.on_intimidated(brain._logic_data, UT.maxInteger, UT.GameUtility:playerUnit(), true)
+        brain:on_tied(UT.GameUtility:playerUnit())
 
         ::continue::
     end
@@ -853,7 +708,7 @@ function UT:convertAllEnemies()
     UT:setUnlimitedConversion(true)
 
     for key, data in pairs(managers.enemy:all_enemies()) do
-        if not alive(data.unit) then
+        if not UT.GameUtility:isUnitAlive(data.unit) then
             goto continue
         end
 
@@ -930,11 +785,11 @@ function UT:setPreventAlarmTriggering(enabled)
 end
 
 function UT:setInvisiblePlayer(enabled)
-    if not alive(UT:playerUnit()) then
+    if not UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit()) then
         return
     end
 
-    local playerUnitKey = UT:playerUnit():key()
+    local playerUnitKey = UT.GameUtility:playerUnit():key()
     local groupAIState = managers.groupai:state()
 
     if enabled then
@@ -1018,23 +873,23 @@ function UT:setInstantDrilling(enabled)
 end
 
 function UT:teleportPlayerToCrosshair()
-    local crosshairRay = UT:getCrosshairRay()
+    local crosshairRay = UT.GameUtility:getCrosshairRay()
 
     if not crosshairRay then
         return
     end
 
     local offset = Vector3()
-    mvector3.set(offset, UT:getPlayerCameraForward())
+    mvector3.set(offset, UT.GameUtility:getPlayerCameraForward())
     mvector3.multiply(offset, 100)
     mvector3.add(crosshairRay.hit_position, offset)
 
-    UT:teleportPlayer(crosshairRay.hit_position, UT:getPlayerCameraRotation())
+    UT.GameUtility:teleportPlayer(crosshairRay.hit_position, UT.GameUtility:getPlayerCameraRotation())
 end
 
 function UT:spawnAndEnterVehicle(id)
-    if UT:isDriving() then
-        UT:setPlayerState("standard")
+    if UT.GameUtility:isDriving() then
+        UT.GameUtility:setPlayerState("standard")
     end
 
     if UT.Utility:isEmptyTable(UT.spawnedVehicleUnits) then
@@ -1058,23 +913,23 @@ function UT:spawnAndEnterVehicle(id)
         end
     end
 
-    local idString = UT:idString(id)
-    local position = UT:getPlayerPosition()
-    local rotation = Rotation(UT:getPlayerCameraRotation():yaw(), 0, 0)
-    local vehicleUnit = UT:spawnUnit(idString, position, rotation)
+    local idString = UT.GameUtility:idString(id)
+    local position = UT.GameUtility:getPlayerPosition()
+    local rotation = Rotation(UT.GameUtility:getPlayerCameraRotation():yaw(), 0, 0)
+    local vehicleUnit = UT.GameUtility:spawnUnit(idString, position, rotation)
 
     if not vehicleUnit then
         return
     end
 
-    managers.player:enter_vehicle(vehicleUnit, UT:playerUnit())
+    managers.player:enter_vehicle(vehicleUnit, UT.GameUtility:playerUnit())
 
     UT.Utility:tableInsert(UT.spawnedVehicleUnits, vehicleUnit)
 end
 
 function UT:removeSpawnedVehicles()
-    if UT:isDriving() then
-        UT:setPlayerState("standard")
+    if UT.GameUtility:isDriving() then
+        UT.GameUtility:setPlayerState("standard")
     end
 
     if not UT.Utility:isEmptyTable(UT.spawnedVehicleUnits) then
@@ -1082,7 +937,7 @@ function UT:removeSpawnedVehicles()
     end
 
     for index, unit in pairs(UT.spawnedVehicleUnits) do
-        UT:deleteUnit(unit)
+        UT.GameUtility:deleteUnit(unit)
     end
 
     UT.spawnedVehicleUnits = {}
