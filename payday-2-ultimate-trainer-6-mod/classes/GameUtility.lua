@@ -72,6 +72,14 @@ function UT.GameUtility:isUnitAlive(unit)
     return alive(unit)
 end
 
+function UT.GameUtility:isPlayerUnitAlive()
+    local playerUnit = UT.GameUtility:playerUnit()
+    if not playerUnit then
+        return false
+    end
+    return UT.GameUtility:isUnitAlive(playerUnit)
+end
+
 function UT.GameUtility:isUnitLoaded(unitId)
     local typeId = UT.GameUtility:idString("unit")
     return PackageManager:has(typeId, unitId)

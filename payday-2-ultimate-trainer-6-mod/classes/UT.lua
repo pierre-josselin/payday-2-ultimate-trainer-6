@@ -46,8 +46,7 @@ function UT:update()
 
     if UT.GameUtility:isInGame() then
         if UT.GameUtility:isInHeist() then
-            local playerUnit = UT.GameUtility:playerUnit()
-            if UT.GameUtility:isUnitAlive(playerUnit) then
+            if UT.GameUtility:isPlayerUnitAlive() then
                 if UT.enableNoClip then
                     UT:updateNoClip(UT.noClipSpeed)
                 end
@@ -591,7 +590,7 @@ function UT:setShootThroughWalls(enabled)
     UT.Utility:cloneClass(NewRaycastWeaponBase)
 
     if enabled then
-        if not UT.GameUtility:playerUnit() or not UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit()) then
+        if not UT.GameUtility:playerUnit() or not UT.GameUtility:isPlayerUnitAlive() then
             return
         end
 
@@ -707,7 +706,7 @@ function UT:finishTheHeist()
     managers.network:session():send_to_peers("mission_ended", true, amountOfAlivePlayers)
     game_state_machine:change_state_by_name("victoryscreen", {
         num_winners = amountOfAlivePlayers,
-        personal_win = UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit())
+        personal_win = UT.GameUtility:isPlayerUnitAlive()
     })
 end
 
@@ -865,7 +864,7 @@ function UT:updateNoClip(speed)
 end
 
 function UT:setInvisiblePlayer(enabled)
-    if not UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit()) then
+    if not UT.GameUtility:isPlayerUnitAlive() then
         return
     end
 

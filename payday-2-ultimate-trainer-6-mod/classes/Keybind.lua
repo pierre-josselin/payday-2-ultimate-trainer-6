@@ -9,7 +9,7 @@ function UT.Keybind:teleportPlayerToCrosshair()
         return
     end
 
-    if not UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit()) then
+    if not UT.GameUtility:isPlayerUnitAlive() then
         return
     end
 
@@ -32,7 +32,7 @@ function UT.Keybind:spawn()
         return
     end
 
-    if not UT.GameUtility:isUnitAlive(UT.GameUtility:playerUnit()) then
+    if not UT.GameUtility:isPlayerUnitAlive() then
         return
     end
 
