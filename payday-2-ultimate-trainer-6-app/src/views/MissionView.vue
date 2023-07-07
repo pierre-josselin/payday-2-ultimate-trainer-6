@@ -4,11 +4,13 @@ import { useCallStore } from "@/stores/calls";
 import { useMissionStore } from "@/stores/mission";
 
 import NavBar from "@/components/NavBar.vue";
+import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
 import BugIcon from "@/components/icons/BugIcon.vue";
 
 export default {
     components: {
         NavBar,
+        AntiCheatDetectedIcon,
         BugIcon
     },
     created() {
@@ -70,6 +72,45 @@ export default {
         },
         setInstantDrilling() {
             this.callStore.addCall(["UT:setInstantDrilling", this.missionStore.enableInstantDrilling]);
+        },
+        openDoors() {
+            this.callStore.addCall(["UT:openDoors"]);
+        },
+        openWindows() {
+            this.callStore.addCall(["UT:openWindows"]);
+        },
+        openDepositBoxes() {
+            this.callStore.addCall(["UT:openDepositBoxes"]);
+        },
+        cutFences() {
+            this.callStore.addCall(["UT:cutFences"]);
+        },
+        openContainers() {
+            this.callStore.addCall(["UT:openContainers"]);
+        },
+        hackComputers() {
+            this.callStore.addCall(["UT:hackComputers"]);
+        },
+        placeDrills() {
+            this.callStore.addCall(["UT:placeDrills"]);
+        },
+        pickUpPackages() {
+            this.callStore.addCall(["UT:pickUpPackages"]);
+        },
+        openCrates() {
+            this.callStore.addCall(["UT:openCrates"]);
+        },
+        barricadeWindows() {
+            this.callStore.addCall(["UT:barricadeWindows"]);
+        },
+        openAtms() {
+            this.callStore.addCall(["UT:openAtms"]);
+        },
+        useKeycards() {
+            this.callStore.addCall(["UT:useKeycards"]);
+        },
+        placeShapedCharges() {
+            this.callStore.addCall(["UT:placeShapedCharges"]);
         }
     }
 }
@@ -78,7 +119,7 @@ export default {
 <template>
     <NavBar />
 
-    <div style="max-width: 800px;" class="container my-5">
+    <div style="max-width: 1000px;" class="container my-5">
         <div class="card">
             <div class="card-header">{{ $t("main.mission") }}</div>
             <div class="card-body p-4">
@@ -165,6 +206,84 @@ export default {
                                 <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                 <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
                                 <BugIcon class="ms-3" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="openDoors">{{ $t("mission.open_doors") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="openWindows">{{ $t("mission.open_windows") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="openDepositBoxes">{{ $t("mission.open_deposit_boxes") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="cutFences">{{ $t("mission.cut_fences") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="openContainers">{{ $t("mission.open_containers") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="hackComputers">{{ $t("mission.hack_computers") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="placeDrills">{{ $t("mission.place_drills") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="pickUpPackages">{{ $t("mission.pick_up_packages") }}</button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="openCrates">{{ $t("mission.open_crates") }}
+                                    <AntiCheatDetectedIcon class="ms-3" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="barricadeWindows">{{ $t("mission.barricade_windows") }}
+                                    <AntiCheatDetectedIcon class="ms-3" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="openAtms">{{ $t("mission.open_atms") }}
+                                    <AntiCheatDetectedIcon class="ms-3" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="btn btn-primary" @click="useKeycards">{{ $t("mission.use_keycards") }}
+                                    <AntiCheatDetectedIcon class="ms-3" />
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="ratio ratio-21x9 mb-3">
+                                <button class="d-block btn btn-primary" @click="placeShapedCharges">{{ $t("mission.place_shaped_charges") }}
+                                    <AntiCheatDetectedIcon class="ms-3" />
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,7 @@ UT.backup = {}
 UT.spawnedVehicleUnits = {}
 
 UT.invisibleWalls = {}
+UT.interactions = {}
 
 function UT:init()
     UT:requestSettings()
@@ -24,6 +25,11 @@ function UT:init()
     local content = UT.Utility:readFile(UT.modPath .. "/payday-2-ultimate-trainer-6-mod/data/invisible-walls.json")
     if content then
         UT.invisibleWalls = UT.Utility:jsonDecode(content)
+    end
+
+    local content = UT.Utility:readFile(UT.modPath .. "/payday-2-ultimate-trainer-6-mod/data/interactions.json")
+    if content then
+        UT.interactions = UT.Utility:jsonDecode(content)
     end
 end
 
@@ -949,6 +955,89 @@ function UT:setInstantDrilling(enabled)
         TimerGui._set_jamming_values = TimerGui.orig._set_jamming_values
         TimerGui.start = TimerGui.orig.start
     end
+end
+
+function UT:interactFromTable(table)
+    if not table then
+        return
+    end
+
+    local playerUnit = UT.GameUtility:playerUnit()
+    local units = UT.Utility:deepClone(managers.interaction._interactive_units)
+    for index, unit in pairs(units) do
+        if not UT.GameUtility:isUnitAlive(unit) then
+            goto continue
+        end
+
+        local key = unit:name():key()
+        if UT.Utility:inTable(key, table) then
+            unit:interaction():interact(playerUnit)
+        end
+
+        ::continue::
+    end
+end
+
+function UT:openDoors()
+    UT:interactFromTable(UT.interactions["open-doors"])
+end
+
+function UT:openWindows()
+    UT:interactFromTable(UT.interactions["open-windows"])
+end
+
+function UT:openDepositBoxes()
+    UT:interactFromTable(UT.interactions["open-deposit-boxes"])
+end
+
+function UT:cutFences()
+    UT:interactFromTable(UT.interactions["cut-fences"])
+end
+
+function UT:openContainers()
+    UT:interactFromTable(UT.interactions["open-containers"])
+end
+
+function UT:hackComputers()
+    UT:interactFromTable(UT.interactions["hack-computers"])
+end
+
+function UT:placeDrills()
+    UT:interactFromTable(UT.interactions["place-drills"])
+end
+
+function UT:pickUpPackages()
+    UT:interactFromTable(UT.interactions["pick-up-packages"])
+end
+
+function UT:openCrates()
+    UT:setUnlimitedEquipment(true)
+    UT:interactFromTable(UT.interactions["open-crates"])
+    UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
+end
+
+function UT:barricadeWindows()
+    UT:setUnlimitedEquipment(true)
+    UT:interactFromTable(UT.interactions["barricade-windows"])
+    UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
+end
+
+function UT:openAtms()
+    UT:setUnlimitedEquipment(true)
+    UT:interactFromTable(UT.interactions["open-atms"])
+    UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
+end
+
+function UT:useKeycards()
+    UT:setUnlimitedEquipment(true)
+    UT:interactFromTable(UT.interactions["use-keycards"])
+    UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
+end
+
+function UT:placeShapedCharges()
+    UT:setUnlimitedEquipment(true)
+    UT:interactFromTable(UT.interactions["place-shaped-charges"])
+    UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
 end
 
 -- Driving

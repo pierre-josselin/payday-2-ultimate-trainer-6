@@ -1,0 +1,138 @@
+{
+    "barricade-windows": [
+        "b524e472a247f6ff",
+        "b71bf75755b6181b",
+        "4738b25ad84c7f39",
+        "b55faf1195846400",
+        "bb2c888ee317cf22",
+        "2840eded7a49eba6",
+        "e86b68a126c540da",
+        "945dcbc3586178cd"
+    ],
+    "cut-fences": [
+        "d5d1c35e617d73ad",
+        "b025e83ed6d542b4"
+    ],
+    "hack-computers": [
+        "08cc6579c6c50d23",
+        "58cb6c4c6221c415",
+        "c06b518a90138065",
+        "18246f3fc500983d",
+        "2721ad04af703513",
+        "629e9f44e06ea56f",
+        "9db53c1337a10fb7",
+        "e70d5b98a739aedc",
+        "3c10506b25886b2b"
+    ],
+    "open-atms": [
+        "c403e02cf736e795"
+    ],
+    "open-containers": [
+        "391916f9100c4b3f",
+        "d0a93f5776731f41"
+    ],
+    "open-crates": [
+        "9819a50244591ecf",
+        "a9d501c31b8d7592",
+        "d90bf4a3a96e4d3b",
+        "067dc091e3ddb975",
+        "5ccfb101f75d720b",
+        "b22c6099e7518d43"
+    ],
+    "open-deposit-boxes": [
+        "79991727a2679722",
+        "e93c9b2218810d63",
+        "a95e021324bc842a",
+        "d2d7c5a3aced6f0f",
+        "e4bc87015ed9fd46",
+        "50aac55917cba830",
+        "5dcd1776e3f2f767",
+        "8d8c766828915eb9",
+        "51da6d6c91d378c1"
+    ],
+    "open-doors": [
+        "e653b95736abc583",
+        "4407f5e571e2f51a",
+        "a25106db58e693fc",
+        "18a7caca12899b38",
+        "645fad32c1eabd6b",
+        "b68beff56b10a9fd",
+        "851f3239dec9d210",
+        "95cdd60b3546a91c",
+        "e95f3cda0f71f283",
+        "08a33537c9d0673a",
+        "086277cceecba34c",
+        "1d283db01fc4a72b",
+        "9c5716b1233940a7",
+        "5349b5cf54341268",
+        "622b34ce3cd1d3bb",
+        "574bab205ffb92e4",
+        "0e2cd454f5ee8bfa",
+        "245afc14239b8863",
+        "6f05dea8c859aab9",
+        "ab54c8b618486ddb",
+        "cae8305c16806475",
+        "d9667fc91bbd9a54",
+        "004abf948ee53441",
+        "b43c26feb159eef7",
+        "7601731dfdabdf2c",
+        "db4fe8f7d5684758",
+        "cfb8d38ad0edaedb",
+        "2f913647223aa622",
+        "cf8980a644c5b7ec",
+        "cffcea35596d6b53",
+        "14093a6ddd6664d9",
+        "43132b0a273df773",
+        "fbf379ad311ef40d",
+        "c64fa142f6d098b5",
+        "c3419d4bf5de2647",
+        "8479fb0d2c0ae300",
+        "59f28d3cc55b04c6",
+        "9f86c1d142c90206",
+        "5eb73ede6ece6c9d",
+        "559c3e4ebf3b32f3",
+        "cfffc73d99a0b3ce",
+        "30a21bbbcb69954e",
+        "6283ee0a3557468c",
+        "c0a49d70d9725387",
+        "58076b8d4c8ba6d3",
+        "070795428cd925dc",
+        "985d76ced36deacf"
+    ],
+    "open-windows": [
+        "31ccfa0f3229b974",
+        "606a9bb7134be4b8",
+        "ebbffe6226241ea2",
+        "8dd5dfcaf36f7c02",
+        "d99d699641a8bd4e",
+        "344cc0fed4dcb301",
+        "92319bc34bbe75fa"
+    ],
+    "pick-up-packages": [
+        "b3cc2abe1734636c",
+        "c90378ad89058c7d",
+        "96504ebd40f8cf98",
+        "05956ff396f3c58e",
+        "e8088e3bdae0ab9e"
+    ],
+    "place-drills": [
+        "584bea03f3b5d712",
+        "2bf4a499717b215f",
+        "ae5854b5e1565e45",
+        "f594e56c194ff640"
+    ],
+    "place-shaped-charges": [
+        "34d05ca941b5ebfe",
+        "169f2718e6c167e4"
+    ],
+    "use-keycards": [
+        "2a72308f20bd9293",
+        "15d846fa379f77a6",
+        "db2e8d04bec83951",
+        "86703455b619528f",
+        "a52494f0946a6ab0",
+        "a93a07d5b7bf4418",
+        "03b7330fcde71c50",
+        "29c7dea1a7d81dbd"
+    ]
+}
