@@ -1,6 +1,4 @@
 <script>
-import { storeToRefs } from "pinia";
-
 import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
 import { useMissionStore } from "@/stores/mission";
@@ -13,42 +11,10 @@ export default {
         NavBar,
         BugIcon
     },
-    data() {
-        return {
-            enableXRay: null,
-            enablePreventAlarmTriggering: null,
-            enableNoClip: null,
-            enableInvisiblePlayer: null,
-            enableDisableAI: null,
-            enableUnlimitedPagers: null,
-            enableInstantDrilling: null,
-            noClipSpeed: null
-        };
-    },
     created() {
         this.mainStore = useMainStore();
         this.callStore = useCallStore();
         this.missionStore = useMissionStore();
-
-        const {
-            enableXRay,
-            enablePreventAlarmTriggering,
-            enableNoClip,
-            enableInvisiblePlayer,
-            enableDisableAI,
-            enableUnlimitedPagers,
-            enableInstantDrilling,
-            noClipSpeed
-        } = storeToRefs(this.missionStore);
-
-        this.enableXRay = enableXRay;
-        this.enablePreventAlarmTriggering = enablePreventAlarmTriggering;
-        this.enableNoClip = enableNoClip;
-        this.enableInvisiblePlayer = enableInvisiblePlayer;
-        this.enableDisableAI = enableDisableAI;
-        this.enableUnlimitedPagers = enableUnlimitedPagers;
-        this.enableInstantDrilling = enableInstantDrilling;
-        this.noClipSpeed = noClipSpeed;
     },
     methods: {
         startTheHeist() {
@@ -85,25 +51,25 @@ export default {
             this.callStore.addCall(["UT:convertAllEnemies"]);
         },
         setXRay() {
-            this.callStore.addCall(["UT:setXRay", this.enableXRay]);
+            this.callStore.addCall(["UT:setXRay", this.missionStore.enableXRay]);
         },
         setPreventAlarmTriggering() {
-            this.callStore.addCall(["UT:setPreventAlarmTriggering", this.enablePreventAlarmTriggering]);
+            this.callStore.addCall(["UT:setPreventAlarmTriggering", this.missionStore.enablePreventAlarmTriggering]);
         },
         setNoClip() {
-            this.callStore.addCall(["UT:setNoClip", this.enableNoClip, this.noClipSpeed]);
+            this.callStore.addCall(["UT:setNoClip", this.missionStore.enableNoClip, this.missionStore.noClipSpeed]);
         },
         setInvisiblePlayer() {
-            this.callStore.addCall(["UT:setInvisiblePlayer", this.enableInvisiblePlayer]);
+            this.callStore.addCall(["UT:setInvisiblePlayer", this.missionStore.enableInvisiblePlayer]);
         },
         setDisableAI() {
-            this.callStore.addCall(["UT:setDisableAI", this.enableDisableAI]);
+            this.callStore.addCall(["UT:setDisableAI", this.missionStore.enableDisableAI]);
         },
         setUnlimitedPagers() {
-            this.callStore.addCall(["UT:setUnlimitedPagers", this.enableUnlimitedPagers]);
+            this.callStore.addCall(["UT:setUnlimitedPagers", this.missionStore.enableUnlimitedPagers]);
         },
         setInstantDrilling() {
-            this.callStore.addCall(["UT:setInstantDrilling", this.enableInstantDrilling]);
+            this.callStore.addCall(["UT:setInstantDrilling", this.missionStore.enableInstantDrilling]);
         }
     }
 }
@@ -168,35 +134,35 @@ export default {
                         </div>
                         <div class="col-7">
                             <div class="form-check form-switch mb-3" @change="setXRay">
-                                <input id="enable-x-ray" v-model="enableXRay" class="form-check-input" type="checkbox">
+                                <input id="enable-x-ray" v-model="missionStore.enableXRay" class="form-check-input" type="checkbox">
                                 <label for="enable-x-ray" class="form-check-label">{{ $t("mission.x_ray") }}</label>
                             </div>
                             <div class="form-check form-switch mb-3" @change="setPreventAlarmTriggering">
-                                <input id="enable-prevent-alarm-triggering" v-model="enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                 <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}</label>
                             </div>
                             <div class="form-check form-switch mb-3" @change="setInvisiblePlayer">
-                                <input id="enable-invisible-player" v-model="enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                 <label for="enable-invisible-player" class="form-check-label">{{ $t("mission.invisible_player") }}</label>
                             </div>
                             <div class="form-check form-switch mb-3" @change="setNoClip">
-                                <input id="enable-no-clip" v-model="enableNoClip" class="form-check-input" type="checkbox">
+                                <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
                                 <label for="enable-no-clip" class="form-check-label">{{ $t("mission.no_clip") }}</label>
                             </div>
-                            <div class="mb-3" v-if="enableNoClip">
+                            <div class="mb-3" v-if="missionStore.enableNoClip">
                                 <label for="no-clip-speed" class="form-label">{{ $t("mission.no_clip_speed") }}</label>
-                                <input id="no-clip-speed" type="number" min="1" max="100" step="1" class="form-control" v-model="noClipSpeed" @change="setNoClip">
+                                <input id="no-clip-speed" type="number" min="1" max="100" step="1" class="form-control" v-model="missionStore.noClipSpeed" @change="setNoClip">
                             </div>
                             <div class="form-check form-switch mb-3" @change="setDisableAI">
-                                <input id="enable-disable-ai" v-model="enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                 <label for="enable-disable-ai" class="form-check-label">{{ $t("mission.disable_ai") }}</label>
                             </div>
                             <div class="form-check form-switch mb-3" @change="setUnlimitedPagers">
-                                <input id="enable-unlimited-pagers" v-model="enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                 <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("mission.unlimited_pagers") }}</label>
                             </div>
                             <div class="form-check form-switch" @change="setInstantDrilling">
-                                <input id="enable-instant-drilling" v-model="enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                 <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
                                 <BugIcon class="ms-3" />
                             </div>
