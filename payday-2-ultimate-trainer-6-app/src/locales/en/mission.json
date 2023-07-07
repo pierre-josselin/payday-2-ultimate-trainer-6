@@ -6,6 +6,8 @@
     "invisible_player": "Invisible player",
     "kill_all_civilians": "Kill all civilians",
     "kill_all_enemies": "Kill all enemies",
+    "no_clip": "No clip",
+    "no_clip_speed": "No clip speed",
     "prevent_alarm_triggering": "Prevent alarm triggering",
     "remove_invisible_walls": "Remove invisible walls",
     "tie_all_civilians": "Tie all civilians",

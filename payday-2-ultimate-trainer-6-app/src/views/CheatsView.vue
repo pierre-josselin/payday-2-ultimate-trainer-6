@@ -14,6 +14,7 @@ export default {
     data() {
         return {
             enableGodMode: false,
+            enableNoFallDamage: false,
             enableInfiniteStamina: false,
             enableCanRunDirectional: false,
             enableCanRunWithAnyBag: false,
@@ -67,6 +68,7 @@ export default {
         this.settingsStore = useSettingsStore();
 
         this.enableGodMode = this.settingsStore.getSetting("enable-god-mode");
+        this.enableNoFallDamage = this.settingsStore.getSetting("enable-no-fall-damage");
         this.enableInfiniteStamina = this.settingsStore.getSetting("enable-infinite-stamina");
         this.enableCanRunDirectional = this.settingsStore.getSetting("enable-can-run-directional");
         this.enableCanRunWithAnyBag = this.settingsStore.getSetting("enable-can-run-with-any-bag");
@@ -97,6 +99,13 @@ export default {
                 this.callStore.addCall(["UT:setGodMode", this.enableGodMode]);
             }
             this.settingsStore.setSetting("enable-god-mode", this.enableGodMode);
+            this.settingsStore.saveSettings();
+        },
+        setNoFallDamage() {
+            if (this.mainStore.isPlaying) {
+                this.callStore.addCall(["UT:setNoFallDamage", this.enableNoFallDamage]);
+            }
+            this.settingsStore.setSetting("enable-no-fall-damage", this.enableNoFallDamage);
             this.settingsStore.saveSettings();
         },
         setInfiniteStamina() {
@@ -238,6 +247,7 @@ export default {
         },
         disableAllCheats() {
             this.settingsStore.setSetting("enable-god-mode", this.enableGodMode = false);
+            this.settingsStore.setSetting("enable-no-fall-damage", this.enableNoFallDamage = false);
             this.settingsStore.setSetting("enable-infinite-stamina", this.enableInfiniteStamina = false);
             this.settingsStore.setSetting("enable-can-run-directional", this.enableCanRunDirectional = false);
             this.settingsStore.setSetting("enable-can-run-with-any-bag", this.enableCanRunWithAnyBag = false);
@@ -275,6 +285,12 @@ export default {
                         <div class="form-check form-switch">
                             <input id="enable-god-mode" v-model="enableGodMode" class="form-check-input" type="checkbox" @change="setGodMode">
                             <label for="enable-god-mode" class="form-check-label">{{ $t("cheats.god_mode") }}</label>
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="form-check form-switch">
+                            <input id="enable-no-fall-damage" v-model="enableNoFallDamage" class="form-check-input" type="checkbox" @change="setNoFallDamage">
+                            <label for="enable-no-fall-damage" class="form-check-label">{{ $t("cheats.no_fall_damage") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">

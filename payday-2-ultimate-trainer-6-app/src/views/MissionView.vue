@@ -15,12 +15,14 @@ export default {
     },
     data() {
         return {
-            enableXRay: false,
-            enablePreventAlarmTriggering: false,
-            enableInvisiblePlayer: false,
-            enableDisableAI: false,
-            enableUnlimitedPagers: false,
-            enableInstantDrilling: false
+            enableXRay: null,
+            enablePreventAlarmTriggering: null,
+            enableNoClip: null,
+            enableInvisiblePlayer: null,
+            enableDisableAI: null,
+            enableUnlimitedPagers: null,
+            enableInstantDrilling: null,
+            noClipSpeed: null
         };
     },
     created() {
@@ -31,18 +33,22 @@ export default {
         const {
             enableXRay,
             enablePreventAlarmTriggering,
+            enableNoClip,
             enableInvisiblePlayer,
             enableDisableAI,
             enableUnlimitedPagers,
-            enableInstantDrilling
+            enableInstantDrilling,
+            noClipSpeed
         } = storeToRefs(this.missionStore);
 
         this.enableXRay = enableXRay;
         this.enablePreventAlarmTriggering = enablePreventAlarmTriggering;
+        this.enableNoClip = enableNoClip;
         this.enableInvisiblePlayer = enableInvisiblePlayer;
         this.enableDisableAI = enableDisableAI;
         this.enableUnlimitedPagers = enableUnlimitedPagers;
         this.enableInstantDrilling = enableInstantDrilling;
+        this.noClipSpeed = noClipSpeed;
     },
     methods: {
         startTheHeist() {
@@ -83,6 +89,9 @@ export default {
         },
         setPreventAlarmTriggering() {
             this.callStore.addCall(["UT:setPreventAlarmTriggering", this.enablePreventAlarmTriggering]);
+        },
+        setNoClip() {
+            this.callStore.addCall(["UT:setNoClip", this.enableNoClip, this.noClipSpeed]);
         },
         setInvisiblePlayer() {
             this.callStore.addCall(["UT:setInvisiblePlayer", this.enableInvisiblePlayer]);
@@ -169,6 +178,14 @@ export default {
                             <div class="form-check form-switch mb-3" @change="setInvisiblePlayer">
                                 <input id="enable-invisible-player" v-model="enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                 <label for="enable-invisible-player" class="form-check-label">{{ $t("mission.invisible_player") }}</label>
+                            </div>
+                            <div class="form-check form-switch mb-3" @change="setNoClip">
+                                <input id="enable-no-clip" v-model="enableNoClip" class="form-check-input" type="checkbox">
+                                <label for="enable-no-clip" class="form-check-label">{{ $t("mission.no_clip") }}</label>
+                            </div>
+                            <div class="mb-3" v-if="enableNoClip">
+                                <label for="no-clip-speed" class="form-label">{{ $t("mission.no_clip_speed") }}</label>
+                                <input id="no-clip-speed" type="number" min="1" max="100" step="1" class="form-control" v-model="noClipSpeed" @change="setNoClip">
                             </div>
                             <div class="form-check form-switch mb-3" @change="setDisableAI">
                                 <input id="enable-disable-ai" v-model="enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">

@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+import { useCallStore } from "@/stores/calls";
+
 import { getWebSocket } from "@/web-socket";
 
 export const useSettingsStore = defineStore("settings", {
@@ -8,6 +10,8 @@ export const useSettingsStore = defineStore("settings", {
     }),
     actions: {
         saveSettings() {
+            const callStore = useCallStore();
+
             const ws = getWebSocket();
 
             const data = {
@@ -15,6 +19,8 @@ export const useSettingsStore = defineStore("settings", {
                 data: this.settings
             };
             ws.send(JSON.stringify(data));
+
+            callStore.addCall(["UT:requestSettings"]);
         },
         getSetting(name) {
             return typeof this.settings[name] !== "undefined" ? this.settings[name] : null;

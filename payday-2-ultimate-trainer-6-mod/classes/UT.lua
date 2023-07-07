@@ -9,6 +9,8 @@ UT.previousIsHost = nil
 UT.vehiclesPackagesLoaded = false
 UT.environment = nil
 UT.initialEnvironment = nil
+UT.enableNoClip = false
+UT.noClipSpeed = nil
 
 UT.settings = {}
 UT.backup = {}
@@ -44,6 +46,13 @@ function UT:update()
 
     if UT.GameUtility:isInGame() then
         if UT.GameUtility:isInHeist() then
+            local playerUnit = UT.GameUtility:playerUnit()
+            if UT.GameUtility:isUnitAlive(playerUnit) then
+                if UT.enableNoClip then
+                    UT:updateNoClip(UT.noClipSpeed)
+                end
+            end
+
             if UT.environment then
                 if UT:getEnvironment() ~= UT.environment then
                     UT:setEnvironment(UT.environment)
@@ -178,6 +187,9 @@ function UT:enterHeist()
         if UT.GameUtility:playerUnit():character_damage():god_mode() then
             UT:setGodMode(false)
         end
+    end
+    if UT:getSetting("enable-no-fall-damage") then
+        UT:setNoFallDamage(true)
     end
     if UT:getSetting("enable-infinite-stamina") then
         UT:setInfiniteStamina(true)
@@ -419,6 +431,15 @@ end
 
 function UT:setGodMode(enabled)
     UT.GameUtility:playerUnit():character_damage():set_god_mode(enabled)
+end
+
+function UT:setNoFallDamage(enabled)
+    UT.Utility:cloneClass(PlayerDamage)
+    if enabled or UT.enableNoClip then
+        function PlayerDamage:damage_fall() end
+    else
+        PlayerDamage.damage_fall = PlayerDamage.orig.damage_fall
+    end
 end
 
 function UT:setInfiniteStamina(enabled)
@@ -822,6 +843,25 @@ function UT:setPreventAlarmTriggering(enabled)
     else
         GroupAIStateBase.on_police_called = GroupAIStateBase.orig.on_police_called
     end
+end
+
+function UT:setNoClip(enabled, speed)
+    UT.noClipSpeed = speed
+    UT.enableNoClip = enabled
+    UT:setNoFallDamage(enabled or UT:getSetting("enable-no-fall-damage"))
+end
+
+function UT:updateNoClip(speed)
+    local keyboard = Input:keyboard()
+    local speed = keyboard.down(keyboard, UT.GameUtility:idString("left shift")) and speed * 2 or speed
+    local x = keyboard.down(keyboard, UT.GameUtility:idString("w")) and 1 or keyboard.down(keyboard, UT.GameUtility:idString("s")) and -1 or 0
+    local y = keyboard.down(keyboard, UT.GameUtility:idString("d")) and 1 or keyboard.down(keyboard, UT.GameUtility:idString("a")) and -1 or 0
+    local z = keyboard.down(keyboard, UT.GameUtility:idString("space")) and 1 or keyboard.down(keyboard, UT.GameUtility:idString("left ctrl")) and -1 or 0
+    local rotation = UT.GameUtility:getPlayerCameraRotation()
+    local direction = rotation:x() * y + rotation:y() * x
+    local delta = Vector3(direction.x, direction.y, z) * speed
+    local position = UT.GameUtility:getPlayerPosition() + delta
+    UT.GameUtility:teleportPlayer(position, rotation)
 end
 
 function UT:setInvisiblePlayer(enabled)
