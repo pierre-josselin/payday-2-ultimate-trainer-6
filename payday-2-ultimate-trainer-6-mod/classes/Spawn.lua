@@ -76,7 +76,7 @@ function UT.Spawn.spawnEquipment(id, position, rotation)
     elseif id == "first-aid-kit" then
         FirstAidKitBase.spawn(position, rotation, 20, localPeerId)
     elseif id == "ordnance-bag" then
-        GrenadeCrateBase.spawn(position, rotation)
+        GrenadeCrateDeployableBase.spawn(position, rotation)
     elseif id == "body-bag-case" then
         BodyBagsBagBase.spawn(position, rotation, 0, localPeerId)
     elseif id == "ecm-jammer" then
