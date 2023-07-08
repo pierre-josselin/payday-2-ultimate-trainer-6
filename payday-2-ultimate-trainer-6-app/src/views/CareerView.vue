@@ -387,7 +387,7 @@ export default {
                         <div id="skill-points-tab" class="tab-pane" tabindex="0">
                             <div class="form-check form-switch mb-3" @change="setSkillPointHack">
                                 <input id="enable-skill-point-hack" v-model="enableSkillPointHack" class="form-check-input" type="checkbox">
-                                <label for="enable-skill-point-hack" class="form-check-label">{{ $t("main.enable_skill_points_hack") }}</label>
+                                <label for="enable-skill-point-hack" class="form-check-label">{{ $t("main.enable_skill_point_hack") }}</label>
                             </div>
                             <div class="row align-items-end">
                                 <label for="skill-points" class="form-label">{{ $t("main.skill_points") }}</label>
