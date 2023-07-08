@@ -61,7 +61,7 @@ export default {
 <template>
     <NavBar />
 
-    <div style="max-width: 800px;" class="container my-5">
+    <div style="max-width: 600px;" class="container my-5">
         <div class="card">
             <div class="card-header">{{ $t("main.settings") }}</div>
             <div class="card-body p-4">
