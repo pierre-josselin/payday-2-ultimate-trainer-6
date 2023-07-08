@@ -29,7 +29,11 @@ export function createWebSocket(options) {
         callStore.addCall(["UT:sendGameState"]);
         callStore.addCall(["UT:sendIsHost"]);
         callStore.addCall(["UT:sendVehiclesPackagesLoaded"]);
-        options.router.push({ name: "home" });
+
+        // Wait for settings
+        setTimeout(() => {
+            options.router.push({ name: "home" });
+        }, 500);
     });
 
     ws.addEventListener("error", () => {

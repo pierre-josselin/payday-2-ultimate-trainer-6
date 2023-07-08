@@ -20,7 +20,7 @@ UT.invisibleWalls = {}
 UT.interactions = {}
 
 function UT:init()
-    UT:requestSettings()
+    UT:loadSettings()
 
     local content = UT.Utility:readFile(UT.modPath .. "/payday-2-ultimate-trainer-6-mod/data/invisible-walls.json")
     if content then
@@ -143,6 +143,13 @@ function UT:requestSettings()
         UT.settings = settings
     end
     UT.Utility:httpRequest(url, callback)
+end
+
+function UT:loadSettings()
+    local content = UT.Utility:readFile(UT.modPath .. "/settings.json")
+    if content then
+        UT.settings = UT.Utility:jsonDecode(content)
+    end
 end
 
 function UT:getSetting(name)
@@ -320,6 +327,13 @@ end
 function UT:resetContinentalCoins()
     Global.custom_safehouse_manager.total = 0
     Global.custom_safehouse_manager.total_collected = 0
+end
+
+function UT:skillPointHack()
+    UT.Utility:cloneClass(SkillTreeManager)
+    function SkillTreeManager:_verify_loaded_data(...)
+        SkillTreeManager.orig._verify_loaded_data(self, UT:getSetting("skill-points") - managers.experience:current_level())
+    end
 end
 
 function UT:addPerkPoints(amount)

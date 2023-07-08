@@ -9,6 +9,10 @@
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/core/lib/setups/coresetup.lua"
         },
         {
+            "hook_id": "lib/managers/skilltreemanager",
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/managers/skilltreemanager.lua"
+        },
+        {
             "hook_id": "lib/setups/gamesetup",
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/setups/gamesetup.lua"
         },

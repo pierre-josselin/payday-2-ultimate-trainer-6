@@ -1,6 +1,7 @@
 <script>
 import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
+import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
 
@@ -23,6 +24,8 @@ export default {
             spendingMoney: null,
             offshoreMoney: null,
             continentalCoins: null,
+            enableSkillPointHack: null,
+            skillPoints: null,
             perkPoints: null,
             blackMarketCategory: null,
             selectAllBlackMarketItems: false,
@@ -78,10 +81,14 @@ export default {
     created() {
         this.mainStore = useMainStore();
         this.callStore = useCallStore();
+        this.settingsStore = useSettingsStore();
 
         this.blackMarketItems = { colors, masks, materials, textures, weaponMods };
         this.trophies = trophies;
         this.steamAchievements = steamAchievements;
+
+        this.enableSkillPointHack = this.settingsStore.getSetting("enable-skill-point-hack");
+        this.skillPoints = this.settingsStore.getSetting("skill-points");
     },
     methods: {
         setLevel() {
@@ -137,6 +144,14 @@ export default {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
+        },
+        setSkillPointHack() {
+            if (!this.enableSkillPointHack || this.skillPoints === "") {
+                this.skillPoints = null;
+            }
+            this.settingsStore.setSetting("enable-skill-point-hack", this.enableSkillPointHack);
+            this.settingsStore.setSetting("skill-points", this.skillPoints);
+            this.settingsStore.saveSettings();
         },
         addPerkPoints() {
             this.callStore.addCall(["UT:addPerkPoints", this.perkPoints]);
@@ -293,6 +308,7 @@ export default {
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#infamy-rank-tab">{{ $t("main.infamy_rank") }}</button>
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#money-tab">{{ $t("main.money") }}</button>
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#continental-coins-tab">{{ $t("main.continental_coins") }}</button>
+                        <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#skill-points-tab">{{ $t("main.skill_points") }}</button>
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#perk-points-tab">{{ $t("main.perk_points") }}</button>
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#inventory-tab">{{ $t("main.inventory") }}</button>
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#trophies-tab">{{ $t("main.trophies") }}</button>
@@ -367,6 +383,16 @@ export default {
                             <form @submit.prevent="resetContinentalCoins">
                                 <button type="submit" class="btn btn-warning">{{ $t("main.reset_continental_coins") }}</button>
                             </form>
+                        </div>
+                        <div id="skill-points-tab" class="tab-pane" tabindex="0">
+                            <div class="form-check form-switch mb-3" @change="setSkillPointHack">
+                                <input id="enable-skill-point-hack" v-model="enableSkillPointHack" class="form-check-input" type="checkbox">
+                                <label for="enable-skill-point-hack" class="form-check-label">{{ $t("main.enable_skill_points_hack") }}</label>
+                            </div>
+                            <div class="row align-items-end">
+                                <label for="skill-points" class="form-label">{{ $t("main.skill_points") }}</label>
+                                <input id="skill-points" v-model="skillPoints" type="number" min="0" max="690" step="1" class="form-control" @change="setSkillPointHack" :disabled="!enableSkillPointHack">
+                            </div>
                         </div>
                         <div id="perk-points-tab" class="tab-pane" tabindex="0">
                             <form class="mb-4" @submit.prevent="addPerkPoints">
