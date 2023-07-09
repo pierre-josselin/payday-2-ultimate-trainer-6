@@ -4,6 +4,9 @@ import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
+import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
+import BugIcon from "@/components/icons/BugIcon.vue";
+import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
 
 import colors from "@/data/colors.json";
 import masks from "@/data/masks.json";
@@ -15,7 +18,10 @@ import steamAchievements from "@/data/steam-achievements.json";
 
 export default {
     components: {
-        NavBar
+        NavBar,
+        AntiCheatDetectedIcon,
+        BugIcon,
+        RestartRequiredIcon
     },
     data() {
         return {
@@ -388,6 +394,8 @@ export default {
                             <div class="form-check form-switch mb-3" @change="setSkillPointHack">
                                 <input id="enable-skill-point-hack" v-model="enableSkillPointHack" class="form-check-input" type="checkbox">
                                 <label for="enable-skill-point-hack" class="form-check-label">{{ $t("main.enable_skill_point_hack") }}</label>
+                                <AntiCheatDetectedIcon class="ms-3" />
+                                <RestartRequiredIcon class="ms-3" />
                             </div>
                             <div class="row align-items-end">
                                 <label for="skill-points" class="form-label">{{ $t("main.skill_points") }}</label>
@@ -513,7 +521,9 @@ export default {
                                         </table>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-danger me-3">{{ $t("main.unlock") }}</button>
+                                <button type="submit" class="btn btn-danger me-3">{{ $t("main.unlock") }}
+                                    <BugIcon class="ms-3" />
+                                </button>
                                 <button type="button" class="btn btn-danger" @click="lockSteamAchievements">{{ $t("main.lock") }}</button>
                             </form>
                         </div>

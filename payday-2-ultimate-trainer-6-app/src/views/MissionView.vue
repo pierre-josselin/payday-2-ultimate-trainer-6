@@ -198,7 +198,9 @@ export default {
                                     </div>
                                     <div class="form-check form-switch mb-3" @change="setPreventAlarmTriggering">
                                         <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
-                                        <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}</label>
+                                        <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}
+                                            <BugIcon class="ms-3" />
+                                        </label>
                                     </div>
                                     <div class="form-check form-switch mb-3" @change="setInvisiblePlayer">
                                         <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
@@ -223,7 +225,6 @@ export default {
                                     <div class="form-check form-switch" @change="setInstantDrilling">
                                         <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                         <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
-                                        <BugIcon class="ms-3" />
                                     </div>
                                 </div>
                             </div>

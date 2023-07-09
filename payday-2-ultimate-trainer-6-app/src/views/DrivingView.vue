@@ -4,6 +4,7 @@ import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
+import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
 
 import sportCarVehicleImagePath from "@/assets/vehicles/sport-car.jpg";
 import muscleCarVehicleImagePath from "@/assets/vehicles/muscle-car.jpg";
@@ -14,7 +15,8 @@ import boatVehicleImagePath from "@/assets/vehicles/boat.jpg";
 
 export default {
     components: {
-        NavBar
+        NavBar,
+        RestartRequiredIcon
     },
     data() {
         return {
@@ -86,7 +88,9 @@ export default {
             <div class="card-body p-4">
                 <div class="form-check form-switch mb-3">
                     <input id="enable-vehicles-packages-loading" v-model="enableVehiclesPackagesLoading" class="form-check-input" type="checkbox" @change="setVehiclesPackagesLoading">
-                    <label for="enable-vehicles-packages-loading" class="form-check-label">{{ $t("main.vehicles_packages_loading") }}</label>
+                    <label for="enable-vehicles-packages-loading" class="form-check-label">{{ $t("main.vehicles_packages_loading") }}
+                        <RestartRequiredIcon class="ms-3" />
+                    </label>
                 </div>
                 <div id="carousel" class="carousel slide">
                     <div class="carousel-indicators">
