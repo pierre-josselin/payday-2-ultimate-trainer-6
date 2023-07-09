@@ -320,6 +320,7 @@ export default {
 .control-button {
     --bs-aspect-ratio: 30%;
 }
+
 .interaction-button {
     --bs-aspect-ratio: 45%;
 }
