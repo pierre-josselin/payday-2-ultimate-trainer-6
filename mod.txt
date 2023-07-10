@@ -9,6 +9,14 @@
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/core/lib/setups/coresetup.lua"
         },
         {
+            "hook_id": "lib/managers/localizationmanager",
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/managers/localizationmanager.lua"
+        },
+        {
+            "hook_id": "lib/managers/menumanager",
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/managers/menumanager.lua"
+        },
+        {
             "hook_id": "lib/managers/skilltreemanager",
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/managers/skilltreemanager.lua"
         },
@@ -32,14 +40,6 @@
         }
     ],
     "keybinds": [
-        {
-            "keybind_id": "ut_keybinds_open_app",
-            "name": "Open the app",
-            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/open-app.lua",
-            "run_in_menu": true,
-            "run_in_game": true,
-            "localized": false
-        },
         {
             "keybind_id": "ut_keybinds_teleport_player_to_crosshair",
             "name": "Teleport player to crosshair",

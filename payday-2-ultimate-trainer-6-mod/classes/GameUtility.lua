@@ -151,3 +151,9 @@ end
 function UT.GameUtility:teleportPlayer(position, rotation)
     managers.player:warp_to(position, rotation)
 end
+
+function UT.GameUtility:getModsLocale()
+    local language = BLT.Localization:get_language()
+    local locale = language.language
+    return UT.Utility:inTable(locale, UT.locales) and locale or "en"
+end

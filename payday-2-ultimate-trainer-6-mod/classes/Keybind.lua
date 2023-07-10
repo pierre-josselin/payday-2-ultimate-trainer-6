@@ -1,9 +1,5 @@
 UT.Keybind = {}
 
-function UT.Keybind:openApp()
-    Steam:overlay_activate("url", UT_APP_URL)
-end
-
 function UT.Keybind:teleportPlayerToCrosshair()
     if not UT.GameUtility:isInHeist() then
         return
