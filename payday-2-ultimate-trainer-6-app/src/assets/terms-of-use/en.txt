@@ -1,0 +1,22 @@
+**Respect for the game and other players**
+
+This software should be used for personal use only and should in no way be used to harm other players or their games.
+
+**Responsibilities**
+
+You are entirely responsible for the use of this software. You are also responsible for the consequences of its use, including possible penalties from the game developers. Ultimate Trainer or its developers cannot be held responsible in any way.
+
+**Technical support**
+
+You have no right to request technical support from the game developers for any problems or conflicts related to the use of this software. You can ask the developers of this software for help, but they are under no obligation to answer you.
+
+**Warranty**
+
+This software is provided "as is", without warranty of any kind.
+
+**License**
+
+This software is under the GNU General Public License v3.0, which means but is not limited to, that this software can be modified and distributed but under the same license and with disclosed source code.
+
+
+Ultimate Trainer is not affiliated with PAYDAY 2 in any way.

@@ -1,16 +1,28 @@
 <script>
+import VueMarkdown from 'vue-markdown-render'
+
 import { createWebSocket } from "@/web-socket";
 
+import enTermsOfUse from "@/assets/terms-of-use/en.txt";
+
 export default {
+    components: {
+        VueMarkdown
+    },
     data() {
         return {
             connecting: false,
             host: "127.0.0.1",
-            port: 1138
+            port: 1138,
+            termsOfUse: "",
+            termsOfUseURL: {
+                en: enTermsOfUse
+            }
         };
     },
     created() {
         this.host = window.location.hostname;
+        this.fetchTermsOfUse();
     },
     mounted() {
         document.documentElement.style.height = "100%";
@@ -35,12 +47,35 @@ export default {
                     alert(this.$t("main.connection_failed"));
                 }
             });
+        },
+        async fetchTermsOfUse() {
+            const url = this.termsOfUseURL[this.$i18n.locale];
+            if (!url) return;
+            const response = await fetch(url);
+            this.termsOfUse = await response.text();
         }
     }
 }
 </script>
 
 <template>
+    <div id="terms-of-use-modal" class="modal fade" tabindex="-1">
+        <div style="max-width: 600px;" class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">{{ $t("main.terms_of_use") }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <VueMarkdown :source="termsOfUse" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="d-flex align-items-center justify-content-center h-100">
         <div style="min-width: 450px;" class="card">
             <div class="card-header">PAYDAY 2 - Ultimate Trainer 6</div>
@@ -54,6 +89,12 @@ export default {
                     <div class="mb-3">
                         <label for="port" class="form-label">{{ $t("main.port") }}</label>
                         <input id="port" v-model="port" type="number" min="0" max="65535" step="1" class="form-control" :disabled="connecting" required>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input id="terms-of-use" class="form-check-input" type="checkbox" checked required>
+                            <label for="terms-of-use" class="form-check-label">{{ $t("main.i_accept_the") }} <a href="#" data-bs-toggle="modal" data-bs-target="#terms-of-use-modal">{{ $t("main.terms_of_use").toLowerCase() }}</a></label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100" :disabled="connecting">
                         <span v-if="connecting" class="spinner-border spinner-border-sm" />
