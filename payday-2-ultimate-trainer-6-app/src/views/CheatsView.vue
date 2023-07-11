@@ -34,10 +34,10 @@ export default {
             enableThrowDistanceMultiplier: false,
             enableFireRateMultiplier: false,
             enableDamageMultiplier: false,
-            moveSpeedMultiplier: 1,
-            throwDistanceMultiplier: 1,
-            fireRateMultiplier: 1,
-            damageMultiplier: 1
+            moveSpeedMultiplier: null,
+            throwDistanceMultiplier: null,
+            fireRateMultiplier: null,
+            damageMultiplier: null
         };
     },
     watch: {
@@ -94,179 +94,248 @@ export default {
         this.damageMultiplier = this.settingsStore.getSetting("damage-multiplier");
     },
     methods: {
-        setGodMode() {
+        setGodMode(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setGodMode", this.enableGodMode]);
             }
             this.settingsStore.setSetting("enable-god-mode", this.enableGodMode);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setNoFallDamage() {
+        setNoFallDamage(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setNoFallDamage", this.enableNoFallDamage]);
             }
             this.settingsStore.setSetting("enable-no-fall-damage", this.enableNoFallDamage);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setInfiniteStamina() {
+        setInfiniteStamina(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setInfiniteStamina", this.enableInfiniteStamina]);
             }
             this.settingsStore.setSetting("enable-infinite-stamina", this.enableInfiniteStamina);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setCanRunDirectional() {
+        setCanRunDirectional(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setCanRunDirectional", this.enableCanRunDirectional]);
             }
             this.settingsStore.setSetting("enable-can-run-directional", this.enableCanRunDirectional);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setCanRunWithAnyBag() {
+        setCanRunWithAnyBag(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setCanRunWithAnyBag", this.enableCanRunWithAnyBag]);
             }
             this.settingsStore.setSetting("enable-can-run-with-any-bag", this.enableCanRunWithAnyBag);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setInstantMaskOn() {
+        setInstantMaskOn(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setInstantMaskOn", this.enableInstantMaskOn]);
             }
             this.settingsStore.setSetting("enable-instant-mask-on", this.enableInstantMaskOn);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setNoCarryCooldown() {
+        setNoCarryCooldown(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setNoCarryCooldown", this.enableNoCarryCooldown]);
             }
             this.settingsStore.setSetting("enable-no-carry-cooldown", this.enableNoCarryCooldown);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setNoFlashbangs() {
+        setNoFlashbangs(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setNoFlashbangs", this.enableNoFlashbangs]);
             }
             this.settingsStore.setSetting("enable-no-flashbangs", this.enableNoFlashbangs);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setInstantInteraction() {
+        setInstantInteraction(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setInstantInteraction", this.enableInstantInteraction]);
             }
             this.settingsStore.setSetting("enable-instant-interaction", this.enableInstantInteraction);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setInstantDeployment() {
+        setInstantDeployment(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setInstantDeployment", this.enableInstantDeployment]);
             }
             this.settingsStore.setSetting("enable-instant-deployment", this.enableInstantDeployment);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setUnlimitedEquipment() {
+        setUnlimitedEquipment(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setUnlimitedEquipment", this.enableUnlimitedEquipment]);
             }
             this.settingsStore.setSetting("enable-unlimited-equipment", this.enableUnlimitedEquipment);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setInstantWeaponSwap() {
+        setInstantWeaponSwap(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setInstantWeaponSwap", this.enableInstantWeaponSwap]);
             }
             this.settingsStore.setSetting("enable-instant-weapon-swap", this.enableInstantWeaponSwap);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setInstantWeaponReload() {
+        setInstantWeaponReload(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setInstantWeaponReload", this.enableInstantWeaponReload]);
             }
             this.settingsStore.setSetting("enable-instant-weapon-reload", this.enableInstantWeaponReload);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setNoWeaponRecoil() {
+        setNoWeaponRecoil(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setNoWeaponRecoil", this.enableNoWeaponRecoil]);
             }
             this.settingsStore.setSetting("enable-no-weapon-recoil", this.enableNoWeaponRecoil);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setNoWeaponSpread() {
+        setNoWeaponSpread(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setNoWeaponSpread", this.enableNoWeaponSpread]);
             }
             this.settingsStore.setSetting("enable-no-weapon-spread", this.enableNoWeaponSpread);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setShootThroughWalls() {
+        setShootThroughWalls(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setShootThroughWalls", this.enableShootThroughWalls]);
             }
             this.settingsStore.setSetting("enable-shoot-through-walls", this.enableShootThroughWalls);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setUnlimitedAmmo() {
+        setUnlimitedAmmo(saveSettings = true) {
             if (this.mainStore.isPlaying) {
                 this.callStore.addCall(["UT:setUnlimitedAmmo", this.enableUnlimitedAmmo]);
             }
             this.settingsStore.setSetting("enable-unlimited-ammo", this.enableUnlimitedAmmo);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setMoveSpeedMultiplier() {
+        setMoveSpeedMultiplier(saveSettings = true) {
             if (this.mainStore.isPlaying && ((this.enableMoveSpeedMultiplier && this.moveSpeedMultiplier) || !this.enableMoveSpeedMultiplier)) {
                 this.callStore.addCall(["UT:setMoveSpeedMultiplier", this.enableMoveSpeedMultiplier, this.moveSpeedMultiplier]);
             }
             this.settingsStore.setSetting("enable-move-speed-multiplier", this.enableMoveSpeedMultiplier);
             this.settingsStore.setSetting("move-speed-multiplier", this.moveSpeedMultiplier);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setThrowDistanceMultiplier() {
+        setThrowDistanceMultiplier(saveSettings = true) {
             if (this.mainStore.isPlaying && ((this.enableThrowDistanceMultiplier && this.throwDistanceMultiplier) || !this.enableThrowDistanceMultiplier)) {
                 this.callStore.addCall(["UT:setThrowDistanceMultiplier", this.enableThrowDistanceMultiplier, this.throwDistanceMultiplier]);
             }
             this.settingsStore.setSetting("enable-throw-distance-multiplier", this.enableThrowDistanceMultiplier);
             this.settingsStore.setSetting("throw-distance-multiplier", this.throwDistanceMultiplier);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setFireRateMultiplier() {
+        setFireRateMultiplier(saveSettings = true) {
             if (this.mainStore.isPlaying && ((this.enableFireRateMultiplier && this.fireRateMultiplier) || !this.enableFireRateMultiplier)) {
                 this.callStore.addCall(["UT:setFireRateMultiplier", this.enableFireRateMultiplier, this.fireRateMultiplier]);
             }
             this.settingsStore.setSetting("enable-fire-rate-multiplier", this.enableFireRateMultiplier);
             this.settingsStore.setSetting("fire-rate-multiplier", this.fireRateMultiplier);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
-        setDamageMultiplier() {
+        setDamageMultiplier(saveSettings = true) {
             if (this.mainStore.isPlaying && ((this.enableDamageMultiplier && this.damageMultiplier) || !this.enableDamageMultiplier)) {
                 this.callStore.addCall(["UT:setDamageMultiplier", this.enableDamageMultiplier, this.damageMultiplier]);
             }
             this.settingsStore.setSetting("enable-damage-multiplier", this.enableDamageMultiplier);
             this.settingsStore.setSetting("damage-multiplier", this.damageMultiplier);
-            this.settingsStore.saveSettings();
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
         },
         disableAllCheats() {
-            this.settingsStore.setSetting("enable-god-mode", this.enableGodMode = false);
-            this.settingsStore.setSetting("enable-no-fall-damage", this.enableNoFallDamage = false);
-            this.settingsStore.setSetting("enable-infinite-stamina", this.enableInfiniteStamina = false);
-            this.settingsStore.setSetting("enable-can-run-directional", this.enableCanRunDirectional = false);
-            this.settingsStore.setSetting("enable-can-run-with-any-bag", this.enableCanRunWithAnyBag = false);
-            this.settingsStore.setSetting("enable-instant-mask-on", this.enableInstantMaskOn = false);
-            this.settingsStore.setSetting("enable-no-carry-cooldown", this.enableNoCarryCooldown = false);
-            this.settingsStore.setSetting("enable-no-flashbangs", this.enableNoFlashbangs = false);
-            this.settingsStore.setSetting("enable-instant-interaction", this.enableInstantInteraction = false);
-            this.settingsStore.setSetting("enable-instant-deployment", this.enableInstantDeployment = false);
-            this.settingsStore.setSetting("enable-unlimited-equipment", this.enableUnlimitedEquipment = false);
-            this.settingsStore.setSetting("enable-instant-weapon-swap", this.enableInstantWeaponSwap = false);
-            this.settingsStore.setSetting("enable-instant-weapon-reload", this.enableInstantWeaponReload = false);
-            this.settingsStore.setSetting("enable-no-weapon-recoil", this.enableNoWeaponRecoil = false);
-            this.settingsStore.setSetting("enable-no-weapon-spread", this.enableNoWeaponSpread = false);
-            this.settingsStore.setSetting("enable-shoot-through-walls", this.enableShootThroughWalls = false);
-            this.settingsStore.setSetting("enable-unlimited-ammo", this.enableUnlimitedAmmo = false);
-            this.settingsStore.setSetting("enable-move-speed-multiplier", this.enableMoveSpeedMultiplier = false);
-            this.settingsStore.setSetting("enable-throw-distance-multiplier", this.enableThrowDistanceMultiplier = false);
-            this.settingsStore.setSetting("enable-fire-rate-multiplier", this.enableFireRateMultiplier = false);
-            this.settingsStore.setSetting("enable-damage-multiplier", this.enableDamageMultiplier = false);
+            this.enableGodMode = false;
+            this.enableNoFallDamage = false;
+            this.enableInfiniteStamina = false;
+            this.enableCanRunDirectional = false;
+            this.enableCanRunWithAnyBag = false;
+            this.enableInstantMaskOn = false;
+            this.enableNoCarryCooldown = false;
+            this.enableNoFlashbangs = false;
+            this.enableInstantInteraction = false;
+            this.enableInstantDeployment = false;
+            this.enableUnlimitedEquipment = false;
+            this.enableInstantWeaponSwap = false;
+            this.enableInstantWeaponReload = false;
+            this.enableNoWeaponRecoil = false;
+            this.enableNoWeaponSpread = false;
+            this.enableShootThroughWalls = false;
+            this.enableUnlimitedAmmo = false;
+            this.enableMoveSpeedMultiplier = false;
+            this.enableThrowDistanceMultiplier = false;
+            this.enableFireRateMultiplier = false;
+            this.enableDamageMultiplier = false;
+            this.moveSpeedMultiplier = null;
+            this.throwDistanceMultiplier = null;
+            this.fireRateMultiplier = null;
+            this.damageMultiplier = null;
+
+            this.setGodMode(false);
+            this.setNoFallDamage(false);
+            this.setInfiniteStamina(false);
+            this.setCanRunDirectional(false);
+            this.setCanRunWithAnyBag(false);
+            this.setInstantMaskOn(false);
+            this.setNoCarryCooldown(false);
+            this.setNoFlashbangs(false);
+            this.setInstantInteraction(false);
+            this.setInstantDeployment(false);
+            this.setUnlimitedEquipment(false);
+            this.setInstantWeaponSwap(false);
+            this.setInstantWeaponReload(false);
+            this.setNoWeaponRecoil(false);
+            this.setNoWeaponSpread(false);
+            this.setShootThroughWalls(false);
+            this.setUnlimitedAmmo(false);
+            this.setMoveSpeedMultiplier(false);
+            this.setThrowDistanceMultiplier(false);
+            this.setFireRateMultiplier(false);
+            this.setDamageMultiplier(false);
+
             this.settingsStore.saveSettings();
         }
     }
