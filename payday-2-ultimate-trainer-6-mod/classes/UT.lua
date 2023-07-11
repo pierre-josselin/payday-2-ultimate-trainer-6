@@ -158,6 +158,7 @@ function UT:requestCalls()
         end
         for index, call in pairs(calls) do
             UT.Utility:callFunction(unpack(call))
+            UT.Log:debug(call[1] .. "(" .. (#call > 1 and UT.Utility:tableJoin(UT.Utility:tableValuesToString(call), ", ", 2) or "") .. ")")
         end
     end
     UT.Utility:httpRequest(url, callback)
