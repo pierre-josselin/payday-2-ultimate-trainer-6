@@ -70,6 +70,10 @@ export function createWebSocket(options) {
                     spawnStore.id = null;
                 }
 
+                if (gameState === "offline") {
+                    callStore.addCall(["UT:sendGameState"]);
+                }
+
                 mainStore.gameState = gameState;
                 break;
             }
