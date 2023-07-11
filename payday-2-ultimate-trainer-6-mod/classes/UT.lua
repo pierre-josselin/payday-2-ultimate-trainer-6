@@ -330,6 +330,10 @@ function UT:disableSentryGunPickup()
     function SentryGunBase.on_picked_up() end
 end
 
+function UT:getLocale()
+    return UT:getSetting("locale") or "en"
+end
+
 -- Career
 
 function UT:setLevel(level)

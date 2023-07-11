@@ -47,8 +47,10 @@ export default {
         this.theme = this.settingsStore.getSetting("theme");
     },
     methods: {
-        setLocale(locale) {
-            this.$i18n.locale = locale;
+        setLocale() {
+            this.$i18n.locale = this.locale;
+            this.settingsStore.setSetting("locale", this.locale);
+            this.settingsStore.saveSettings();
         },
         setTheme() {
             this.settingsStore.setSetting("theme", this.theme);
