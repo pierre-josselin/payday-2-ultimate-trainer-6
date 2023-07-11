@@ -60,10 +60,6 @@ export default {
         setVehiclesPackagesLoading() {
             this.settingsStore.setSetting("enable-vehicles-packages-loading", this.enableVehiclesPackagesLoading);
             this.settingsStore.saveSettings();
-
-            if (this.mainStore.isInGame) {
-                alert(this.$t("main.heist_restart_required"));
-            }
         },
         spawnAndEnterVehicle(id) {
             this.callStore.addCall(["UT:spawnAndEnterVehicle", id]);
