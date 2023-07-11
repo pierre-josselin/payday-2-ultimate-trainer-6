@@ -534,7 +534,7 @@ function UT:setInstantMaskOn(enabled)
     if enabled then
         tweak_data.player.put_on_mask_time = 0.01
     else
-        tweak_data.player.put_on_mask_time = UT.tweakData.playerPutOnMaskTime
+        tweak_data.player.put_on_mask_time = UT.backup.tweakDataPlayerPutOnMaskTime
     end
 end
 
