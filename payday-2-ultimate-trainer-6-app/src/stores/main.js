@@ -1,8 +1,5 @@
 import { defineStore } from "pinia";
 
-import { useMissionStore } from "@/stores/mission";
-import { useSpawnStore } from "@/stores/spawn";
-
 export const useMainStore = defineStore("main", {
     state: () => ({
         gameState: null,
