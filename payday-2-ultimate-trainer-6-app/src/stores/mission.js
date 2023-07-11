@@ -9,6 +9,9 @@ export const useMissionStore = defineStore("mission", {
         enableDisableAI: false,
         enableUnlimitedPagers: false,
         enableInstantDrilling: false,
-        noClipSpeed: 10
+        noClipSpeed: 10,
+        enableSlowMotion: false,
+        slowMotionWorldSpeed: 0.2,
+        slowMotionPlayerSpeed: 0.5
     })
 });

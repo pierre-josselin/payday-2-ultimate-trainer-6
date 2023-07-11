@@ -1089,6 +1089,37 @@ function UT:placeShapedCharges()
     UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
 end
 
+function UT:setSlowMotion(enabled, worldSpeed, playerSpeed)
+    managers.time_speed:destroy()
+
+    if enabled then
+        if worldSpeed < 1 then
+            local effect = {
+                fade_in = 0,
+                fade_in_delay = 0,
+                fade_out = 0,
+                speed = worldSpeed,
+                sustain = UT.maxInteger,
+                timer = "pausable"
+            }
+            managers.time_speed:play_effect("ut_world_slow_motion", effect)
+        end
+
+        if playerSpeed < 1 then
+            local effect = {
+                fade_in = 0,
+                fade_in_delay = 0,
+                fade_out = 0,
+                speed = playerSpeed,
+                sustain = UT.maxInteger,
+                timer = "pausable",
+                affect_timer = "player"
+            }
+            managers.time_speed:play_effect("ut_player_slow_motion", effect)
+        end
+    end
+end
+
 -- Driving
 
 function UT:spawnAndEnterVehicle(id)

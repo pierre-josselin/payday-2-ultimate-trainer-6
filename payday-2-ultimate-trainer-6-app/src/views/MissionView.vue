@@ -17,6 +17,13 @@ export default {
         this.mainStore = useMainStore();
         this.callStore = useCallStore();
         this.missionStore = useMissionStore();
+
+        this.$watch("missionStore.slowMotionWorldSpeed", (slowMotionWorldSpeed) => {
+            this.missionStore.slowMotionWorldSpeed = parseFloat(slowMotionWorldSpeed);
+        });
+        this.$watch("missionStore.slowMotionPlayerSpeed", (slowMotionPlayerSpeed) => {
+            this.missionStore.slowMotionPlayerSpeed = parseFloat(slowMotionPlayerSpeed);
+        });
     },
     methods: {
         startTheHeist() {
@@ -111,6 +118,9 @@ export default {
         },
         placeShapedCharges() {
             this.callStore.addCall(["UT:placeShapedCharges"]);
+        },
+        setSlowMotion() {
+            this.callStore.addCall(["UT:setSlowMotion", this.missionStore.enableSlowMotion, parseFloat(this.missionStore.slowMotionWorldSpeed), parseFloat(this.missionStore.slowMotionPlayerSpeed)]);
         }
     }
 }
@@ -163,10 +173,13 @@ export default {
                     <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#interactions-tab">{{ $t("mission.interactions") }}</button>
                     </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#slow-motion-tab">{{ $t("mission.slow_motion") }}</button>
+                    </li>
                 </ul>
-                <div class="tab-content">
-                    <div id="general-tab" class="tab-pane pt-4 show active" tabindex="0">
-                        <fieldset :disabled="!mainStore.isPlaying">
+                <fieldset :disabled="!mainStore.isPlaying">
+                    <div class="tab-content">
+                        <div id="general-tab" class="tab-pane pt-4 show active" tabindex="0">
                             <div class="row">
                                 <div class="col-4">
                                     <div class="mb-3">
@@ -228,10 +241,8 @@ export default {
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
-                    </div>
-                    <div id="interactions-tab" class="tab-pane" tabindex="0">
-                        <fieldset :disabled="!mainStore.isPlaying">
+                        </div>
+                        <div id="interactions-tab" class="tab-pane" tabindex="0">
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
@@ -309,9 +320,23 @@ export default {
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
+                        </div>
+                        <div id="slow-motion-tab" class="tab-pane pt-4" tabindex="0">
+                            <div class="form-check form-switch mb-3">
+                                <input id="enable-slow-motion" v-model="missionStore.enableSlowMotion" class="form-check-input" type="checkbox" @change="setSlowMotion">
+                                <label for="enable-slow-motion" class="form-check-label">{{ $t("mission.slow_motion") }}</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="slow-motion-world-speed" class="form-label">{{ $t("mission.world_speed") }} · {{ missionStore.slowMotionWorldSpeed }}</label>
+                                <input id="slow-motion-world-speed" type="range" min="0.1" max="1" step="0.1" class="form-range" v-model="missionStore.slowMotionWorldSpeed" @change="setSlowMotion" :disabled="!missionStore.enableSlowMotion">
+                            </div>
+                            <div>
+                                <label for="slow-motion-player-speed" class="form-label">{{ $t("mission.player_speed") }} · {{ missionStore.slowMotionPlayerSpeed }}</label>
+                                <input id="slow-motion-player-speed" type="range" min="0.1" max="1" step="0.1" class="form-range" v-model="missionStore.slowMotionPlayerSpeed" @change="setSlowMotion" :disabled="!missionStore.enableSlowMotion">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </div>
         </div>
     </div>

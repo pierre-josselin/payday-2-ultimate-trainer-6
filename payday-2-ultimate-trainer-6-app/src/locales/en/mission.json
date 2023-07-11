@@ -22,11 +22,14 @@
     "pick_up_packages": "Pick up packages",
     "place_drills": "Place drills",
     "place_shaped_charges": "Place shaped charges",
+    "player_speed": "Player speed",
     "prevent_alarm_triggering": "Prevent alarm triggering",
     "remove_invisible_walls": "Remove invisible walls",
+    "slow_motion": "Slow motion",
     "tie_all_civilians": "Tie all civilians",
     "trigger_the_alarm": "Trigger the alarm",
     "unlimited_pagers": "Unlimited pagers",
     "use_keycards": "Use keycards",
+    "world_speed": "World speed",
     "x_ray": "X-Ray"
 }
