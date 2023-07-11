@@ -48,7 +48,7 @@ class HttpServer {
         this.server = http.createServer(this.httpRequestListener);
 
         setInterval(() => {
-            if (this.lastCallRequestTime !== -1 && Date.now() - this.lastCallRequestTime > 2000) {
+            if (this.lastCallRequestTime !== -1 && Date.now() - this.lastCallRequestTime > 1500) {
                 this.messageManager.sendMessage({
                     type: "game-state",
                     data: "offline"
