@@ -24,20 +24,20 @@ function UT.GameUtility:isHost()
     return Network:is_server()
 end
 
-function UT.GameUtility:playerUnit()
+function UT.GameUtility:getPlayerUnit()
     return managers.player:player_unit()
 end
 
 function UT.GameUtility:getPlayerPosition()
-    return UT.GameUtility:playerUnit():position()
+    return UT.GameUtility:getPlayerUnit():position()
 end
 
 function UT.GameUtility:getPlayerRotation()
-    return UT.GameUtility:playerUnit():rotation()
+    return UT.GameUtility:getPlayerUnit():rotation()
 end
 
 function UT.GameUtility:getPlayerCamera()
-    return UT.GameUtility:playerUnit():camera()
+    return UT.GameUtility:getPlayerUnit():camera()
 end
 
 function UT.GameUtility:getPlayerCameraPosition()
@@ -73,7 +73,7 @@ function UT.GameUtility:isUnitAlive(unit)
 end
 
 function UT.GameUtility:isPlayerUnitAlive()
-    local playerUnit = UT.GameUtility:playerUnit()
+    local playerUnit = UT.GameUtility:getPlayerUnit()
     if not playerUnit then
         return false
     end

@@ -66,7 +66,7 @@ function UT.Spawn.spawnPackage(id, position, rotation)
 end
 
 function UT.Spawn.spawnEquipment(id, position, rotation)
-    local playerUnit = UT.GameUtility:playerUnit()
+    local playerUnit = UT.GameUtility:getPlayerUnit()
     local localPeerId = UT.GameUtility:getLocalPeerId()
 
     if id == "ammo-bag" then

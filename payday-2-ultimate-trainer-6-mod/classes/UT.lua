@@ -231,7 +231,7 @@ function UT:enterHeist()
     if UT:getSetting("enable-god-mode") then
         UT:setGodMode(true)
     else
-        if UT.GameUtility:playerUnit():character_damage():god_mode() then
+        if UT.GameUtility:getPlayerUnit():character_damage():god_mode() then
             UT:setGodMode(false)
         end
     end
@@ -484,7 +484,7 @@ end
 -- Cheats
 
 function UT:setGodMode(enabled)
-    UT.GameUtility:playerUnit():character_damage():set_god_mode(enabled)
+    UT.GameUtility:getPlayerUnit():character_damage():set_god_mode(enabled)
 end
 
 function UT:setNoFallDamage(enabled)
@@ -645,7 +645,7 @@ function UT:setShootThroughWalls(enabled)
     UT.Utility:cloneClass(NewRaycastWeaponBase)
 
     if enabled then
-        if not UT.GameUtility:playerUnit() or not UT.GameUtility:isPlayerUnitAlive() then
+        if not UT.GameUtility:getPlayerUnit() or not UT.GameUtility:isPlayerUnitAlive() then
             return
         end
 
@@ -660,7 +660,7 @@ function UT:setShootThroughWalls(enabled)
         NewRaycastWeaponBase._can_shoot_through_wall = NewRaycastWeaponBase.orig._can_shoot_through_wall
     end
 
-    for _, selection in pairs(UT.GameUtility:playerUnit():inventory()._available_selections) do
+    for _, selection in pairs(UT.GameUtility:getPlayerUnit():inventory()._available_selections) do
         local unitBase = selection.unit:base()
         if enabled then
             unitBase._bullet_slotmask_old = unitBase._bullet_slotmask
@@ -728,14 +728,14 @@ function UT:setDamageMultiplier(enabled, multiplier)
     UT.Utility:cloneClass(CopDamage)
     if enabled then
         function CopDamage:damage_bullet(attack_data)
-            if attack_data.attacker_unit == UT.GameUtility:playerUnit() then
+            if attack_data.attacker_unit == UT.GameUtility:getPlayerUnit() then
                 attack_data.damage = multiplier * 10
             end
             return self.orig.damage_bullet(self, attack_data)
         end
 
         function CopDamage:damage_melee(attack_data)
-            if attack_data.attacker_unit == UT.GameUtility:playerUnit() then
+            if attack_data.attacker_unit == UT.GameUtility:getPlayerUnit() then
                 attack_data.damage = multiplier * 10
             end
             return self.orig.damage_melee(self, attack_data)
@@ -812,8 +812,8 @@ function UT:tieAllCivilians()
             body_part = 1,
             type = "act"
         })
-        brain._current_logic.on_intimidated(brain._logic_data, UT.maxInteger, UT.GameUtility:playerUnit(), true)
-        brain:on_tied(UT.GameUtility:playerUnit())
+        brain._current_logic.on_intimidated(brain._logic_data, UT.maxInteger, UT.GameUtility:getPlayerUnit(), true)
+        brain:on_tied(UT.GameUtility:getPlayerUnit())
 
         ::continue::
     end
@@ -923,7 +923,7 @@ function UT:setInvisiblePlayer(enabled)
         return
     end
 
-    local playerUnitKey = UT.GameUtility:playerUnit():key()
+    local playerUnitKey = UT.GameUtility:getPlayerUnit():key()
     local groupAIState = managers.groupai:state()
 
     if enabled then
@@ -1011,7 +1011,7 @@ function UT:interactFromTable(table)
         return
     end
 
-    local playerUnit = UT.GameUtility:playerUnit()
+    local playerUnit = UT.GameUtility:getPlayerUnit()
     local units = UT.Utility:deepClone(managers.interaction._interactive_units)
     for index, unit in pairs(units) do
         if not UT.GameUtility:isUnitAlive(unit) then
@@ -1157,7 +1157,7 @@ function UT:spawnAndEnterVehicle(id)
         return
     end
 
-    managers.player:enter_vehicle(vehicleUnit, UT.GameUtility:playerUnit())
+    managers.player:enter_vehicle(vehicleUnit, UT.GameUtility:getPlayerUnit())
 
     UT.Utility:tableInsert(UT.spawnedVehicleUnits, vehicleUnit)
 end
