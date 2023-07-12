@@ -376,10 +376,13 @@ function UT:skillPointHack()
 end
 
 function UT:addPerkPoints(amount)
-    managers.skilltree:give_specialization_points(amount * 1000)
+    local stars = managers.experience:level_to_stars()
+    local conversion = tweak_data.skilltree.specialization_convertion_rate[stars] or 1000
+
+    managers.skilltree:give_specialization_points(amount * conversion)
 end
 
-function UT:resetPerkPoints()
+function UT:resetPerkDecks()
     Global.skilltree_manager.specializations.total_points = 0
     managers.skilltree:reset_specializations()
 end

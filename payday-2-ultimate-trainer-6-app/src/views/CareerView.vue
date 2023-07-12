@@ -167,8 +167,8 @@ export default {
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
             this.perkPoints = null;
         },
-        resetPerkPoints() {
-            this.callStore.addCall(["UT:resetPerkPoints"]);
+        resetPerkDecks() {
+            this.callStore.addCall(["UT:resetPerkDecks"]);
             if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
@@ -414,8 +414,8 @@ export default {
                                     </div>
                                 </div>
                             </form>
-                            <form @submit.prevent="resetPerkPoints">
-                                <button type="submit" class="btn btn-warning">{{ $t("main.reset_perk_points") }}</button>
+                            <form @submit.prevent="resetPerkDecks">
+                                <button type="submit" class="btn btn-warning">{{ $t("main.reset_perk_decks") }}</button>
                             </form>
                         </div>
                         <div id="inventory-tab" class="tab-pane" tabindex="0">
