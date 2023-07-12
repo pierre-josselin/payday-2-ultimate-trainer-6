@@ -25,52 +25,52 @@ export default {
                 {
                     id: null,
                     imagePath: defaultEnvironmentImagePath,
-                    title: "environments.default"
+                    title: "main.default"
                 },
                 {
                     id: "environments/pd2_env_hox_02/pd2_env_hox_02",
                     imagePath: earlyMorningEnvironmentImagePath,
-                    title: "environments.early_morning"
+                    title: "main.early_morning"
                 },
                 {
                     id: "environments/pd2_env_morning_02/pd2_env_morning_02",
                     imagePath: morningEnvironmentImagePath,
-                    title: "environments.morning"
+                    title: "main.morning"
                 },
                 {
                     id: "environments/pd2_env_mid_day/pd2_env_mid_day",
                     imagePath: midDayEnvironmentImagePath,
-                    title: "environments.mid_day"
+                    title: "main.mid_day"
                 },
                 {
                     id: "environments/pd2_env_afternoon/pd2_env_afternoon",
                     imagePath: afternoonEnvironmentImagePath,
-                    title: "environments.afternoon"
+                    title: "main.afternoon"
                 },
                 {
                     id: "environments/pd2_env_jry_plane/pd2_env_jry_plane",
                     imagePath: brightDayEnvironmentImagePath,
-                    title: "environments.bright_day"
+                    title: "main.bright_day"
                 },
                 {
                     id: "environments/pd2_env_docks/pd2_env_docks",
                     imagePath: cloudyDayEnvironmentImagePath,
-                    title: "environments.cloudy_day"
+                    title: "main.cloudy_day"
                 },
                 {
                     id: "environments/pd2_env_n2/pd2_env_n2",
                     imagePath: nightEnvironmentImagePath,
-                    title: "environments.night"
+                    title: "main.night"
                 },
                 {
                     id: "environments/pd2_env_arm_hcm_02/pd2_env_arm_hcm_02",
                     imagePath: mistyNightEnvironmentImagePath,
-                    title: "environments.misty_night"
+                    title: "main.misty_night"
                 },
                 {
                     id: "environments/pd2_env_foggy_bright/pd2_env_foggy_bright",
                     imagePath: foggyNightEnvironmentImagePath,
-                    title: "environments.foggy_night"
+                    title: "main.foggy_night"
                 }
             ]
         };

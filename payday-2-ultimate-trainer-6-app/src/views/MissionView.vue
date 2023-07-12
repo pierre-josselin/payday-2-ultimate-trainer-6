@@ -206,13 +206,13 @@ export default {
                 </fieldset>
                 <ul class="nav nav-tabs mt-4">
                     <li class="nav-item">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general-tab">{{ $t("mission.general") }}</button>
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general-tab">{{ $t("main.general") }}</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#interactions-tab">{{ $t("mission.interactions") }}</button>
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#interactions-tab">{{ $t("main.interactions") }}</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#slow-motion-tab">{{ $t("mission.slow_motion") }}</button>
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#slow-motion-tab">{{ $t("main.slow_motion") }}</button>
                     </li>
                 </ul>
                 <fieldset :disabled="!mainStore.isPlaying">
@@ -221,48 +221,48 @@ export default {
                             <div class="row mt-4">
                                 <div class="col-4">
                                     <div>
-                                        <button class="btn btn-primary w-100" @click="accessCameras">{{ $t("mission.access_cameras") }}</button>
+                                        <button class="btn btn-primary w-100" @click="accessCameras">{{ $t("main.access_cameras") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="triggerTheAlarm">{{ $t("mission.trigger_the_alarm") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="triggerTheAlarm">{{ $t("main.trigger_the_alarm") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="removeInvisibleWalls">{{ $t("mission.remove_invisible_walls") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="removeInvisibleWalls">{{ $t("main.remove_invisible_walls") }}</button>
                                     </div>
                                     <div class="mt-3">
                                         <div class="btn-group w-100">
-                                            <button class="btn btn-secondary" disabled>{{ $t("mission.kill_all") }}</button>
-                                            <button class="btn btn-primary" @click="killAllEnemies">{{ $t("mission.enemies") }}</button>
-                                            <button class="btn btn-primary" @click="killAllCivilians">{{ $t("mission.civilians") }}</button>
+                                            <button class="btn btn-secondary" disabled>{{ $t("main.kill_all") }}</button>
+                                            <button class="btn btn-primary" @click="killAllEnemies">{{ $t("main.enemies") }}</button>
+                                            <button class="btn btn-primary" @click="killAllCivilians">{{ $t("main.civilians") }}</button>
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="tieAllCivilians">{{ $t("mission.tie_all_civilians") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="tieAllCivilians">{{ $t("main.tie_all_civilians") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="convertAllEnemies">{{ $t("mission.convert_all_enemies") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="convertAllEnemies">{{ $t("main.convert_all_enemies") }}</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div>
-                                        <button class="btn btn-primary w-100" @click="getOutOfJail">{{ $t("mission.get_out_of_jail") }}</button>
+                                        <button class="btn btn-primary w-100" @click="getOutOfJail">{{ $t("main.get_out_of_jail") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" @click="replenishHealth">{{ $t("mission.replenish_health") }}</button>
+                                        <button class="btn btn-primary w-100" @click="replenishHealth">{{ $t("main.replenish_health") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" @click="replenishAmmo">{{ $t("mission.replenish_ammo") }}</button>
+                                        <button class="btn btn-primary w-100" @click="replenishAmmo">{{ $t("main.replenish_ammo") }}</button>
                                     </div>
                                     <div class="mt-3">
                                         <form @submit.prevent="replenish">
                                             <div class="input-group">
                                                 <select class="form-select" v-model="missionStore.replenishType">
-                                                    <option value="equipment">{{ $t("mission.equipment") }}</option>
-                                                    <option value="cable-ties">{{ $t("mission.cable_ties") }}</option>
-                                                    <option value="throwables">{{ $t("mission.throwables") }}</option>
-                                                    <option value="body-bags">{{ $t("mission.body_bags") }}</option>
+                                                    <option value="equipment">{{ $t("main.equipment") }}</option>
+                                                    <option value="cable-ties">{{ $t("main.cable_ties") }}</option>
+                                                    <option value="throwables">{{ $t("main.throwables") }}</option>
+                                                    <option value="body-bags">{{ $t("main.body_bags") }}</option>
                                                 </select>
-                                                <button type="submit" class="btn btn-primary">{{ $t("mission.replenish") }}
+                                                <button type="submit" class="btn btn-primary">{{ $t("main.replenish") }}
                                                     <AntiCheatDetectedIcon class="ms-3" />
                                                 </button>
                                             </div>
@@ -270,11 +270,11 @@ export default {
                                     </div>
                                     <div class="mt-3">
                                         <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">{{ $t("mission.set_player_state") }}</button>
+                                            <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">{{ $t("main.set_player_state") }}</button>
                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                <li><button class="dropdown-item" @click="setPlayerStateCivilian">{{ $t("mission.civilian") }}</button></li>
-                                                <li><button class="dropdown-item" @click="setPlayerStateMaskOff">{{ $t("mission.mask_off") }}</button></li>
-                                                <li><button class="dropdown-item" @click="setPlayerStateStandard">{{ $t("mission.standard") }}</button></li>
+                                                <li><button class="dropdown-item" @click="setPlayerStateCivilian">{{ $t("main.civilian") }}</button></li>
+                                                <li><button class="dropdown-item" @click="setPlayerStateMaskOff">{{ $t("main.mask_off") }}</button></li>
+                                                <li><button class="dropdown-item" @click="setPlayerStateStandard">{{ $t("main.standard") }}</button></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -282,37 +282,37 @@ export default {
                                 <div class="col-4">
                                     <div class="form-check form-switch" @change="setXRay">
                                         <input id="enable-x-ray" v-model="missionStore.enableXRay" class="form-check-input" type="checkbox">
-                                        <label for="enable-x-ray" class="form-check-label">{{ $t("mission.x_ray") }}</label>
+                                        <label for="enable-x-ray" class="form-check-label">{{ $t("main.x_ray") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setPreventAlarmTriggering">
                                         <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
-                                        <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}
+                                        <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("main.prevent_alarm_triggering") }}
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setInvisiblePlayer">
                                         <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
-                                        <label for="enable-invisible-player" class="form-check-label">{{ $t("mission.invisible_player") }}</label>
+                                        <label for="enable-invisible-player" class="form-check-label">{{ $t("main.invisible_player") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setNoClip">
                                         <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
-                                        <label for="enable-no-clip" class="form-check-label">{{ $t("mission.no_clip") }}</label>
+                                        <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
                                     <div class="mt-3" v-if="missionStore.enableNoClip">
-                                        <label for="no-clip-speed" class="form-label">{{ $t("mission.no_clip_speed") }}</label>
+                                        <label for="no-clip-speed" class="form-label">{{ $t("main.no_clip_speed") }}</label>
                                         <input id="no-clip-speed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" v-model="missionStore.noClipSpeed" @change="setNoClip">
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setDisableAI">
                                         <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
-                                        <label for="enable-disable-ai" class="form-check-label">{{ $t("mission.disable_ai") }}</label>
+                                        <label for="enable-disable-ai" class="form-check-label">{{ $t("main.disable_ai") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setUnlimitedPagers">
                                         <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
-                                        <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("mission.unlimited_pagers") }}</label>
+                                        <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("main.unlimited_pagers") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setInstantDrilling">
                                         <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
-                                        <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
+                                        <label for="enable-instant-drilling" class="form-check-label">{{ $t("main.instant_drilling") }}</label>
                                     </div>
                                 </div>
                             </div>
@@ -321,75 +321,75 @@ export default {
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openDoors">{{ $t("mission.open_doors") }}</button>
+                                        <button class="btn btn-primary" @click="openDoors">{{ $t("main.open_doors") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openWindows">{{ $t("mission.open_windows") }}</button>
+                                        <button class="btn btn-primary" @click="openWindows">{{ $t("main.open_windows") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openDepositBoxes">{{ $t("mission.open_deposit_boxes") }}</button>
+                                        <button class="btn btn-primary" @click="openDepositBoxes">{{ $t("main.open_deposit_boxes") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="cutFences">{{ $t("mission.cut_fences") }}</button>
+                                        <button class="btn btn-primary" @click="cutFences">{{ $t("main.cut_fences") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openContainers">{{ $t("mission.open_containers") }}</button>
+                                        <button class="btn btn-primary" @click="openContainers">{{ $t("main.open_containers") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="hackComputers">{{ $t("mission.hack_computers") }}</button>
+                                        <button class="btn btn-primary" @click="hackComputers">{{ $t("main.hack_computers") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="placeDrills">{{ $t("mission.place_drills") }}</button>
+                                        <button class="btn btn-primary" @click="placeDrills">{{ $t("main.place_drills") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="pickUpPackages">{{ $t("mission.pick_up_packages") }}</button>
+                                        <button class="btn btn-primary" @click="pickUpPackages">{{ $t("main.pick_up_packages") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openCrates">{{ $t("mission.open_crates") }}
+                                        <button class="btn btn-primary" @click="openCrates">{{ $t("main.open_crates") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="barricadeWindows">{{ $t("mission.barricade_windows") }}
+                                        <button class="btn btn-primary" @click="barricadeWindows">{{ $t("main.barricade_windows") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openAtms">{{ $t("mission.open_atms") }}
+                                        <button class="btn btn-primary" @click="openAtms">{{ $t("main.open_atms") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="useKeycards">{{ $t("mission.use_keycards") }}
+                                        <button class="btn btn-primary" @click="useKeycards">{{ $t("main.use_keycards") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="d-block btn btn-primary" @click="placeShapedCharges">{{ $t("mission.place_shaped_charges") }}
+                                        <button class="d-block btn btn-primary" @click="placeShapedCharges">{{ $t("main.place_shaped_charges") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
@@ -399,14 +399,14 @@ export default {
                         <div id="slow-motion-tab" class="tab-pane pt-4" tabindex="0">
                             <div class="form-check form-switch mb-3">
                                 <input id="enable-slow-motion" v-model="missionStore.enableSlowMotion" class="form-check-input" type="checkbox" @change="setSlowMotion">
-                                <label for="enable-slow-motion" class="form-check-label">{{ $t("mission.slow_motion") }}</label>
+                                <label for="enable-slow-motion" class="form-check-label">{{ $t("main.slow_motion") }}</label>
                             </div>
                             <div class="mb-3">
-                                <label for="slow-motion-world-speed" class="form-label">{{ $t("mission.world_speed") }} · {{ missionStore.slowMotionWorldSpeed }}</label>
+                                <label for="slow-motion-world-speed" class="form-label">{{ $t("main.world_speed") }} · {{ missionStore.slowMotionWorldSpeed }}</label>
                                 <input id="slow-motion-world-speed" type="range" min="0.1" max="1" step="0.1" class="form-range" v-model="missionStore.slowMotionWorldSpeed" @change="setSlowMotion" :disabled="!missionStore.enableSlowMotion">
                             </div>
                             <div>
-                                <label for="slow-motion-player-speed" class="form-label">{{ $t("mission.player_speed") }} · {{ missionStore.slowMotionPlayerSpeed }}</label>
+                                <label for="slow-motion-player-speed" class="form-label">{{ $t("main.player_speed") }} · {{ missionStore.slowMotionPlayerSpeed }}</label>
                                 <input id="slow-motion-player-speed" type="range" min="0.1" max="1" step="0.1" class="form-range" v-model="missionStore.slowMotionPlayerSpeed" @change="setSlowMotion" :disabled="!missionStore.enableSlowMotion">
                             </div>
                         </div>

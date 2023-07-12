@@ -1,17 +1,14 @@
 import { createI18n } from "vue-i18n";
 
 import enMain from "@/locales/en/main.json";
-import enColors from "@/locales/en/colors.json";
-import enMasks from "@/locales/en/masks.json";
-import enMaterials from "@/locales/en/materials.json";
-import enSteamAchievements from "@/locales/en/steam-achievements.json";
-import enTextures from "@/locales/en/textures.json";
-import enTrophies from "@/locales/en/trophies.json";
-import enWeaponMods from "@/locales/en/weapon-mods.json";
-import enEnvironments from "@/locales/en/environments.json";
-import enCheats from "@/locales/en/cheats.json";
-import enMission from "@/locales/en/mission.json";
 import enDialogs from "@/locales/en/dialogs.json";
+import enColors from "@/locales/en/generated/colors.json";
+import enMasks from "@/locales/en/generated/masks.json";
+import enMaterials from "@/locales/en/generated/materials.json";
+import enSteamAchievements from "@/locales/en/generated/steam-achievements.json";
+import enTextures from "@/locales/en/generated/textures.json";
+import enTrophies from "@/locales/en/generated/trophies.json";
+import enWeaponMods from "@/locales/en/generated/weapon-mods.json";
 
 export default createI18n({
     locale: "en",
@@ -20,17 +17,14 @@ export default createI18n({
     messages: {
         en: {
             main: enMain,
+            dialogs: enDialogs,
             colors: enColors,
             masks: enMasks,
             materials: enMaterials,
             steam_achievements: enSteamAchievements,
             textures: enTextures,
             trophies: enTrophies,
-            weapon_mods: enWeaponMods,
-            environments: enEnvironments,
-            cheats: enCheats,
-            mission: enMission,
-            dialogs: enDialogs
+            weapon_mods: enWeaponMods
         }
     }
 });

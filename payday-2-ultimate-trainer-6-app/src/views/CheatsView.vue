@@ -353,104 +353,104 @@ export default {
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-god-mode" v-model="enableGodMode" class="form-check-input" type="checkbox" @change="setGodMode">
-                            <label for="enable-god-mode" class="form-check-label">{{ $t("cheats.god_mode") }}</label>
+                            <label for="enable-god-mode" class="form-check-label">{{ $t("main.god_mode") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-no-fall-damage" v-model="enableNoFallDamage" class="form-check-input" type="checkbox" @change="setNoFallDamage">
-                            <label for="enable-no-fall-damage" class="form-check-label">{{ $t("cheats.no_fall_damage") }}</label>
+                            <label for="enable-no-fall-damage" class="form-check-label">{{ $t("main.no_fall_damage") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-infinite-stamina" v-model="enableInfiniteStamina" class="form-check-input" type="checkbox" @change="setInfiniteStamina">
-                            <label for="enable-infinite-stamina" class="form-check-label">{{ $t("cheats.infinite_stamina") }}</label>
+                            <label for="enable-infinite-stamina" class="form-check-label">{{ $t("main.infinite_stamina") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-can-run-directional" v-model="enableCanRunDirectional" class="form-check-input" type="checkbox" @change="setCanRunDirectional">
-                            <label for="enable-can-run-directional" class="form-check-label">{{ $t("cheats.can_run_directional") }}</label>
+                            <label for="enable-can-run-directional" class="form-check-label">{{ $t("main.can_run_directional") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-can-run-with-any-bag" v-model="enableCanRunWithAnyBag" class="form-check-input" type="checkbox" @change="setCanRunWithAnyBag">
-                            <label for="enable-can-run-with-any-bag" class="form-check-label">{{ $t("cheats.can_run_with_any_bag") }}</label>
+                            <label for="enable-can-run-with-any-bag" class="form-check-label">{{ $t("main.can_run_with_any_bag") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-instant-mask-on" v-model="enableInstantMaskOn" class="form-check-input" type="checkbox" @change="setInstantMaskOn">
-                            <label for="enable-instant-mask-on" class="form-check-label">{{ $t("cheats.instant_mask_on") }}</label>
+                            <label for="enable-instant-mask-on" class="form-check-label">{{ $t("main.instant_mask_on") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-no-carry-cooldown" v-model="enableNoCarryCooldown" class="form-check-input" type="checkbox" @change="setNoCarryCooldown">
-                            <label for="enable-no-carry-cooldown" class="form-check-label">{{ $t("cheats.no_carry_cooldown") }}</label>
+                            <label for="enable-no-carry-cooldown" class="form-check-label">{{ $t("main.no_carry_cooldown") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-no-flashbangs" v-model="enableNoFlashbangs" class="form-check-input" type="checkbox" @change="setNoFlashbangs">
-                            <label for="enable-no-flashbangs" class="form-check-label">{{ $t("cheats.no_flashbangs") }}</label>
+                            <label for="enable-no-flashbangs" class="form-check-label">{{ $t("main.no_flashbangs") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-instant-interaction" v-model="enableInstantInteraction" class="form-check-input" type="checkbox" @change="setInstantInteraction">
-                            <label for="enable-instant-interaction" class="form-check-label">{{ $t("cheats.instant_interaction") }}</label>
+                            <label for="enable-instant-interaction" class="form-check-label">{{ $t("main.instant_interaction") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-instant-deployment" v-model="enableInstantDeployment" class="form-check-input" type="checkbox" @change="setInstantDeployment">
-                            <label for="enable-instant-deployment" class="form-check-label">{{ $t("cheats.instant_deployment") }}</label>
+                            <label for="enable-instant-deployment" class="form-check-label">{{ $t("main.instant_deployment") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-unlimited-equipment" v-model="enableUnlimitedEquipment" class="form-check-input" type="checkbox" @change="setUnlimitedEquipment">
-                            <label for="enable-unlimited-equipment" class="form-check-label">{{ $t("cheats.unlimited_equipment") }}</label>
+                            <label for="enable-unlimited-equipment" class="form-check-label">{{ $t("main.unlimited_equipment") }}</label>
                             <AntiCheatDetectedIcon class="ms-3" />
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-instant-weapon-swap" v-model="enableInstantWeaponSwap" class="form-check-input" type="checkbox" @change="setInstantWeaponSwap">
-                            <label for="enable-instant-weapon-swap" class="form-check-label">{{ $t("cheats.instant_weapon_swap") }}</label>
+                            <label for="enable-instant-weapon-swap" class="form-check-label">{{ $t("main.instant_weapon_swap") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-instant-weapon-reload" v-model="enableInstantWeaponReload" class="form-check-input" type="checkbox" @change="setInstantWeaponReload">
-                            <label for="enable-instant-weapon-reload" class="form-check-label">{{ $t("cheats.instant_weapon_reload") }}</label>
+                            <label for="enable-instant-weapon-reload" class="form-check-label">{{ $t("main.instant_weapon_reload") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-no-weapon-recoil" v-model="enableNoWeaponRecoil" class="form-check-input" type="checkbox" @change="setNoWeaponRecoil">
-                            <label for="enable-no-weapon-recoil" class="form-check-label">{{ $t("cheats.no_weapon_recoil") }}</label>
+                            <label for="enable-no-weapon-recoil" class="form-check-label">{{ $t("main.no_weapon_recoil") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-no-weapon-spread" v-model="enableNoWeaponSpread" class="form-check-input" type="checkbox" @change="setNoWeaponSpread">
-                            <label for="enable-no-weapon-spread" class="form-check-label">{{ $t("cheats.no_weapon_spread") }}</label>
+                            <label for="enable-no-weapon-spread" class="form-check-label">{{ $t("main.no_weapon_spread") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-shoot-through-walls" v-model="enableShootThroughWalls" class="form-check-input" type="checkbox" @change="setShootThroughWalls">
-                            <label for="enable-shoot-through-walls" class="form-check-label">{{ $t("cheats.shoot_through_walls") }}</label>
+                            <label for="enable-shoot-through-walls" class="form-check-label">{{ $t("main.shoot_through_walls") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-unlimited-ammo" v-model="enableUnlimitedAmmo" class="form-check-input" type="checkbox" @change="setUnlimitedAmmo">
-                            <label for="enable-unlimited-ammo" class="form-check-label">{{ $t("cheats.unlimited_ammo") }}</label>
+                            <label for="enable-unlimited-ammo" class="form-check-label">{{ $t("main.unlimited_ammo") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
@@ -458,7 +458,7 @@ export default {
                             <div class="col-8">
                                 <div class="form-check form-switch">
                                     <input id="enable-move-speed-multiplier" v-model="enableMoveSpeedMultiplier" class="form-check-input" type="checkbox" @change="setMoveSpeedMultiplier">
-                                    <label for="enable-move-speed-multiplier" class="form-check-label">{{ $t("cheats.move_speed_multiplier") }}</label>
+                                    <label for="enable-move-speed-multiplier" class="form-check-label">{{ $t("main.move_speed_multiplier") }}</label>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -471,7 +471,7 @@ export default {
                             <div class="col-8">
                                 <div class="form-check form-switch">
                                     <input id="enable-throw-distance-multiplier" v-model="enableThrowDistanceMultiplier" class="form-check-input" type="checkbox" @change="setThrowDistanceMultiplier">
-                                    <label for="enable-throw-distance-multiplier" class="form-check-label">{{ $t("cheats.throw_distance_multiplier") }}</label>
+                                    <label for="enable-throw-distance-multiplier" class="form-check-label">{{ $t("main.throw_distance_multiplier") }}</label>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -484,7 +484,7 @@ export default {
                             <div class="col-8">
                                 <div class="form-check form-switch">
                                     <input id="enable-fire-rate-multiplier" v-model="enableFireRateMultiplier" class="form-check-input" type="checkbox" @change="setFireRateMultiplier">
-                                    <label for="enable-fire-rate-multiplier" class="form-check-label">{{ $t("cheats.fire_rate_multiplier") }}</label>
+                                    <label for="enable-fire-rate-multiplier" class="form-check-label">{{ $t("main.fire_rate_multiplier") }}</label>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -497,7 +497,7 @@ export default {
                             <div class="col-8">
                                 <div class="form-check form-switch">
                                     <input id="enable-damage-multiplier" v-model="enableDamageMultiplier" class="form-check-input" type="checkbox" @change="setDamageMultiplier">
-                                    <label for="enable-damage-multiplier" class="form-check-label">{{ $t("cheats.damage_multiplier") }}</label>
+                                    <label for="enable-damage-multiplier" class="form-check-label">{{ $t("main.damage_multiplier") }}</label>
                                 </div>
                             </div>
                             <div class="col-4">
