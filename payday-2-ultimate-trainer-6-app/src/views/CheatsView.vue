@@ -88,10 +88,10 @@ export default {
         this.enableThrowDistanceMultiplier = this.settingsStore.getSetting("enable-throw-distance-multiplier");
         this.enableFireRateMultiplier = this.settingsStore.getSetting("enable-fire-rate-multiplier");
         this.enableDamageMultiplier = this.settingsStore.getSetting("enable-damage-multiplier");
-        this.moveSpeedMultiplier = this.settingsStore.getSetting("move-speed-multiplier");
-        this.throwDistanceMultiplier = this.settingsStore.getSetting("throw-distance-multiplier");
-        this.fireRateMultiplier = this.settingsStore.getSetting("fire-rate-multiplier");
-        this.damageMultiplier = this.settingsStore.getSetting("damage-multiplier");
+        this.moveSpeedMultiplier = this.settingsStore.getSetting("move-speed-multiplier") || 2;
+        this.throwDistanceMultiplier = this.settingsStore.getSetting("throw-distance-multiplier") || 2;
+        this.fireRateMultiplier = this.settingsStore.getSetting("fire-rate-multiplier") || 2;
+        this.damageMultiplier = this.settingsStore.getSetting("damage-multiplier") || 2;
     },
     methods: {
         setGodMode(saveSettings = true) {
@@ -462,7 +462,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-4">
-                                <input v-model="moveSpeedMultiplier" type="number" class="form-control form-control-sm" min="1" step="1" @change="setMoveSpeedMultiplier">
+                                <input v-model="moveSpeedMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setMoveSpeedMultiplier">
                             </div>
                         </div>
                     </div>
@@ -475,7 +475,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-4">
-                                <input v-model="throwDistanceMultiplier" type="number" class="form-control form-control-sm" min="1" step="1" @change="setThrowDistanceMultiplier">
+                                <input v-model="throwDistanceMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setThrowDistanceMultiplier">
                             </div>
                         </div>
                     </div>
@@ -488,7 +488,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-4">
-                                <input v-model="fireRateMultiplier" type="number" class="form-control form-control-sm" min="1" step="1" @change="setFireRateMultiplier">
+                                <input v-model="fireRateMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setFireRateMultiplier">
                             </div>
                         </div>
                     </div>
@@ -501,7 +501,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-4">
-                                <input v-model="damageMultiplier" type="number" class="form-control form-control-sm" min="1" step="1" @change="setDamageMultiplier">
+                                <input v-model="damageMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setDamageMultiplier">
                             </div>
                         </div>
                     </div>
