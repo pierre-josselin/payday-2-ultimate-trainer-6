@@ -1,3 +1,6 @@
+import Tooltip from "bootstrap/js/dist/tooltip";
+
+import { nextTick } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 import { webSocketConnected } from "@/web-socket";
@@ -69,6 +72,13 @@ router.beforeEach((to, from, next) => {
     }
 
     next();
-})
+});
+
+router.afterEach(() => {
+    nextTick(() => {
+        const elements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        elements.forEach(element => new Tooltip(element));
+    });
+});
 
 export default router;

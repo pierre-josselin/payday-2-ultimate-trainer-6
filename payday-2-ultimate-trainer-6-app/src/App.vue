@@ -28,4 +28,8 @@ export default {
 * {
     outline: none;
 }
+
+.tooltip-inner {
+    color: white !important;
+}
 </style>

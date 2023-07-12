@@ -1,3 +1,9 @@
+<script>
+export default {}
+</script>
+
 <template>
-    <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation" class="text-warning" />
+    <span data-bs-toggle="tooltip" :data-bs-title="$t('main.anti_cheat_detected')">
+        <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation" class="text-warning" />
+    </span>
 </template>
