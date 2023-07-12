@@ -1010,86 +1010,125 @@ function UT:setInstantDrilling(enabled)
     end
 end
 
-function UT:interactFromTable(table)
-    if not table then
-        return
-    end
+function UT:getOutOfJail()
+    IngameWaitingForRespawnState.request_player_spawn()
+end
 
+function UT:replenishHealth()
     local playerUnit = UT.GameUtility:getPlayerUnit()
-    local units = UT.Utility:deepClone(managers.interaction._interactive_units)
-    for index, unit in pairs(units) do
-        if not UT.GameUtility:isUnitAlive(unit) then
-            goto continue
-        end
+    playerUnit:character_damage():replenish()
+end
 
-        local key = unit:name():key()
-        if UT.Utility:inTable(key, table) then
-            unit:interaction():interact(playerUnit)
+function UT:replenishAmmo()
+    local playerUnit = UT.GameUtility:getPlayerUnit()
+    for id, weapon in pairs(playerUnit:inventory():available_selections()) do
+        if UT.GameUtility:isUnitAlive(weapon.unit) then
+            weapon.unit:base():replenish()
+            managers.hud:set_ammo_amount(id, weapon.unit:base():ammo_info())
         end
-
-        ::continue::
     end
+end
+
+function UT:replenishEquipment()
+    managers.player._equipment.selections = {}
+
+    local params = {
+        slot = 1,
+        equipment = managers.player:equipment_in_slot(1)
+    }
+    managers.player:add_equipment(params)
+
+    if managers.player:has_category_upgrade("player", "second_deployable") then
+        local params = {
+            slot = 2,
+            equipment = managers.player:equipment_in_slot(2)
+        }
+        managers.player:add_equipment(params)
+
+        managers.player:switch_equipment()
+        managers.player:switch_equipment()
+    end
+end
+
+function UT:replenishCableTies()
+    local params = {
+        name = "cable_tie",
+        amount = UT.maxInteger
+    }
+    managers.player:add_special(params)
+end
+
+function UT:replenishThrowables()
+    managers.player:add_grenade_amount(UT.maxInteger, true)
+end
+
+function UT:replenishBodyBags()
+    managers.player:add_body_bags_amount(UT.maxInteger)
+end
+
+function UT:setPlayerState(state)
+    UT.GameUtility:setPlayerState(state)
 end
 
 function UT:openDoors()
-    UT:interactFromTable(UT.interactions["open-doors"])
+    UT.GameUtility:interactFromTable(UT.interactions["open-doors"])
 end
 
 function UT:openWindows()
-    UT:interactFromTable(UT.interactions["open-windows"])
+    UT.GameUtility:interactFromTable(UT.interactions["open-windows"])
 end
 
 function UT:openDepositBoxes()
-    UT:interactFromTable(UT.interactions["open-deposit-boxes"])
+    UT.GameUtility:interactFromTable(UT.interactions["open-deposit-boxes"])
 end
 
 function UT:cutFences()
-    UT:interactFromTable(UT.interactions["cut-fences"])
+    UT.GameUtility:interactFromTable(UT.interactions["cut-fences"])
 end
 
 function UT:openContainers()
-    UT:interactFromTable(UT.interactions["open-containers"])
+    UT.GameUtility:interactFromTable(UT.interactions["open-containers"])
 end
 
 function UT:hackComputers()
-    UT:interactFromTable(UT.interactions["hack-computers"])
+    UT.GameUtility:interactFromTable(UT.interactions["hack-computers"])
 end
 
 function UT:placeDrills()
-    UT:interactFromTable(UT.interactions["place-drills"])
+    UT.GameUtility:interactFromTable(UT.interactions["place-drills"])
 end
 
 function UT:pickUpPackages()
-    UT:interactFromTable(UT.interactions["pick-up-packages"])
+    UT.GameUtility:interactFromTable(UT.interactions["pick-up-packages"])
 end
 
 function UT:openCrates()
     UT:setUnlimitedEquipment(true)
-    UT:interactFromTable(UT.interactions["open-crates"])
+    UT.GameUtility:interactFromTable(UT.interactions["open-crates"])
     UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
 end
 
 function UT:barricadeWindows()
     UT:setUnlimitedEquipment(true)
-    UT:interactFromTable(UT.interactions["barricade-windows"])
+    UT.GameUtility:interactFromTable(UT.interactions["barricade-windows"])
     UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
 end
 
 function UT:openAtms()
     UT:setUnlimitedEquipment(true)
-    UT:interactFromTable(UT.interactions["open-atms"])
+    UT.GameUtility:interactFromTable(UT.interactions["open-atms"])
     UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
 end
 
 function UT:useKeycards()
     UT:setUnlimitedEquipment(true)
-    UT:interactFromTable(UT.interactions["use-keycards"])
+    UT.GameUtility:interactFromTable(UT.interactions["use-keycards"])
     UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
 end
 
 function UT:placeShapedCharges()
     UT:setUnlimitedEquipment(true)
-    UT:interactFromTable(UT.interactions["place-shaped-charges"])
+    UT.GameUtility:interactFromTable(UT.interactions["place-shaped-charges"])
     UT:setUnlimitedEquipment(UT:getSetting("enable-unlimited-equipment"))
 end
 

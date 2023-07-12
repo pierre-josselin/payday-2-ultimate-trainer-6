@@ -121,6 +121,44 @@ export default {
         },
         setSlowMotion() {
             this.callStore.addCall(["UT:setSlowMotion", this.missionStore.enableSlowMotion, parseFloat(this.missionStore.slowMotionWorldSpeed), parseFloat(this.missionStore.slowMotionPlayerSpeed)]);
+        },
+        getOutOfJail() {
+            this.callStore.addCall(["UT:getOutOfJail"]);
+        },
+        replenishHealth() {
+            this.callStore.addCall(["UT:replenishHealth"]);
+        },
+        replenishAmmo() {
+            this.callStore.addCall(["UT:replenishAmmo"]);
+        },
+        replenish() {
+            switch (this.missionStore.replenishType) {
+                case "equipment": {
+                    this.callStore.addCall(["UT:replenishEquipment"]);
+                    break;
+                }
+                case "cable-ties": {
+                    this.callStore.addCall(["UT:replenishCableTies"]);
+                    break;
+                }
+                case "throwables": {
+                    this.callStore.addCall(["UT:replenishThrowables"]);
+                    break;
+                }
+                case "body-bags": {
+                    this.callStore.addCall(["UT:replenishBodyBags"]);
+                    break;
+                }
+            }
+        },
+        setPlayerStateCivilian() {
+            this.callStore.addCall(["UT:setPlayerState", "civilian"]);
+        },
+        setPlayerStateMaskOff() {
+            this.callStore.addCall(["UT:setPlayerState", "mask_off"]);
+        },
+        setPlayerStateStandard() {
+            this.callStore.addCall(["UT:setPlayerState", "standard"]);
         }
     }
 }
@@ -179,63 +217,100 @@ export default {
                 </ul>
                 <fieldset :disabled="!mainStore.isPlaying">
                     <div class="tab-content">
-                        <div id="general-tab" class="tab-pane pt-4 show active" tabindex="0">
-                            <div class="row">
+                        <div id="general-tab" class="tab-pane show active" tabindex="0">
+                            <div class="row mt-4">
                                 <div class="col-4">
-                                    <div class="mb-3">
+                                    <div>
                                         <button class="btn btn-primary w-100" @click="accessCameras">{{ $t("mission.access_cameras") }}</button>
                                     </div>
-                                    <div class="mb-3">
-                                        <button class="btn btn-warning w-100" :disabled="!mainStore.isHost" @click="triggerTheAlarm">{{ $t("mission.trigger_the_alarm") }}</button>
+                                    <div class="mt-3">
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="triggerTheAlarm">{{ $t("mission.trigger_the_alarm") }}</button>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mt-3">
                                         <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="removeInvisibleWalls">{{ $t("mission.remove_invisible_walls") }}</button>
                                     </div>
-                                    <div class="mb-3">
-                                        <button class="btn btn-primary w-100" @click="killAllEnemies">{{ $t("mission.kill_all_enemies") }}</button>
+                                    <div class="mt-3">
+                                        <div class="btn-group w-100">
+                                            <button class="btn btn-secondary" disabled>{{ $t("mission.kill_all") }}</button>
+                                            <button class="btn btn-primary" @click="killAllEnemies">{{ $t("mission.enemies") }}</button>
+                                            <button class="btn btn-primary" @click="killAllCivilians">{{ $t("mission.civilians") }}</button>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <button class="btn btn-primary w-100" @click="killAllCivilians">{{ $t("mission.kill_all_civilians") }}</button>
-                                    </div>
-                                    <div class="mb-3">
+                                    <div class="mt-3">
                                         <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="tieAllCivilians">{{ $t("mission.tie_all_civilians") }}</button>
                                     </div>
-                                    <div>
+                                    <div class="mt-3">
                                         <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="convertAllEnemies">{{ $t("mission.convert_all_enemies") }}</button>
                                     </div>
                                 </div>
-                                <div class="col-8">
-                                    <div class="form-check form-switch mb-3" @change="setXRay">
+                                <div class="col-4">
+                                    <div>
+                                        <button class="btn btn-primary w-100" @click="getOutOfJail">{{ $t("mission.get_out_of_jail") }}</button>
+                                    </div>
+                                    <div class="mt-3">
+                                        <button class="btn btn-primary w-100" @click="replenishHealth">{{ $t("mission.replenish_health") }}</button>
+                                    </div>
+                                    <div class="mt-3">
+                                        <button class="btn btn-primary w-100" @click="replenishAmmo">{{ $t("mission.replenish_ammo") }}</button>
+                                    </div>
+                                    <div class="mt-3">
+                                        <form @submit.prevent="replenish">
+                                            <div class="input-group">
+                                                <select class="form-select" v-model="missionStore.replenishType">
+                                                    <option value="equipment">{{ $t("mission.equipment") }}</option>
+                                                    <option value="cable-ties">{{ $t("mission.cable_ties") }}</option>
+                                                    <option value="throwables">{{ $t("mission.throwables") }}</option>
+                                                    <option value="body-bags">{{ $t("mission.body_bags") }}</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-primary">{{ $t("mission.replenish") }}
+                                                    <AntiCheatDetectedIcon class="ms-3" />
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="mt-3">
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">{{ $t("mission.set_player_state") }}</button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><button class="dropdown-item" @click="setPlayerStateCivilian">{{ $t("mission.civilian") }}</button></li>
+                                                <li><button class="dropdown-item" @click="setPlayerStateMaskOff">{{ $t("mission.mask_off") }}</button></li>
+                                                <li><button class="dropdown-item" @click="setPlayerStateStandard">{{ $t("mission.standard") }}</button></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-check form-switch" @change="setXRay">
                                         <input id="enable-x-ray" v-model="missionStore.enableXRay" class="form-check-input" type="checkbox">
                                         <label for="enable-x-ray" class="form-check-label">{{ $t("mission.x_ray") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mb-3" @change="setPreventAlarmTriggering">
+                                    <div class="form-check form-switch mt-3" @change="setPreventAlarmTriggering">
                                         <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                         <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("mission.prevent_alarm_triggering") }}
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
-                                    <div class="form-check form-switch mb-3" @change="setInvisiblePlayer">
+                                    <div class="form-check form-switch mt-3" @change="setInvisiblePlayer">
                                         <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                         <label for="enable-invisible-player" class="form-check-label">{{ $t("mission.invisible_player") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mb-3" @change="setNoClip">
+                                    <div class="form-check form-switch mt-3" @change="setNoClip">
                                         <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("mission.no_clip") }}</label>
                                     </div>
-                                    <div class="mb-3" v-if="missionStore.enableNoClip">
+                                    <div class="mt-3" v-if="missionStore.enableNoClip">
                                         <label for="no-clip-speed" class="form-label">{{ $t("mission.no_clip_speed") }}</label>
-                                        <input id="no-clip-speed" type="number" min="1" max="100" step="1" class="form-control" v-model="missionStore.noClipSpeed" @change="setNoClip">
+                                        <input id="no-clip-speed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" v-model="missionStore.noClipSpeed" @change="setNoClip">
                                     </div>
-                                    <div class="form-check form-switch mb-3" @change="setDisableAI">
+                                    <div class="form-check form-switch mt-3" @change="setDisableAI">
                                         <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                         <label for="enable-disable-ai" class="form-check-label">{{ $t("mission.disable_ai") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mb-3" @change="setUnlimitedPagers">
+                                    <div class="form-check form-switch mt-3" @change="setUnlimitedPagers">
                                         <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                         <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("mission.unlimited_pagers") }}</label>
                                     </div>
-                                    <div class="form-check form-switch" @change="setInstantDrilling">
+                                    <div class="form-check form-switch mt-3" @change="setInstantDrilling">
                                         <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
                                         <label for="enable-instant-drilling" class="form-check-label">{{ $t("mission.instant_drilling") }}</label>
                                     </div>

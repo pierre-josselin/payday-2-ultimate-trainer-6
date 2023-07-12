@@ -151,3 +151,24 @@ end
 function UT.GameUtility:teleportPlayer(position, rotation)
     managers.player:warp_to(position, rotation)
 end
+
+function UT.GameUtility:interactFromTable(table)
+    if not table then
+        return
+    end
+
+    local playerUnit = UT.GameUtility:getPlayerUnit()
+    local units = UT.Utility:deepClone(managers.interaction._interactive_units)
+    for index, unit in pairs(units) do
+        if not UT.GameUtility:isUnitAlive(unit) then
+            goto continue
+        end
+
+        local key = unit:name():key()
+        if UT.Utility:inTable(key, table) then
+            unit:interaction():interact(playerUnit)
+        end
+
+        ::continue::
+    end
+end
