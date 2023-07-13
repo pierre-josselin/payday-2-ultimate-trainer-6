@@ -79,11 +79,11 @@ export default {
                         <FontAwesomeIcon icon="fa-solid fa-circle-xmark" class="text-danger me-2" />
                         <span>{{ $t("main.connection_failed") }}</span>
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">{{ $t("dialogs.connection_failed") }}</div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
                 </div>
             </div>
         </div>
@@ -94,13 +94,13 @@ export default {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">{{ $t("main.terms_of_use") }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" />
+                    <button class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
                     <VueMarkdown :source="termsOfUse" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
                 </div>
             </div>
         </div>
@@ -111,13 +111,13 @@ export default {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">{{ $t("main.credits") }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" />
+                    <button class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
                     <VueMarkdown :source="credits" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
                 </div>
             </div>
         </div>

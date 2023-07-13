@@ -107,7 +107,7 @@ export default {
                 <button class="btn btn-primary btn-sm me-3" data-bs-toggle="modal" data-bs-target="#help-modal">
                     <FontAwesomeIcon icon="fa-solid fa-question" />
                 </button>
-                <a class="btn btn-primary btn-sm me-3" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" target="_blank">
+                <a class="btn btn-primary btn-sm me-3" :href="REPOSITORY_URL" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
                 </a>
                 <RouterLink :to="{ name: 'settings' }" class="btn btn-primary btn-sm me-3" :class="{ active: $route.name === 'settings' }">
