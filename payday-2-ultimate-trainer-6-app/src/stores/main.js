@@ -8,7 +8,7 @@ export const useMainStore = defineStore("main", {
         lastCallAcknowledgmentTime: null
     }),
     getters: {
-        isOffline: (state) => state.gameState === "offline",
+        isOffline: (state) => !state.gameState || state.gameState === "offline",
         isInBootup: (state) => state.gameState === "bootup",
         isInMainMenu: (state) => typeof state.gameState === "string" && state.gameState.startsWith("menu_"),
         isInGame: (state) => typeof state.gameState === "string" && state.gameState.startsWith("ingame_"),
