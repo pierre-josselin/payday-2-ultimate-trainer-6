@@ -89,6 +89,10 @@ export function createWebSocket(options) {
                 settingsStore.setSettings(message.data);
                 break;
             }
+            case "call-acknowledge": {
+                mainStore.lastCallAcknowledgmentTime = message.data;
+                break;
+            }
         }
     });
 }

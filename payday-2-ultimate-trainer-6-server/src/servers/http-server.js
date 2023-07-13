@@ -14,6 +14,13 @@ class HttpServer {
                 response.setHeader("Content-Type", "application/json");
                 response.writeHead(200);
                 response.end(body);
+
+                if (calls.length) {
+                    this.messageManager.sendMessage({
+                        type: "call-acknowledge",
+                        data: Date.now()
+                    });
+                }
             }
         },
         "/settings": {

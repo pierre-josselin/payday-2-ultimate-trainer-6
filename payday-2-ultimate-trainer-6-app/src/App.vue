@@ -3,7 +3,12 @@ import "bootstrap";
 
 import { useSettingsStore } from "@/stores/settings";
 
+import SentToast from "@/components/SentToast.vue";
+
 export default {
+    components: {
+        SentToast
+    },
     computed: {
         theme() {
             return this.settingsStore.getSetting("theme") || "darkly";
@@ -22,6 +27,7 @@ export default {
 
 <template>
     <RouterView />
+    <SentToast />
 </template>
 
 <style>

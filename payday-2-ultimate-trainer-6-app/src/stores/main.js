@@ -4,7 +4,8 @@ export const useMainStore = defineStore("main", {
     state: () => ({
         gameState: null,
         isHost: null,
-        vehiclesPackagesLoaded: null
+        vehiclesPackagesLoaded: null,
+        lastCallAcknowledgmentTime: null
     }),
     getters: {
         isOffline: (state) => state.gameState === "offline",
