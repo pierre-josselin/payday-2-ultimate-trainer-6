@@ -43,8 +43,8 @@ function UT:init()
         if typeId == UT.GameUtility:idString("menu") and (pathId == UT.GameUtility:idString("gamedata/menus/start_menu") or pathId == UT.GameUtility:idString("gamedata/menus/pause_menu")) then
             table.insert(data[1][2], 1, {
                 name = "ut_open_app",
-                text_id = "ut_menu_open_app",
-                help_id = "ut_menu_open_app_help",
+                text_id = "ut_menu_open_app_name",
+                help_id = "ut_menu_open_app_description",
                 callback = "ut_open_app",
                 font = "fonts/font_medium_shadow_mf",
                 _meta = "item"

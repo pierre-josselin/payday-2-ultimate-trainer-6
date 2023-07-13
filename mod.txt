@@ -50,19 +50,21 @@
     "keybinds": [
         {
             "keybind_id": "ut_keybinds_teleport_player_to_crosshair",
-            "name": "Teleport player to crosshair",
+            "name": "ut_keybinds_teleport_player_to_crosshair_name",
+            "description": "ut_keybinds_teleport_player_to_crosshair_description",
             "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/teleport-player-to-crosshair.lua",
             "run_in_menu": false,
             "run_in_game": true,
-            "localized": false
+            "localized": true
         },
         {
             "keybind_id": "ut_keybinds_spawn",
-            "name": "Spawn",
+            "name": "ut_keybinds_spawn_name",
+            "description": "ut_keybinds_spawn_description",
             "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/spawn.lua",
             "run_in_menu": false,
             "run_in_game": true,
-            "localized": false
+            "localized": true
         },
         {
             "keybind_id": "ut_keybinds_test",
