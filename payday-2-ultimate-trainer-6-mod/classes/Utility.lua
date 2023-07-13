@@ -33,14 +33,6 @@ function UT.Utility:tableJoin(_table, separator, startIndex, endIndex)
     return table.concat(_table, separator, startIndex, endIndex)
 end
 
-function UT.Utility:tableValuesToString(table)
-    local newTable = {}
-    for key, value in pairs(table) do
-        newTable[key] = UT.Utility:toString(value)
-    end
-    return newTable
-end
-
 function UT.Utility:jsonEncode(value)
     return json.encode(value)
 end
