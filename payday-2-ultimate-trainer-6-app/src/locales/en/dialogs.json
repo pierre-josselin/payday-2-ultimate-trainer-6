@@ -1,5 +1,6 @@
 {
     "anti_cheat_detected_icon_description": "This feature is detected by the game's anti cheat. Other players may see you with the CHEATER tag and you may be automatically kicked from lobbies if you are not the host. Everything will be back to normal when you disable all these features.",
     "bug_icon_description": "This feature contains bugs and may not work properly, block objectives or crash the game.",
-    "restart_required_icon": "This feature requires restarting the game or the heist to apply changes."
+    "connection_failed": "The connection to the server failed. Check the host and port and make sure the game is running.",
+    "restart_required_icon_description": "This feature requires restarting the game or the heist to apply changes."
 }

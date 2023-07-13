@@ -72,7 +72,7 @@ export default {
                                     <RestartRequiredIcon />
                                 </td>
                                 <td class="bg-transparent text-nowrap">{{ $t("main.restart_required") }}</td>
-                                <td class="bg-transparent">{{ $t("dialogs.restart_required_icon") }}</td>
+                                <td class="bg-transparent">{{ $t("dialogs.restart_required_icon_description") }}</td>
                             </tr>
                         </tbody>
                     </table>

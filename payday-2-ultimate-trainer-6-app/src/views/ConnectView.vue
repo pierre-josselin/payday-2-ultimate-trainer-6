@@ -1,5 +1,5 @@
 <script>
-import Toast from "bootstrap/js/dist/toast";
+import Modal from "bootstrap/js/dist/modal";
 import VueMarkdown from "vue-markdown-render";
 
 import { createWebSocket } from "@/web-socket";
@@ -14,7 +14,7 @@ export default {
     data() {
         return {
             connecting: false,
-            connectionFailedToastInstance: null,
+            connectionFailedModalInstance: null,
             host: "127.0.0.1",
             port: 1138,
             termsOfUse: "",
@@ -34,8 +34,8 @@ export default {
         document.body.style.height = "100%";
         document.getElementById("app").style.height = "100%";
 
-        const connectionFailedToastElement = document.getElementById("connection-failed-toast");
-        this.connectionFailedToastInstance = Toast.getOrCreateInstance(connectionFailedToastElement);
+        const connectionFailedModalElement = document.getElementById("connection-failed-modal");
+        this.connectionFailedModalInstance = new Modal(connectionFailedModalElement)
     },
     beforeUnmount() {
         document.documentElement.style.height = null;
@@ -51,8 +51,8 @@ export default {
                 port: this.port,
                 router: this.$router,
                 connectionErrorCallback: () => {
-                    this.connectionFailedToastInstance.show();
                     this.connecting = false;
+                    this.connectionFailedModalInstance.show();
                 }
             });
         },
@@ -71,11 +71,20 @@ export default {
 </script>
 
 <template>
-    <div class="toast-container position-fixed bottom-0 start-0 p-3">
-        <div id="connection-failed-toast" class="toast bg-danger">
-            <div class="toast-body">
-                <FontAwesomeIcon icon="fa-solid fa-circle-xmark" />
-                <span class="ms-2">{{ $t("main.connection_failed") }}</span>
+    <div id="connection-failed-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <FontAwesomeIcon icon="fa-solid fa-circle-xmark" class="text-danger me-2" />
+                        <span>{{ $t("main.connection_failed") }}</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">{{ $t("dialogs.connection_failed") }}</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -146,9 +155,3 @@ export default {
         </div>
     </div>
 </template>
-
-<style scoped>
-.toast {
-    --bs-toast-max-width: unset;
-}
-</style>
