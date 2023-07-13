@@ -1,1 +1,1 @@
-UT:loadPackages()
+UT.Hook:gameSetup()
