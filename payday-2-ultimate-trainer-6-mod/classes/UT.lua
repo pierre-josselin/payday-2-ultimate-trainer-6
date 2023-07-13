@@ -1168,7 +1168,7 @@ end
 
 -- Driving
 
-function UT:spawnAndEnterVehicle(id)
+function UT:spawnAndDriveVehicle(id)
     if UT.GameUtility:isDriving() then
         UT.GameUtility:setPlayerState("standard")
     end
@@ -1203,7 +1203,10 @@ function UT:spawnAndEnterVehicle(id)
         return
     end
 
-    managers.player:enter_vehicle(vehicleUnit, UT.GameUtility:getPlayerUnit())
+    local localPeerId = UT.GameUtility:getLocalPeerId()
+    local playerUnit = UT.GameUtility:getPlayerUnit()
+
+    managers.player:server_enter_vehicle(vehicleUnit, localPeerId, playerUnit, "driver")
 
     UT.Utility:tableInsert(UT.spawnedVehicleUnits, vehicleUnit)
 end

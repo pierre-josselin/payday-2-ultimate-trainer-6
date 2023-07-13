@@ -61,8 +61,8 @@ export default {
             this.settingsStore.setSetting("enable-vehicles-packages-loading", this.enableVehiclesPackagesLoading);
             this.settingsStore.saveSettings();
         },
-        spawnAndEnterVehicle(id) {
-            this.callStore.addCall(["UT:spawnAndEnterVehicle", id]);
+        spawnAndDriveVehicle(id) {
+            this.callStore.addCall(["UT:spawnAndDriveVehicle", id]);
         },
         removeSpawnedVehicles() {
             this.callStore.addCall(["UT:removeSpawnedVehicles"]);
@@ -96,7 +96,7 @@ export default {
                         <div v-for="(vehicle, index) in vehicles" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
                             <img :src="vehicle.imagePath" class="d-block w-100">
                             <div class="carousel-caption mb-3">
-                                <button class="btn btn-dark" @click="spawnAndEnterVehicle(vehicle.id)" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">
+                                <button class="btn btn-dark" @click="spawnAndDriveVehicle(vehicle.id)" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">
                                     <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
                                 </button>
                             </div>
