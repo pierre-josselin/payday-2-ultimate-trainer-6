@@ -3,7 +3,8 @@ import VueMarkdown from 'vue-markdown-render'
 
 import { createWebSocket } from "@/web-socket";
 
-import enTermsOfUse from "@/assets/terms-of-use/en.txt";
+import enTermsOfUsePath from "@/assets/terms-of-use/en.txt";
+import creditsPath from "@/assets/credits.txt";
 
 export default {
     components: {
@@ -15,14 +16,16 @@ export default {
             host: "127.0.0.1",
             port: 1138,
             termsOfUse: "",
-            termsOfUseURL: {
-                en: enTermsOfUse
-            }
+            termsOfUsePaths: {
+                en: enTermsOfUsePath
+            },
+            credits: ""
         };
     },
     created() {
         this.host = window.location.hostname;
         this.fetchTermsOfUse();
+        this.fetchCredits();
     },
     mounted() {
         document.documentElement.style.height = "100%";
@@ -49,10 +52,14 @@ export default {
             });
         },
         async fetchTermsOfUse() {
-            const url = this.termsOfUseURL[this.$i18n.locale];
+            const url = this.termsOfUsePaths[this.$i18n.locale];
             if (!url) return;
             const response = await fetch(url);
             this.termsOfUse = await response.text();
+        },
+        async fetchCredits() {
+            const response = await fetch(creditsPath);
+            this.credits = await response.text();
         }
     }
 }
@@ -75,10 +82,29 @@ export default {
             </div>
         </div>
     </div>
+    <div id="credits-modal" class="modal fade" tabindex="-1">
+        <div style="max-width: 600px;" class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">{{ $t("main.credits") }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <VueMarkdown :source="credits" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="d-flex align-items-center justify-content-center h-100">
         <div style="min-width: 450px;" class="card">
-            <div class="card-header">PAYDAY 2 - Ultimate Trainer 6</div>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>PAYDAY 2 - Ultimate Trainer 6</span>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#credits-modal">{{ $t("main.credits") }}</a>
+            </div>
             <div class="card-body">
                 <h5 class="card-title">{{ $t("main.server_connection") }}</h5>
                 <form @submit.prevent="connect">
