@@ -75,7 +75,7 @@ export default {
         <div class="card">
             <div class="card-header">{{ $t("main.settings") }}</div>
             <div class="card-body p-4">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#application-settings-tab">{{ $t("main.application") }}</button>
                     </li>
@@ -100,7 +100,7 @@ export default {
                     </div>
                     <div id="game-settings-tab" class="tab-pane" tabindex="0">
                         <div class="form-check form-switch">
-                            <input id="enable-pause-stats-publishing" class="form-check-input" type="checkbox" v-model="enablePauseStatsPublishing" @change="setPauseStatsPublishing">
+                            <input id="enable-pause-stats-publishing" v-model="enablePauseStatsPublishing" class="form-check-input" type="checkbox" @change="setPauseStatsPublishing">
                             <label for="enable-pause-stats-publishing" class="form-check-label">{{ $t("main.pause_stats_publishing_to_steam_epic") }}
                                 <RestartRequiredIcon class="ms-3" />
                             </label>

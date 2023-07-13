@@ -399,7 +399,7 @@ export default {
                             </div>
                             <div class="row align-items-end">
                                 <label for="skill-points" class="form-label">{{ $t("main.skill_points") }}</label>
-                                <input id="skill-points" v-model="skillPoints" type="number" min="0" max="690" step="1" class="form-control" @change="setSkillPointHack" :disabled="!enableSkillPointHack">
+                                <input id="skill-points" v-model="skillPoints" type="number" min="0" max="690" step="1" class="form-control" :disabled="!enableSkillPointHack" @change="setSkillPointHack">
                             </div>
                         </div>
                         <div id="perk-points-tab" class="tab-pane" tabindex="0">
@@ -521,7 +521,8 @@ export default {
                                         </table>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-danger me-3">{{ $t("main.unlock") }}
+                                <button type="submit" class="btn btn-danger me-3">
+{{ $t("main.unlock") }}
                                     <BugIcon class="ms-3" />
                                 </button>
                                 <button type="button" class="btn btn-danger" @click="lockSteamAchievements">{{ $t("main.lock") }}</button>

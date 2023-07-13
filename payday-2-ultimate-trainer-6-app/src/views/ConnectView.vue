@@ -71,7 +71,7 @@ export default {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">{{ $t("main.terms_of_use") }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
                     <VueMarkdown :source="termsOfUse" />
@@ -87,7 +87,7 @@ export default {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">{{ $t("main.credits") }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
                     <VueMarkdown :source="credits" />

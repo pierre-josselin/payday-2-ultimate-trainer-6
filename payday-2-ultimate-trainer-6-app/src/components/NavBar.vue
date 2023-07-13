@@ -41,7 +41,7 @@ export default {
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">{{ $t("main.help") }}</h1>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <button class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered mb-0">

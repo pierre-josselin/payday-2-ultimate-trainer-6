@@ -282,8 +282,9 @@ export default {
                 <div class="mb-3">
                     <nav>
                         <div class="nav nav-tabs">
-                            <button v-for="category in categories" :key="category.id" class="nav-link" data-bs-toggle="tab" :class="{ active: category.id === spawnStore.categoryId }" :data-bs-target="`#${category.elementId}`" @click="setCategoryId(category.id)">{{ $t(category.label) }}
-                                <AntiCheatDetectedIcon class="ms-3" v-if="category.id === 'equipment'" />
+                            <button v-for="category in categories" :key="category.id" class="nav-link" data-bs-toggle="tab" :class="{ active: category.id === spawnStore.categoryId }" :data-bs-target="`#${category.elementId}`" @click="setCategoryId(category.id)">
+{{ $t(category.label) }}
+                                <AntiCheatDetectedIcon v-if="category.id === 'equipment'" class="ms-3" />
                             </button>
                         </div>
                     </nav>

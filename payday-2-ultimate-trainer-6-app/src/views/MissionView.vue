@@ -256,13 +256,14 @@ export default {
                                     <div class="mt-3">
                                         <form @submit.prevent="replenish">
                                             <div class="input-group">
-                                                <select class="form-select" v-model="missionStore.replenishType">
+                                                <select v-model="missionStore.replenishType" class="form-select">
                                                     <option value="equipment">{{ $t("main.equipment") }}</option>
                                                     <option value="cable-ties">{{ $t("main.cable_ties") }}</option>
                                                     <option value="throwables">{{ $t("main.throwables") }}</option>
                                                     <option value="body-bags">{{ $t("main.body_bags") }}</option>
                                                 </select>
-                                                <button type="submit" class="btn btn-primary">{{ $t("main.replenish") }}
+                                                <button type="submit" class="btn btn-primary">
+{{ $t("main.replenish") }}
                                                     <AntiCheatDetectedIcon class="ms-3" />
                                                 </button>
                                             </div>
@@ -298,9 +299,9 @@ export default {
                                         <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
-                                    <div class="mt-3" v-if="missionStore.enableNoClip">
+                                    <div v-if="missionStore.enableNoClip" class="mt-3">
                                         <label for="no-clip-speed" class="form-label">{{ $t("main.no_clip_speed") }}</label>
-                                        <input id="no-clip-speed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" v-model="missionStore.noClipSpeed" @change="setNoClip">
+                                        <input id="no-clip-speed" v-model="missionStore.noClipSpeed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" @change="setNoClip">
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setDisableAI">
                                         <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
@@ -361,35 +362,40 @@ export default {
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openCrates">{{ $t("main.open_crates") }}
+                                        <button class="btn btn-primary" @click="openCrates">
+{{ $t("main.open_crates") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="barricadeWindows">{{ $t("main.barricade_windows") }}
+                                        <button class="btn btn-primary" @click="barricadeWindows">
+{{ $t("main.barricade_windows") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openAtms">{{ $t("main.open_atms") }}
+                                        <button class="btn btn-primary" @click="openAtms">
+{{ $t("main.open_atms") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="useKeycards">{{ $t("main.use_keycards") }}
+                                        <button class="btn btn-primary" @click="useKeycards">
+{{ $t("main.use_keycards") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="d-block btn btn-primary" @click="placeShapedCharges">{{ $t("main.place_shaped_charges") }}
+                                        <button class="d-block btn btn-primary" @click="placeShapedCharges">
+{{ $t("main.place_shaped_charges") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
@@ -403,11 +409,11 @@ export default {
                             </div>
                             <div class="mb-3">
                                 <label for="slow-motion-world-speed" class="form-label">{{ $t("main.world_speed") }} · {{ missionStore.slowMotionWorldSpeed }}</label>
-                                <input id="slow-motion-world-speed" type="range" min="0.1" max="1" step="0.1" class="form-range" v-model="missionStore.slowMotionWorldSpeed" @change="setSlowMotion" :disabled="!missionStore.enableSlowMotion">
+                                <input id="slow-motion-world-speed" v-model="missionStore.slowMotionWorldSpeed" type="range" min="0.1" max="1" step="0.1" class="form-range" :disabled="!missionStore.enableSlowMotion" @change="setSlowMotion">
                             </div>
                             <div>
                                 <label for="slow-motion-player-speed" class="form-label">{{ $t("main.player_speed") }} · {{ missionStore.slowMotionPlayerSpeed }}</label>
-                                <input id="slow-motion-player-speed" type="range" min="0.1" max="1" step="0.1" class="form-range" v-model="missionStore.slowMotionPlayerSpeed" @change="setSlowMotion" :disabled="!missionStore.enableSlowMotion">
+                                <input id="slow-motion-player-speed" v-model="missionStore.slowMotionPlayerSpeed" type="range" min="0.1" max="1" step="0.1" class="form-range" :disabled="!missionStore.enableSlowMotion" @change="setSlowMotion">
                             </div>
                         </div>
                     </div>

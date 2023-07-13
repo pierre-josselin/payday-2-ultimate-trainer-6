@@ -90,13 +90,13 @@ export default {
                 </div>
                 <div id="carousel" class="carousel slide">
                     <div class="carousel-indicators">
-                        <button v-for="(vehicle, index) in vehicles" :key="index" data-bs-target="#carousel" :data-bs-slide-to="index" :class="{ 'active': index === 0 }"></button>
+                        <button v-for="(vehicle, index) in vehicles" :key="index" data-bs-target="#carousel" :data-bs-slide-to="index" :class="{ 'active': index === 0 }" />
                     </div>
                     <div class="carousel-inner">
                         <div v-for="(vehicle, index) in vehicles" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
                             <img :src="vehicle.imagePath" class="d-block w-100">
                             <div class="carousel-caption mb-3">
-                                <button class="btn btn-dark" @click="spawnAndDriveVehicle(vehicle.id)" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">
+                                <button class="btn btn-dark" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying" @click="spawnAndDriveVehicle(vehicle.id)">
                                     <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
                                 </button>
                             </div>
@@ -109,7 +109,7 @@ export default {
                         <span class="carousel-control-next-icon" aria-hidden="true" />
                     </button>
                 </div>
-                <button class="btn btn-primary mt-3" @click="removeSpawnedVehicles" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying">{{ $t("main.delete_all_spawned_vehicles") }}</button>
+                <button class="btn btn-primary mt-3" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying" @click="removeSpawnedVehicles">{{ $t("main.delete_all_spawned_vehicles") }}</button>
             </div>
         </div>
     </div>
