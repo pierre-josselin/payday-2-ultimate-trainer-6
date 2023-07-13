@@ -1,5 +1,6 @@
 <script>
-import VueMarkdown from 'vue-markdown-render'
+import Toast from "bootstrap/js/dist/toast";
+import VueMarkdown from "vue-markdown-render";
 
 import { createWebSocket } from "@/web-socket";
 
@@ -13,6 +14,7 @@ export default {
     data() {
         return {
             connecting: false,
+            connectionFailedToastInstance: null,
             host: "127.0.0.1",
             port: 1138,
             termsOfUse: "",
@@ -31,6 +33,9 @@ export default {
         document.documentElement.style.height = "100%";
         document.body.style.height = "100%";
         document.getElementById("app").style.height = "100%";
+
+        const connectionFailedToastElement = document.getElementById("connection-failed-toast");
+        this.connectionFailedToastInstance = Toast.getOrCreateInstance(connectionFailedToastElement);
     },
     beforeUnmount() {
         document.documentElement.style.height = null;
@@ -46,8 +51,8 @@ export default {
                 port: this.port,
                 router: this.$router,
                 connectionErrorCallback: () => {
+                    this.connectionFailedToastInstance.show();
                     this.connecting = false;
-                    alert(this.$t("main.connection_failed"));
                 }
             });
         },
@@ -66,6 +71,15 @@ export default {
 </script>
 
 <template>
+    <div class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div id="connection-failed-toast" class="toast bg-danger">
+            <div class="toast-body">
+                <FontAwesomeIcon icon="fa-solid fa-circle-xmark" />
+                <span class="ms-2">{{ $t("main.connection_failed") }}</span>
+            </div>
+        </div>
+    </div>
+
     <div id="terms-of-use-modal" class="modal fade" tabindex="-1">
         <div style="max-width: 600px;" class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
@@ -82,6 +96,7 @@ export default {
             </div>
         </div>
     </div>
+
     <div id="credits-modal" class="modal fade" tabindex="-1">
         <div style="max-width: 600px;" class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
@@ -131,3 +146,9 @@ export default {
         </div>
     </div>
 </template>
+
+<style scoped>
+.toast {
+    --bs-toast-max-width: unset;
+}
+</style>
