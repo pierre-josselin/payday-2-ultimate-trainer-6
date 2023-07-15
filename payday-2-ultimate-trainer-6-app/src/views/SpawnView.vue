@@ -5,45 +5,45 @@ import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue"
 import { useCallStore } from "@/stores/calls";
 import { useSpawnStore } from "@/stores/spawn";
 
-import cop1EnemyImagePath from "@/assets/enemies/cop-1.jpg";
-import cop2EnemyImagePath from "@/assets/enemies/cop-2.jpg";
-import cop3EnemyImagePath from "@/assets/enemies/cop-3.jpg";
-import cop4EnemyImagePath from "@/assets/enemies/cop-4.jpg";
-import fbi1EnemyImagePath from "@/assets/enemies/fbi-1.jpg";
-import fbi2EnemyImagePath from "@/assets/enemies/fbi-2.jpg";
-import fbi3EnemyImagePath from "@/assets/enemies/fbi-3.jpg";
-import fbiHeavyEnemyImagePath from "@/assets/enemies/fbi-heavy.jpg";
-import fbiSwat1EnemyImagePath from "@/assets/enemies/fbi-swat-1.jpg";
-import fbiSwat2EnemyImagePath from "@/assets/enemies/fbi-swat-2.jpg";
-import swatHeavyEnemyImagePath from "@/assets/enemies/swat-heavy.jpg";
-import shield1EnemyImagePath from "@/assets/enemies/shield-1.jpg";
-import shield2EnemyImagePath from "@/assets/enemies/shield-2.jpg";
-import tazerEnemyImagePath from "@/assets/enemies/tazer.jpg";
-import sniper1EnemyImagePath from "@/assets/enemies/sniper-1.jpg";
-import sniper2EnemyImagePath from "@/assets/enemies/sniper-2.jpg";
-import cloackerEnemyImagePath from "@/assets/enemies/cloacker.jpg";
-import medicEnemyImagePath from "@/assets/enemies/medic.jpg";
-import bulldozer1EnemyImagePath from "@/assets/enemies/bulldozer-1.jpg";
-import bulldozer2EnemyImagePath from "@/assets/enemies/bulldozer-2.jpg";
-import bulldozer3EnemyImagePath from "@/assets/enemies/bulldozer-3.jpg";
-import bulldozerMedicEnemyImagePath from "@/assets/enemies/bulldozer-medic.jpg";
-import bulldozerMinigunEnemyImagePath from "@/assets/enemies/bulldozer-minigun.jpg";
+import cop1EnemyImagePath from "@/assets/images/enemies/cop-1.jpg";
+import cop2EnemyImagePath from "@/assets/images/enemies/cop-2.jpg";
+import cop3EnemyImagePath from "@/assets/images/enemies/cop-3.jpg";
+import cop4EnemyImagePath from "@/assets/images/enemies/cop-4.jpg";
+import fbi1EnemyImagePath from "@/assets/images/enemies/fbi-1.jpg";
+import fbi2EnemyImagePath from "@/assets/images/enemies/fbi-2.jpg";
+import fbi3EnemyImagePath from "@/assets/images/enemies/fbi-3.jpg";
+import fbiHeavyEnemyImagePath from "@/assets/images/enemies/fbi-heavy.jpg";
+import fbiSwat1EnemyImagePath from "@/assets/images/enemies/fbi-swat-1.jpg";
+import fbiSwat2EnemyImagePath from "@/assets/images/enemies/fbi-swat-2.jpg";
+import swatHeavyEnemyImagePath from "@/assets/images/enemies/swat-heavy.jpg";
+import shield1EnemyImagePath from "@/assets/images/enemies/shield-1.jpg";
+import shield2EnemyImagePath from "@/assets/images/enemies/shield-2.jpg";
+import tazerEnemyImagePath from "@/assets/images/enemies/tazer.jpg";
+import sniper1EnemyImagePath from "@/assets/images/enemies/sniper-1.jpg";
+import sniper2EnemyImagePath from "@/assets/images/enemies/sniper-2.jpg";
+import cloackerEnemyImagePath from "@/assets/images/enemies/cloacker.jpg";
+import medicEnemyImagePath from "@/assets/images/enemies/medic.jpg";
+import bulldozer1EnemyImagePath from "@/assets/images/enemies/bulldozer-1.jpg";
+import bulldozer2EnemyImagePath from "@/assets/images/enemies/bulldozer-2.jpg";
+import bulldozer3EnemyImagePath from "@/assets/images/enemies/bulldozer-3.jpg";
+import bulldozerMedicEnemyImagePath from "@/assets/images/enemies/bulldozer-medic.jpg";
+import bulldozerMinigunEnemyImagePath from "@/assets/images/enemies/bulldozer-minigun.jpg";
 
-import greenMantisGagePackageImagePath from "@/assets/gage-packages/green-mantis.jpg";
-import yellowBullGagePackageImagePath from "@/assets/gage-packages/yellow-bull.jpg";
-import redSpiderGagePackageImagePath from "@/assets/gage-packages/red-spider.jpg";
-import blueEagleGagePackageImagePath from "@/assets/gage-packages/blue-eagle.jpg";
-import purpleSnakeGagePackageImagePath from "@/assets/gage-packages/purple-snake.jpg";
+import greenMantisGagePackageImagePath from "@/assets/images/gage-packages/green-mantis.jpg";
+import yellowBullGagePackageImagePath from "@/assets/images/gage-packages/yellow-bull.jpg";
+import redSpiderGagePackageImagePath from "@/assets/images/gage-packages/red-spider.jpg";
+import blueEagleGagePackageImagePath from "@/assets/images/gage-packages/blue-eagle.jpg";
+import purpleSnakeGagePackageImagePath from "@/assets/images/gage-packages/purple-snake.jpg";
 
-import ammoBagEquipmentImagePath from "@/assets/equipment/ammo-bag.png";
-import doctorBagEnemyImagePath from "@/assets/equipment/doctor-bag.png";
-import firstAidKitEnemyImagePath from "@/assets/equipment/first-aid-kit.png";
-import ordnanceBagEnemyImagePath from "@/assets/equipment/ordnance-bag.png";
-import bodyBagCaseEnemyImagePath from "@/assets/equipment/body-bag-case.png";
-import ecmJammerEnemyImagePath from "@/assets/equipment/ecm-jammer.png";
-import tripMineEnemyImagePath from "@/assets/equipment/trip-mine.png";
-import sentryGunEnemyImagePath from "@/assets/equipment/sentry-gun.png";
-import suppressedSentryGunEnemyImagePath from "@/assets/equipment/suppressed-sentry-gun.png";
+import ammoBagEquipmentImagePath from "@/assets/images/equipment/ammo-bag.png";
+import doctorBagEnemyImagePath from "@/assets/images/equipment/doctor-bag.png";
+import firstAidKitEnemyImagePath from "@/assets/images/equipment/first-aid-kit.png";
+import ordnanceBagEnemyImagePath from "@/assets/images/equipment/ordnance-bag.png";
+import bodyBagCaseEnemyImagePath from "@/assets/images/equipment/body-bag-case.png";
+import ecmJammerEnemyImagePath from "@/assets/images/equipment/ecm-jammer.png";
+import tripMineEnemyImagePath from "@/assets/images/equipment/trip-mine.png";
+import sentryGunEnemyImagePath from "@/assets/images/equipment/sentry-gun.png";
+import suppressedSentryGunEnemyImagePath from "@/assets/images/equipment/suppressed-sentry-gun.png";
 
 export default {
     components: {
@@ -283,7 +283,7 @@ export default {
                     <nav>
                         <div class="nav nav-tabs">
                             <button v-for="category in categories" :key="category.id" class="nav-link" data-bs-toggle="tab" :class="{ active: category.id === spawnStore.categoryId }" :data-bs-target="`#${category.elementId}`" @click="setCategoryId(category.id)">
-{{ $t(category.label) }}
+                                {{ $t(category.label) }}
                                 <AntiCheatDetectedIcon v-if="category.id === 'equipment'" class="ms-3" />
                             </button>
                         </div>

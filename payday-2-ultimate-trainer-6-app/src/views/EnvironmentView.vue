@@ -4,16 +4,16 @@ import { useCallStore } from "@/stores/calls";
 
 import NavBar from "@/components/NavBar.vue";
 
-import defaultEnvironmentImagePath from "@/assets/environments/default.jpg";
-import earlyMorningEnvironmentImagePath from "@/assets/environments/early-morning.jpg";
-import morningEnvironmentImagePath from "@/assets/environments/morning.jpg";
-import midDayEnvironmentImagePath from "@/assets/environments/mid-day.jpg";
-import afternoonEnvironmentImagePath from "@/assets/environments/afternoon.jpg";
-import brightDayEnvironmentImagePath from "@/assets/environments/bright-day.jpg";
-import cloudyDayEnvironmentImagePath from "@/assets/environments/cloudy-day.jpg";
-import nightEnvironmentImagePath from "@/assets/environments/night.jpg";
-import mistyNightEnvironmentImagePath from "@/assets/environments/misty-night.jpg";
-import foggyNightEnvironmentImagePath from "@/assets/environments/foggy-night.jpg";
+import defaultEnvironmentImagePath from "@/assets/images/environments/default.jpg";
+import earlyMorningEnvironmentImagePath from "@/assets/images/environments/early-morning.jpg";
+import morningEnvironmentImagePath from "@/assets/images/environments/morning.jpg";
+import midDayEnvironmentImagePath from "@/assets/images/environments/mid-day.jpg";
+import afternoonEnvironmentImagePath from "@/assets/images/environments/afternoon.jpg";
+import brightDayEnvironmentImagePath from "@/assets/images/environments/bright-day.jpg";
+import cloudyDayEnvironmentImagePath from "@/assets/images/environments/cloudy-day.jpg";
+import nightEnvironmentImagePath from "@/assets/images/environments/night.jpg";
+import mistyNightEnvironmentImagePath from "@/assets/images/environments/misty-night.jpg";
+import foggyNightEnvironmentImagePath from "@/assets/images/environments/foggy-night.jpg";
 
 export default {
     components: {

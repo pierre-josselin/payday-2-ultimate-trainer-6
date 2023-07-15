@@ -6,12 +6,12 @@ import { useSettingsStore } from "@/stores/settings";
 import NavBar from "@/components/NavBar.vue";
 import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
 
-import sportCarVehicleImagePath from "@/assets/vehicles/sport-car.jpg";
-import muscleCarVehicleImagePath from "@/assets/vehicles/muscle-car.jpg";
-import bikeVehicleImagePath from "@/assets/vehicles/bike.jpg";
-import truckVehicleImagePath from "@/assets/vehicles/truck.jpg";
-import forkliftVehicleImagePath from "@/assets/vehicles/forklift.jpg";
-import boatVehicleImagePath from "@/assets/vehicles/boat.jpg";
+import sportCarVehicleImagePath from "@/assets/images/vehicles/sport-car.jpg";
+import muscleCarVehicleImagePath from "@/assets/images/vehicles/muscle-car.jpg";
+import bikeVehicleImagePath from "@/assets/images/vehicles/bike.jpg";
+import truckVehicleImagePath from "@/assets/images/vehicles/truck.jpg";
+import forkliftVehicleImagePath from "@/assets/images/vehicles/forklift.jpg";
+import boatVehicleImagePath from "@/assets/images/vehicles/boat.jpg";
 
 export default {
     components: {
