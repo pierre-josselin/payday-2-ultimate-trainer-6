@@ -73,7 +73,10 @@ export default {
 
     <div style="max-width: 600px;" class="container my-5">
         <div class="card">
-            <div class="card-header">{{ $t("main.settings") }}</div>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>{{ $t("main.settings") }}</span>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#about-modal">{{ $t("main.about") }}</a>
+            </div>
             <div class="card-body p-4">
                 <ul id="myTab" class="nav nav-tabs" role="tablist">
                     <li class="nav-item">

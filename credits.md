@@ -1,12 +1,10 @@
-#### Authors
+# Credits
 
----
+## Authors
 
 **Pierre Josselin**
 
-#### Direct contributors
-
----
+## Direct contributors
 
 **Vinícius Francisco Xavier**
 
@@ -23,9 +21,7 @@
 - Units outlines    
 - Change environment without restarting the heist
 
-#### Indirect contributors
-
----
+## Indirect contributors
 
 **rogerxiii**
 
