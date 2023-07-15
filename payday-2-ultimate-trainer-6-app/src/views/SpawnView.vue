@@ -238,21 +238,16 @@ export default {
         if (this.spawnStore.convertedEnemies === null) {
             this.spawnStore.convertedEnemies = false;
         }
-
-        this.$watch("spawnStore.id", this.setConfig);
-        this.$watch("spawnStore.categoryId", this.setConfig);
-        this.$watch("spawnStore.positionType", this.setConfig);
-        this.$watch("spawnStore.convertedEnemies", this.setConfig);
     },
     methods: {
         setId(id) {
             this.spawnStore.id = id;
+            this.setConfig();
         },
         setCategoryId(categoryId) {
             this.spawnStore.categoryId = categoryId;
-        },
-        setPositionType(positionType) {
-            this.spawnStore.positionType = positionType;
+            this.spawnStore.id = null;
+            this.setConfig();
         },
         setConfig() {
             this.callStore.addCall(["UT.Spawn:setConfig", this.spawnStore.id, this.spawnStore.categoryId, this.spawnStore.positionType, this.spawnStore.convertedEnemies]);
@@ -271,11 +266,11 @@ export default {
                 <div class="mb-3">
                     <label class="form-label me-4">{{ $t("main.position") }}</label>
                     <div class="form-check form-check-inline">
-                        <input id="position-type-on-crosshair" v-model="spawnStore.positionType" class="form-check-input" type="radio" name="position-type" value="on-crosshair">
+                        <input id="position-type-on-crosshair" v-model="spawnStore.positionType" class="form-check-input" type="radio" name="position-type" value="on-crosshair" @change="setConfig">
                         <label for="position-type-on-crosshair" class="form-check-label">{{ $t("main.on_crosshair") }}</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input id="position-type-on-self" v-model="spawnStore.positionType" class="form-check-input" type="radio" name="position-type" value="on-self">
+                        <input id="position-type-on-self" v-model="spawnStore.positionType" class="form-check-input" type="radio" name="position-type" value="on-self" @change="setConfig">
                         <label for="position-type-on-self" class="form-check-label">{{ $t("main.on_self") }}</label>
                     </div>
                 </div>
@@ -291,7 +286,7 @@ export default {
                     <div class="tab-content">
                         <div v-for="category in categories" :id="category.elementId" class="tab-pane pt-4" :class="{ 'show active': category.id === spawnStore.categoryId }" tabindex="0">
                             <div v-if="category.id === 'enemies'" class="form-check form-switch mb-3">
-                                <input id="converted-enemies" v-model="spawnStore.convertedEnemies" class="form-check-input" type="checkbox">
+                                <input id="converted-enemies" v-model="spawnStore.convertedEnemies" class="form-check-input" type="checkbox" @change="setConfig">
                                 <label for="converted-enemies" class="form-check-label">{{ $t("main.converted_enemies") }}</label>
                             </div>
                             <div class="row row-cols-5">
