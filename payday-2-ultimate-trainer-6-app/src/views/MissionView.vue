@@ -264,7 +264,7 @@ export default {
                                                 </select>
                                                 <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">
                                                     {{ $t("main.replenish") }}
-                                                    <AntiCheatDetectedIcon class="ms-3" />
+                                                    <AntiCheatDetectedIcon class="ms-3" v-if="missionStore.replenishType !== 'cable-ties'" />
                                                 </button>
                                             </div>
                                         </form>
