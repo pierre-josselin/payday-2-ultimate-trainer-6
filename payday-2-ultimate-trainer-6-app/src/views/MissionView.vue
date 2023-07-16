@@ -291,17 +291,17 @@ export default {
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setInvisiblePlayer" :disabled="!mainStore.isPlaying">
+                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying" @change="setInvisiblePlayer">
                                         <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
                                         <label for="enable-invisible-player" class="form-check-label">{{ $t("main.invisible_player") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setNoClip" :disabled="!mainStore.isPlaying">
+                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying" @change="setNoClip">
                                         <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
                                     <div v-if="missionStore.enableNoClip" class="mt-3">
                                         <label for="no-clip-speed" class="form-label">{{ $t("main.no_clip_speed") }}</label>
-                                        <input id="no-clip-speed" v-model="missionStore.noClipSpeed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" @change="setNoClip" :disabled="!mainStore.isPlaying">
+                                        <input id="no-clip-speed" v-model="missionStore.noClipSpeed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" :disabled="!mainStore.isPlaying" @change="setNoClip">
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setDisableAI">
                                         <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">

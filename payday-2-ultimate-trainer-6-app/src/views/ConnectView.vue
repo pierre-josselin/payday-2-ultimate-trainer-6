@@ -55,7 +55,7 @@ export default {
                         <FontAwesomeIcon icon="fa-solid fa-circle-xmark" class="text-danger me-2" />
                         <span>{{ $t("main.connection_failed") }}</span>
                     </h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <button class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">{{ $t("dialogs.connection_failed") }}</div>
                 <div class="modal-footer">

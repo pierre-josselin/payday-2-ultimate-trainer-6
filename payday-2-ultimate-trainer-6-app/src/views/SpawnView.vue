@@ -286,7 +286,7 @@ export default {
                         </div>
                     </nav>
                     <div class="tab-content">
-                        <div v-for="category in categories" :id="category.elementId" class="tab-pane pt-4" :class="{ 'show active': category.id === spawnStore.categoryId }" tabindex="0">
+                        <div v-for="category in categories" :id="category.elementId" :key="category.id" class="tab-pane pt-4" :class="{ 'show active': category.id === spawnStore.categoryId }" tabindex="0">
                             <div v-if="category.id === 'enemies'" class="form-check form-switch mb-3">
                                 <input id="converted-enemies" v-model="spawnStore.convertedEnemies" class="form-check-input" type="checkbox" @change="setConfig">
                                 <label for="converted-enemies" class="form-check-label">{{ $t("main.converted_enemies") }}</label>

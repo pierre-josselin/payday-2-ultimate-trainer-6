@@ -141,7 +141,7 @@ export default {
                         <FontAwesomeIcon icon="fa-solid fa-circle-info" class="text-info me-2" />
                         <span>{{ $t("main.update_available") }}</span>
                     </h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <button class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
                     <div class="mb-3"><s class="me-3">{{ REPOSITORY_CURRENT_TAG }}</s><b>{{ repositoryNewTag }}</b></div>
