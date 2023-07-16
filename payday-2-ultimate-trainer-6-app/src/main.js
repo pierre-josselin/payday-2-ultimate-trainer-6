@@ -7,14 +7,14 @@ import { createPinia } from "pinia";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo, faUserSlash } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import App from "@/App.vue";
 import i18n from "@/i18n";
 import router from "@/router";
 
-library.add(faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo, faGithub);
+library.add(faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo, faUserSlash, faGithub);
 
 Object.defineProperty(String.prototype, "capitalize", {
     value: function () {
