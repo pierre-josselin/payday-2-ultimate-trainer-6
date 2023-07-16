@@ -13,6 +13,8 @@ UT.enableNoClip = false
 UT.noClipSpeed = nil
 UT.gameContext = nil
 
+UT.playerUnitAliveEventTriggered = false
+
 UT.settings = {}
 UT.backup = {}
 UT.spawnedVehicleUnits = {}
@@ -75,6 +77,10 @@ function UT:update()
     if UT.GameUtility:isInGame() then
         if UT.GameUtility:isInHeist() then
             if UT.GameUtility:isPlayerUnitAlive() then
+                if not UT.playerUnitAliveEventTriggered then
+                    UT:playerUnitAliveEvent()
+                end
+
                 if UT.enableNoClip then
                     UT:updateNoClip(UT.noClipSpeed)
                 end
@@ -175,11 +181,15 @@ function UT:sendGameContext()
     UT:sendMessage(message)
 end
 
-function UT:enterGame()
+function UT:gameEnterEvent()
 end
 
-function UT:enterHeist()
+function UT:heistEnterEvent()
     UT.initialEnvironment = UT:getEnvironment()
+end
+
+function UT:playerUnitAliveEvent()
+    UT.playerUnitAliveEventTriggered = true
 
     if UT:getSetting("enable-god-mode") then
         UT:setGodMode(true)

@@ -88,12 +88,12 @@ function UT.Hook:ingameWaitingForPlayers()
     UT.Utility:cloneClass(IngameWaitingForPlayersState)
 
     function IngameWaitingForPlayersState:at_enter(...)
-        UT:enterGame()
+        UT:gameEnterEvent()
         IngameWaitingForPlayersState.orig.at_enter(self, ...)
     end
 
     function IngameWaitingForPlayersState:at_exit(...)
-        UT:enterHeist()
+        UT:heistEnterEvent()
         IngameWaitingForPlayersState.orig.at_exit(self, ...)
     end
 end
