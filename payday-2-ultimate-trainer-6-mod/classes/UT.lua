@@ -4,6 +4,7 @@ UT.maxInteger = math.huge
 
 UT.locales = { "en" }
 
+UT.rootPath = nil
 UT.modPath = nil
 UT.lastCallClock = 0
 UT.vehiclesPackagesLoaded = false
@@ -24,12 +25,12 @@ UT.interactions = {}
 function UT:init()
     UT:loadSettings()
 
-    local content = UT.Utility:readFile(UT.modPath .. "/payday-2-ultimate-trainer-6-mod/data/invisible-walls.json")
+    local content = UT.Utility:readFile(UT.modPath .. "/data/invisible-walls.json")
     if content then
         UT.invisibleWalls = UT.Utility:jsonDecode(content)
     end
 
-    local content = UT.Utility:readFile(UT.modPath .. "/payday-2-ultimate-trainer-6-mod/data/interactions.json")
+    local content = UT.Utility:readFile(UT.modPath .. "/data/interactions.json")
     if content then
         UT.interactions = UT.Utility:jsonDecode(content)
     end
@@ -104,7 +105,7 @@ function UT:openApp()
 end
 
 function UT:runServer()
-    os.execute("start /B node \"" .. UT.modPath:gsub("/", "\\") .. "\\index.js\" run")
+    os.execute("start /B node \"" .. UT.rootPath:gsub("/", "\\") .. "\\index.js\" run")
 end
 
 function UT:requestCalls()
@@ -142,7 +143,7 @@ function UT:requestSettings()
 end
 
 function UT:loadSettings()
-    local content = UT.Utility:readFile(UT.modPath .. "/settings.json")
+    local content = UT.Utility:readFile(UT.rootPath .. "/settings.json")
     if content then
         UT.settings = UT.Utility:jsonDecode(content)
     end

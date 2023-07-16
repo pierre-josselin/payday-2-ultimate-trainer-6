@@ -6,7 +6,7 @@ function UT.Hook:localizationManager()
         LocalizationManager.orig.init(self, ...)
 
         local locale = UT:getLocale()
-        self:load_localization_file(UT.modPath .. "/payday-2-ultimate-trainer-6-mod/locales/" .. locale .. ".json")
+        self:load_localization_file(UT.modPath .. "/locales/" .. locale .. ".json")
     end
 end
 

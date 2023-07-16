@@ -1,20 +1,23 @@
-local modPath = ModPath:gsub("\\", "/")
+local rootPath = ModPath:gsub("\\", "/")
 
-if modPath:sub(-1) == "/" then
-    modPath = modPath:sub(1, -2)
+if rootPath:sub(-1) == "/" then
+    rootPath = rootPath:sub(1, -2)
 end
 
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/UT.lua")
+local modPath = rootPath .. "/payday-2-ultimate-trainer-6-mod"
 
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/GameUtility.lua")
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Hook.lua")
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Keybind.lua")
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Log.lua")
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Spawn.lua")
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/classes/Utility.lua")
+dofile(modPath .. "/classes/UT.lua")
 
-dofile(modPath .. "/payday-2-ultimate-trainer-6-mod/config.lua")
+dofile(modPath .. "/classes/GameUtility.lua")
+dofile(modPath .. "/classes/Hook.lua")
+dofile(modPath .. "/classes/Keybind.lua")
+dofile(modPath .. "/classes/Log.lua")
+dofile(modPath .. "/classes/Spawn.lua")
+dofile(modPath .. "/classes/Utility.lua")
 
+dofile(modPath .. "/config.lua")
+
+UT.rootPath = rootPath
 UT.modPath = modPath
 
 UT:init()
