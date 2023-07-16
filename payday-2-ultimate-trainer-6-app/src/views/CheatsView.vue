@@ -309,10 +309,6 @@ export default {
             this.enableThrowDistanceMultiplier = false;
             this.enableFireRateMultiplier = false;
             this.enableDamageMultiplier = false;
-            this.moveSpeedMultiplier = null;
-            this.throwDistanceMultiplier = null;
-            this.fireRateMultiplier = null;
-            this.damageMultiplier = null;
 
             this.setGodMode(false);
             this.setNoFallDamage(false);
