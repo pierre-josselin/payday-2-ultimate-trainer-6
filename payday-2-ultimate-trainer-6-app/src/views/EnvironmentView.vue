@@ -81,10 +81,6 @@ export default {
     },
     methods: {
         setEnvironment(environmentId) {
-            if (!this.mainStore.isInHeist) {
-                return;
-            }
-
             if (environmentId) {
                 this.callStore.addCall(["UT:setEnvironment", environmentId]);
             } else {
@@ -99,9 +95,9 @@ export default {
     <NavBar />
 
     <div class="container-fluid my-5">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" :class="{ disabled: mainStore.isOffline || !mainStore.isInHeist }">
             <div v-for="(environment, index) in environments" :key="index" class="col">
-                <div class="card mb-4" :role="mainStore.isInHeist ? 'button' : null" @click="setEnvironment(environment.id)">
+                <div class="card mb-4" role="button" @click="setEnvironment(environment.id)">
                     <img :src="environment.imagePath" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title mb-0">{{ $t(environment.title) }}</h5>

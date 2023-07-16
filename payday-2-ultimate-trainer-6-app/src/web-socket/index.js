@@ -26,9 +26,7 @@ export function createWebSocket(options) {
     ws.addEventListener("open", () => {
         connected.value = true;
         options.connectionErrorCallback = null;
-        callStore.addCall(["UT:sendGameState"]);
-        callStore.addCall(["UT:sendIsHost"]);
-        callStore.addCall(["UT:sendVehiclesPackagesLoaded"]);
+        callStore.addCall(["UT:sendGameContext"]);
 
         // Wait for settings
         setTimeout(() => {
@@ -62,27 +60,37 @@ export function createWebSocket(options) {
         }
 
         switch (message.type) {
-            case "game-state": {
-                const gameState = message.data;
+            case "game-context": {
+                const gameContext = message.data.split(",");
 
-                if (mainStore.isInGame && typeof gameState === "string" && (!gameState.startsWith("ingame_") || gameState === "ingame_waiting_for_players")) {
+                const isInHeist = Boolean(parseInt(gameContext[3]));
+                if (mainStore.isInHeist && !isInHeist) {
                     missionStore.$reset();
-                    spawnStore.id = null;
+                    spawnStore.$reset();
                 }
 
-                if (gameState === "offline") {
-                    callStore.addCall(["UT:sendGameState"]);
-                }
-
-                mainStore.gameState = gameState;
+                mainStore.isOffline = false;
+                mainStore.isInBootup = Boolean(parseInt(gameContext[0]));
+                mainStore.isInMainMenu = Boolean(parseInt(gameContext[1]));
+                mainStore.isInGame = Boolean(parseInt(gameContext[2]));
+                mainStore.isInHeist = Boolean(parseInt(gameContext[3]));
+                mainStore.isPlaying = Boolean(parseInt(gameContext[4]));
+                mainStore.isInCustody = Boolean(parseInt(gameContext[5]));
+                mainStore.isAtEndGame = Boolean(parseInt(gameContext[6]));
+                mainStore.isServer = Boolean(parseInt(gameContext[7]));
+                mainStore.vehiclesPackagesLoaded = Boolean(parseInt(gameContext[8]));
                 break;
             }
-            case "is-host": {
-                mainStore.isHost = message.data === "true";
-                break;
-            }
-            case "vehicles-packages-loaded": {
-                mainStore.vehiclesPackagesLoaded = message.data === "true";
+            case "game-offline": {
+                mainStore.isOffline = true;
+                mainStore.isInBootup = false;
+                mainStore.isInMainMenu = false;
+                mainStore.isInGame = false;
+                mainStore.isInHeist = false;
+                mainStore.isPlaying = false;
+                mainStore.isInCustody = false;
+                mainStore.isAtEndGame = false;
+                callStore.addCall(["UT:sendGameContext"]);
                 break;
             }
             case "settings": {

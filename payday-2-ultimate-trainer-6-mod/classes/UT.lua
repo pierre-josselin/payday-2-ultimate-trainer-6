@@ -6,18 +6,16 @@ UT.locales = { "en" }
 
 UT.modPath = nil
 UT.lastCallClock = 0
-UT.previousGameState = nil
-UT.previousIsHost = nil
 UT.vehiclesPackagesLoaded = false
 UT.environment = nil
 UT.initialEnvironment = nil
 UT.enableNoClip = false
 UT.noClipSpeed = nil
+UT.gameContext = nil
 
 UT.settings = {}
 UT.backup = {}
 UT.spawnedVehicleUnits = {}
-
 UT.invisibleWalls = {}
 UT.interactions = {}
 
@@ -64,17 +62,11 @@ function UT:init()
 end
 
 function UT:update()
-    local gameState = UT.GameUtility:getGameState()
-    if gameState and gameState ~= UT.previousGameState and gameState ~= "empty" then
-        UT:sendGameState()
+    local gameContext = UT:getGameContext()
+    if gameContext ~= UT.gameContext then
+        UT.gameContext = gameContext
+        UT:sendGameContext()
     end
-    UT.previousGameState = gameState
-
-    local isHost = UT.GameUtility:isHost()
-    if UT.previousIsHost == nil or isHost ~= UT.previousIsHost then
-        UT:sendIsHost()
-    end
-    UT.previousIsHost = isHost
 
     if UT.Utility:getClock() - UT.lastCallClock >= 1 / UT_CALLS_REQUESTS_PER_SECOND then
         UT:requestCalls()
@@ -154,38 +146,36 @@ function UT:getSetting(name)
     return UT.settings[name]
 end
 
+function UT:getGameContext()
+    local gameContext = {
+        UT.Utility:booleanToInteger(UT.GameUtility:isInBootup()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isInMainMenu()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isInGame()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isInHeist()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isPlaying()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isInCustody()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isAtEndGame()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isServer()),
+        UT.Utility:booleanToInteger(UT.vehiclesPackagesLoaded)
+    }
+    return UT.Utility:tableJoin(gameContext, ",")
+end
+
 function UT:sendMessage(message)
     local queryString = UT.Utility:buildQueryString(message)
     local url = UT_SERVER_URL .. "/send-message?" .. queryString
     UT.Utility:httpRequest(url)
 end
 
-function UT:sendGameState()
+function UT:sendGameContext()
     local message = {
-        type = "game-state",
-        data = UT.GameUtility:getGameState()
-    }
-    UT:sendMessage(message)
-end
-
-function UT:sendIsHost()
-    local message = {
-        type = "is-host",
-        data = UT.GameUtility:isHost()
-    }
-    UT:sendMessage(message)
-end
-
-function UT:sendVehiclesPackagesLoaded()
-    local message = {
-        type = "vehicles-packages-loaded",
-        data = UT.vehiclesPackagesLoaded
+        type = "game-context",
+        data = UT:getGameContext()
     }
     UT:sendMessage(message)
 end
 
 function UT:enterGame()
-    UT:sendVehiclesPackagesLoaded()
 end
 
 function UT:enterHeist()

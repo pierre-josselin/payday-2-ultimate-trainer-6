@@ -171,11 +171,11 @@ export default {
         <div class="card">
             <div class="card-header">{{ $t("main.mission") }}</div>
             <div class="card-body p-4">
-                <fieldset :disabled="!mainStore.isInGame">
+                <fieldset :disabled="!mainStore.isInGame && !mainStore.isAtEndGame">
                     <div class="row">
                         <div class="col">
                             <div class="ratio control-button">
-                                <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="startTheHeist">
+                                <button class="btn btn-primary w-100" :disabled="!mainStore.isServer || mainStore.isAtEndGame" @click="startTheHeist">
                                     <FontAwesomeIcon icon="fa-solid fa-play" />
                                     <BugIcon class="ms-3" />
                                 </button>
@@ -183,14 +183,14 @@ export default {
                         </div>
                         <div class="col">
                             <div class="ratio control-button">
-                                <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="restartTheHeist">
+                                <button class="btn btn-primary w-100" :disabled="!mainStore.isServer" @click="restartTheHeist">
                                     <FontAwesomeIcon icon="fa-solid fa-rotate-right" />
                                 </button>
                             </div>
                         </div>
                         <div class="col">
                             <div class="ratio control-button">
-                                <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="finishTheHeist">
+                                <button class="btn btn-primary w-100" :disabled="!mainStore.isServer || mainStore.isAtEndGame" @click="finishTheHeist">
                                     <FontAwesomeIcon icon="fa-solid fa-flag" />
                                 </button>
                             </div>
@@ -215,19 +215,19 @@ export default {
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#slow-motion-tab">{{ $t("main.slow_motion") }}</button>
                     </li>
                 </ul>
-                <fieldset :disabled="!mainStore.isPlaying">
+                <fieldset :disabled="!mainStore.isInHeist">
                     <div class="tab-content">
                         <div id="general-tab" class="tab-pane show active" tabindex="0">
                             <div class="row mt-4">
                                 <div class="col-4">
                                     <div>
-                                        <button class="btn btn-primary w-100" @click="accessCameras">{{ $t("main.access_cameras") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isPlaying" @click="accessCameras">{{ $t("main.access_cameras") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="triggerTheAlarm">{{ $t("main.trigger_the_alarm") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isServer" @click="triggerTheAlarm">{{ $t("main.trigger_the_alarm") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="removeInvisibleWalls">{{ $t("main.remove_invisible_walls") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isServer" @click="removeInvisibleWalls">{{ $t("main.remove_invisible_walls") }}</button>
                                     </div>
                                     <div class="mt-3">
                                         <div class="btn-group w-100">
@@ -237,33 +237,33 @@ export default {
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="tieAllCivilians">{{ $t("main.tie_all_civilians") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isServer" @click="tieAllCivilians">{{ $t("main.tie_all_civilians") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isHost" @click="convertAllEnemies">{{ $t("main.convert_all_enemies") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isServer" @click="convertAllEnemies">{{ $t("main.convert_all_enemies") }}</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div>
-                                        <button class="btn btn-primary w-100" @click="getOutOfJail">{{ $t("main.get_out_of_jail") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isInCustody" @click="getOutOfJail">{{ $t("main.get_out_of_jail") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" @click="replenishHealth">{{ $t("main.replenish_health") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isPlaying" @click="replenishHealth">{{ $t("main.replenish_health") }}</button>
                                     </div>
                                     <div class="mt-3">
-                                        <button class="btn btn-primary w-100" @click="replenishAmmo">{{ $t("main.replenish_ammo") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isPlaying" @click="replenishAmmo">{{ $t("main.replenish_ammo") }}</button>
                                     </div>
                                     <div class="mt-3">
                                         <form @submit.prevent="replenish">
                                             <div class="input-group">
-                                                <select v-model="missionStore.replenishType" class="form-select">
+                                                <select v-model="missionStore.replenishType" class="form-select" :disabled="!mainStore.isPlaying">
                                                     <option value="equipment">{{ $t("main.equipment") }}</option>
                                                     <option value="cable-ties">{{ $t("main.cable_ties") }}</option>
                                                     <option value="throwables">{{ $t("main.throwables") }}</option>
                                                     <option value="body-bags">{{ $t("main.body_bags") }}</option>
                                                 </select>
-                                                <button type="submit" class="btn btn-primary">
-{{ $t("main.replenish") }}
+                                                <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">
+                                                    {{ $t("main.replenish") }}
                                                     <AntiCheatDetectedIcon class="ms-3" />
                                                 </button>
                                             </div>
@@ -271,7 +271,7 @@ export default {
                                     </div>
                                     <div class="mt-3">
                                         <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">{{ $t("main.set_player_state") }}</button>
+                                            <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" :disabled="!mainStore.isPlaying">{{ $t("main.set_player_state") }}</button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><button class="dropdown-item" @click="setPlayerStateCivilian">{{ $t("main.civilian") }}</button></li>
                                                 <li><button class="dropdown-item" @click="setPlayerStateMaskOff">{{ $t("main.mask_off") }}</button></li>
@@ -286,33 +286,33 @@ export default {
                                         <label for="enable-x-ray" class="form-check-label">{{ $t("main.x_ray") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setPreventAlarmTriggering">
-                                        <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                        <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
                                         <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("main.prevent_alarm_triggering") }}
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setInvisiblePlayer">
-                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                    <div class="form-check form-switch mt-3" @change="setInvisiblePlayer" :disabled="!mainStore.isPlaying">
+                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
                                         <label for="enable-invisible-player" class="form-check-label">{{ $t("main.invisible_player") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setNoClip">
+                                    <div class="form-check form-switch mt-3" @change="setNoClip" :disabled="!mainStore.isPlaying">
                                         <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
                                     <div v-if="missionStore.enableNoClip" class="mt-3">
                                         <label for="no-clip-speed" class="form-label">{{ $t("main.no_clip_speed") }}</label>
-                                        <input id="no-clip-speed" v-model="missionStore.noClipSpeed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" @change="setNoClip">
+                                        <input id="no-clip-speed" v-model="missionStore.noClipSpeed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" @change="setNoClip" :disabled="!mainStore.isPlaying">
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setDisableAI">
-                                        <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                        <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
                                         <label for="enable-disable-ai" class="form-check-label">{{ $t("main.disable_ai") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setUnlimitedPagers">
-                                        <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                        <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
                                         <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("main.unlimited_pagers") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3" @change="setInstantDrilling">
-                                        <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isHost">
+                                        <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
                                         <label for="enable-instant-drilling" class="form-check-label">{{ $t("main.instant_drilling") }}</label>
                                     </div>
                                 </div>
@@ -363,7 +363,7 @@ export default {
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
                                         <button class="btn btn-primary" @click="openCrates">
-{{ $t("main.open_crates") }}
+                                            {{ $t("main.open_crates") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
@@ -371,7 +371,7 @@ export default {
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
                                         <button class="btn btn-primary" @click="barricadeWindows">
-{{ $t("main.barricade_windows") }}
+                                            {{ $t("main.barricade_windows") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
@@ -379,7 +379,7 @@ export default {
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
                                         <button class="btn btn-primary" @click="openAtms">
-{{ $t("main.open_atms") }}
+                                            {{ $t("main.open_atms") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
@@ -387,7 +387,7 @@ export default {
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
                                         <button class="btn btn-primary" @click="useKeycards">
-{{ $t("main.use_keycards") }}
+                                            {{ $t("main.use_keycards") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
@@ -395,7 +395,7 @@ export default {
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
                                         <button class="d-block btn btn-primary" @click="placeShapedCharges">
-{{ $t("main.place_shaped_charges") }}
+                                            {{ $t("main.place_shaped_charges") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>

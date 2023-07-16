@@ -57,8 +57,8 @@ class HttpServer {
         setInterval(() => {
             if (this.lastCallRequestTime !== -1 && Date.now() - this.lastCallRequestTime > 1500) {
                 this.messageManager.sendMessage({
-                    type: "game-state",
-                    data: "offline"
+                    type: "game-offline",
+                    data: true
                 });
                 this.lastCallRequestTime = -1;
             }

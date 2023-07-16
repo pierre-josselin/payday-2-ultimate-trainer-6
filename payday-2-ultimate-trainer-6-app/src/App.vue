@@ -180,6 +180,10 @@ export default {
     --bs-toast-max-width: unset;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .markdown h1 {
     font-size: 2rem;
 }

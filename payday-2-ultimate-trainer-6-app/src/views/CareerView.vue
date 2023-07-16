@@ -320,7 +320,7 @@ export default {
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#trophies-tab">{{ $t("main.trophies") }}</button>
                         <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#steam-achievements-tab">{{ $t("main.steam_achievements") }}</button>
                     </div>
-                    <div class="tab-content w-100">
+                    <fieldset class="tab-content w-100" :class="{ disabled: mainStore.isOffline }" :disabled="mainStore.isOffline">
                         <div id="level-tab" class="tab-pane show active" tabindex="0">
                             <form @submit.prevent="setLevel">
                                 <div class="row align-items-end">
@@ -522,13 +522,13 @@ export default {
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-danger me-3">
-{{ $t("main.unlock") }}
+                                    {{ $t("main.unlock") }}
                                     <BugIcon class="ms-3" />
                                 </button>
                                 <button type="button" class="btn btn-danger" @click="lockSteamAchievements">{{ $t("main.lock") }}</button>
                             </form>
                         </div>
-                    </div>
+                    </fieldset>
                 </div>
             </div>
         </div>

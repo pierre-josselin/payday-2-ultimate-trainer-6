@@ -12,6 +12,14 @@ function UT.Utility:toString(value)
     return tostring(value)
 end
 
+function UT.Utility:toBoolean(value)
+    return value and true or false
+end
+
+function UT.Utility:booleanToInteger(value)
+    return value and 1 or 0
+end
+
 function UT.Utility:isEmptyTable(value)
     return next(value) == nil
 end

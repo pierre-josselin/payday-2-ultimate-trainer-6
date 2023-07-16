@@ -100,7 +100,7 @@ export default {
                     <template v-if="mainStore.isOffline">{{ $t("main.offline") }}</template>
                     <template v-else-if="mainStore.isInBootup">{{ $t("main.bootup") }}</template>
                     <template v-else-if="mainStore.isInMainMenu">{{ $t("main.main_menu") }}</template>
-                    <template v-else-if="mainStore.isPlaying">{{ $t("main.playing") }}</template>
+                    <template v-else-if="mainStore.isInHeist">{{ $t("main.in_heist") }}</template>
                     <template v-else-if="mainStore.isInGame">{{ $t("main.in_game") }}</template>
                     <template v-else-if="mainStore.isAtEndGame">{{ $t("main.end_game") }}</template>
                 </span>

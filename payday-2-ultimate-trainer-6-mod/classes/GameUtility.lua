@@ -8,19 +8,42 @@ function UT.GameUtility:getGameState()
     return game_state_machine:current_state_name()
 end
 
+function UT.GameUtility:isInBootup()
+    return UT.GameUtility:getGameState() == "bootup"
+end
+
+function UT.GameUtility:isInMainMenu()
+    return UT.GameUtility:getGameState() == "menu_main"
+end
+
 function UT.GameUtility:isInGame()
-    return Utils:IsInGameState()
+    return UT.Utility:toBoolean(GameStateFilters.any_ingame[UT.GameUtility:getGameState()])
 end
 
 function UT.GameUtility:isInHeist()
-    return Utils:IsInHeist()
+    local gameState = UT.GameUtility:getGameState()
+    return UT.Utility:toBoolean(Global.game_settings.is_playing and not (not GameStateFilters.waiting_for_respawn[gameState] and not GameStateFilters.waiting_for_spawn_allowed[gameState] and not UT.GameUtility:isPlayerUnitAlive()))
+end
+
+function UT.GameUtility:isPlaying()
+    local gameState = UT.GameUtility:getGameState()
+    return UT.Utility:toBoolean(UT.GameUtility:isInHeist() and not GameStateFilters.waiting_for_respawn[gameState] and not GameStateFilters.waiting_for_spawn_allowed[gameState])
+end
+
+function UT.GameUtility:isInCustody()
+    return UT.Utility:toBoolean(GameStateFilters.waiting_for_respawn[UT.GameUtility:getGameState()])
 end
 
 function UT.GameUtility:isDriving()
     return UT.GameUtility:getGameState() == "ingame_driving"
 end
 
-function UT.GameUtility:isHost()
+function UT.GameUtility:isAtEndGame()
+    local endGameStates = { "victoryscreen", "gameoverscreen", "disconnected", "server_left", "kicked" }
+    return UT.Utility:inTable(UT.GameUtility:getGameState(), endGameStates)
+end
+
+function UT.GameUtility:isServer()
     return Network:is_server()
 end
 
