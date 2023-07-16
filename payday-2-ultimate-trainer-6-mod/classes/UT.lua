@@ -41,7 +41,7 @@ function UT:init()
     packageManagerMetaTable.script_data = function(self, typeId, pathId, ...)
         local data = packageManagerScriptData(self, typeId, pathId, ...)
 
-        if typeId == UT.GameUtility:idString("menu") and (pathId == UT.GameUtility:idString("gamedata/menus/start_menu") or pathId == UT.GameUtility:idString("gamedata/menus/pause_menu")) then
+        if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
             table.insert(data[1][2], 1, {
                 name = "ut_open_app",
                 text_id = "ut_menu_open_app_name",
