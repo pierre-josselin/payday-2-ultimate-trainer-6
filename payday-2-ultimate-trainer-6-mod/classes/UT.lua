@@ -959,7 +959,7 @@ function UT:setInstantDrilling(enabled)
     end
 end
 
-function UT:getOutOfJail()
+function UT:getOutOfCustody()
     IngameWaitingForRespawnState.request_player_spawn()
 end
 

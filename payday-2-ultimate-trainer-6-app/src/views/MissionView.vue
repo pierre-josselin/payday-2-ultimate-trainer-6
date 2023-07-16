@@ -122,8 +122,8 @@ export default {
         setSlowMotion() {
             this.callStore.addCall(["UT:setSlowMotion", this.missionStore.enableSlowMotion, parseFloat(this.missionStore.slowMotionWorldSpeed), parseFloat(this.missionStore.slowMotionPlayerSpeed)]);
         },
-        getOutOfJail() {
-            this.callStore.addCall(["UT:getOutOfJail"]);
+        getOutOfCustody() {
+            this.callStore.addCall(["UT:getOutOfCustody"]);
         },
         replenishHealth() {
             this.callStore.addCall(["UT:replenishHealth"]);
@@ -245,7 +245,7 @@ export default {
                                 </div>
                                 <div class="col-4">
                                     <div>
-                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isInCustody" @click="getOutOfJail">{{ $t("main.get_out_of_jail") }}</button>
+                                        <button class="btn btn-primary w-100" :disabled="!mainStore.isInCustody" @click="getOutOfCustody">{{ $t("main.get_out_of_custody") }}</button>
                                     </div>
                                     <div class="mt-3">
                                         <button class="btn btn-primary w-100" :disabled="!mainStore.isPlaying" @click="replenishHealth">{{ $t("main.replenish_health") }}</button>
