@@ -25,52 +25,52 @@ export default {
                 {
                     id: null,
                     imagePath: defaultEnvironmentImagePath,
-                    title: "main.default"
+                    name: "main.default"
                 },
                 {
                     id: "environments/pd2_env_hox_02/pd2_env_hox_02",
                     imagePath: earlyMorningEnvironmentImagePath,
-                    title: "main.early_morning"
+                    name: "main.early_morning"
                 },
                 {
                     id: "environments/pd2_env_morning_02/pd2_env_morning_02",
                     imagePath: morningEnvironmentImagePath,
-                    title: "main.morning"
+                    name: "main.morning"
                 },
                 {
                     id: "environments/pd2_env_mid_day/pd2_env_mid_day",
                     imagePath: midDayEnvironmentImagePath,
-                    title: "main.mid_day"
+                    name: "main.mid_day"
                 },
                 {
                     id: "environments/pd2_env_afternoon/pd2_env_afternoon",
                     imagePath: afternoonEnvironmentImagePath,
-                    title: "main.afternoon"
+                    name: "main.afternoon"
                 },
                 {
                     id: "environments/pd2_env_jry_plane/pd2_env_jry_plane",
                     imagePath: brightDayEnvironmentImagePath,
-                    title: "main.bright_day"
+                    name: "main.bright_day"
                 },
                 {
                     id: "environments/pd2_env_docks/pd2_env_docks",
                     imagePath: cloudyDayEnvironmentImagePath,
-                    title: "main.cloudy_day"
+                    name: "main.cloudy_day"
                 },
                 {
                     id: "environments/pd2_env_n2/pd2_env_n2",
                     imagePath: nightEnvironmentImagePath,
-                    title: "main.night"
+                    name: "main.night"
                 },
                 {
                     id: "environments/pd2_env_arm_hcm_02/pd2_env_arm_hcm_02",
                     imagePath: mistyNightEnvironmentImagePath,
-                    title: "main.misty_night"
+                    name: "main.misty_night"
                 },
                 {
                     id: "environments/pd2_env_foggy_bright/pd2_env_foggy_bright",
                     imagePath: foggyNightEnvironmentImagePath,
-                    title: "main.foggy_night"
+                    name: "main.foggy_night"
                 }
             ]
         };
@@ -100,7 +100,7 @@ export default {
                 <div class="card mb-4" role="button" @click="setEnvironment(environment.id)">
                     <img :src="environment.imagePath" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title mb-0">{{ $t(environment.title) }}</h5>
+                        <h5 class="card-title mb-0">{{ $t(environment.name) }}</h5>
                     </div>
                 </div>
             </div>
