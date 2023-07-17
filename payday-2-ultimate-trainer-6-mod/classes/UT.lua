@@ -211,6 +211,10 @@ function UT:sendLoadedVehicles()
         table.insert(loadedVehicles, "forklift")
     end
 
+    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_ranc/vehicles/fps_vehicle_golfcart/fps_vehicle_golfcart")) then
+        table.insert(loadedVehicles, "golf-cart")
+    end
+
     if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1")) then
         table.insert(loadedVehicles, "boat")
     end

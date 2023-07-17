@@ -66,6 +66,10 @@ function UT.Hook:gameSetup()
         table.insert(packages, "levels/narratives/vlad/jolly/world/world")
     end
 
+    if UT.Utility:inTable("golf-cart", UT:getSetting("vehicles-to-load")) then
+        table.insert(packages, "levels/narratives/mcshay/ranc/world/world")
+    end
+
     if UT.Utility:inTable("boat", UT:getSetting("vehicles-to-load")) then
         table.insert(packages, "levels/narratives/pbr/jerry/world/world")
     end

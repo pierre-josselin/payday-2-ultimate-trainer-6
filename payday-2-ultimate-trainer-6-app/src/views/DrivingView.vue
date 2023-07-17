@@ -12,6 +12,7 @@ import muscleCarVehicleImagePath from "@/assets/images/vehicles/muscle-car.jpg";
 import bikeVehicleImagePath from "@/assets/images/vehicles/bike.jpg";
 import truckVehicleImagePath from "@/assets/images/vehicles/truck.jpg";
 import forkliftVehicleImagePath from "@/assets/images/vehicles/forklift.jpg";
+import golfCartVehicleImagePath from "@/assets/images/vehicles/golf-cart.jpg";
 import boatVehicleImagePath from "@/assets/images/vehicles/boat.jpg";
 
 export default {
@@ -53,6 +54,12 @@ export default {
                     unitId: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1",
                     imagePath: forkliftVehicleImagePath,
                     name: "main.forklift"
+                },
+                {
+                    id: "golf-cart",
+                    unitId: "units/pd2_dlc_ranc/vehicles/fps_vehicle_golfcart/fps_vehicle_golfcart",
+                    imagePath: golfCartVehicleImagePath,
+                    name: "main.golf_cart"
                 },
                 {
                     id: "boat",
