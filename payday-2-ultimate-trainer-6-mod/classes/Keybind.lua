@@ -21,7 +21,7 @@ function UT.Keybind:teleportPlayerToCrosshair()
 
     local offset = Vector3()
     mvector3.set(offset, UT.GameUtility:getPlayerCameraForward())
-    mvector3.multiply(offset, 100)
+    mvector3.multiply(offset, 150)
     mvector3.add(crosshairRay.hit_position, offset)
 
     UT.GameUtility:teleportPlayer(crosshairRay.hit_position, UT.GameUtility:getPlayerCameraRotation())
