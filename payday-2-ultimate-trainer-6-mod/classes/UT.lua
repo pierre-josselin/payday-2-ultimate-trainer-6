@@ -95,6 +95,10 @@ function UT:update()
             if UT.enableDisableAi then
                 UT:disableAI()
             end
+
+            if UT.Editor.pickedUnit then
+                UT.Editor:drawPickedUnit()
+            end
         end
     end
 end

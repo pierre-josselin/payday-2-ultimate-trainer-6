@@ -3,6 +3,12 @@
     "ut_menu_open_app_description": "Open the Ultimate Trainer app",
     "ut_keybinds_teleport_player_to_crosshair_name": "Teleport player to crosshair",
     "ut_keybinds_teleport_player_to_crosshair_description": "Teleports the player to the crosshair",
-    "ut_keybinds_spawn_name": "Spawn",
-    "ut_keybinds_spawn_description": "Spawn a unit after selecting it in the app"
+    "ut_keybinds_spawn_spawn_name": "Spawn - Spawn",
+    "ut_keybinds_spawn_spawn_description": "Spawn selected unit",
+    "ut_keybinds_editor_pick_name": "Editor - Pick",
+    "ut_keybinds_editor_pick_description": "Pick the unit at crosshair",
+    "ut_keybinds_editor_spawn_name": "Editor - Spawn",
+    "ut_keybinds_editor_spawn_description": "Spawn picked unit to crosshair",
+    "ut_keybinds_editor_delete_name": "Editor - Delete",
+    "ut_keybinds_editor_delete_description": "Delete spawned unit at crosshair"
 }

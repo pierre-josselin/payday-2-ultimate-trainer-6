@@ -23,8 +23,12 @@ function UT.Keybind:teleportPlayerToCrosshair()
     UT.GameUtility:teleportPlayer(crosshairRay.hit_position, UT.GameUtility:getPlayerCameraRotation())
 end
 
-function UT.Keybind:spawn()
+function UT.Keybind:spawnSpawn()
     if not UT.GameUtility:isInHeist() then
+        return
+    end
+
+    if not UT.GameUtility:isServer() then
         return
     end
 
@@ -33,4 +37,48 @@ function UT.Keybind:spawn()
     end
 
     UT.Spawn:spawn()
+end
+
+function UT.Keybind:editorPick()
+    if not UT.GameUtility:isInHeist() then
+        return
+    end
+
+    if not UT.GameUtility:isPlayerUnitAlive() then
+        return
+    end
+
+    UT.Editor:pickUnit()
+end
+
+function UT.Keybind:editorSpawn()
+    if not UT.GameUtility:isInHeist() then
+        return
+    end
+
+    if not UT.GameUtility:isServer() then
+        return
+    end
+
+    if not UT.GameUtility:isPlayerUnitAlive() then
+        return
+    end
+
+    UT.Editor:spawnUnit()
+end
+
+function UT.Keybind:editorDelete()
+    if not UT.GameUtility:isInHeist() then
+        return
+    end
+
+    if not UT.GameUtility:isServer() then
+        return
+    end
+
+    if not UT.GameUtility:isPlayerUnitAlive() then
+        return
+    end
+
+    UT.Editor:deleteUnit()
 end
