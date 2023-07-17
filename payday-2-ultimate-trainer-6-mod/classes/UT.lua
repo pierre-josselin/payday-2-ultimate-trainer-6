@@ -20,6 +20,7 @@ UT.backup = {}
 UT.spawnedVehicleUnits = {}
 UT.invisibleWalls = {}
 UT.interactions = {}
+UT.vehicles = {}
 
 function UT:init()
     UT:loadSettings()
@@ -32,6 +33,11 @@ function UT:init()
     local content = UT.Utility:readFile(UT.modPath .. "/data/interactions.json")
     if content then
         UT.interactions = UT.Utility:jsonDecode(content)
+    end
+
+    local content = UT.Utility:readFile(UT.modPath .. "/data/vehicles.json")
+    if content then
+        UT.vehicles = UT.Utility:jsonDecode(content)
     end
 
     local packageManagerMetaTable = getmetatable(PackageManager)
@@ -191,32 +197,10 @@ function UT:sendLoadedVehicles()
 
     local loadedVehicles = {}
 
-    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1")) then
-        table.insert(loadedVehicles, "sport-car")
-    end
-
-    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1")) then
-        table.insert(loadedVehicles, "muscle-car")
-    end
-
-    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2")) then
-        table.insert(loadedVehicles, "bike")
-    end
-
-    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1")) then
-        table.insert(loadedVehicles, "truck")
-    end
-
-    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1")) then
-        table.insert(loadedVehicles, "forklift")
-    end
-
-    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_ranc/vehicles/fps_vehicle_golfcart/fps_vehicle_golfcart")) then
-        table.insert(loadedVehicles, "golf-cart")
-    end
-
-    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1")) then
-        table.insert(loadedVehicles, "boat")
+    for id, unitId in pairs(UT.vehicles) do
+        if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString(unitId)) then
+            table.insert(loadedVehicles, id)
+        end
     end
 
     if UT.Utility:isEmptyTable(loadedVehicles) then
@@ -1174,7 +1158,13 @@ end
 
 -- Driving
 
-function UT:spawnAndDriveVehicle(id)
+function UT:spawnAndDriveVehicle(vehicleId)
+    local unitId = UT.vehicles[vehicleId]
+
+    if not unitId then
+        return
+    end
+
     if UT.GameUtility:isDriving() then
         UT.GameUtility:setPlayerState("standard")
     end
@@ -1200,7 +1190,7 @@ function UT:spawnAndDriveVehicle(id)
         end
     end
 
-    local idString = UT.GameUtility:idString(id)
+    local idString = UT.GameUtility:idString(unitId)
     local position = UT.GameUtility:getPlayerPosition()
     local rotation = UT.GameUtility:getPlayerCameraYawRotation()
     local vehicleUnit = UT.GameUtility:spawnUnit(idString, position, rotation)

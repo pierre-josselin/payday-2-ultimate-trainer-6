@@ -27,43 +27,36 @@ export default {
             vehicles: [
                 {
                     id: "sport-car",
-                    unitId: "units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1",
                     imagePath: sportCarVehicleImagePath,
                     name: "main.sport_car"
                 },
                 {
                     id: "muscle-car",
-                    unitId: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1",
                     imagePath: muscleCarVehicleImagePath,
                     name: "main.muscle_car"
                 },
                 {
                     id: "bike",
-                    unitId: "units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2",
                     imagePath: bikeVehicleImagePath,
                     name: "main.bike"
                 },
                 {
                     id: "truck",
-                    unitId: "units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1",
                     imagePath: truckVehicleImagePath,
                     name: "main.truck"
                 },
                 {
                     id: "forklift",
-                    unitId: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1",
                     imagePath: forkliftVehicleImagePath,
                     name: "main.forklift"
                 },
                 {
                     id: "golf-cart",
-                    unitId: "units/pd2_dlc_ranc/vehicles/fps_vehicle_golfcart/fps_vehicle_golfcart",
                     imagePath: golfCartVehicleImagePath,
                     name: "main.golf_cart"
                 },
                 {
                     id: "boat",
-                    unitId: "units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1",
                     imagePath: boatVehicleImagePath,
                     name: "main.boat"
                 }
@@ -122,7 +115,7 @@ export default {
                         <div v-for="(vehicle, index) in vehicles" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
                             <img :src="vehicle.imagePath" class="d-block w-100">
                             <div class="carousel-caption mb-3">
-                                <button class="btn btn-dark" :disabled="!mainStore.isPlaying || !mainStore.loadedVehicles.includes(vehicle.id)" @click="spawnAndDriveVehicle(vehicle.unitId)">
+                                <button class="btn btn-dark" :disabled="!mainStore.isPlaying || !mainStore.loadedVehicles.includes(vehicle.id)" @click="spawnAndDriveVehicle(vehicle.id)">
                                     <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
                                 </button>
                             </div>
