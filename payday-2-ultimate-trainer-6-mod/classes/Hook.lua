@@ -50,12 +50,24 @@ function UT.Hook:gameSetup()
     table.insert(packages, "levels/instances/unique/hlm_vault/world")
     table.insert(packages, "levels/instances/unique/san_box001/world")
 
-    if UT:getSetting("enable-vehicles-packages-loading") then
+    if UT.Utility:inTable("sport-car", UT:getSetting("vehicles-to-load")) then
         table.insert(packages, "levels/narratives/bain/cage/world/world")
+    end
+
+    if UT.Utility:inTable("muscle-car", UT:getSetting("vehicles-to-load")) or UT.Utility:inTable("forklift", UT:getSetting("vehicles-to-load")) then
         table.insert(packages, "levels/narratives/vlad/shout/world/world")
-        table.insert(packages, "levels/narratives/vlad/jolly/world/world")
-        table.insert(packages, "levels/narratives/pbr/jerry/world/world")
+    end
+
+    if UT.Utility:inTable("bike", UT:getSetting("vehicles-to-load")) then
         table.insert(packages, "levels/narratives/elephant/born/world/world")
+    end
+
+    if UT.Utility:inTable("truck", UT:getSetting("vehicles-to-load")) then
+        table.insert(packages, "levels/narratives/vlad/jolly/world/world")
+    end
+
+    if UT.Utility:inTable("boat", UT:getSetting("vehicles-to-load")) then
+        table.insert(packages, "levels/narratives/pbr/jerry/world/world")
     end
 
     for index, value in pairs(packages) do
@@ -67,10 +79,6 @@ function UT.Hook:gameSetup()
         end
         PackageManager:load(value)
         ::continue::
-    end
-
-    if UT:getSetting("enable-vehicles-packages-loading") then
-        UT.vehiclesPackagesLoaded = true
     end
 end
 

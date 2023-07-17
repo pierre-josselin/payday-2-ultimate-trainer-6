@@ -22,14 +22,17 @@ export const useSettingsStore = defineStore("settings", {
 
             callStore.addCall(["UT:requestSettings"]);
         },
+        setSettings(settings) {
+            this.settings = settings;
+        },
         getSetting(name) {
             return typeof this.settings[name] !== "undefined" ? this.settings[name] : null;
         },
         setSetting(name, value) {
             this.settings[name] = value;
         },
-        setSettings(settings) {
-            this.settings = settings;
+        deleteSetting(name) {
+            delete this.settings[name];
         }
     }
 });

@@ -7,7 +7,6 @@ UT.locales = { "en" }
 UT.rootPath = nil
 UT.modPath = nil
 UT.lastCallClock = 0
-UT.vehiclesPackagesLoaded = false
 UT.environment = nil
 UT.initialEnvironment = nil
 UT.enableNoClip = false
@@ -162,8 +161,7 @@ function UT:getGameContext()
         UT.Utility:booleanToInteger(UT.GameUtility:isPlaying()),
         UT.Utility:booleanToInteger(UT.GameUtility:isInCustody()),
         UT.Utility:booleanToInteger(UT.GameUtility:isAtEndGame()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isServer()),
-        UT.Utility:booleanToInteger(UT.vehiclesPackagesLoaded)
+        UT.Utility:booleanToInteger(UT.GameUtility:isServer())
     }
     return UT.Utility:tableJoin(gameContext, ",")
 end
@@ -182,7 +180,50 @@ function UT:sendGameContext()
     UT:sendMessage(message)
 end
 
+function UT:sendLoadedVehicles()
+    if not UT.GameUtility:isInGame() then
+        return
+    end
+
+    local loadedVehicles = {}
+
+    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1")) then
+        table.insert(loadedVehicles, "sport-car")
+    end
+
+    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1")) then
+        table.insert(loadedVehicles, "muscle-car")
+    end
+
+    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2")) then
+        table.insert(loadedVehicles, "bike")
+    end
+
+    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1")) then
+        table.insert(loadedVehicles, "truck")
+    end
+
+    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1")) then
+        table.insert(loadedVehicles, "forklift")
+    end
+
+    if UT.GameUtility:isUnitLoaded(UT.GameUtility:idString("units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1")) then
+        table.insert(loadedVehicles, "boat")
+    end
+
+    if UT.Utility:isEmptyTable(loadedVehicles) then
+        return
+    end
+
+    local message = {
+        type = "loaded-vehicles",
+        data = UT.Utility:tableJoin(loadedVehicles, ",")
+    }
+    UT:sendMessage(message)
+end
+
 function UT:gameEnterEvent()
+    UT:sendLoadedVehicles()
 end
 
 function UT:heistEnterEvent()

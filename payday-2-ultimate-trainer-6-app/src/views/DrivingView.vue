@@ -4,6 +4,7 @@ import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
+import BugIcon from "@/components/icons/BugIcon.vue";
 import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
 
 import sportCarVehicleImagePath from "@/assets/images/vehicles/sport-car.jpg";
@@ -16,35 +17,48 @@ import boatVehicleImagePath from "@/assets/images/vehicles/boat.jpg";
 export default {
     components: {
         NavBar,
+        BugIcon,
         RestartRequiredIcon
     },
     data() {
         return {
-            enableVehiclesPackagesLoading: false,
+            vehiclesToLoad: [],
             vehicles: [
                 {
-                    id: "units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1",
-                    imagePath: sportCarVehicleImagePath
+                    id: "sport-car",
+                    unitId: "units/pd2_dlc_cage/vehicles/fps_vehicle_falcogini_1/fps_vehicle_falcogini_1",
+                    imagePath: sportCarVehicleImagePath,
+                    name: "main.sport_car"
                 },
                 {
-                    id: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1",
-                    imagePath: muscleCarVehicleImagePath
+                    id: "muscle-car",
+                    unitId: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_muscle_1/fps_vehicle_muscle_1",
+                    imagePath: muscleCarVehicleImagePath,
+                    name: "main.muscle_car"
                 },
                 {
-                    id: "units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2",
-                    imagePath: bikeVehicleImagePath
+                    id: "bike",
+                    unitId: "units/pd2_dlc_born/vehicles/fps_vehicle_bike_2/fps_vehicle_bike_2",
+                    imagePath: bikeVehicleImagePath,
+                    name: "main.bike"
                 },
                 {
-                    id: "units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1",
-                    imagePath: truckVehicleImagePath
+                    id: "truck",
+                    unitId: "units/pd2_dlc_jolly/vehicles/fps_vehicle_box_truck_1/fps_vehicle_box_truck_1",
+                    imagePath: truckVehicleImagePath,
+                    name: "main.truck"
                 },
                 {
-                    id: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1",
-                    imagePath: forkliftVehicleImagePath
+                    id: "forklift",
+                    unitId: "units/pd2_dlc_shoutout_raid/vehicles/fps_vehicle_forklift_1/fps_vehicle_forklift_1",
+                    imagePath: forkliftVehicleImagePath,
+                    name: "main.forklift"
                 },
                 {
-                    id: "units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1",
-                    imagePath: boatVehicleImagePath
+                    id: "boat",
+                    unitId: "units/pd2_dlc_jerry/vehicles/fps_vehicle_boat_rib_1/fps_vehicle_boat_rib_1",
+                    imagePath: boatVehicleImagePath,
+                    name: "main.boat"
                 }
             ]
         };
@@ -54,11 +68,17 @@ export default {
         this.callStore = useCallStore();
         this.settingsStore = useSettingsStore();
 
-        this.enableVehiclesPackagesLoading = this.settingsStore.getSetting("enable-vehicles-packages-loading");
+        if (this.settingsStore.getSetting("vehicles-to-load")) {
+            this.vehiclesToLoad = this.settingsStore.getSetting("vehicles-to-load");
+        }
     },
     methods: {
-        setVehiclesPackagesLoading() {
-            this.settingsStore.setSetting("enable-vehicles-packages-loading", this.enableVehiclesPackagesLoading);
+        setVehiclesToLoad() {
+            if (this.vehiclesToLoad.length) {
+                this.settingsStore.setSetting("vehicles-to-load", this.vehiclesToLoad);
+            } else {
+                this.settingsStore.deleteSetting("vehicles-to-load");
+            }
             this.settingsStore.saveSettings();
         },
         spawnAndDriveVehicle(id) {
@@ -76,17 +96,16 @@ export default {
 
     <div style="max-width: 1000px;" class="container my-5">
         <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                {{ $t("main.driving") }}
-                <span v-if="mainStore.vehiclesPackagesLoaded" class="badge text-bg-success">{{ $t("main.vehicles_packages_loaded") }}</span>
-                <span v-else class="badge text-bg-warning">{{ $t("main.vehicles_packages_not_loaded") }}</span>
-            </div>
+            <div class="card-header">{{ $t("main.driving") }}</div>
             <div class="card-body p-4">
-                <div class="form-check form-switch mb-3">
-                    <input id="enable-vehicles-packages-loading" v-model="enableVehiclesPackagesLoading" class="form-check-input" type="checkbox" @change="setVehiclesPackagesLoading">
-                    <label for="enable-vehicles-packages-loading" class="form-check-label">{{ $t("main.vehicles_packages_loading") }}
-                        <RestartRequiredIcon class="ms-3" />
-                    </label>
+                <div class="mb-3">
+                    <b class="me-3">{{ $t("main.vehicles_to_load") }}</b >
+                    <div class="form-check form-check-inline" v-for="vehicle in vehicles" :key="vehicle.id">
+                        <input :id="vehicle.id" class="form-check-input" type="checkbox" :value="vehicle.id" v-model="vehiclesToLoad" @change="setVehiclesToLoad">
+                        <label :for="vehicle.id" class="form-check-label" :class="{ 'text-success': mainStore.isInGame && mainStore.loadedVehicles.includes(vehicle.id) }">{{ $t(vehicle.name) }}</label>
+                    </div>
+                    <BugIcon />
+                    <RestartRequiredIcon class="ms-3" />
                 </div>
                 <div id="carousel" class="carousel slide">
                     <div class="carousel-indicators">
@@ -96,7 +115,7 @@ export default {
                         <div v-for="(vehicle, index) in vehicles" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
                             <img :src="vehicle.imagePath" class="d-block w-100">
                             <div class="carousel-caption mb-3">
-                                <button class="btn btn-dark" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying" @click="spawnAndDriveVehicle(vehicle.id)">
+                                <button class="btn btn-dark" :disabled="!mainStore.isPlaying || !mainStore.loadedVehicles.includes(vehicle.id)" @click="spawnAndDriveVehicle(vehicle.unitId)">
                                     <FontAwesomeIcon icon="key" class="me-3" />{{ $t("main.drive") }}
                                 </button>
                             </div>
@@ -109,7 +128,7 @@ export default {
                         <span class="carousel-control-next-icon" aria-hidden="true" />
                     </button>
                 </div>
-                <button class="btn btn-primary mt-3" :disabled="!mainStore.vehiclesPackagesLoaded || !mainStore.isPlaying" @click="removeSpawnedVehicles">{{ $t("main.delete_all_spawned_vehicles") }}</button>
+                <button class="btn btn-primary mt-3" :disabled="!mainStore.isPlaying || !mainStore.loadedVehicles.length" @click="removeSpawnedVehicles">{{ $t("main.delete_all_spawned_vehicles") }}</button>
             </div>
         </div>
     </div>

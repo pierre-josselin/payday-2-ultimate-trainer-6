@@ -27,6 +27,7 @@ export function createWebSocket(options) {
         connected.value = true;
         options.connectionErrorCallback = null;
         callStore.addCall(["UT:sendGameContext"]);
+        callStore.addCall(["UT:sendLoadedVehicles"]);
 
         // Wait for settings
         setTimeout(() => {
@@ -67,6 +68,7 @@ export function createWebSocket(options) {
                 if (mainStore.isInHeist && !isInHeist) {
                     missionStore.$reset();
                     spawnStore.$reset();
+                    mainStore.loadedVehicles = [];
                 }
 
                 mainStore.isOffline = false;
@@ -78,7 +80,10 @@ export function createWebSocket(options) {
                 mainStore.isInCustody = Boolean(parseInt(gameContext[5]));
                 mainStore.isAtEndGame = Boolean(parseInt(gameContext[6]));
                 mainStore.isServer = Boolean(parseInt(gameContext[7]));
-                mainStore.vehiclesPackagesLoaded = Boolean(parseInt(gameContext[8]));
+                break;
+            }
+            case "loaded-vehicles": {
+                mainStore.loadedVehicles = message.data.split(",");
                 break;
             }
             case "game-offline": {

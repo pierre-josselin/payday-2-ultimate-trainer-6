@@ -11,7 +11,7 @@ export const useMainStore = defineStore("main", {
         isInCustody: false,
         isAtEndGame: false,
         isServer: false,
-        vehiclesPackagesLoaded: false,
+        loadedVehicles: [],
         lastCallAcknowledgmentTime: null
     })
 });
