@@ -6,7 +6,7 @@ import { useSettingsStore } from "@/stores/settings";
 import NavBar from "@/components/NavBar.vue";
 import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
 import BugIcon from "@/components/icons/BugIcon.vue";
-import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
+import GameRestartRequiredIcon from "@/components/icons/GameRestartRequiredIcon.vue";
 
 import colors from "@/data/colors.json";
 import masks from "@/data/masks.json";
@@ -21,7 +21,7 @@ export default {
         NavBar,
         AntiCheatDetectedIcon,
         BugIcon,
-        RestartRequiredIcon
+        GameRestartRequiredIcon
     },
     data() {
         return {
@@ -395,7 +395,7 @@ export default {
                                 <input id="enable-skill-point-hack" v-model="enableSkillPointHack" class="form-check-input" type="checkbox">
                                 <label for="enable-skill-point-hack" class="form-check-label">{{ $t("main.enable_skill_point_hack") }}</label>
                                 <AntiCheatDetectedIcon class="ms-3" />
-                                <RestartRequiredIcon class="ms-3" />
+                                <GameRestartRequiredIcon class="ms-3" />
                             </div>
                             <div class="row align-items-end">
                                 <label for="skill-points" class="form-label">{{ $t("main.skill_points") }}</label>

@@ -5,7 +5,7 @@ import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
 import BugIcon from "@/components/icons/BugIcon.vue";
-import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
+import GameRestartRequiredIcon from "@/components/icons/GameRestartRequiredIcon.vue";
 
 import sportCarVehicleImagePath from "@/assets/images/vehicles/sport-car.jpg";
 import muscleCarVehicleImagePath from "@/assets/images/vehicles/muscle-car.jpg";
@@ -18,7 +18,7 @@ export default {
     components: {
         NavBar,
         BugIcon,
-        RestartRequiredIcon
+        GameRestartRequiredIcon
     },
     data() {
         return {
@@ -99,13 +99,13 @@ export default {
             <div class="card-header">{{ $t("main.driving") }}</div>
             <div class="card-body p-4">
                 <div class="mb-3">
-                    <b class="me-3">{{ $t("main.vehicles_to_load") }}</b >
+                    <b class="me-3">{{ $t("main.vehicles_to_load") }}</b>
                     <div class="form-check form-check-inline" v-for="vehicle in vehicles" :key="vehicle.id">
                         <input :id="vehicle.id" class="form-check-input" type="checkbox" :value="vehicle.id" v-model="vehiclesToLoad" @change="setVehiclesToLoad">
                         <label :for="vehicle.id" class="form-check-label" :class="{ 'text-success': mainStore.isInGame && mainStore.loadedVehicles.includes(vehicle.id) }">{{ $t(vehicle.name) }}</label>
                     </div>
                     <BugIcon />
-                    <RestartRequiredIcon class="ms-3" />
+                    <GameRestartRequiredIcon class="ms-3" />
                 </div>
                 <div id="carousel" class="carousel slide">
                     <div class="carousel-indicators">

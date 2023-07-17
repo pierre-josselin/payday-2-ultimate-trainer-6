@@ -2,12 +2,12 @@
 import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
-import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
+import GameRestartRequiredIcon from "@/components/icons/GameRestartRequiredIcon.vue";
 
 export default {
     components: {
         NavBar,
-        RestartRequiredIcon
+        GameRestartRequiredIcon
     },
     data() {
         return {
@@ -105,7 +105,7 @@ export default {
                         <div class="form-check form-switch">
                             <input id="enable-pause-stats-publishing" v-model="enablePauseStatsPublishing" class="form-check-input" type="checkbox" @change="setPauseStatsPublishing">
                             <label for="enable-pause-stats-publishing" class="form-check-label">{{ $t("main.pause_stats_publishing_to_steam_epic") }}
-                                <RestartRequiredIcon class="ms-3" />
+                                <GameRestartRequiredIcon class="ms-3" />
                             </label>
                         </div>
                     </div>

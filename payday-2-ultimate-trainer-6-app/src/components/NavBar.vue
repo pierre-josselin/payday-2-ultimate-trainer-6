@@ -8,14 +8,14 @@ import { closeWebSocket } from "@/web-socket";
 import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
 import BugIcon from "@/components/icons/BugIcon.vue";
 import ClientIcon from "@/components/icons/ClientIcon.vue";
-import RestartRequiredIcon from "@/components/icons/RestartRequiredIcon.vue";
+import GameRestartRequiredIcon from "@/components/icons/GameRestartRequiredIcon.vue";
 
 export default {
     components: {
         AntiCheatDetectedIcon,
         BugIcon,
         ClientIcon,
-        RestartRequiredIcon
+        GameRestartRequiredIcon
     },
     data() {
         return {
@@ -71,10 +71,10 @@ export default {
                             </tr>
                             <tr>
                                 <td class="bg-transparent text-center">
-                                    <RestartRequiredIcon />
+                                    <GameRestartRequiredIcon />
                                 </td>
-                                <td class="bg-transparent text-nowrap">{{ $t("main.restart_required") }}</td>
-                                <td class="bg-transparent">{{ $t("dialogs.restart_required_icon_description") }}</td>
+                                <td class="bg-transparent text-nowrap">{{ $t("main.game_restart_required") }}</td>
+                                <td class="bg-transparent">{{ $t("dialogs.game_restart_required_icon_description") }}</td>
                             </tr>
                             <tr>
                                 <td class="bg-transparent text-center">
