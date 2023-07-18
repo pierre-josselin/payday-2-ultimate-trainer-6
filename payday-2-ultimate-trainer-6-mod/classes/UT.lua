@@ -280,6 +280,9 @@ function UT:playerUnitAliveEvent()
     if UT:getSetting("enable-unlimited-ammo") then
         UT:setUnlimitedAmmo(true)
     end
+    if UT:getSetting("enable-no-slow-motion") then
+        UT:setNoSlowMotion(true)
+    end
     if UT:getSetting("enable-move-speed-multiplier") and UT:getSetting("move-speed-multiplier") then
         UT:setMoveSpeedMultiplier(true, UT:getSetting("move-speed-multiplier"))
     end
@@ -696,6 +699,15 @@ function UT:setUnlimitedAmmo(enabled)
     else
         RaycastWeaponBase.clip_empty = RaycastWeaponBase.orig.clip_empty
         SawWeaponBase.clip_empty = SawWeaponBase.orig.clip_empty
+    end
+end
+
+function UT:setNoSlowMotion(enabled)
+    UT.Utility:cloneClass(TimeSpeedManager)
+    if enabled then
+        function TimeSpeedManager:play_effect() end
+    else
+        TimeSpeedManager.play_effect = TimeSpeedManager.orig.play_effect
     end
 end
 

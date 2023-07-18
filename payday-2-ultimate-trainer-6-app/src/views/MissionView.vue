@@ -1,6 +1,7 @@
 <script>
 import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
+import { useSettingsStore } from "@/stores/settings";
 import { useMissionStore } from "@/stores/mission";
 
 import NavBar from "@/components/NavBar.vue";
@@ -13,9 +14,15 @@ export default {
         AntiCheatDetectedIcon,
         BugIcon
     },
+    computed: {
+        noSlowMotionEnabled() {
+            return this.settingsStore.getSetting("enable-no-slow-motion");
+        }
+    },
     created() {
         this.mainStore = useMainStore();
         this.callStore = useCallStore();
+        this.settingsStore = useSettingsStore();
         this.missionStore = useMissionStore();
 
         this.$watch("missionStore.slowMotionWorldSpeed", (slowMotionWorldSpeed) => {
@@ -403,18 +410,20 @@ export default {
                             </div>
                         </div>
                         <div id="slow-motion-tab" class="tab-pane pt-4" tabindex="0">
-                            <div class="form-check form-switch mb-3">
-                                <input id="enable-slow-motion" v-model="missionStore.enableSlowMotion" class="form-check-input" type="checkbox" @change="setSlowMotion">
-                                <label for="enable-slow-motion" class="form-check-label">{{ $t("main.slow_motion") }}</label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="slow-motion-world-speed" class="form-label">{{ $t("main.world_speed") }} · {{ missionStore.slowMotionWorldSpeed }}</label>
-                                <input id="slow-motion-world-speed" v-model="missionStore.slowMotionWorldSpeed" type="range" min="0.1" max="1" step="0.1" class="form-range" :disabled="!missionStore.enableSlowMotion" @change="setSlowMotion">
-                            </div>
-                            <div>
-                                <label for="slow-motion-player-speed" class="form-label">{{ $t("main.player_speed") }} · {{ missionStore.slowMotionPlayerSpeed }}</label>
-                                <input id="slow-motion-player-speed" v-model="missionStore.slowMotionPlayerSpeed" type="range" min="0.1" max="1" step="0.1" class="form-range" :disabled="!missionStore.enableSlowMotion" @change="setSlowMotion">
-                            </div>
+                            <fieldset :disabled="noSlowMotionEnabled && !missionStore.enableSlowMotion">
+                                <div class="form-check form-switch mb-3">
+                                    <input id="enable-slow-motion" v-model="missionStore.enableSlowMotion" class="form-check-input" type="checkbox" @change="setSlowMotion">
+                                    <label for="enable-slow-motion" class="form-check-label">{{ $t("main.slow_motion") }}</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="slow-motion-world-speed" class="form-label">{{ $t("main.world_speed") }} · {{ missionStore.slowMotionWorldSpeed }}</label>
+                                    <input id="slow-motion-world-speed" v-model="missionStore.slowMotionWorldSpeed" type="range" min="0.1" max="1" step="0.1" class="form-range" :disabled="!missionStore.enableSlowMotion" @change="setSlowMotion">
+                                </div>
+                                <div>
+                                    <label for="slow-motion-player-speed" class="form-label">{{ $t("main.player_speed") }} · {{ missionStore.slowMotionPlayerSpeed }}</label>
+                                    <input id="slow-motion-player-speed" v-model="missionStore.slowMotionPlayerSpeed" type="range" min="0.1" max="1" step="0.1" class="form-range" :disabled="!missionStore.enableSlowMotion" @change="setSlowMotion">
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                 </fieldset>

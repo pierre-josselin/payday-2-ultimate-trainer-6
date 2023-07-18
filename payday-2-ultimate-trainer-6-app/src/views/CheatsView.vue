@@ -21,15 +21,16 @@ export default {
             enableInstantMaskOn: false,
             enableNoCarryCooldown: false,
             enableNoFlashbangs: false,
+            enableInstantInteraction: false,
+            enableInstantDeployment: false,
+            enableUnlimitedEquipment: false,
             enableInstantWeaponSwap: false,
             enableInstantWeaponReload: false,
             enableNoWeaponRecoil: false,
             enableNoWeaponSpread: false,
             enableShootThroughWalls: false,
             enableUnlimitedAmmo: false,
-            enableInstantInteraction: false,
-            enableInstantDeployment: false,
-            enableUnlimitedEquipment: false,
+            enableNoSlowMotion: false,
             enableMoveSpeedMultiplier: false,
             enableThrowDistanceMultiplier: false,
             enableFireRateMultiplier: false,
@@ -84,6 +85,7 @@ export default {
         this.enableNoWeaponSpread = this.settingsStore.getSetting("enable-no-weapon-spread");
         this.enableShootThroughWalls = this.settingsStore.getSetting("enable-shoot-through-walls");
         this.enableUnlimitedAmmo = this.settingsStore.getSetting("enable-unlimited-ammo");
+        this.enableNoSlowMotion = this.settingsStore.getSetting("enable-no-slow-motion");
         this.enableMoveSpeedMultiplier = this.settingsStore.getSetting("enable-move-speed-multiplier");
         this.enableThrowDistanceMultiplier = this.settingsStore.getSetting("enable-throw-distance-multiplier");
         this.enableFireRateMultiplier = this.settingsStore.getSetting("enable-fire-rate-multiplier");
@@ -247,6 +249,15 @@ export default {
                 this.settingsStore.saveSettings();
             }
         },
+        setNoSlowMotion(saveSettings = true) {
+            if (this.mainStore.isInHeist) {
+                this.callStore.addCall(["UT:setNoSlowMotion", this.enableNoSlowMotion]);
+            }
+            this.settingsStore.setSetting("enable-no-slow-motion", this.enableNoSlowMotion);
+            if (saveSettings) {
+                this.settingsStore.saveSettings();
+            }
+        },
         setMoveSpeedMultiplier(saveSettings = true) {
             if (this.mainStore.isInHeist && ((this.enableMoveSpeedMultiplier && this.moveSpeedMultiplier) || !this.enableMoveSpeedMultiplier)) {
                 this.callStore.addCall(["UT:setMoveSpeedMultiplier", this.enableMoveSpeedMultiplier, this.moveSpeedMultiplier]);
@@ -305,6 +316,7 @@ export default {
             this.enableNoWeaponSpread = false;
             this.enableShootThroughWalls = false;
             this.enableUnlimitedAmmo = false;
+            this.enableNoSlowMotion = false;
             this.enableMoveSpeedMultiplier = false;
             this.enableThrowDistanceMultiplier = false;
             this.enableFireRateMultiplier = false;
@@ -327,6 +339,7 @@ export default {
             this.setNoWeaponSpread(false);
             this.setShootThroughWalls(false);
             this.setUnlimitedAmmo(false);
+            this.setNoSlowMotion(false);
             this.setMoveSpeedMultiplier(false);
             this.setThrowDistanceMultiplier(false);
             this.setFireRateMultiplier(false);
@@ -447,6 +460,12 @@ export default {
                         <div class="form-check form-switch">
                             <input id="enable-unlimited-ammo" v-model="enableUnlimitedAmmo" class="form-check-input" type="checkbox" @change="setUnlimitedAmmo">
                             <label for="enable-unlimited-ammo" class="form-check-label">{{ $t("main.unlimited_ammo") }}</label>
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="form-check form-switch">
+                            <input id="enable-no-slow-motion" v-model="enableNoSlowMotion" class="form-check-input" type="checkbox" @change="setNoSlowMotion">
+                            <label for="enable-no-slow-motion" class="form-check-label">{{ $t("main.no_slow_motion") }}</label>
                         </div>
                     </div>
                     <div class="col mb-3">
