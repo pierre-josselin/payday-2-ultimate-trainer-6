@@ -171,6 +171,10 @@ function UT.GameUtility:saveProgress()
     managers.savefile:save_progress()
 end
 
+function UT.GameUtility:getPlayerState()
+    return managers.player:current_state()
+end
+
 function UT.GameUtility:setPlayerState(state)
     managers.player:set_player_state(state)
 end
@@ -182,6 +186,12 @@ end
 function UT.GameUtility:interactFromTable(table)
     if not table then
         return
+    end
+
+    local isMaskOff = UT.GameUtility:getPlayerState() == "mask_off"
+
+    if isMaskOff then
+        UT.GameUtility:setPlayerState("clean")
     end
 
     local playerUnit = UT.GameUtility:getPlayerUnit()
@@ -197,5 +207,9 @@ function UT.GameUtility:interactFromTable(table)
         end
 
         ::continue::
+    end
+
+    if isMaskOff then
+        UT.GameUtility:setPlayerState("mask_off")
     end
 end
