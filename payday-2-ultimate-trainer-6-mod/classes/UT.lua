@@ -735,14 +735,14 @@ function UT:setDamageMultiplier(enabled, multiplier)
     if enabled then
         function CopDamage:damage_bullet(attack_data)
             if attack_data.attacker_unit == UT.GameUtility:getPlayerUnit() then
-                attack_data.damage = multiplier * 10
+                attack_data.damage = attack_data.damage * multiplier
             end
             return self.orig.damage_bullet(self, attack_data)
         end
 
         function CopDamage:damage_melee(attack_data)
             if attack_data.attacker_unit == UT.GameUtility:getPlayerUnit() then
-                attack_data.damage = multiplier * 10
+                attack_data.damage = attack_data.damage * multiplier
             end
             return self.orig.damage_melee(self, attack_data)
         end
