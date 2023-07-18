@@ -180,6 +180,10 @@ export default {
     --bs-toast-max-width: unset;
 }
 
+.popover {
+  --bs-popover-max-width: 300px;
+}
+
 .disabled {
     pointer-events: none;
 }

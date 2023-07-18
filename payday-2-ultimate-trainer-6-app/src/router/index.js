@@ -1,3 +1,4 @@
+import Popover from "bootstrap/js/dist/popover";
 import Tooltip from "bootstrap/js/dist/tooltip";
 
 import { nextTick } from "vue";
@@ -76,8 +77,8 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach(() => {
     nextTick(() => {
-        const elements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        elements.forEach(element => new Tooltip(element));
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(element => new Tooltip(element));
+        document.querySelectorAll('[data-bs-toggle="popover"]').forEach(element => new Popover(element, { trigger: "focus" }));
     });
 });
 

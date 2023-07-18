@@ -96,7 +96,11 @@ export default {
 
     <div style="max-width: 1000px;" class="container my-5">
         <div class="card">
-            <div class="card-header">{{ $t("main.driving") }}</div>
+            <div class="card-header d-flex justify-content-between align-items-center">{{ $t("main.driving") }}
+                <button type="button" class="btn btn-link btn-sm" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.driving_help')">
+                    <FontAwesomeIcon icon="fa-solid fa-question" />
+                </button>
+            </div>
             <div class="card-body p-4">
                 <div class="mb-3">
                     <b class="me-3">{{ $t("main.vehicles_to_load") }}</b>

@@ -104,6 +104,9 @@ export default {
                     <li v-for="(navItem, index) in navItems" :key="index" class="nav-item">
                         <RouterLink :to="{ name: navItem }" class="nav-link" :class="{ active: $route.name === navItem }">{{ $t(`main.${navItem}`) }}</RouterLink>
                     </li>
+                    <li class="nav-item">
+                        <button class="nav-link" role="button" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.editor_help')">{{ $t("main.editor") }}</button>
+                    </li>
                 </ul>
                 <span>
                     <template v-if="mainStore.isOffline">{{ $t("main.offline") }}</template>

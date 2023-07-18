@@ -263,7 +263,11 @@ export default {
 
     <div class="container my-5">
         <div class="card">
-            <div class="card-header">{{ $t("main.spawn") }}</div>
+            <div class="card-header d-flex justify-content-between align-items-center">{{ $t("main.spawn") }}
+                <button type="button" class="btn btn-link btn-sm" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.spawn_help')">
+                    <FontAwesomeIcon icon="fa-solid fa-question" />
+                </button>
+            </div>
             <fieldset class="card-body p-4" :class="{ disabled: !mainStore.isPlaying || !mainStore.isServer }" :disabled="!mainStore.isPlaying || !mainStore.isServer">
                 <div class="mb-3">
                     <label class="form-label me-4">{{ $t("main.position") }}</label>

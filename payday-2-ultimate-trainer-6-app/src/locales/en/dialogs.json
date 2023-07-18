@@ -3,6 +3,9 @@
     "bug_icon_description": "This feature contains bugs and may not work properly, block objectives or crash the game.",
     "client_icon_description": "Some features will not be available because you are client of the game.",
     "connection_failed": "The connection to the server failed. Check the host and port and make sure the game is running.",
+    "driving_help": "Select the vehicles to load then restart the game. The loading time will be extended. In some cases, if you have selected too many vehicles, your game may crash when entering the heist. If this happens, reduce the number of vehicles to load simultaneously and restart the game. Other players will not see your vehicles.",
+    "editor_help": "In game, you can pick, spawn, delete any unit by pressing the corresponding keybind configured in the game mods keybinds settings. Spawned units with a green outline will be visible to other players while those with an orange outline will not.",
     "game_restart_required_icon_description": "This feature requires restarting the game to apply changes.",
+    "spawn_help": "Select a unit then spawn it in-game by pressing the corresponding keybind configured in the game mods keybinds settings.",
     "update_available": "An update is available. Install it to take advantage of the latest features and bug fixes."
 }
