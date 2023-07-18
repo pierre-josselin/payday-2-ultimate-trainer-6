@@ -276,25 +276,23 @@ export default {
                         <label for="position-type-on-self" class="form-check-label">{{ $t("main.on_self") }}</label>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <nav>
-                        <div class="nav nav-tabs">
-                            <button v-for="category in categories" :key="category.id" class="nav-link" data-bs-toggle="tab" :class="{ active: category.id === spawnStore.categoryId }" :data-bs-target="`#${category.elementId}`" @click="setCategoryId(category.id)">
-                                {{ $t(category.label) }}
-                                <AntiCheatDetectedIcon v-if="category.id === 'equipment'" class="ms-3" />
-                            </button>
+                <nav>
+                    <div class="nav nav-tabs">
+                        <button v-for="category in categories" :key="category.id" class="nav-link" data-bs-toggle="tab" :class="{ active: category.id === spawnStore.categoryId }" :data-bs-target="`#${category.elementId}`" @click="setCategoryId(category.id)">
+                            {{ $t(category.label) }}
+                            <AntiCheatDetectedIcon v-if="category.id === 'equipment'" class="ms-3" />
+                        </button>
+                    </div>
+                </nav>
+                <div class="tab-content">
+                    <div v-for="category in categories" :id="category.elementId" :key="category.id" class="tab-pane" :class="{ 'show active': category.id === spawnStore.categoryId }" tabindex="0">
+                        <div v-if="category.id === 'enemies'" class="form-check form-switch mt-3">
+                            <input id="converted-enemies" v-model="spawnStore.convertedEnemies" class="form-check-input" type="checkbox" @change="setConfig">
+                            <label for="converted-enemies" class="form-check-label">{{ $t("main.converted_enemies") }}</label>
                         </div>
-                    </nav>
-                    <div class="tab-content">
-                        <div v-for="category in categories" :id="category.elementId" :key="category.id" class="tab-pane pt-4" :class="{ 'show active': category.id === spawnStore.categoryId }" tabindex="0">
-                            <div v-if="category.id === 'enemies'" class="form-check form-switch mb-3">
-                                <input id="converted-enemies" v-model="spawnStore.convertedEnemies" class="form-check-input" type="checkbox" @change="setConfig">
-                                <label for="converted-enemies" class="form-check-label">{{ $t("main.converted_enemies") }}</label>
-                            </div>
-                            <div class="row row-cols-5">
-                                <div v-for="(unit, index) in category.units" :key="index" class="col mb-4" role="button" @click="setId(unit.id)">
-                                    <div :style="`background-image: url(${unit.imagePath})`" class="ratio ratio-1x1 border border-3 rounded shadow unit-image" :class="{ 'border-dark': unit.id !== spawnStore.id, 'border-success active': unit.id === spawnStore.id, 'equipment-image': category.id === 'equipment' }" />
-                                </div>
+                        <div class="row row-cols-5">
+                            <div v-for="(unit, index) in category.units" :key="index" class="col mt-3" role="button" @click="setId(unit.id)">
+                                <div :style="`background-image: url(${unit.imagePath})`" class="ratio ratio-1x1 border border-3 rounded shadow unit-image" :class="{ 'border-dark': unit.id !== spawnStore.id, 'border-success active': unit.id === spawnStore.id, 'equipment-image': category.id === 'equipment' }" />
                             </div>
                         </div>
                     </div>
