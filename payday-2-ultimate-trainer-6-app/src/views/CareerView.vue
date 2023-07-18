@@ -4,7 +4,6 @@ import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
 
 import NavBar from "@/components/NavBar.vue";
-import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
 import BugIcon from "@/components/icons/BugIcon.vue";
 import GameRestartRequiredIcon from "@/components/icons/GameRestartRequiredIcon.vue";
 
@@ -19,7 +18,6 @@ import steamAchievements from "@/data/steam-achievements.json";
 export default {
     components: {
         NavBar,
-        AntiCheatDetectedIcon,
         BugIcon,
         GameRestartRequiredIcon
     },
@@ -394,7 +392,6 @@ export default {
                             <div class="form-check form-switch mb-3" @change="setSkillPointHack">
                                 <input id="enable-skill-point-hack" v-model="enableSkillPointHack" class="form-check-input" type="checkbox">
                                 <label for="enable-skill-point-hack" class="form-check-label">{{ $t("main.enable_skill_point_hack") }}</label>
-                                <AntiCheatDetectedIcon class="ms-3" />
                                 <GameRestartRequiredIcon class="ms-3" />
                             </div>
                             <div class="row align-items-end">

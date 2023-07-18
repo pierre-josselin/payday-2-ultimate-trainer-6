@@ -269,9 +269,8 @@ export default {
                                                     <option value="throwables">{{ $t("main.throwables") }}</option>
                                                     <option value="body-bags">{{ $t("main.body_bags") }}</option>
                                                 </select>
-                                                <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">
-                                                    {{ $t("main.replenish") }}
-                                                    <AntiCheatDetectedIcon class="ms-3" v-if="missionStore.replenishType !== 'cable-ties'" />
+                                                <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">{{ $t("main.replenish") }}
+                                                    <AntiCheatDetectedIcon class="ms-3" v-if="missionStore.replenishType === 'equipment'" />
                                                 </button>
                                             </div>
                                         </form>
@@ -369,32 +368,23 @@ export default {
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openCrates">
-                                            {{ $t("main.open_crates") }}
-                                            <AntiCheatDetectedIcon class="ms-3" />
-                                        </button>
+                                        <button class="btn btn-primary" @click="openCrates">{{ $t("main.open_crates") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="barricadeWindows">
-                                            {{ $t("main.barricade_windows") }}
-                                            <AntiCheatDetectedIcon class="ms-3" />
-                                        </button>
+                                        <button class="btn btn-primary" @click="barricadeWindows">{{ $t("main.barricade_windows") }}</button>
+                                    </div>
+                                </div>
+                                <div class="col mt-4">
+                                    <div class="ratio interaction-button">
+                                        <button class="btn btn-primary" @click="useKeycards">{{ $t("main.use_keycards") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
                                         <button class="btn btn-primary" @click="openAtms">
                                             {{ $t("main.open_atms") }}
-                                            <AntiCheatDetectedIcon class="ms-3" />
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col mt-4">
-                                    <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="useKeycards">
-                                            {{ $t("main.use_keycards") }}
                                             <AntiCheatDetectedIcon class="ms-3" />
                                         </button>
                                     </div>
