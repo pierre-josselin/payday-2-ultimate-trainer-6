@@ -13,6 +13,10 @@ function UT.Keybind:teleportPlayerToCrosshair()
         return
     end
 
+    if UT.GameUtility:isPlayerUsingZipline() then
+        return
+    end
+
     local crosshairRay = UT.GameUtility:getCrosshairRay()
 
     if not crosshairRay then

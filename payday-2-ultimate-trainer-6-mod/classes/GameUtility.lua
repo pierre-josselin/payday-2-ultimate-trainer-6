@@ -91,6 +91,10 @@ function UT.GameUtility:getCrosshairRayPosition()
     return crosshairRay.position
 end
 
+function UT.GameUtility:isPlayerUsingZipline()
+    return UT.Utility:toBoolean(UT.GameUtility:getPlayerUnit():movement():zipline_unit())
+end
+
 function UT.GameUtility:isUnitAlive(unit)
     return alive(unit)
 end
