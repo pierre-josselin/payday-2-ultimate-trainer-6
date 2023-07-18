@@ -587,6 +587,14 @@ function UT:setUnlimitedEquipment(enabled)
         function PlayerManager:remove_equipment() end
 
         function PlayerManager:remove_special() end
+
+        function PlayerManager:add_grenade_amount(amount, sync)
+            if amount < 0 then
+                return
+            end
+
+            PlayerManager.orig.add_grenade_amount(self, amount, sync)
+        end
     else
         BaseInteractionExt._has_required_upgrade = BaseInteractionExt.orig._has_required_upgrade
         BaseInteractionExt._has_required_deployable = BaseInteractionExt.orig._has_required_deployable
@@ -594,6 +602,7 @@ function UT:setUnlimitedEquipment(enabled)
         PlayerManager.on_used_body_bag = PlayerManager.orig.on_used_body_bag
         PlayerManager.remove_equipment = PlayerManager.orig.remove_equipment
         PlayerManager.remove_special = PlayerManager.orig.remove_special
+        PlayerManager.add_grenade_amount = PlayerManager.orig.add_grenade_amount
     end
 end
 
