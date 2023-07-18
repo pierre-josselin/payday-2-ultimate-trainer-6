@@ -52,6 +52,10 @@ function UT.Keybind:editorPick()
         return
     end
 
+    if not UT.GameUtility:isServer() then
+        return
+    end
+
     if not UT.GameUtility:isPlayerUnitAlive() then
         return
     end
