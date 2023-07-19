@@ -1,4 +1,6 @@
 <script>
+import GithubButton from "vue-github-button";
+
 import { RouterLink } from "vue-router";
 
 import { useMainStore } from "@/stores/main";
@@ -15,7 +17,8 @@ export default {
         AntiCheatDetectedIcon,
         BugIcon,
         ClientIcon,
-        GameRestartRequiredIcon
+        GameRestartRequiredIcon,
+        GithubButton
     },
     data() {
         return {
@@ -38,6 +41,27 @@ export default {
 </script>
 
 <template>
+    <div id="support-us-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">{{ $t("main.support_us") }}</h1>
+                    <button class="btn-close" data-bs-dismiss="modal" />
+                </div>
+                <div class="modal-body">
+                    <p class="mb-4" v-html="$t('dialogs.support_us')"></p>
+                    <GithubButton class="mb-4" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" data-icon="octicon-star" data-size="large" data-show-count="true">{{ $t("main.support_us") }}</GithubButton>
+                    <div class="fs-1 text-uppercase">{{ $t("main.thank_you") }}
+                        <FontAwesomeIcon class="text-danger ms-3" icon="fa-solid fa-heart" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <span class="navbar-brand">Ultimate Trainer 6</span>
@@ -46,7 +70,7 @@ export default {
             </button>
             <div id="navbar-supported-content" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li v-for="(navItem, index) in navItems" :key="index" class="nav-item">
+                    <li v-for="( navItem, index ) in  navItems " :key="index" class="nav-item">
                         <RouterLink :to="{ name: navItem }" class="nav-link" :class="{ active: $route.name === navItem }">{{ $t(`main.${navItem}`) }}</RouterLink>
                     </li>
                     <li class="nav-item">
@@ -62,6 +86,9 @@ export default {
                     <template v-else-if="mainStore.isAtEndGame">{{ $t("main.end_game") }}</template>
                 </span>
                 <ClientIcon v-if="mainStore.isInGame && !mainStore.isServer" class="ms-2" />
+                <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#support-us-modal">
+                    <FontAwesomeIcon class="text-danger" icon="fa-solid fa-heart" />
+                </button>
                 <a class="btn btn-primary btn-sm ms-3" :href="REPOSITORY_URL" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
                 </a>

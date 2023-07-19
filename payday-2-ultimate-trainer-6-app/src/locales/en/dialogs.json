@@ -7,5 +7,6 @@
     "editor_help": "In game, you can pick, spawn, delete any unit by pressing the corresponding keybind configured in the game mods keybinds settings. Spawned units with a green outline will be visible to other players while those with an orange outline will not.",
     "game_restart_required_icon_description": "This feature requires restarting the game to apply changes.",
     "spawn_help": "Select a unit then spawn it in-game by pressing the corresponding keybind configured in the game mods keybinds settings.",
+    "support_us": "Do you like Ultimate Trainer 6? It's free and open source software! The best way to support us is to give us a free GitHub star!<br><br>Simply click on the button below and then on the \"Star\" button:",
     "update_available": "An update is available. Install it to take advantage of the latest features and bug fixes."
 }
