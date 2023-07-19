@@ -3,7 +3,7 @@ export default {}
 </script>
 
 <template>
-    <span data-bs-toggle="tooltip" :data-bs-title="$t('main.bug')">
+    <span class="popover-hover" data-bs-toggle="popover" :data-bs-title="$t('main.bug')" :data-bs-content="$t('dialogs.bug_icon_description')">
         <FontAwesomeIcon icon="fa-solid fa-bug" class="text-info" />
     </span>
 </template>

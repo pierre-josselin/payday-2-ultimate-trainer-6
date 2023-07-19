@@ -264,7 +264,7 @@ export default {
     <div class="container my-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">{{ $t("main.spawn") }}
-                <button type="button" class="btn btn-link btn-sm" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.spawn_help')">
+                <button type="button" class="btn btn-link btn-sm popover-focus" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.spawn_help')">
                     <FontAwesomeIcon icon="fa-solid fa-question" />
                 </button>
             </div>

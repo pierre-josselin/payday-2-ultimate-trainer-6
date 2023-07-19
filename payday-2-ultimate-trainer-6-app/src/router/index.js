@@ -78,7 +78,8 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
     nextTick(() => {
         document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(element => new Tooltip(element));
-        document.querySelectorAll('[data-bs-toggle="popover"]').forEach(element => new Popover(element, { trigger: "focus" }));
+        document.querySelectorAll('.popover-focus').forEach(element => new Popover(element, { trigger: "focus" }));
+        document.querySelectorAll('.popover-hover').forEach(element => new Popover(element, { trigger: "hover" }));
     });
 });
 
