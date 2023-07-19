@@ -56,7 +56,7 @@ export function createWebSocket(options) {
         const rawMessage = messageEvent.data;
         const message = JSON.parse(rawMessage);
 
-        if (!message || !message.type || !message.data) {
+        if (!message || !message.type || !("data" in message)) {
             return;
         }
 
@@ -104,6 +104,10 @@ export function createWebSocket(options) {
             }
             case "call-acknowledge": {
                 mainStore.lastCallAcknowledgmentTime = message.data;
+                break;
+            }
+            case "game-crash-log": {
+                setTimeout(() => mainStore.gameCrashLog = message.data, 500);
                 break;
             }
         }

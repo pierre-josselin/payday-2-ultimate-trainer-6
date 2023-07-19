@@ -1,3 +1,5 @@
+const fs = require("fs");
+const path = require("path");
 const ws = require("ws");
 
 class WebSocketServer {
@@ -8,6 +10,18 @@ class WebSocketServer {
         settings: (data) => {
             this.settingsManager.setSettings(data);
             this.settingsManager.saveSettings();
+        },
+        "request-game-crash-log": (data, ws) => {
+            let gameCrashLog = false;
+            try {
+                gameCrashLog = fs.readFileSync(path.join(process.env.LOCALAPPDATA, "PAYDAY 2", "crash.txt"), { encoding: "utf8" });
+            } catch (error) {
+            }
+
+            ws.send(JSON.stringify({
+                type: "game-crash-log",
+                data: gameCrashLog
+            }));
         }
     };
 
@@ -31,14 +45,13 @@ class WebSocketServer {
                     return;
                 }
 
-                handler(data);
+                handler(data, ws);
             });
 
-            const data = {
+            ws.send(JSON.stringify({
                 type: "settings",
                 data: this.settingsManager.getSettings()
-            };
-            ws.send(JSON.stringify(data));
+            }));
         });
     }
 }

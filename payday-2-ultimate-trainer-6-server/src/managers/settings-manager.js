@@ -9,7 +9,7 @@ class SettingsManager {
 
     loadSettings() {
         try {
-            const data = fs.readFileSync(this.settingsFilePath);
+            const data = fs.readFileSync(this.settingsFilePath, { encoding: "utf8" });
             this.settings = JSON.parse(data);
         } catch (error) {
             if (error.code === "ENOENT") {

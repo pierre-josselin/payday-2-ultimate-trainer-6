@@ -62,6 +62,37 @@ export default {
         </div>
     </div>
 
+    <div id="report-a-bug-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">{{ $t("main.report_a_bug") }}</h1>
+                    <button class="btn-close" data-bs-dismiss="modal" />
+                </div>
+                <div class="modal-body">
+                    <p>{{ $t("dialogs.report_a_bug") }}</p>
+                    <div class="mb-3">
+                        <a class="btn btn-link me-2" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues" target="_blank">GitHub ({{ $t("main.faster_answer").toLowerCase() }})</a>
+                        <a class="btn btn-link" href="https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html" target="_blank">UnknownCheats</a>
+                    </div>
+                    <p class="fs-5">{{ $t("main.game_crash_log") }}
+                        <button class="btn btn-link btn-sm ms-2" @click="mainStore.requestGameCrashLog">
+                            <FontAwesomeIcon icon="fa-solid fa-arrows-rotate" />
+                        </button>
+                    </p>
+                    <div class="alert alert-danger mb-0" v-if="mainStore.gameCrashLog === false">{{ $t("dialogs.game_crash_log_recovery_failed") }}</div>
+                    <div class="d-flex justify-content-center my-4" v-else-if="!mainStore.gameCrashLog">
+                        <div class="spinner-border"></div>
+                    </div>
+                    <textarea class="form-control" rows="20" readonly v-else>{{ mainStore.gameCrashLog }}</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <span class="navbar-brand">Ultimate Trainer 6</span>
@@ -92,6 +123,9 @@ export default {
                 <a class="btn btn-primary btn-sm ms-3" :href="REPOSITORY_URL" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
                 </a>
+                <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#report-a-bug-modal" @click="mainStore.requestGameCrashLog">
+                    <FontAwesomeIcon icon="fa-solid fa-bug" />
+                </button>
                 <RouterLink :to="{ name: 'settings' }" class="btn btn-primary btn-sm ms-3" :class="{ active: $route.name === 'settings' }">
                     <FontAwesomeIcon icon="fa-solid fa-gear" />
                 </RouterLink>
