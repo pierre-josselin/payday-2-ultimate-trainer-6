@@ -1,6 +1,4 @@
 <script>
-import GithubButton from "vue-github-button";
-
 import { RouterLink } from "vue-router";
 
 import { useMainStore } from "@/stores/main";
@@ -17,8 +15,7 @@ export default {
         AntiCheatDetectedIcon,
         BugIcon,
         ClientIcon,
-        GameRestartRequiredIcon,
-        GithubButton
+        GameRestartRequiredIcon
     },
     data() {
         return {

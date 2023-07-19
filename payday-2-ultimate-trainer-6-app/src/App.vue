@@ -1,6 +1,7 @@
 <script>
 import "bootstrap";
 
+import GithubButton from "vue-github-button";
 import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
 import VueMarkdown from "vue-markdown-render";
@@ -13,6 +14,7 @@ import creditsPath from "../../credits.md";
 
 export default {
     components: {
+        GithubButton,
         VueMarkdown
     },
     data() {
