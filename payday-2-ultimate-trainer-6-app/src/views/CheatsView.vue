@@ -358,7 +358,7 @@ export default {
         <div class="card">
             <div class="card-header">{{ $t("main.persistent_cheats") }}</div>
             <div class="card-body p-4">
-                <div class="row row-cols-2">
+                <div class="row row-cols-1 row-cols-sm-2">
                     <div class="col mb-3">
                         <div class="form-check form-switch">
                             <input id="enable-god-mode" v-model="enableGodMode" class="form-check-input" type="checkbox" @change="setGodMode">

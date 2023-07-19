@@ -96,8 +96,8 @@ export default {
 
     <div class="container-fluid my-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" :class="{ disabled: mainStore.isOffline || !mainStore.isInHeist }">
-            <div v-for="(environment, index) in environments" :key="index" class="col">
-                <div class="card mb-4" role="button" @click="setEnvironment(environment.id)">
+            <div v-for="(environment, index) in environments" :key="index" class="col" :class="{ 'mb-4': index < environments.length - 1 }">
+                <div class="card" role="button" @click="setEnvironment(environment.id)">
                     <img :src="environment.imagePath" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title mb-0">{{ $t(environment.name) }}</h5>

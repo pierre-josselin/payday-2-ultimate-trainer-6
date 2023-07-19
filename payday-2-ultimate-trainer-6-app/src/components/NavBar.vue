@@ -39,7 +39,7 @@ export default {
 
 <template>
     <div id="help-modal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5">{{ $t("main.help") }}</h1>

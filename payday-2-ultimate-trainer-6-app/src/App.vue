@@ -181,7 +181,7 @@ export default {
 }
 
 .popover {
-  --bs-popover-max-width: 300px;
+    --bs-popover-max-width: 300px;
 }
 
 .disabled {

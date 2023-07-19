@@ -294,7 +294,7 @@ export default {
                             <input id="converted-enemies" v-model="spawnStore.convertedEnemies" class="form-check-input" type="checkbox" @change="setConfig">
                             <label for="converted-enemies" class="form-check-label">{{ $t("main.converted_enemies") }}</label>
                         </div>
-                        <div class="row row-cols-5">
+                        <div class="row row-cols-2  row-cols-sm-3  row-cols-md-4 row-cols-lg-5">
                             <div v-for="(unit, index) in category.units" :key="index" class="col mt-3" role="button" @click="setId(unit.id)">
                                 <div :style="`background-image: url(${unit.imagePath})`" class="ratio ratio-1x1 border border-3 rounded shadow unit-image" :class="{ 'border-dark': unit.id !== spawnStore.id, 'border-success active': unit.id === spawnStore.id, 'equipment-image': category.id === 'equipment' }" />
                             </div>

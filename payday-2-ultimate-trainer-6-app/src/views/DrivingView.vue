@@ -102,14 +102,16 @@ export default {
                 </button>
             </div>
             <div class="card-body p-4">
+                <div class="mb-2">
+                    <b>{{ $t("main.vehicles_to_load") }}</b>
+                    <BugIcon class="ms-3" />
+                    <GameRestartRequiredIcon class="ms-3" />
+                </div>
                 <div class="mb-3">
-                    <b class="me-3">{{ $t("main.vehicles_to_load") }}</b>
                     <div class="form-check form-check-inline" v-for="vehicle in vehicles" :key="vehicle.id">
                         <input :id="vehicle.id" class="form-check-input" type="checkbox" :value="vehicle.id" v-model="vehiclesToLoad" @change="setVehiclesToLoad">
                         <label :for="vehicle.id" class="form-check-label" :class="{ 'text-success': mainStore.isInGame && mainStore.loadedVehicles.includes(vehicle.id) }">{{ $t(vehicle.name) }}</label>
                     </div>
-                    <BugIcon />
-                    <GameRestartRequiredIcon class="ms-3" />
                 </div>
                 <div id="carousel" class="carousel slide">
                     <div class="carousel-indicators">
