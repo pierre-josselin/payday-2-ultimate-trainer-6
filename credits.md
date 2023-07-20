@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**Art3misFowl**, **ppt**
+
+- Chinese locale
+
 **GamingResources**
 
 - Romanian locale

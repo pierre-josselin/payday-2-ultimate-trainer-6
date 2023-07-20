@@ -23,6 +23,16 @@ import frWeaponMods from "@/locales/fr/generated/weapon-mods.json";
 import roMain from "@/locales/ro/main.json";
 import roDialogs from "@/locales/ro/dialogs.json";
 
+import zhMain from "@/locales/zh/main.json";
+import zhDialogs from "@/locales/zh/dialogs.json";
+import zhColors from "@/locales/zh/generated/colors.json";
+import zhMasks from "@/locales/zh/generated/masks.json";
+import zhMaterials from "@/locales/zh/generated/materials.json";
+import zhSteamAchievements from "@/locales/zh/generated/steam-achievements.json";
+import zhTextures from "@/locales/zh/generated/textures.json";
+import zhTrophies from "@/locales/zh/generated/trophies.json";
+import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
@@ -55,6 +65,17 @@ export default createI18n({
         ro: {
             main: roMain,
             dialogs: roDialogs
+        },
+        zh: {
+            main: zhMain,
+            dialogs: zhDialogs,
+            colors: zhColors,
+            masks: zhMasks,
+            materials: zhMaterials,
+            steam_achievements: zhSteamAchievements,
+            textures: zhTextures,
+            trophies: zhTrophies,
+            weapon_mods: zhWeaponMods
         }
     }
 });
