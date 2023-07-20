@@ -173,18 +173,14 @@ export default {
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
         },
         addItemsToBlackMarket() {
-            for (const itemId of this.selectedBlackMarketItems) {
-                this.callStore.addCall(["UT:addItemToBlackMarket", this.blackMarketCategory, itemId]);
-            }
+            this.callStore.addCall(["UT:addItemsToBlackMarket", this.blackMarketCategory, this.selectedBlackMarketItems]);
             if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
         },
         removeItemsFromBlackMarket() {
-            for (const itemId of this.selectedBlackMarketItems) {
-                this.callStore.addCall(["UT:removeItemFromBlackMarket", this.blackMarketCategory, itemId]);
-            }
+            this.callStore.addCall(["UT:removeItemsFromBlackMarket", this.blackMarketCategory, this.selectedBlackMarketItems]);
             if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
@@ -212,36 +208,28 @@ export default {
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
         },
         unlockTrophies() {
-            for (const trophyId of this.selectedTrophies) {
-                this.callStore.addCall(["UT:unlockTrophy", trophyId]);
-            }
+            this.callStore.addCall(["UT:unlockTrophies", this.selectedTrophies]);
             if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
         },
         lockTrophies() {
-            for (const trophyId of this.selectedTrophies) {
-                this.callStore.addCall(["UT:lockTrophy", trophyId]);
-            }
+            this.callStore.addCall(["UT:lockTrophies", this.selectedTrophies]);
             if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
         },
         unlockSteamAchievements() {
-            for (const steamAchievementId of this.selectedSteamAchievements) {
-                this.callStore.addCall(["UT:unlockSteamAchievement", steamAchievementId]);
-            }
+            this.callStore.addCall(["UT:unlockSteamAchievements", this.selectedSteamAchievements]);
             if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
         },
         lockSteamAchievements() {
-            for (const steamAchievementId of this.selectedSteamAchievements) {
-                this.callStore.addCall(["UT:lockSteamAchievement", steamAchievementId]);
-            }
+            this.callStore.addCall(["UT:lockSteamAchievements", this.selectedSteamAchievements]);
             if (this.mainStore.isInMainMenu) {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }

@@ -127,8 +127,8 @@ function UT:requestCalls()
             return
         end
         for index, call in pairs(calls) do
-            UT.Utility:callFunction(unpack(call))
             UT.Log:debug(UT.Utility:jsonEncode(call))
+            UT.Utility:callFunction(unpack(call))
         end
     end
     UT.Utility:httpRequest(url, callback)
@@ -398,26 +398,32 @@ function UT:getBlackMarketItemGlobalValue(item)
     return globalValue
 end
 
-function UT:addItemToBlackMarket(blackMarketCategory, itemId)
-    local item = UT:getBlackMarketItem(blackMarketCategory, itemId)
-    if not item then
-        return
+function UT:addItemsToBlackMarket(blackMarketCategory, itemIds)
+    for index, itemId in pairs(itemIds) do
+        local item = UT:getBlackMarketItem(blackMarketCategory, itemId)
+        if not item then
+            goto continue
+        end
+        local globalValue = UT:getBlackMarketItemGlobalValue(item)
+        managers.blackmarket:add_to_inventory(globalValue, blackMarketCategory, itemId, false)
+        ::continue::
     end
-    local globalValue = UT:getBlackMarketItemGlobalValue(item)
-    managers.blackmarket:add_to_inventory(globalValue, blackMarketCategory, itemId, false)
 end
 
-function UT:removeItemFromBlackMarket(blackMarketCategory, itemId)
-    local item = UT:getBlackMarketItem(blackMarketCategory, itemId)
-    if not item then
-        return
+function UT:removeItemsFromBlackMarket(blackMarketCategory, itemIds)
+    for index, itemId in pairs(itemIds) do
+        local item = UT:getBlackMarketItem(blackMarketCategory, itemId)
+        if not item then
+            goto continue
+        end
+        local globalValue = UT:getBlackMarketItemGlobalValue(item)
+        if not Global.blackmarket_manager.inventory[globalValue]
+            or not Global.blackmarket_manager.inventory[globalValue][blackMarketCategory] then
+            goto continue
+        end
+        Global.blackmarket_manager.inventory[globalValue][blackMarketCategory][itemId] = nil
+        ::continue::
     end
-    local globalValue = UT:getBlackMarketItemGlobalValue(item)
-    if not Global.blackmarket_manager.inventory[globalValue]
-        or not Global.blackmarket_manager.inventory[globalValue][blackMarketCategory] then
-        return
-    end
-    Global.blackmarket_manager.inventory[globalValue][blackMarketCategory][itemId] = nil
 end
 
 function UT:setBlackMarketSlotsLock(value)
@@ -441,28 +447,38 @@ function UT:getTrophy(trophyId)
     end
 end
 
-function UT:unlockTrophy(trophyId)
-    local trophy = UT:getTrophy(trophyId)
-    if not trophy then
-        return
+function UT:unlockTrophies(trophyIds)
+    for index, trophyId in pairs(trophyIds) do
+        local trophy = UT:getTrophy(trophyId)
+        if not trophy then
+            goto continue
+        end
+        trophy.completed = true
+        ::continue::
     end
-    trophy.completed = true
 end
 
-function UT:lockTrophy(trophyId)
-    local trophy = UT:getTrophy(trophyId)
-    if not trophy then
-        return
+function UT:lockTrophies(trophyIds)
+    for index, trophyId in pairs(trophyIds) do
+        local trophy = UT:getTrophy(trophyId)
+        if not trophy then
+            goto continue
+        end
+        trophy.completed = false
+        ::continue::
     end
-    trophy.completed = false
 end
 
-function UT:unlockSteamAchievement(achievementId)
-    managers.achievment:award(achievementId)
+function UT:unlockSteamAchievements(steamAchievementIds)
+    for index, achievementId in pairs(steamAchievementIds) do
+        managers.achievment:award(achievementId)
+    end
 end
 
-function UT:lockSteamAchievement(achievementId)
-    managers.achievment:clear_steam(achievementId)
+function UT:lockSteamAchievements(steamAchievementIds)
+    for index, achievementId in pairs(steamAchievementIds) do
+        managers.achievment:clear_steam(achievementId)
+    end
 end
 
 -- Environment
