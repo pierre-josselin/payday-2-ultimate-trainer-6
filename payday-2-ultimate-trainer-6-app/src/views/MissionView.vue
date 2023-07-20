@@ -289,7 +289,7 @@ export default {
                                             <div class="mt-3">
                                                 <form @submit.prevent="throwBag">
                                                     <div class="input-group">
-                                                        <select v-model="missionStore.bag" class="form-select" :disabled="!mainStore.isPlaying || !mainStore.isServer" required>
+                                                        <select v-model="missionStore.bag" class="form-select popover-focus" :disabled="!mainStore.isPlaying || !mainStore.isServer" data-bs-toggle="popover" data-bs-placement="left" :data-bs-title="$t('main.bug')" :data-bs-content="$t('dialogs.bag_spawn_crash')" required>
                                                             <option v-for="bagId in bags" :key="bagId" :value="bagId">{{ $t(`bags.${bagId}`) }}</option>
                                                         </select>
                                                         <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying || !mainStore.isServer">{{ $t("main.throw") }}

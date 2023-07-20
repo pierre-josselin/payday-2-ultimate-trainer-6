@@ -1,5 +1,6 @@
 {
     "anti_cheat_detected": "Cette fonctionnalité est détectée par l'anti-cheat du jeu. Les autres joueurs pourraient vous voir avec l'étiquette CHEATER et vous pourriez être automatiquement expulsé des parties si vous n'êtes pas l'hôte. Tout reviendra à la normale lorsque vous désactiverez toutes ces fonctionnalités.",
+    "bag_spawn_crash": "Si un autre joueur ramasse un sac qui n'est pas censé exister dans cette mission, votre pourrait peut planter.",
     "bug": "Cette fonctionnalité contient des bugs et peut ne pas fonctionner correctement, bloquer des objectifs ou planter le jeu.",
     "client": "Certaines fonctionnalités ne seront pas disponibles car vous êtes client de la partie.",
     "connection_failed": "La connexion au serveur a échoué. Vérifiez l'hôte et le port et assurez-vous que le jeu est en cours d'exécution.",

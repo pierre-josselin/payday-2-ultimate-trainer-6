@@ -10,5 +10,6 @@
     "report_a_bug": "Puteți raporta un bug sau sugera o funcție nouă urmând unul dintre următoarele linkuri (în cazul unui accident, nu uita să incluzi jurnalul de erori al jocului în mesajul tau):",
     "spawn_help": "Selectați o unitate, apoi creați-o în joc, apăsând combinația de taste corespunzătoare configurată în setările de legături de taste ale modurilor de joc.",
     "support_us": "Îți place Ultimate Trainer 6? Este gratis și este un software cu sursa deschisă! Cea mai bună cale de a ne ajuta este să ne dai o stea gratis pe GitHub!<br><br>Pur și simplu faceți clic pe butonul de mai jos și apoi pe butonul \"Star\"",
-    "update_available": "O actualizare este disponibilă. Instalaț-o sa luați avantaj de ultimele funcții si fixări de buguri."
+    "update_available": "O actualizare este disponibilă. Instalaț-o sa luați avantaj de ultimele funcții si fixări de buguri.",
+    "bag_spawn_crash": "If another player picks up a bag that is not supposed to exist in this mission, your game may crash."
 }

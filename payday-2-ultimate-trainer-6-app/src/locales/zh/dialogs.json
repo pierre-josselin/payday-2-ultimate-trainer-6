@@ -10,5 +10,6 @@
     "report_a_bug": "你可以反馈bug或者提出对于新旧功能的期望与建议，在以下连接中反馈（游戏崩溃反馈需要带着游戏崩溃日志反馈！）):",
     "spawn_help": "选择一个单位并在游戏中生成它，通过按下在Keybind中的绑定的键位来进行生成",
     "support_us": "你喜欢Ultimate Trainer 6吗？它是开源且免费的！赞助我们最好的方式是在Github给我们点一个Star!<br><br>简单的点击一下 \"Star\" 按钮就可以赞助我们了！(:",
-    "update_available": "有更新可用，获取更新来获得最新功能以及Bug修复。"
+    "update_available": "有更新可用，获取更新来获得最新功能以及Bug修复。",
+    "bag_spawn_crash": "If another player picks up a bag that is not supposed to exist in this mission, your game may crash."
 }
