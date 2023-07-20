@@ -32,6 +32,11 @@ export function createWebSocket(options) {
         // Wait for settings
         setTimeout(() => {
             options.router.push({ name: "home" });
+
+            const locale = settingsStore.getSetting("locale");
+            if (locale && options.i18n.locale !== locale) {
+                options.i18n.locale = locale;
+            }
         }, 500);
     });
 

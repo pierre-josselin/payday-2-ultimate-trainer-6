@@ -39,7 +39,8 @@ export default {
                 connectionErrorCallback: () => {
                     this.connecting = false;
                     this.connectionFailedModalInstance.show();
-                }
+                },
+                i18n: this.$i18n
             });
         }
     }
