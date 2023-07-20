@@ -18,6 +18,10 @@ dofile(modPath .. "/classes/Utility.lua")
 
 dofile(modPath .. "/config.lua")
 
+if UT_DEV then
+    dofile(modPath .. "/classes/Dev.lua")
+end
+
 UT.rootPath = rootPath
 UT.modPath = modPath
 

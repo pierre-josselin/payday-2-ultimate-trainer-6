@@ -20,6 +20,22 @@ function UT.Utility:booleanToInteger(value)
     return value and 1 or 0
 end
 
+function UT.Utility:stringLength(value)
+    return string.len(value)
+end
+
+function UT.Utility:subString(value, startIndex, endIndex)
+    return string.sub(value, startIndex, endIndex)
+end
+
+function UT.Utility:stringStartsWith(value, start)
+    return UT.Utility:subString(value, 1, UT.Utility:stringLength(start)) == start
+end
+
+function UT.Utility:isEmptyString(value)
+    return value == ""
+end
+
 function UT.Utility:isEmptyTable(value)
     return next(value) == nil
 end
@@ -80,6 +96,16 @@ function UT.Utility:readFile(filePath)
     local content = file:read("*all")
     file:close()
     return content
+end
+
+function UT.Utility:writeFile(filePath, content, mode)
+    local file = io.open(filePath, mode or "w+")
+    if not file then
+        return false
+    end
+    file:write(content)
+    file:close()
+    return true
 end
 
 function UT.Utility:getClock()

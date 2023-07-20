@@ -213,3 +213,13 @@ function UT.GameUtility:interactFromTable(table)
         UT.GameUtility:setPlayerState("mask_off")
     end
 end
+
+function UT.GameUtility:getLocalizationText(id)
+    return managers.localization:text(id)
+end
+
+-- LocalizationManager:exists() crashes the game sometimes
+function UT.GameUtility:localizationExists(id)
+    local text = UT.GameUtility:getLocalizationText(id)
+    return not UT.Utility:isEmptyString(text) and not UT.Utility:stringStartsWith(text, "ERROR: ")
+end
