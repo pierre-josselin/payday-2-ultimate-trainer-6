@@ -92,6 +92,7 @@ export default {
                             <label for="locale" class="form-label">{{ $t("main.language") }}</label>
                             <select id="locale" v-model="locale" class="form-select" @change="setLocale">
                                 <option value="en">English</option>
+                                <option value="fr">French</option>
                             </select>
                         </div>
                         <div>

@@ -2,7 +2,7 @@ UT = {}
 
 UT.maxInteger = math.huge
 
-UT.locales = { "en" }
+UT.locales = { "en", "fr" }
 
 UT.rootPath = nil
 UT.modPath = nil
