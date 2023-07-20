@@ -24,6 +24,7 @@ export default createI18n({
     locale: "en",
     fallbackLocale: "en",
     silentTranslationWarn: true,
+    warnHtmlInMessage: "off",
     messages: {
         en: {
             main: enMain,
