@@ -93,6 +93,7 @@ export default {
                             <select id="locale" v-model="locale" class="form-select" @change="setLocale">
                                 <option value="en">English</option>
                                 <option value="fr">French</option>
+                                <option value="ro">Romanian</option>
                             </select>
                         </div>
                         <div>

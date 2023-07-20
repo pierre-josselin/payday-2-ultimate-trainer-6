@@ -20,10 +20,14 @@ import frTextures from "@/locales/fr/generated/textures.json";
 import frTrophies from "@/locales/fr/generated/trophies.json";
 import frWeaponMods from "@/locales/fr/generated/weapon-mods.json";
 
+import roMain from "@/locales/ro/main.json";
+import roDialogs from "@/locales/ro/dialogs.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
     silentTranslationWarn: true,
+    silentFallbackWarn: true,
     warnHtmlInMessage: "off",
     messages: {
         en: {
@@ -47,6 +51,10 @@ export default createI18n({
             textures: frTextures,
             trophies: frTrophies,
             weapon_mods: frWeaponMods
+        },
+        ro: {
+            main: roMain,
+            dialogs: roDialogs
         }
     }
 });

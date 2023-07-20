@@ -1,0 +1,14 @@
+{
+    "ut_menu_open_app_name": "Ultimate Trainer",
+    "ut_menu_open_app_description": "Deschide aplicația Ultimate Trainer",
+    "ut_keybinds_teleport_player_to_crosshair_name": "Teleportați jucătorul la țintă",
+    "ut_keybinds_teleport_player_to_crosshair_description": "Teleportează jucătorul la țintă",
+    "ut_keybinds_spawn_spawn_name": "Generare - Generare",
+    "ut_keybinds_spawn_spawn_description": "Generați unitatea selectată",
+    "ut_keybinds_editor_pick_name": "Editor - Alege",
+    "ut_keybinds_editor_pick_description": "Alege unitatea la țintă",
+    "ut_keybinds_editor_spawn_name": "Editor - Generare",
+    "ut_keybinds_editor_spawn_description": "Generați unitatea aleasă la țintă",
+    "ut_keybinds_editor_delete_name": "Editor - Delete",
+    "ut_keybinds_editor_delete_description": "Ștergeți unitatea generată la țintă"
+}

@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**GamingResources**
+
+- Romanian locale
+
 **Vinícius Francisco Xavier**
 
 - Invisible Player
