@@ -8,6 +8,8 @@ import NavBar from "@/components/NavBar.vue";
 import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
 import BugIcon from "@/components/icons/BugIcon.vue";
 
+import bags from "@/data/bags.json";
+
 export default {
     components: {
         NavBar,
@@ -31,6 +33,8 @@ export default {
         this.$watch("missionStore.slowMotionPlayerSpeed", (slowMotionPlayerSpeed) => {
             this.missionStore.slowMotionPlayerSpeed = parseFloat(slowMotionPlayerSpeed);
         });
+
+        this.bags = bags.sort();
     },
     methods: {
         startTheHeist() {
@@ -132,6 +136,15 @@ export default {
         getOutOfCustody() {
             this.callStore.addCall(["UT:getOutOfCustody"]);
         },
+        setPlayerStateCivilian() {
+            this.callStore.addCall(["UT:setPlayerState", "civilian"]);
+        },
+        setPlayerStateMaskOff() {
+            this.callStore.addCall(["UT:setPlayerState", "mask_off"]);
+        },
+        setPlayerStateStandard() {
+            this.callStore.addCall(["UT:setPlayerState", "standard"]);
+        },
         replenishHealth() {
             this.callStore.addCall(["UT:replenishHealth"]);
         },
@@ -158,14 +171,8 @@ export default {
                 }
             }
         },
-        setPlayerStateCivilian() {
-            this.callStore.addCall(["UT:setPlayerState", "civilian"]);
-        },
-        setPlayerStateMaskOff() {
-            this.callStore.addCall(["UT:setPlayerState", "mask_off"]);
-        },
-        setPlayerStateStandard() {
-            this.callStore.addCall(["UT:setPlayerState", "standard"]);
+        throwBag() {
+            this.callStore.addCall(["UT:throwBag", this.missionStore.bag]);
         }
     }
 }
@@ -249,6 +256,16 @@ export default {
                                                 <button class="btn btn-primary w-100" :disabled="!mainStore.isInCustody" @click="getOutOfCustody">{{ $t("main.get_out_of_custody") }}</button>
                                             </div>
                                             <div class="mt-3">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" :disabled="!mainStore.isPlaying">{{ $t("main.set_player_state") }}</button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><button class="dropdown-item" @click="setPlayerStateCivilian">{{ $t("main.civilian") }}</button></li>
+                                                        <li><button class="dropdown-item" @click="setPlayerStateMaskOff">{{ $t("main.mask_off") }}</button></li>
+                                                        <li><button class="dropdown-item" @click="setPlayerStateStandard">{{ $t("main.standard") }}</button></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
                                                 <button class="btn btn-primary w-100" :disabled="!mainStore.isPlaying" @click="replenishHealth">{{ $t("main.replenish_health") }}</button>
                                             </div>
                                             <div class="mt-3">
@@ -257,7 +274,7 @@ export default {
                                             <div class="mt-3">
                                                 <form @submit.prevent="replenish">
                                                     <div class="input-group">
-                                                        <select v-model="missionStore.replenishType" class="form-select" :disabled="!mainStore.isPlaying">
+                                                        <select v-model="missionStore.replenishType" class="form-select" :disabled="!mainStore.isPlaying" required>
                                                             <option value="equipment">{{ $t("main.equipment") }}</option>
                                                             <option value="cable-ties">{{ $t("main.cable_ties") }}</option>
                                                             <option value="throwables">{{ $t("main.throwables") }}</option>
@@ -270,14 +287,17 @@ export default {
                                                 </form>
                                             </div>
                                             <div class="mt-3">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" :disabled="!mainStore.isPlaying">{{ $t("main.set_player_state") }}</button>
-                                                    <ul class="dropdown-menu dropdown-menu-end">
-                                                        <li><button class="dropdown-item" @click="setPlayerStateCivilian">{{ $t("main.civilian") }}</button></li>
-                                                        <li><button class="dropdown-item" @click="setPlayerStateMaskOff">{{ $t("main.mask_off") }}</button></li>
-                                                        <li><button class="dropdown-item" @click="setPlayerStateStandard">{{ $t("main.standard") }}</button></li>
-                                                    </ul>
-                                                </div>
+                                                <form @submit.prevent="throwBag">
+                                                    <div class="input-group">
+                                                        <select v-model="missionStore.bag" class="form-select" :disabled="!mainStore.isPlaying || !mainStore.isServer" required>
+                                                            <option v-for="bagId in bags" :key="bagId" :value="bagId">{{ $t(`bags.${bagId}`) }}</option>
+                                                        </select>
+                                                        <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying || !mainStore.isServer">{{ $t("main.throw") }}
+                                                            <BugIcon class="ms-3" />
+                                                            <AntiCheatDetectedIcon class="ms-3" />
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

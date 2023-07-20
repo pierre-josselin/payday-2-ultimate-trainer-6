@@ -1,5 +1,14 @@
 UT.Dev = {}
 
+UT.Dev.excludedBags = {
+    "cg22_bag",
+    "cg22_bag_green",
+    "cg22_bag_yellow",
+    "pda9_feed",
+    "turret_part",
+    "vehicle_falcogini"
+}
+
 function UT.Dev:generateData()
     local masks = {}
     local materials = {}
@@ -8,6 +17,7 @@ function UT.Dev:generateData()
     local weaponMods = {}
     local trophies = {}
     local achievements = {}
+    local bags = {}
 
     for maskId, mask in pairs(tweak_data.blackmarket.masks) do
         if mask.name_id ~= "bm_msk_cheat_error" and UT.GameUtility:localizationExists(mask.name_id) then
@@ -51,6 +61,12 @@ function UT.Dev:generateData()
         end
     end
 
+    for bagId, bag in pairs(tweak_data.carry) do
+        if not UT.Utility:inTable(bagId, UT.Dev.excludedBags) and bag.name_id and UT.GameUtility:localizationExists(bag.name_id) then
+            UT.Utility:tableInsert(bags, bagId)
+        end
+    end
+
     local path = UT.rootPath .. "/payday-2-ultimate-trainer-6-app/src/data"
     UT.Utility:writeFile(path .. "/masks.json", UT.Utility:jsonEncode(masks))
     UT.Utility:writeFile(path .. "/materials.json", UT.Utility:jsonEncode(materials))
@@ -59,6 +75,7 @@ function UT.Dev:generateData()
     UT.Utility:writeFile(path .. "/weapon-mods.json", UT.Utility:jsonEncode(weaponMods))
     UT.Utility:writeFile(path .. "/trophies.json", UT.Utility:jsonEncode(trophies))
     UT.Utility:writeFile(path .. "/steam-achievements.json", UT.Utility:jsonEncode(achievements))
+    UT.Utility:writeFile(path .. "/bags.json", UT.Utility:jsonEncode(bags))
 
     UT.Log:debug("Data generated!")
 end
@@ -71,6 +88,7 @@ function UT.Dev:generateDataLocales(locale)
     local weaponMods = {}
     local trophies = {}
     local achievements = {}
+    local bags = {}
 
     for maskId, mask in pairs(tweak_data.blackmarket.masks) do
         if mask.name_id ~= "bm_msk_cheat_error" and UT.GameUtility:localizationExists(mask.name_id) then
@@ -114,6 +132,12 @@ function UT.Dev:generateDataLocales(locale)
         end
     end
 
+    for bagId, bag in pairs(tweak_data.carry) do
+        if not UT.Utility:inTable(bagId, UT.Dev.excludedBags) and bag.name_id and UT.GameUtility:localizationExists(bag.name_id) then
+            bags[bagId] = UT.GameUtility:getLocalizationText(bag.name_id) .. " (" .. bagId .. ")"
+        end
+    end
+
     local path = UT.rootPath .. "/payday-2-ultimate-trainer-6-app/src/locales/" .. locale .. "/generated"
     UT.Utility:writeFile(path .. "/masks.json", UT.Utility:jsonEncode(masks))
     UT.Utility:writeFile(path .. "/materials.json", UT.Utility:jsonEncode(materials))
@@ -122,6 +146,7 @@ function UT.Dev:generateDataLocales(locale)
     UT.Utility:writeFile(path .. "/weapon-mods.json", UT.Utility:jsonEncode(weaponMods))
     UT.Utility:writeFile(path .. "/trophies.json", UT.Utility:jsonEncode(trophies))
     UT.Utility:writeFile(path .. "/steam-achievements.json", UT.Utility:jsonEncode(achievements))
+    UT.Utility:writeFile(path .. "/bags.json", UT.Utility:jsonEncode(bags))
 
     UT.Log:debug("Data locales generated!")
 end

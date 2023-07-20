@@ -6,13 +6,12 @@ UT.locales = { "en", "fr", "ro", "zh", "ru" }
 
 UT.rootPath = nil
 UT.modPath = nil
+UT.gameContext = nil
 UT.lastCallClock = 0
 UT.environment = nil
 UT.initialEnvironment = nil
 UT.enableNoClip = false
 UT.noClipSpeed = nil
-UT.gameContext = nil
-
 UT.playerUnitAliveEventTriggered = false
 
 UT.settings = {}
@@ -1028,6 +1027,10 @@ function UT:getOutOfCustody()
     IngameWaitingForRespawnState.request_player_spawn()
 end
 
+function UT:setPlayerState(state)
+    UT.GameUtility:setPlayerState(state)
+end
+
 function UT:replenishHealth()
     local playerUnit = UT.GameUtility:getPlayerUnit()
     playerUnit:character_damage():replenish()
@@ -1080,8 +1083,27 @@ function UT:replenishBodyBags()
     managers.player:add_body_bags_amount(UT.maxInteger)
 end
 
-function UT:setPlayerState(state)
-    UT.GameUtility:setPlayerState(state)
+function UT:throwBag(bagId)
+    UT.Utility:cloneClass(PlayerManager)
+    function PlayerManager:verify_carry()
+        return true
+    end
+
+    local carryData = tweak_data.carry[bagId]
+
+    if not carryData then
+        return
+    end
+
+    local position = UT.GameUtility:getPlayerCameraPosition()
+    local rotation = UT.GameUtility:getPlayerCameraRotation()
+    local forward = UT.GameUtility:getPlayerCameraForward()
+    local throwDistanceMultiplierUpgradeLevel = managers.player:upgrade_level("carry", "throw_distance_multiplier", 0)
+    local localPeer = managers.network:session():local_peer()
+
+    managers.player:server_drop_carry(bagId, 1, nil, nil, nil, position, rotation, forward, throwDistanceMultiplierUpgradeLevel, nil, localPeer)
+
+    PlayerManager.verify_carry = PlayerManager.orig.verify_carry
 end
 
 function UT:openDoors()

@@ -9,6 +9,7 @@ import enSteamAchievements from "@/locales/en/generated/steam-achievements.json"
 import enTextures from "@/locales/en/generated/textures.json";
 import enTrophies from "@/locales/en/generated/trophies.json";
 import enWeaponMods from "@/locales/en/generated/weapon-mods.json";
+import enBags from "@/locales/en/generated/bags.json";
 
 import frMain from "@/locales/fr/main.json";
 import frDialogs from "@/locales/fr/dialogs.json";
@@ -19,6 +20,7 @@ import frSteamAchievements from "@/locales/fr/generated/steam-achievements.json"
 import frTextures from "@/locales/fr/generated/textures.json";
 import frTrophies from "@/locales/fr/generated/trophies.json";
 import frWeaponMods from "@/locales/fr/generated/weapon-mods.json";
+import frBags from "@/locales/fr/generated/bags.json";
 
 import roMain from "@/locales/ro/main.json";
 import roDialogs from "@/locales/ro/dialogs.json";
@@ -32,6 +34,7 @@ import zhSteamAchievements from "@/locales/zh/generated/steam-achievements.json"
 import zhTextures from "@/locales/zh/generated/textures.json";
 import zhTrophies from "@/locales/zh/generated/trophies.json";
 import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
+import zhBags from "@/locales/zh/generated/bags.json";
 
 import ruMain from "@/locales/ru/main.json";
 import ruDialogs from "@/locales/ru/dialogs.json";
@@ -42,6 +45,7 @@ import ruSteamAchievements from "@/locales/ru/generated/steam-achievements.json"
 import ruTextures from "@/locales/ru/generated/textures.json";
 import ruTrophies from "@/locales/ru/generated/trophies.json";
 import ruWeaponMods from "@/locales/ru/generated/weapon-mods.json";
+import ruBags from "@/locales/ru/generated/bags.json";
 
 export default createI18n({
     locale: "en",
@@ -59,7 +63,8 @@ export default createI18n({
             steam_achievements: enSteamAchievements,
             textures: enTextures,
             trophies: enTrophies,
-            weapon_mods: enWeaponMods
+            weapon_mods: enWeaponMods,
+            bags: enBags
         },
         fr: {
             main: frMain,
@@ -70,7 +75,8 @@ export default createI18n({
             steam_achievements: frSteamAchievements,
             textures: frTextures,
             trophies: frTrophies,
-            weapon_mods: frWeaponMods
+            weapon_mods: frWeaponMods,
+            bags: frBags
         },
         ro: {
             main: roMain,
@@ -85,7 +91,8 @@ export default createI18n({
             steam_achievements: zhSteamAchievements,
             textures: zhTextures,
             trophies: zhTrophies,
-            weapon_mods: zhWeaponMods
+            weapon_mods: zhWeaponMods,
+            bags: zhBags
         },
         ru: {
             main: ruMain,
@@ -96,7 +103,8 @@ export default createI18n({
             steam_achievements: ruSteamAchievements,
             textures: ruTextures,
             trophies: ruTrophies,
-            weapon_mods: ruWeaponMods
+            weapon_mods: ruWeaponMods,
+            bags: ruBags
         }
     }
 });
