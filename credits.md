@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**thejuves**
+
+- Russian locale
+
 **Art3misFowl**, **ppt**
 
 - Chinese locale

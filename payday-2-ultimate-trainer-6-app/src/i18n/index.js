@@ -33,6 +33,16 @@ import zhTextures from "@/locales/zh/generated/textures.json";
 import zhTrophies from "@/locales/zh/generated/trophies.json";
 import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
 
+import ruMain from "@/locales/ru/main.json";
+import ruDialogs from "@/locales/ru/dialogs.json";
+import ruColors from "@/locales/ru/generated/colors.json";
+import ruMasks from "@/locales/ru/generated/masks.json";
+import ruMaterials from "@/locales/ru/generated/materials.json";
+import ruSteamAchievements from "@/locales/ru/generated/steam-achievements.json";
+import ruTextures from "@/locales/ru/generated/textures.json";
+import ruTrophies from "@/locales/ru/generated/trophies.json";
+import ruWeaponMods from "@/locales/ru/generated/weapon-mods.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
@@ -76,6 +86,17 @@ export default createI18n({
             textures: zhTextures,
             trophies: zhTrophies,
             weapon_mods: zhWeaponMods
+        },
+        ru: {
+            main: ruMain,
+            dialogs: ruDialogs,
+            colors: ruColors,
+            masks: ruMasks,
+            materials: ruMaterials,
+            steam_achievements: ruSteamAchievements,
+            textures: ruTextures,
+            trophies: ruTrophies,
+            weapon_mods: ruWeaponMods
         }
     }
 });
