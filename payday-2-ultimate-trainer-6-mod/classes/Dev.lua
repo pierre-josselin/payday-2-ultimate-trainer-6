@@ -1,168 +1,175 @@
 UT.Dev = {}
 
-UT.Dev.excludedBags = {
-    "cg22_bag",
-    "cg22_bag_green",
-    "cg22_bag_yellow",
-    "pda9_feed",
-    "turret_part",
-    "vehicle_falcogini"
-}
-
 function UT.Dev:generateData()
-    local masks = {}
-    local materials = {}
-    local textures = {}
-    local colors = {}
-    local weaponMods = {}
-    local trophies = {}
-    local achievements = {}
-    local bags = {}
-    local specialEquipment = {}
+    local data = {}
+    local categories = { "masks", "materials", "textures", "colors", "weapon-mods", "trophies", "steam-achievements", "bags", "special-equipment" }
+
+    for index, category in pairs(categories) do
+        data[category] = {}
+    end
 
     for maskId, mask in pairs(tweak_data.blackmarket.masks) do
         if mask.name_id ~= "bm_msk_cheat_error" and UT.GameUtility:localizationExists(mask.name_id) then
-            UT.Utility:tableInsert(masks, maskId)
+            UT.Utility:tableInsert(data["masks"], maskId)
         end
     end
 
     for materialId, material in pairs(tweak_data.blackmarket.materials) do
         if UT.GameUtility:localizationExists(material.name_id) then
-            UT.Utility:tableInsert(materials, materialId)
+            UT.Utility:tableInsert(data["materials"], materialId)
         end
     end
 
     for textureId, texture in pairs(tweak_data.blackmarket.textures) do
         if UT.GameUtility:localizationExists(texture.name_id) then
-            UT.Utility:tableInsert(textures, textureId)
+            UT.Utility:tableInsert(data["textures"], textureId)
         end
     end
 
     for colorId, color in pairs(tweak_data.blackmarket.colors) do
         if UT.GameUtility:localizationExists(color.name_id) then
-            UT.Utility:tableInsert(colors, colorId)
+            UT.Utility:tableInsert(data["colors"], colorId)
         end
     end
 
     for weaponModId, weaponMod in pairs(tweak_data.blackmarket.weapon_mods) do
         if UT.GameUtility:localizationExists(weaponMod.name_id) then
-            UT.Utility:tableInsert(weaponMods, weaponModId)
+            UT.Utility:tableInsert(data["weapon-mods"], weaponModId)
         end
     end
 
     for index, trophy in pairs(Global.custom_safehouse_manager.trophies) do
         if UT.GameUtility:localizationExists(trophy.name_id) then
-            UT.Utility:tableInsert(trophies, trophy.id)
+            UT.Utility:tableInsert(data["trophies"], trophy.id)
         end
     end
 
-    for achievementId, achievement in pairs(managers.achievment.achievments) do
-        if UT.GameUtility:localizationExists("achievement_" .. achievement.id) then
-            UT.Utility:tableInsert(achievements, achievementId)
+    for steamAchievementId, steamAchievement in pairs(managers.achievment.achievments) do
+        if UT.GameUtility:localizationExists("achievement_" .. steamAchievement.id) then
+            UT.Utility:tableInsert(data["steam-achievements"], steamAchievementId)
         end
     end
+
+    local excludedBags = {
+        "cg22_bag",
+        "cg22_bag_green",
+        "cg22_bag_yellow",
+        "pda9_feed",
+        "turret_part",
+        "vehicle_falcogini"
+    }
 
     for bagId, bag in pairs(tweak_data.carry) do
-        if not UT.Utility:inTable(bagId, UT.Dev.excludedBags) and bag.name_id and UT.GameUtility:localizationExists(bag.name_id) then
-            UT.Utility:tableInsert(bags, bagId)
+        if not UT.Utility:inTable(bagId, excludedBags) and bag.name_id and UT.GameUtility:localizationExists(bag.name_id) then
+            UT.Utility:tableInsert(data["bags"], bagId)
         end
     end
 
-    for specialEquipmentId, _specialEquipment in pairs(tweak_data.equipments.specials) do
-        if _specialEquipment.text_id and UT.GameUtility:localizationExists(_specialEquipment.text_id) then
-            UT.Utility:tableInsert(specialEquipment, specialEquipmentId)
+    for specialEquipmentId, specialEquipment in pairs(tweak_data.equipments.specials) do
+        if specialEquipment.text_id and UT.GameUtility:localizationExists(specialEquipment.text_id) then
+            UT.Utility:tableInsert(data["special-equipment"], specialEquipmentId)
         end
     end
 
-    local path = UT.rootPath .. "/payday-2-ultimate-trainer-6-app/src/data"
-    UT.Utility:writeFile(path .. "/masks.json", UT.Utility:jsonEncode(masks))
-    UT.Utility:writeFile(path .. "/materials.json", UT.Utility:jsonEncode(materials))
-    UT.Utility:writeFile(path .. "/textures.json", UT.Utility:jsonEncode(textures))
-    UT.Utility:writeFile(path .. "/colors.json", UT.Utility:jsonEncode(colors))
-    UT.Utility:writeFile(path .. "/weapon-mods.json", UT.Utility:jsonEncode(weaponMods))
-    UT.Utility:writeFile(path .. "/trophies.json", UT.Utility:jsonEncode(trophies))
-    UT.Utility:writeFile(path .. "/steam-achievements.json", UT.Utility:jsonEncode(achievements))
-    UT.Utility:writeFile(path .. "/bags.json", UT.Utility:jsonEncode(bags))
-    UT.Utility:writeFile(path .. "/special-equipment.json", UT.Utility:jsonEncode(specialEquipment))
+    for index, category in pairs(categories) do
+        local content = UT.Utility:jsonEncode(data[category])
+        UT.Utility:writeFile(UT.rootPath .. "/payday-2-ultimate-trainer-6-app/src/data/" .. category .. ".json", content)
+    end
 
     UT.Log:debug("Data generated!")
 end
 
 function UT.Dev:generateDataLocales(locale)
-    local masks = {}
-    local materials = {}
-    local textures = {}
-    local colors = {}
-    local weaponMods = {}
-    local trophies = {}
-    local achievements = {}
-    local bags = {}
-    local specialEquipment = {}
+    local data = {}
+    local locales = {}
+    local categories = { "masks", "materials", "textures", "colors", "weapon-mods", "trophies", "steam-achievements", "bags", "special-equipment" }
 
-    for maskId, mask in pairs(tweak_data.blackmarket.masks) do
-        if mask.name_id ~= "bm_msk_cheat_error" and UT.GameUtility:localizationExists(mask.name_id) then
-            masks[maskId] = UT.GameUtility:getLocalizationText(mask.name_id)
+    for index, category in pairs(categories) do
+        locales[category] = {}
+    end
+
+    for index, category in pairs(categories) do
+        local content = UT.Utility:readFile(UT.rootPath .. "/payday-2-ultimate-trainer-6-app/src/data/" .. category .. ".json")
+        if not content then
+            return
+        end
+        data[category] = UT.Utility:jsonDecode(content)
+    end
+
+    for index, maskId in pairs(data["masks"]) do
+        local mask = tweak_data.blackmarket.masks[maskId]
+        if mask then
+            locales["masks"][maskId] = UT.GameUtility:getLocalizationText(mask.name_id)
         end
     end
 
-    for materialId, material in pairs(tweak_data.blackmarket.materials) do
-        if UT.GameUtility:localizationExists(material.name_id) then
-            materials[materialId] = UT.GameUtility:getLocalizationText(material.name_id)
+    for index, materialId in pairs(data["materials"]) do
+        local material = tweak_data.blackmarket.materials[materialId]
+        if material then
+            locales["materials"][materialId] = UT.GameUtility:getLocalizationText(material.name_id)
         end
     end
 
-    for textureId, texture in pairs(tweak_data.blackmarket.textures) do
-        if UT.GameUtility:localizationExists(texture.name_id) then
-            textures[textureId] = UT.GameUtility:getLocalizationText(texture.name_id)
+    for index, textureId in pairs(data["textures"]) do
+        local texture = tweak_data.blackmarket.textures[textureId]
+        if texture then
+            locales["textures"][textureId] = UT.GameUtility:getLocalizationText(texture.name_id)
         end
     end
 
-    for colorId, color in pairs(tweak_data.blackmarket.colors) do
-        if UT.GameUtility:localizationExists(color.name_id) then
-            colors[colorId] = UT.GameUtility:getLocalizationText(color.name_id)
+    for index, colorId in pairs(data["colors"]) do
+        local color = tweak_data.blackmarket.colors[colorId]
+        if color then
+            locales["colors"][colorId] = UT.GameUtility:getLocalizationText(color.name_id)
         end
     end
 
-    for weaponModId, weaponMod in pairs(tweak_data.blackmarket.weapon_mods) do
-        if UT.GameUtility:localizationExists(weaponMod.name_id) then
-            weaponMods[weaponModId] = UT.GameUtility:getLocalizationText(weaponMod.name_id)
+    for index, weaponModId in pairs(data["weapon-mods"]) do
+        local weaponMod = tweak_data.blackmarket.weapon_mods[weaponModId]
+        if weaponMod then
+            locales["weapon-mods"][weaponModId] = UT.GameUtility:getLocalizationText(weaponMod.name_id)
         end
     end
 
-    for index, trophy in pairs(Global.custom_safehouse_manager.trophies) do
-        if UT.GameUtility:localizationExists(trophy.name_id) then
-            trophies[trophy.id] = UT.GameUtility:getLocalizationText(trophy.name_id)
+    for index, colorId in pairs(data["colors"]) do
+        local color = tweak_data.blackmarket.colors[colorId]
+        if color then
+            locales["colors"][colorId] = UT.GameUtility:getLocalizationText(color.name_id)
         end
     end
 
-    for achievementId, achievement in pairs(managers.achievment.achievments) do
-        if UT.GameUtility:localizationExists("achievement_" .. achievement.id) then
-            achievements[achievement.id] = UT.GameUtility:getLocalizationText("achievement_" .. achievement.id)
+    for index, trophyId in pairs(data["trophies"]) do
+        local trophy = UT:getTrophy(trophyId)
+        if trophy then
+            locales["trophies"][trophyId] = UT.GameUtility:getLocalizationText(trophy.name_id)
         end
     end
 
-    for bagId, bag in pairs(tweak_data.carry) do
-        if not UT.Utility:inTable(bagId, UT.Dev.excludedBags) and bag.name_id and UT.GameUtility:localizationExists(bag.name_id) then
-            bags[bagId] = UT.GameUtility:getLocalizationText(bag.name_id) .. " (" .. bagId .. ")"
+    for index, steamAchievementId in pairs(data["steam-achievements"]) do
+        local steamAchievement = managers.achievment.achievments[steamAchievementId]
+        if steamAchievement then
+            locales["steam-achievements"][steamAchievementId] = UT.GameUtility:getLocalizationText("achievement_" .. steamAchievement.id)
         end
     end
 
-    for specialEquipmentId, _specialEquipment in pairs(tweak_data.equipments.specials) do
-        if _specialEquipment.text_id and UT.GameUtility:localizationExists(_specialEquipment.text_id) then
-            specialEquipment[specialEquipmentId] = UT.GameUtility:getLocalizationText(_specialEquipment.text_id) .. " (" .. specialEquipmentId .. ")"
+    for index, bagId in pairs(data["bags"]) do
+        local bag = tweak_data.carry[bagId]
+        if bag then
+            locales["bags"][bagId] = UT.GameUtility:getLocalizationText(bag.name_id) .. " (" .. bagId .. ")"
         end
     end
 
-    local path = UT.rootPath .. "/payday-2-ultimate-trainer-6-app/src/locales/" .. locale .. "/generated"
-    UT.Utility:writeFile(path .. "/masks.json", UT.Utility:jsonEncode(masks))
-    UT.Utility:writeFile(path .. "/materials.json", UT.Utility:jsonEncode(materials))
-    UT.Utility:writeFile(path .. "/textures.json", UT.Utility:jsonEncode(textures))
-    UT.Utility:writeFile(path .. "/colors.json", UT.Utility:jsonEncode(colors))
-    UT.Utility:writeFile(path .. "/weapon-mods.json", UT.Utility:jsonEncode(weaponMods))
-    UT.Utility:writeFile(path .. "/trophies.json", UT.Utility:jsonEncode(trophies))
-    UT.Utility:writeFile(path .. "/steam-achievements.json", UT.Utility:jsonEncode(achievements))
-    UT.Utility:writeFile(path .. "/bags.json", UT.Utility:jsonEncode(bags))
-    UT.Utility:writeFile(path .. "/special-equipment.json", UT.Utility:jsonEncode(specialEquipment))
+    for index, specialEquipmentId in pairs(data["special-equipment"]) do
+        local specialEquipment = tweak_data.equipments.specials[specialEquipmentId]
+        if specialEquipment then
+            locales["special-equipment"][specialEquipmentId] = UT.GameUtility:getLocalizationText(specialEquipment.text_id) .. " (" .. specialEquipmentId .. ")"
+        end
+    end
+
+    for index, category in pairs(categories) do
+        local content = UT.Utility:jsonEncode(locales[category])
+        UT.Utility:writeFile(UT.rootPath .. "/payday-2-ultimate-trainer-6-app/src/locales/" .. locale .. "/generated/" .. category .. ".json", content)
+    end
 
     UT.Log:debug("Data locales generated!")
 end
