@@ -1122,6 +1122,28 @@ function UT:throwBag(bagId)
     PlayerManager.verify_carry = PlayerManager.orig.verify_carry
 end
 
+function UT:addSpecialEquipment(specialEquipmentId)
+    local tweakDataEquipmentsSpecials = UT.Utility:deepClone(tweak_data.equipments.specials)
+
+    for _specialEquipmentId, specialEquipment in pairs(tweak_data.equipments.specials) do
+        tweak_data.equipments.specials[_specialEquipmentId].max_quantity = UT.maxInteger
+        tweak_data.equipments.specials[_specialEquipmentId].transfer_quantity = UT.maxInteger
+    end
+
+    local params = {
+        name = specialEquipmentId,
+        amount = 1,
+        transfer = true,
+        silent = true
+    }
+    managers.player:add_special(params)
+
+    for _specialEquipmentId, specialEquipment in pairs(tweakDataEquipmentsSpecials) do
+        tweak_data.equipments.specials[_specialEquipmentId].max_quantity = tweakDataEquipmentsSpecials[_specialEquipmentId].max_quantity
+        tweak_data.equipments.specials[_specialEquipmentId].transfer_quantity = tweakDataEquipmentsSpecials[_specialEquipmentId].transfer_quantity
+    end
+end
+
 function UT:openDoors()
     UT.GameUtility:interactFromTable(UT.interactions["open-doors"])
 end

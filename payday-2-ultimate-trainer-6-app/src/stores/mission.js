@@ -14,6 +14,7 @@ export const useMissionStore = defineStore("mission", {
         enableSlowMotion: false,
         slowMotionWorldSpeed: 0.2,
         slowMotionPlayerSpeed: 0.5,
-        bag: "money"
+        bag: "money",
+        specialEquipment: "bank_manager_key"
     })
 });

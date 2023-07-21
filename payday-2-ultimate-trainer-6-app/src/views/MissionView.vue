@@ -9,6 +9,7 @@ import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue"
 import BugIcon from "@/components/icons/BugIcon.vue";
 
 import bags from "@/data/bags.json";
+import specialEquipment from "@/data/special-equipment.json";
 
 export default {
     components: {
@@ -35,6 +36,7 @@ export default {
         });
 
         this.bags = bags.sort();
+        this.specialEquipment = specialEquipment.sort();
     },
     methods: {
         startTheHeist() {
@@ -173,6 +175,9 @@ export default {
         },
         throwBag() {
             this.callStore.addCall(["UT:throwBag", this.missionStore.bag]);
+        },
+        addSpecialEquipment() {
+            this.callStore.addCall(["UT:addSpecialEquipment", this.missionStore.specialEquipment]);
         }
     }
 }
@@ -296,6 +301,16 @@ export default {
                                                             <BugIcon class="ms-3" />
                                                             <AntiCheatDetectedIcon class="ms-3" />
                                                         </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="mt-3">
+                                                <form @submit.prevent="addSpecialEquipment">
+                                                    <div class="input-group">
+                                                        <select v-model="missionStore.specialEquipment" class="form-select popover-focus" :disabled="!mainStore.isPlaying" required>
+                                                            <option v-for="specialEquipmentId in specialEquipment" :key="specialEquipmentId" :value="specialEquipmentId">{{ $t(`special_equipment.${specialEquipmentId}`) }}</option>
+                                                        </select>
+                                                        <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">{{ $t("main.add") }}</button>
                                                     </div>
                                                 </form>
                                             </div>
