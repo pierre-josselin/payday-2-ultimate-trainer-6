@@ -10,6 +10,7 @@ import enTextures from "@/locales/en/generated/textures.json";
 import enTrophies from "@/locales/en/generated/trophies.json";
 import enWeaponMods from "@/locales/en/generated/weapon-mods.json";
 import enBags from "@/locales/en/generated/bags.json";
+import enSpecialEquipment from "@/locales/en/generated/special-equipment.json";
 
 import frMain from "@/locales/fr/main.json";
 import frDialogs from "@/locales/fr/dialogs.json";
@@ -21,6 +22,7 @@ import frTextures from "@/locales/fr/generated/textures.json";
 import frTrophies from "@/locales/fr/generated/trophies.json";
 import frWeaponMods from "@/locales/fr/generated/weapon-mods.json";
 import frBags from "@/locales/fr/generated/bags.json";
+import frSpecialEquipment from "@/locales/fr/generated/special-equipment.json";
 
 import roMain from "@/locales/ro/main.json";
 import roDialogs from "@/locales/ro/dialogs.json";
@@ -35,6 +37,7 @@ import zhTextures from "@/locales/zh/generated/textures.json";
 import zhTrophies from "@/locales/zh/generated/trophies.json";
 import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
 import zhBags from "@/locales/zh/generated/bags.json";
+import zhSpecialEquipment from "@/locales/zh/generated/special-equipment.json";
 
 import ruMain from "@/locales/ru/main.json";
 import ruDialogs from "@/locales/ru/dialogs.json";
@@ -46,6 +49,7 @@ import ruTextures from "@/locales/ru/generated/textures.json";
 import ruTrophies from "@/locales/ru/generated/trophies.json";
 import ruWeaponMods from "@/locales/ru/generated/weapon-mods.json";
 import ruBags from "@/locales/ru/generated/bags.json";
+import ruSpecialEquipment from "@/locales/ru/generated/special-equipment.json";
 
 export default createI18n({
     locale: "en",
@@ -64,7 +68,8 @@ export default createI18n({
             textures: enTextures,
             trophies: enTrophies,
             weapon_mods: enWeaponMods,
-            bags: enBags
+            bags: enBags,
+            special_equipment: enSpecialEquipment
         },
         fr: {
             main: frMain,
@@ -76,7 +81,8 @@ export default createI18n({
             textures: frTextures,
             trophies: frTrophies,
             weapon_mods: frWeaponMods,
-            bags: frBags
+            bags: frBags,
+            special_equipment: frSpecialEquipment
         },
         ro: {
             main: roMain,
@@ -92,7 +98,8 @@ export default createI18n({
             textures: zhTextures,
             trophies: zhTrophies,
             weapon_mods: zhWeaponMods,
-            bags: zhBags
+            bags: zhBags,
+            special_equipment: zhSpecialEquipment
         },
         ru: {
             main: ruMain,
@@ -104,7 +111,8 @@ export default createI18n({
             textures: ruTextures,
             trophies: ruTrophies,
             weapon_mods: ruWeaponMods,
-            bags: ruBags
+            bags: ruBags,
+            special_equipment: ruSpecialEquipment
         }
     }
 });
