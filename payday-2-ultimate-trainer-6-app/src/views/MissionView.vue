@@ -17,9 +17,33 @@ export default {
         AntiCheatDetectedIcon,
         BugIcon
     },
+    data() {
+        return {
+            bagSearch: null,
+            specialEquipmentSearch: null,
+            filteredBags: [],
+            filteredSpecialEquipment: []
+        };
+    },
     computed: {
         noSlowMotionEnabled() {
             return this.settingsStore.getSetting("enable-no-slow-motion");
+        }
+    },
+    watch: {
+        bagSearch(bagSearch) {
+            if (!bagSearch) {
+                this.bagSearch = null;
+            }
+
+            this.filterBags();
+        },
+        specialEquipmentSearch(specialEquipmentSearch) {
+            if (!specialEquipmentSearch) {
+                this.specialEquipmentSearch = null;
+            }
+
+            this.filterSpecialEquipment();
         }
     },
     created() {
@@ -35,8 +59,8 @@ export default {
             this.missionStore.slowMotionPlayerSpeed = parseFloat(slowMotionPlayerSpeed);
         });
 
-        this.bags = bags.sort();
-        this.specialEquipment = specialEquipment.sort();
+        this.filterBags();
+        this.filterSpecialEquipment();
     },
     methods: {
         startTheHeist() {
@@ -173,11 +197,53 @@ export default {
                 }
             }
         },
-        throwBag() {
-            this.callStore.addCall(["UT:throwBag", this.missionStore.bag]);
+        throwBag(bagId) {
+            this.callStore.addCall(["UT:throwBag", bagId]);
         },
-        addSpecialEquipment() {
-            this.callStore.addCall(["UT:addSpecialEquipment", this.missionStore.specialEquipment]);
+        addSpecialEquipment(specialEquipmentId) {
+            this.callStore.addCall(["UT:addSpecialEquipment", specialEquipmentId]);
+        },
+        filterBags() {
+            this.filteredBags = [];
+
+            if (!this.bagSearch) {
+                this.filteredBags = bags.sort();
+                return;
+            }
+
+            for (const bagId of Object.values(bags)) {
+                if ((bagId.toLowerCase().includes(this.bagSearch.toLowerCase())) && !this.filteredBags.includes(bagId)) {
+                    this.filteredBags.push(bagId);
+                }
+            }
+
+            const bagMessages = this.$i18n.messages[this.$i18n.locale].bags || this.$i18n.messages[this.$i18n.fallbackLocale].bags;
+            for (const [bagId, bagMessage] of Object.entries(bagMessages)) {
+                if ((bagMessage.toLowerCase().includes(this.bagSearch.toLowerCase())) && !this.filteredBags.includes(bagId)) {
+                    this.filteredBags.push(bagId);
+                }
+            }
+        },
+        filterSpecialEquipment() {
+            this.filteredSpecialEquipment = [];
+
+            if (!this.specialEquipmentSearch) {
+                this.filteredSpecialEquipment = specialEquipment.sort();
+                return;
+            }
+
+            for (const specialEquipmentId of Object.values(specialEquipment)) {
+                if ((specialEquipmentId.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) && !this.filteredSpecialEquipment.includes(specialEquipmentId)) {
+                    this.filteredSpecialEquipment.push(specialEquipmentId);
+                }
+            }
+
+            const specialEquipmentMessages = this.$i18n.messages[this.$i18n.locale].special_equipment || this.$i18n.messages[this.$i18n.fallbackLocale].special_equipment;
+            for (const [specialEquipmentId, specialEquipmentMessage] of Object.entries(specialEquipmentMessages)) {
+                if ((specialEquipmentMessage.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) && !this.filteredSpecialEquipment.includes(specialEquipmentId)) {
+                    this.filteredSpecialEquipment.push(specialEquipmentId);
+                }
+            }
         }
     }
 }
@@ -224,6 +290,15 @@ export default {
                     </li>
                     <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#slow-motion-tab">{{ $t("main.slow_motion") }}</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bags-tab">{{ $t("main.bags") }}
+                            <BugIcon class="ms-3" />
+                            <AntiCheatDetectedIcon class="ms-3" />
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#special-equipment-tab">{{ $t("main.special_equipment") }}</button>
                     </li>
                 </ul>
                 <fieldset :disabled="!mainStore.isInHeist">
@@ -288,29 +363,6 @@ export default {
                                                         <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">{{ $t("main.replenish") }}
                                                             <AntiCheatDetectedIcon class="ms-3" v-if="missionStore.replenishType === 'equipment'" />
                                                         </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="mt-3">
-                                                <form @submit.prevent="throwBag">
-                                                    <div class="input-group">
-                                                        <select v-model="missionStore.bag" class="form-select popover-focus" :disabled="!mainStore.isPlaying || !mainStore.isServer" data-bs-toggle="popover" data-bs-placement="left" :data-bs-title="$t('main.bug')" :data-bs-content="$t('dialogs.bag_spawn_crash')" required>
-                                                            <option v-for="bagId in bags" :key="bagId" :value="bagId">{{ $t(`bags.${bagId}`) }}</option>
-                                                        </select>
-                                                        <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying || !mainStore.isServer">{{ $t("main.throw") }}
-                                                            <BugIcon class="ms-3" />
-                                                            <AntiCheatDetectedIcon class="ms-3" />
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="mt-3">
-                                                <form @submit.prevent="addSpecialEquipment">
-                                                    <div class="input-group">
-                                                        <select v-model="missionStore.specialEquipment" class="form-select popover-focus" :disabled="!mainStore.isPlaying" required>
-                                                            <option v-for="specialEquipmentId in specialEquipment" :key="specialEquipmentId" :value="specialEquipmentId">{{ $t(`special_equipment.${specialEquipmentId}`) }}</option>
-                                                        </select>
-                                                        <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">{{ $t("main.add") }}</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -446,6 +498,45 @@ export default {
                                 </div>
                             </fieldset>
                         </div>
+                        <div id="bags-tab" class="tab-pane pt-4" tabindex="0">
+                            <div class="alert alert-warning">{{ $t("dialogs.bag_spawn_crash") }}</div>
+                            <input class="form-control mb-3" type="search" v-model="bagSearch" :disabled="!mainStore.isPlaying">
+                            <div style="max-height: 500px;" class="table-responsive">
+                                <table class="table table-striped table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ $t("main.name") }}</th>
+                                            <th>{{ $t("main.id") }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="bagId in filteredBags" :key="bagId" role="button" @click="throwBag(bagId)" :class="{ disabled: !mainStore.isPlaying }">
+                                            <td class="bg-transparent">{{ $t(`bags.${bagId}`) }}</td>
+                                            <td class="bg-transparent">{{ bagId }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="special-equipment-tab" class="tab-pane pt-4" tabindex="0">
+                            <input class="form-control mb-3" type="search" v-model="specialEquipmentSearch" :disabled="!mainStore.isPlaying">
+                            <div style="max-height: 500px;" class="table-responsive">
+                                <table class="table table-striped table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>{{ $t("main.name") }}</th>
+                                            <th>{{ $t("main.id") }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="specialEquipmentId in filteredSpecialEquipment" :key="specialEquipmentId" role="button" @click="addSpecialEquipment(specialEquipmentId)" :class="{ disabled: !mainStore.isPlaying }">
+                                            <td class="bg-transparent">{{ $t(`special_equipment.${specialEquipmentId}`) }}</td>
+                                            <td class="bg-transparent">{{ specialEquipmentId }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </fieldset>
             </div>
@@ -460,5 +551,11 @@ export default {
 
 .interaction-button {
     --bs-aspect-ratio: 45%;
+}
+
+th {
+    top: 0;
+    z-index: 1;
+    position: sticky;
 }
 </style>

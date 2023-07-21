@@ -102,6 +102,7 @@ export default {
                 </button>
             </div>
             <div class="card-body p-4">
+                <div class="alert alert-warning mb-3" v-if="vehiclesToLoad.length">{{ $t("dialogs.vehicle_loading_crash") }}</div>
                 <div class="mb-2">
                     <b>{{ $t("main.vehicles_to_load") }}</b>
                     <BugIcon class="ms-3" />

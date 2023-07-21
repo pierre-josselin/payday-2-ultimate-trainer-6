@@ -174,5 +174,7 @@
     "weapon_mods": "武器修改",
     "world_speed": "世界速度",
     "x_ray": "透视",
-    "throw": "Throw"
+    "bags": "Bags",
+    "special_equipment": "Special equipment",
+    "id": "ID"
 }

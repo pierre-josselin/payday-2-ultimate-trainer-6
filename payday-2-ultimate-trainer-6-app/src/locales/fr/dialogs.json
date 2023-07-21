@@ -1,6 +1,6 @@
 {
     "anti_cheat_detected": "Cette fonctionnalité est détectée par l'anti-cheat du jeu. Les autres joueurs pourraient vous voir avec l'étiquette CHEATER et vous pourriez être automatiquement expulsé des parties si vous n'êtes pas l'hôte. Tout reviendra à la normale lorsque vous désactiverez toutes ces fonctionnalités.",
-    "bag_spawn_crash": "Si un autre joueur ramasse un sac qui n'est pas censé exister dans cette mission, votre pourrait peut planter.",
+    "bag_spawn_crash": "Si un autre joueur ramasse un sac qui n'est pas censé exister dans cette mission, votre jeu pourrait planter.",
     "bug": "Cette fonctionnalité contient des bugs et peut ne pas fonctionner correctement, bloquer des objectifs ou planter le jeu.",
     "client": "Certaines fonctionnalités ne seront pas disponibles car vous êtes client de la partie.",
     "connection_failed": "La connexion au serveur a échoué. Vérifiez l'hôte et le port et assurez-vous que le jeu est en cours d'exécution.",
@@ -10,6 +10,7 @@
     "game_restart_required": "Cette fonctionnalité nécessite de relancer le jeu pour appliquer les modifications.",
     "report_a_bug": "Vous pouvez signaler un bug ou suggérer une nouvelle fonctionnalité en suivant l'un des liens suivants (en cas de plantage, n'oubliez pas d'inclure le rapport de plantage de votre jeu dans votre message) :",
     "spawn_help": "Sélectionnez une unité puis faites-la apparaître dans le jeu en appuyant sur le raccourci clavier correspondant configuré dans les paramètres de raccourcis clavier des mods de jeu.",
-    "support_us": "Vous aimez Ultimate Trainer 6 ? C'est un logiciel gratuit et open source ! La meilleure façon de nous soutenir est de nous donner une étoile GitHub gratuite !<br><br>Cliquez simplement sur le bouton ci-dessous, puis sur le bouton \"Star\":",
-    "update_available": "Une mise à jour est disponible. Installez-la pour profiter des dernières fonctionnalités et corrections de bugs."
+    "support_us": "Vous aimez Ultimate Trainer 6 ? C'est un logiciel gratuit et open source ! La meilleure façon de nous soutenir est de nous donner une étoile GitHub gratuite !<br><br>Cliquez simplement sur le bouton ci-dessous, puis sur le bouton \"Star\":",
+    "update_available": "Une mise à jour est disponible. Installez-la pour profiter des dernières fonctionnalités et corrections de bugs.",
+    "vehicle_loading_crash": "Le chargement de véhicules est activé, les temps de chargement seront allongés et votre jeu pourrait planter en entrant dans un braquage si vous avez sélectionné trop de véhicules."
 }

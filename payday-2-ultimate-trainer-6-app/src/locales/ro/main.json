@@ -174,5 +174,7 @@
     "weapon_mods": "Modificări armă",
     "world_speed": "Viteza lumii",
     "x_ray": "Raze-X",
-    "throw": "Throw"
+    "bags": "Bags",
+    "special_equipment": "Special equipment",
+    "id": "ID"
 }

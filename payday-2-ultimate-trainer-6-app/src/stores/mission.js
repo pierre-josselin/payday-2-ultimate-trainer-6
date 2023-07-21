@@ -13,8 +13,6 @@ export const useMissionStore = defineStore("mission", {
         replenishType: "equipment",
         enableSlowMotion: false,
         slowMotionWorldSpeed: 0.2,
-        slowMotionPlayerSpeed: 0.5,
-        bag: "money",
-        specialEquipment: "bank_manager_key"
+        slowMotionPlayerSpeed: 0.5
     })
 });

@@ -155,14 +155,14 @@ function UT.Dev:generateDataLocales(locale)
     for index, bagId in pairs(data["bags"]) do
         local bag = tweak_data.carry[bagId]
         if bag then
-            locales["bags"][bagId] = UT.GameUtility:getLocalizationText(bag.name_id) .. " (" .. bagId .. ")"
+            locales["bags"][bagId] = UT.GameUtility:getLocalizationText(bag.name_id)
         end
     end
 
     for index, specialEquipmentId in pairs(data["special-equipment"]) do
         local specialEquipment = tweak_data.equipments.specials[specialEquipmentId]
         if specialEquipment then
-            locales["special-equipment"][specialEquipmentId] = UT.GameUtility:getLocalizationText(specialEquipment.text_id) .. " (" .. specialEquipmentId .. ")"
+            locales["special-equipment"][specialEquipmentId] = UT.GameUtility:getLocalizationText(specialEquipment.text_id)
         end
     end
 

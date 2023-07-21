@@ -174,5 +174,7 @@
     "weapon_mods": "Модификации оpужия",
     "world_speed": "Скоpость миpа",
     "x_ray": "Pентген",
-    "throw": "Throw"
+    "bags": "Bags",
+    "special_equipment": "Special equipment",
+    "id": "ID"
 }
