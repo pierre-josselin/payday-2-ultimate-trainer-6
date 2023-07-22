@@ -7,6 +7,7 @@
     "app_theme": "Temă aplicație",
     "application": "Aplicație",
     "apply": "Aplică",
+    "bags": "Genți",
     "barricade_windows": "Baricadează ferestrele",
     "bike": "Bicicletă",
     "boat": "Barcă",
@@ -66,6 +67,7 @@
     "help": "Ajutor",
     "host": "Gazdă",
     "icon": "Pictogramă",
+    "id": "ID",
     "in_game": "În joc",
     "in_heist": "În jaf",
     "in_pre_planning": "În pre-planificare",
@@ -146,6 +148,7 @@
     "skill_points": "Puncte de abilitate",
     "slow_motion": "Mișcare lentă",
     "spawn": "Generare",
+    "special_equipment": "Echipament special",
     "spending_money": "Bani de cheltuit",
     "sport_car": "Mașină sport",
     "standard": "Standard",
@@ -173,8 +176,5 @@
     "vehicles_to_load": "Vehicule de încărcat",
     "weapon_mods": "Modificări armă",
     "world_speed": "Viteza lumii",
-    "x_ray": "Raze-X",
-    "bags": "Bags",
-    "special_equipment": "Special equipment",
-    "id": "ID"
+    "x_ray": "Raze-X"
 }
