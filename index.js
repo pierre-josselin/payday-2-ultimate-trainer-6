@@ -1,7 +1,26 @@
 const fs = require("fs/promises");
+const os = require("os");
 const path = require("path");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
+
+async function getEnv() {
+    let data;
+    try {
+        data = await fs.readFile(path.join(__dirname, ".env"), { encoding: "utf-8" });
+    } catch (error) {
+        if (error.code === "ENOENT") {
+            throw new Error("The environment file was not found. Did you run the install?");
+        }
+        throw error;
+    }
+
+    return data
+        .split(/\r?\n/)
+        .filter(element => element)
+        .map(element => element.split("="))
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+}
 
 async function install() {
     process.stdout.write("Creating environment file...");
@@ -44,13 +63,7 @@ async function install() {
 }
 
 async function run() {
-    const data = await fs.readFile(path.join(__dirname, ".env"), { encoding: "utf-8" });
-
-    const env = data
-        .split(/\r?\n/)
-        .filter(element => element)
-        .map(element => element.split("="))
-        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+    const env = await getEnv();
 
     exec(["cd", `"${path.join(__dirname, "payday-2-ultimate-trainer-6-server")}"`, "&&", "npm", "run", "start"].join(" "));
 
@@ -61,6 +74,22 @@ async function run() {
     console.log("Application running...\n");
     console.log(`http://127.0.0.1:${port}\n`);
     console.log("Close this window before restarting the game.");
+}
+
+async function getRemoteURL() {
+    const env = await getEnv();
+
+    console.log("The app should be accessible from any device on the same network at the following URL:\n");
+
+    const networkInterfaces = Object.values(os.networkInterfaces()).flat(1);
+
+    for (const networkInterface of networkInterfaces) {
+        const family = typeof networkInterface.family === "string" ? "IPv4" : 4;
+
+        if (!networkInterface.internal && networkInterface.family === family) {
+            console.log(`http://${networkInterface.address}:${env.APP_PORT}`);
+        }
+    }
 }
 
 async function main() {
@@ -81,6 +110,10 @@ async function main() {
         }
         case "run": {
             await run();
+            break;
+        }
+        case "get-remote-url": {
+            await getRemoteURL();
             break;
         }
         default: {
