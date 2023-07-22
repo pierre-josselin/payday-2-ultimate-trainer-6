@@ -2,7 +2,7 @@
 
 <img src="https://i.imgur.com/DSVL8hU.png" width="650">
 
-Do you like Ultimate Trainer 6? It is free and open source software! The best way to support us is to give us a GitHub star!
+Do you like Ultimate Trainer 6? It's free and open source software! The best way to support us is to give us a free GitHub star!
 
 <img src="https://i.imgur.com/gxwIB9a.gif">
 
