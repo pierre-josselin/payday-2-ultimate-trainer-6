@@ -31,7 +31,7 @@ export default {
             enableSkillPointHack: null,
             skillPoints: null,
             perkPoints: null,
-            blackMarketCategory: null,
+            blackMarketCategory: "masks",
             selectAllBlackMarketItems: false,
             blackMarketItemsSearch: null,
             selectedBlackMarketItems: [],
@@ -443,8 +443,8 @@ export default {
                                                 </table>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary me-3">{{ $t("main.add") }}</button>
-                                        <button type="button" class="btn btn-warning" @click="removeItemsFromBlackMarket">{{ $t("main.remove") }}</button>
+                                        <button type="submit" class="btn btn-primary me-3" :disabled="!selectedBlackMarketItems.length">{{ $t("main.add") }} {{ selectedBlackMarketItems.length ? `(${selectedBlackMarketItems.length})` : null }}</button>
+                                        <button type="button" class="btn btn-warning" @click="removeItemsFromBlackMarket" :disabled="!selectedBlackMarketItems.length">{{ $t("main.remove") }} {{ selectedBlackMarketItems.length ? `(${selectedBlackMarketItems.length})` : null }}</button>
                                     </template>
                                 </form>
                                 <div class="mb-4">
@@ -481,8 +481,8 @@ export default {
                                             </table>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary me-3">{{ $t("main.unlock") }}</button>
-                                    <button type="button" class="btn btn-primary" @click="lockTrophies">{{ $t("main.lock") }}</button>
+                                    <button type="submit" class="btn btn-primary me-3" :disabled="!selectedTrophies.length">{{ $t("main.unlock") }} {{ selectedTrophies.length ? `(${selectedTrophies.length})` : null }}</button>
+                                    <button type="button" class="btn btn-primary" @click="lockTrophies" :disabled="!selectedTrophies.length">{{ $t("main.lock") }} {{ selectedTrophies.length ? `(${selectedTrophies.length})` : null }}</button>
                                 </form>
                             </div>
                             <div id="steam-achievements-tab" class="tab-pane" tabindex="0">
@@ -509,11 +509,11 @@ export default {
                                             </table>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-danger me-3">
-                                        {{ $t("main.unlock") }}
-                                        <BugIcon class="ms-3" />
+                                    <button type="submit" class="btn btn-danger me-3" :disabled="!selectedSteamAchievements.length">
+                                        {{ $t("main.unlock") }} {{ selectedSteamAchievements.length ? `(${selectedSteamAchievements.length})` : null }}
+                                        <BugIcon class="ms-3" v-if="selectedSteamAchievements.length > 10" />
                                     </button>
-                                    <button type="button" class="btn btn-danger" @click="lockSteamAchievements">{{ $t("main.lock") }}</button>
+                                    <button type="button" class="btn btn-danger" @click="selectedSteamAchievements" :disabled="!selectedSteamAchievements.length">{{ $t("main.lock") }} {{ selectedSteamAchievements.length ? `(${selectedSteamAchievements.length})` : null }}</button>
                                 </form>
                             </div>
                         </fieldset>

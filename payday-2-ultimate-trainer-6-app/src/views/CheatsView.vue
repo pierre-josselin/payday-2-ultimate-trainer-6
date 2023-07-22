@@ -470,52 +470,52 @@ export default {
                     </div>
                     <div class="col mb-3">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-10">
                                 <div class="form-check form-switch">
                                     <input id="enable-move-speed-multiplier" v-model="enableMoveSpeedMultiplier" class="form-check-input" type="checkbox" @change="setMoveSpeedMultiplier">
                                     <label for="enable-move-speed-multiplier" class="form-check-label">{{ $t("main.move_speed_multiplier") }}</label>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <input v-model="moveSpeedMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setMoveSpeedMultiplier">
                             </div>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-10">
                                 <div class="form-check form-switch">
                                     <input id="enable-throw-distance-multiplier" v-model="enableThrowDistanceMultiplier" class="form-check-input" type="checkbox" @change="setThrowDistanceMultiplier">
                                     <label for="enable-throw-distance-multiplier" class="form-check-label">{{ $t("main.throw_distance_multiplier") }}</label>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <input v-model="throwDistanceMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setThrowDistanceMultiplier">
                             </div>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-10">
                                 <div class="form-check form-switch">
                                     <input id="enable-fire-rate-multiplier" v-model="enableFireRateMultiplier" class="form-check-input" type="checkbox" @change="setFireRateMultiplier">
                                     <label for="enable-fire-rate-multiplier" class="form-check-label">{{ $t("main.fire_rate_multiplier") }}</label>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <input v-model="fireRateMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setFireRateMultiplier">
                             </div>
                         </div>
                     </div>
                     <div class="col mb-3">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-10">
                                 <div class="form-check form-switch">
                                     <input id="enable-damage-multiplier" v-model="enableDamageMultiplier" class="form-check-input" type="checkbox" @change="setDamageMultiplier">
                                     <label for="enable-damage-multiplier" class="form-check-label">{{ $t("main.damage_multiplier") }}</label>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <input v-model="damageMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setDamageMultiplier">
                             </div>
                         </div>
