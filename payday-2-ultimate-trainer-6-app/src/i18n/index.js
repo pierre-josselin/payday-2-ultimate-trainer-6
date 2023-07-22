@@ -63,6 +63,18 @@ import esWeaponMods from "@/locales/es/generated/weapon-mods.json";
 import esBags from "@/locales/es/generated/bags.json";
 import esSpecialEquipment from "@/locales/es/generated/special-equipment.json";
 
+import deMain from "@/locales/de/main.json";
+import deDialogs from "@/locales/de/dialogs.json";
+import deColors from "@/locales/de/generated/colors.json";
+import deMasks from "@/locales/de/generated/masks.json";
+import deMaterials from "@/locales/de/generated/materials.json";
+import deSteamAchievements from "@/locales/de/generated/steam-achievements.json";
+import deTextures from "@/locales/de/generated/textures.json";
+import deTrophies from "@/locales/de/generated/trophies.json";
+import deWeaponMods from "@/locales/de/generated/weapon-mods.json";
+import deBags from "@/locales/de/generated/bags.json";
+import deSpecialEquipment from "@/locales/de/generated/special-equipment.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
@@ -138,6 +150,19 @@ export default createI18n({
             weapon_mods: esWeaponMods,
             bags: esBags,
             special_equipment: esSpecialEquipment
+        },
+        de: {
+            main: deMain,
+            dialogs: deDialogs,
+            colors: deColors,
+            masks: deMasks,
+            materials: deMaterials,
+            steam_achievements: deSteamAchievements,
+            textures: deTextures,
+            trophies: deTrophies,
+            weapon_mods: deWeaponMods,
+            bags: deBags,
+            special_equipment: deSpecialEquipment
         }
     }
 });

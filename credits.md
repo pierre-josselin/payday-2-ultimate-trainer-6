@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**Alexander100305**
+
+- German locale
+
 **uziel2021**
 
 - Spanish locale

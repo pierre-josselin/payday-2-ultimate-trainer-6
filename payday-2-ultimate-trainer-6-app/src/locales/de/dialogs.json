@@ -1,0 +1,16 @@
+{
+    "anti_cheat_detected": "Diese Funktion wird von der Anti-Cheat-Funktion des Spiels erkannt. Andere Spieler können Sie mit einem CHEATER-Tag sehen und Sie können automatisch aus Lobbys geworfen werden, wenn Sie nicht der Host sind. Alles wird wieder normal sein, wenn Sie alle diese Funktionen deaktivieren.",
+    "bag_spawn_crash": "Wenn ein anderer Spieler eine Tasche aufhebt, die es in dieser Mission nicht geben sollte, kann dein Spiel abstürzen.",
+    "bug": "This feature contains bugs and may not work properly, block objectives or crash the game.",
+    "client": "Einige Funktionen sind nicht verfügbar, weil Sie nicht der Host sind.",
+    "connection_failed": "Die Verbindung zum Server ist fehlgeschlagen. Überprüfen Sie den Host und die Verbindung und stellen Sie sicher, dass das Spiel läuft.",
+    "driving_help": "Wählen Sie die zu ladenden Fahrzeuge aus und starten Sie das Spiel neu. Die Ladezeit wird sich verlängern. Wenn Sie zu viele Fahrzeuge ausgewählt haben, kann es vorkommen, dass Ihr Spiel beim Einstieg in den Raub abstürzt. Reduzieren Sie in diesem Fall die Anzahl der gleichzeitig zu ladenden Fahrzeuge und starten Sie das Spiel neu. Andere Spieler werden Ihre Fahrzeuge nicht sehen.",
+    "editor_help": "Im Spiel können Sie jede Einheit auswählen, spawnen oder löschen, indem Sie die entsprechende Tastenkombination drücken. Diese können in den Mod Einstellungen konfiguriert werden .Gespawnte Einheiten mit einem grünen Umriss sind für andere Spieler sichtbar, während Einheiten mit einem orangefarbenen Umriss nicht sichtbar sind.",
+    "game_crash_log_recovery_failed": "Das Absturzprotokoll des Spiels konnte nicht wiederhergestellt werden.",
+    "game_restart_required": "Diese Funktion erfordert einen Neustart des Spiels, um die Änderungen zu übernehmen.",
+    "report_a_bug": "Sie können einen Fehler melden oder eine neue Funktion vorschlagen, indem Sie einem der folgenden Links folgen (im Falle eines Absturzes vergessen Sie nicht, das Absturzprotokoll Ihres Spiels in Ihre Nachricht aufzunehmen):",
+    "spawn_help": "Wählen Sie eine Einheit aus und spawnen Sie sie im Spiel, indem Sie die entsprechende Tastenkombination drücken, die in den Keybind-Einstellungen der Spielmods konfiguriert ist.",
+    "support_us": "Gefällt dir Ultimate Trainer 6? Es ist kostenlos und Open-Source! Der beste Weg, uns zu unterstützen, ist, uns einen kostenlosen GitHub-Stern zu geben!<br><br>Klicke einfach auf den Button unten und dann auf den \"Stern\"-Button:",
+    "update_available": "Ein Update ist verfügbar. Installieren Sie es, um von den neuesten Funktionen und Fehlerbehebungen zu profitieren.",
+    "vehicle_loading_crash": "Das Laden von Fahrzeugen ist aktiviert. Die Ladezeiten verlängern sich und das Spiel kann beim Einstieg in einen Raubüberfall abstürzen, wenn Sie zu viele Fahrzeuge ausgewählt haben."
+}
