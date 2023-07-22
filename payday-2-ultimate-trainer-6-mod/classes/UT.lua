@@ -1050,6 +1050,10 @@ end
 function UT:replenishHealth()
     local playerUnit = UT.GameUtility:getPlayerUnit()
     playerUnit:character_damage():replenish()
+
+    if GameStateFilters.need_revive[UT.GameUtility:getGameState()] then
+        UT.GameUtility:setPlayerState("standard")
+    end
 end
 
 function UT:replenishAmmo()
