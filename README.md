@@ -2,11 +2,23 @@
 
 <img src="https://i.imgur.com/DSVL8hU.png" width="650">
 
+Do you like Ultimate Trainer 6? It is free and open source software! The best way to support us is to give us a GitHub star!
+
+<img src="https://i.imgur.com/gxwIB9a.gif">
+
 ## About The Project
 
 Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete collection of cheats and tools controlled by an application accessible from any web browser, such as the Steam browser, or any other device like a phone or tablet.
 
 <img src="https://i.imgur.com/ljpoyo4.gif" width="650">
+
+### Built with
+
+<img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D">
+<img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
+<img src="https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white">
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
+<img src="https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white">
 
 ## Getting started
 
