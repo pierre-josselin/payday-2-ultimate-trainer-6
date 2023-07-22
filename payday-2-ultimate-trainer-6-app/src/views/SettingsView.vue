@@ -96,6 +96,7 @@ export default {
                                 <option value="ro">Română</option>
                                 <option value="zh">中文</option>
                                 <option value="ru">Русский</option>
+                                <option value="es">Español</option>
                             </select>
                         </div>
                         <div>

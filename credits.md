@@ -6,6 +6,11 @@
 
 ## Direct contributors
 
+**uziel2021**
+
+- Spanish locale
+- Help to add items to game menus
+
 **thejuves**
 
 - Russian locale
@@ -23,10 +28,6 @@
 - Invisible Player
 - No clip
 - Shoot through walls
-
-**Uziel2021**
-
-- Help to add items to game menus
 
 **zReko**
 

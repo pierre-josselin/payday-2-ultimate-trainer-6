@@ -51,6 +51,18 @@ import ruWeaponMods from "@/locales/ru/generated/weapon-mods.json";
 import ruBags from "@/locales/ru/generated/bags.json";
 import ruSpecialEquipment from "@/locales/ru/generated/special-equipment.json";
 
+import esMain from "@/locales/es/main.json";
+import esDialogs from "@/locales/es/dialogs.json";
+import esColors from "@/locales/es/generated/colors.json";
+import esMasks from "@/locales/es/generated/masks.json";
+import esMaterials from "@/locales/es/generated/materials.json";
+import esSteamAchievements from "@/locales/es/generated/steam-achievements.json";
+import esTextures from "@/locales/es/generated/textures.json";
+import esTrophies from "@/locales/es/generated/trophies.json";
+import esWeaponMods from "@/locales/es/generated/weapon-mods.json";
+import esBags from "@/locales/es/generated/bags.json";
+import esSpecialEquipment from "@/locales/es/generated/special-equipment.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
@@ -113,6 +125,19 @@ export default createI18n({
             weapon_mods: ruWeaponMods,
             bags: ruBags,
             special_equipment: ruSpecialEquipment
+        },
+        es: {
+            main: esMain,
+            dialogs: esDialogs,
+            colors: esColors,
+            masks: esMasks,
+            materials: esMaterials,
+            steam_achievements: esSteamAchievements,
+            textures: esTextures,
+            trophies: esTrophies,
+            weapon_mods: esWeaponMods,
+            bags: esBags,
+            special_equipment: esSpecialEquipment
         }
     }
 });
