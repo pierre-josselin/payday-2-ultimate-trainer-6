@@ -1,12 +1,12 @@
 # PAYDAY 2 - Ultimate Trainer 6
 
-<img src="https://i.imgur.com/DSVL8hU.png" width="800">
+<img src="https://i.imgur.com/DSVL8hU.png" width="650">
 
 ## About The Project
 
-Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete collection of cheats and tools controlled by an application accessible from any web browser, such as the Steam browser, or any other device such as a phone or tablet.
+Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete collection of cheats and tools controlled by an application accessible from any web browser, such as the Steam browser, or any other device like a phone or tablet.
 
-<img src="https://i.imgur.com/ljpoyo4.gif" width="800">
+<img src="https://i.imgur.com/ljpoyo4.gif" width="650">
 
 ## Getting started
 
@@ -19,7 +19,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 
 ### Installation
 
-> :exclamation: Installing Ultimate Trainer 6 is different from other mods. Please follow the instructions carefully otherwise it will not work!
+> :exclamation: Installing Ultimate Trainer 6 is different from other mods.<br>Please follow the instructions carefully otherwise it will not work!
 
 > The game folder location is usually:<br>
 > C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2
@@ -33,15 +33,16 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Open the archive and extract the `WSOCK32.dll` file to your game folder
     - Start the game
     - Press yes when prompted to download the basemod
-- Install [**Node.js**](https://nodejs.org/en) 18 ([direct download](https://nodejs.org/dist/v18.17.0/node-v18.17.0-x64.msi))
+- Install [**Node.js**](https://nodejs.org/en) 18
     - Download [**Node.js**](https://nodejs.org/en) 18 ([direct download](https://nodejs.org/dist/v18.17.0/node-v18.17.0-x64.msi))
     - Install it leaving all default options
-    > :information_source: Please note that there is no guarantee that it will work with a different version of Node.js.
+    > :information_source: Please note that this mod might not work with a different version of Node.js.
 - Install [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6)
     - Remove any previous version Ultimate Trainer
     - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
     - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
-    - Open `payday-2-ultimate-trainer-6-main` and run `install.bat`
+    - Open `payday-2-ultimate-trainer-6-main` from your game mods folder
+    - Run `install.bat`
 
 ### Usage
 
@@ -52,14 +53,15 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 
 You can access the application from any web browser on the same network.
 
-<img src="https://i.imgur.com/mQTnyQk.png" width="800">
+<img src="https://i.imgur.com/mQTnyQk.png" width="650"><br>
+*Icons by [Freepik](https://www.freepik.com)*
 
-- Open the Ultimate Trainer 6 folder
+- Open the `payday-2-ultimate-trainer-6-main` from your game mods folder
 - Run the `get-remote-url.bat` file
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
 
-> :warning: Accessing the app from multiple devices simultaneously is not currently supported and may cause issues. It is the same as accessing the application when a heist has already been started.
+> :warning: Accessing the app from multiple devices simultaneously is not currently supported and may cause issues. Accessing the app when a heist has already been started is also not supported.
 
 ### Update
 
@@ -67,21 +69,42 @@ You can access the application from any web browser on the same network.
 - Remove the previous versions of **Ultimate Trainer 6**
 - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
 - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
-- Open `payday-2-ultimate-trainer-6-main` and run `install.bat`
+- Open `payday-2-ultimate-trainer-6-main` from your game mods folder
+- Run `install.bat`
 
 ## Supported languages
 
-* **English** (Pierre Josselin)
-* **French** (Pierre Josselin)
-* **Romanian** (GamingResources)
-* **Chinese** (Art3misFowl, ppt)
-* **Russian** (thejuves)
-* **Spanish** (uziel2021)
-* **German** (Alexander100305)
+- **English** (Pierre Josselin)
+- **French** (Pierre Josselin)
+- **Romanian** (GamingResources)
+- **Chinese** (Art3misFowl, ppt)
+- **Russian** (thejuves)
+- **Spanish** (uziel2021)
+- **German** (Alexander100305)
+
+#### Add a language
+
+If you wish to contribute to the project by adding a new language, you can do so by translating the following English files into your native language:
+
+- [payday-2-ultimate-trainer-6-app/src/locales/en/main.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-app/src/locales/en/main.json)
+- [payday-2-ultimate-trainer-6-app/src/locales/en/dialogs.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-app/src/locales/en/dialogs.json)
+- [main/payday-2-ultimate-trainer-6-mod/locales/en.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-mod/locales/en.json)
+
+> :warning: Please only convert values, not keys, and keep capitals.<br>
+
+Example:
+
+```json
+{
+    "hello": "Hola"
+}
+```
+
+You can then publish the updated files via a pull request or more simply by creating a [new issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new).
 
 ## Contributing
 
-> :warning: If you would like to contribute to the project, we strongly recommend you to first create [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) to discuss what you would like to do.
+> :warning: If you would like to contribute to the project, we strongly recommend you to first create [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new) to discuss what you would like to do.
 
 1. Fork this repository
 2. Create a branch for your feature
