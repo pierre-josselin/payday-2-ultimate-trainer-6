@@ -176,5 +176,6 @@
     "x_ray": "透视",
     "bags": "Bags",
     "special_equipment": "Special equipment",
-    "id": "ID"
+    "id": "ID",
+    "reset": "Reset"
 }
