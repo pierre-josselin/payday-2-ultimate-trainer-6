@@ -3,12 +3,12 @@
     "ut_menu_open_app_description": "开启 Ultimate Trainer app",
     "ut_keybinds_teleport_player_to_crosshair_name": "传送玩家至准星处",
     "ut_keybinds_teleport_player_to_crosshair_description": "传送玩家到准星",
-    "ut_keybinds_spawn_spawn_name": "生成 - 生成",
+    "ut_keybinds_spawn_spawn_name": "生成 / 生成",
     "ut_keybinds_spawn_spawn_description": "选择生成单位",
-    "ut_keybinds_editor_pick_name": "编辑器 - 选择",
+    "ut_keybinds_editor_pick_name": "编辑器 / 选择",
     "ut_keybinds_editor_pick_description": "选择准星处单位并举起",
-    "ut_keybinds_editor_spawn_name": "编辑器 - 生成",
+    "ut_keybinds_editor_spawn_name": "编辑器 / 生成",
     "ut_keybinds_editor_spawn_description": "生成在准星处选择的单位",
-    "ut_keybinds_editor_delete_name": "编辑器 - 删除",
+    "ut_keybinds_editor_delete_name": "编辑器 / 删除",
     "ut_keybinds_editor_delete_description": "删除在准星处的单位"
 }

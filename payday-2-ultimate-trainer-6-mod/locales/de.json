@@ -3,12 +3,12 @@
     "ut_menu_open_app_description": "Öffne die Ultimate Trainer App",
     "ut_keybinds_teleport_player_to_crosshair_name": "Spieler zum Fadenkreuz teleportieren",
     "ut_keybinds_teleport_player_to_crosshair_description": "Teleportiert den Spieler zum Fadenkreuz",
-    "ut_keybinds_spawn_spawn_name": "Spawn - Spawn",
+    "ut_keybinds_spawn_spawn_name": "Spawn / Spawn",
     "ut_keybinds_spawn_spawn_description": "Ausgewählte Einheit spawnen",
-    "ut_keybinds_editor_pick_name": "Editor - Auswählen",
+    "ut_keybinds_editor_pick_name": "Editor / Auswählen",
     "ut_keybinds_editor_pick_description": "Wählen Sie die Einheit am Fadenkreuz aus",
-    "ut_keybinds_editor_spawn_name": "Editor - Spawn",
+    "ut_keybinds_editor_spawn_name": "Editor / Spawn",
     "ut_keybinds_editor_spawn_description": "Ausgewählte Einheit im Fadenkreuz spawnen",
-    "ut_keybinds_editor_delete_name": "Editor - Löschen",
+    "ut_keybinds_editor_delete_name": "Editor / Löschen",
     "ut_keybinds_editor_delete_description": "Gespawnte Einheit im Fadenkreuz löschen"
 }
