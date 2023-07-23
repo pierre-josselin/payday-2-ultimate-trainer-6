@@ -1,6 +1,5 @@
 {
     "anti_cheat_detected": "Esta opción está detectada por el sistema anti-trampas del juego. Otros jugadores pueden que te vean con la etiqueta de TRAMPOSO y puede que seas expulsado automaticamente de la partida si no eres el anfitrión. Todo volverá a la normalidad cuando desactives todas esas opciónes.",
-    "bag_spawn_crash": "Si otro jugador toma una bolsa que no se supone que exista en esta misión puede que tu juego se cierre.",
     "bug": "Esta opción contiene errores y puede que no funcione correctamente, bloquee objetivos o cierre el juego.",
     "client": "Algunas opciones no estarán disponibles porque no eres el anfitrión de la partida.",
     "connection_failed": "La conexión al server ha fallado. Verifica el anfitrión y el puerto y asegúrate de que el juego esté ejecutandose.",
@@ -12,5 +11,6 @@
     "spawn_help": "Selecciona una unidad y luego spawneala en partida presionando el atajo configurado en las opciones de atajos del mod.",
     "support_us": "Te gusta Ultimate Trainer 6? Es grátis y de código abierto! La mejor forma de apoyarnos es dandonos una estrella en GitHub!<br><br>Simplemente presiona en el botón de abajo y luego en el botón con la \"Estrella\":",
     "update_available": "Hay una actualización disponible. Instálala para tomar ventaja de las últimas caracteristicas y arreglos de bugs.",
-    "vehicle_loading_crash": "La carga de vehículos está activa, los tiempos de carga serán extendidos y tu juego puede que se cierre cuanto entres a un atraco si has seleccionado demaciados vehículos."
+    "vehicle_loading_crash": "La carga de vehículos está activa, los tiempos de carga serán extendidos y tu juego puede que se cierre cuanto entres a un atraco si has seleccionado demaciados vehículos.",
+    "bag_spawn_crash": "If someone picks up a bag that is not supposed to exist in this mission, the game of other players could crash."
 }

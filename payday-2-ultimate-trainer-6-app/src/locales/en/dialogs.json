@@ -1,6 +1,6 @@
 {
     "anti_cheat_detected": "This feature is detected by the game's anti cheat. Other players may see you with the CHEATER tag and you may be automatically kicked from lobbies if you are not the host. Everything will be back to normal when you disable all these features.",
-    "bag_spawn_crash": "If another player picks up a bag that is not supposed to exist in this mission, your game may crash.",
+    "bag_spawn_crash": "If someone picks up a bag that is not supposed to exist in this mission, the game of other players could crash.",
     "bug": "This feature contains bugs and may not work properly, block objectives or crash the game.",
     "client": "Some features will not be available because you are client of the game.",
     "connection_failed": "The connection to the server failed. Check the host and port and make sure the game is running.",
