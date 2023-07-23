@@ -466,18 +466,12 @@ export default {
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openAtms" :disabled="!mainStore.isServer">
-                                            {{ $t("main.open_atms") }}
-                                            <AntiCheatDetectedIcon class="ms-3" />
-                                        </button>
+                                        <button class="btn btn-primary" @click="openAtms" :disabled="!mainStore.isServer">{{ $t("main.open_atms") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="d-block btn btn-primary" @click="placeShapedCharges" :disabled="!mainStore.isServer">
-                                            {{ $t("main.place_shaped_charges") }}
-                                            <AntiCheatDetectedIcon class="ms-3" />
-                                        </button>
+                                        <button class="d-block btn btn-primary" @click="placeShapedCharges" :disabled="!mainStore.isServer">{{ $t("main.place_shaped_charges") }}</button>
                                     </div>
                                 </div>
                             </div>
