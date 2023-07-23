@@ -43,16 +43,16 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Press yes when prompted to download the basemod
 - Install [**Node.js**](https://nodejs.org/en) 18
     - Download [**Node.js**](https://nodejs.org/en) 18 ([direct download](https://nodejs.org/dist/v18.17.0/node-v18.17.0-x64.msi))
-    > :information_source: Please note that this mod might not work with a different version of Node.js.
     - Install it leaving all default options
-    - Restart your computer
+    - **Restart your computer**
     > :warning: Restarting your computer is required for the Node.js path to be properly configured in Windows. Until you restart, the mod probably won't work.
+    > :information_source: Please note that this mod might not work with a different version of Node.js.
 - Install [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6)
     - Remove any previous version Ultimate Trainer
     - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
     - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
     - Open `payday-2-ultimate-trainer-6-main` from your game mods folder
-    - Run `install`
+    - Run `install` file
     > :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
 
 ### Usage
@@ -82,7 +82,7 @@ You can access the application from any web browser on the same network.
 - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
 - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
 - Open `payday-2-ultimate-trainer-6-main` from your game mods folder
-- Run `install`
+- Run `install` file
 > :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
 
 ## Supported languages
