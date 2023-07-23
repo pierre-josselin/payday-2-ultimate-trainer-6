@@ -98,6 +98,7 @@ export default {
                                 <option value="ru">Русский</option>
                                 <option value="es">Español</option>
                                 <option value="de">Deutsch</option>
+                                <option value="uk">Українська</option>
                             </select>
                         </div>
                         <div>

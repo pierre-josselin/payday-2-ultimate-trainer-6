@@ -75,6 +75,9 @@ import deWeaponMods from "@/locales/de/generated/weapon-mods.json";
 import deBags from "@/locales/de/generated/bags.json";
 import deSpecialEquipment from "@/locales/de/generated/special-equipment.json";
 
+import ukMain from "@/locales/uk/main.json";
+import ukDialogs from "@/locales/uk/dialogs.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
@@ -163,6 +166,10 @@ export default createI18n({
             weapon_mods: deWeaponMods,
             bags: deBags,
             special_equipment: deSpecialEquipment
+        },
+        uk: {
+            main: ukMain,
+            dialogs: ukDialogs
         }
     }
 });

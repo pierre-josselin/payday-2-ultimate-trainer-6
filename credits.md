@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**S0ya13**
+
+- Ukrainian locale
+
 **Alexander100305**
 
 - German locale
