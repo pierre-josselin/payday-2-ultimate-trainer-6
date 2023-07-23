@@ -12,6 +12,60 @@ import { useSettingsStore } from "@/stores/settings";
 import changeLogPath from "../../changelog.md";
 import creditsPath from "../../credits.md";
 
+import cerulean from "bootswatch/dist/cerulean/bootstrap.min.css?raw";
+import cosmo from "bootswatch/dist/cosmo/bootstrap.min.css?raw";
+import cyborg from "bootswatch/dist/cyborg/bootstrap.min.css?raw";
+import darkly from "bootswatch/dist/darkly/bootstrap.min.css?raw";
+import flatly from "bootswatch/dist/flatly/bootstrap.min.css?raw";
+import journal from "bootswatch/dist/journal/bootstrap.min.css?raw";
+import litera from "bootswatch/dist/litera/bootstrap.min.css?raw";
+import lumen from "bootswatch/dist/lumen/bootstrap.min.css?raw";
+import lux from "bootswatch/dist/lux/bootstrap.min.css?raw";
+import materia from "bootswatch/dist/materia/bootstrap.min.css?raw";
+import minty from "bootswatch/dist/minty/bootstrap.min.css?raw";
+import morph from "bootswatch/dist/morph/bootstrap.min.css?raw";
+import pulse from "bootswatch/dist/pulse/bootstrap.min.css?raw";
+import quartz from "bootswatch/dist/quartz/bootstrap.min.css?raw";
+import sandstone from "bootswatch/dist/sandstone/bootstrap.min.css?raw";
+import simplex from "bootswatch/dist/simplex/bootstrap.min.css?raw";
+import sketchy from "bootswatch/dist/sketchy/bootstrap.min.css?raw";
+import slate from "bootswatch/dist/slate/bootstrap.min.css?raw";
+import solar from "bootswatch/dist/solar/bootstrap.min.css?raw";
+import spacelab from "bootswatch/dist/spacelab/bootstrap.min.css?raw";
+import superhero from "bootswatch/dist/superhero/bootstrap.min.css?raw";
+import united from "bootswatch/dist/united/bootstrap.min.css?raw";
+import vapor from "bootswatch/dist/vapor/bootstrap.min.css?raw";
+import yeti from "bootswatch/dist/yeti/bootstrap.min.css?raw";
+import zephyr from "bootswatch/dist/zephyr/bootstrap.min.css?raw";
+
+const themes = {
+    cerulean,
+    cosmo,
+    cyborg,
+    darkly,
+    flatly,
+    journal,
+    litera,
+    lumen,
+    lux,
+    materia,
+    minty,
+    morph,
+    pulse,
+    quartz,
+    sandstone,
+    simplex,
+    sketchy,
+    slate,
+    solar,
+    spacelab,
+    superhero,
+    united,
+    vapor,
+    yeti,
+    zephyr,
+};
+
 export default {
     components: {
         GithubButton,
@@ -21,6 +75,7 @@ export default {
         return {
             repositoryNewTag: null,
             sentToastInstance: null,
+            bootswatchElement: null,
             firstCallAcknowledgmentIgnored: false,
             changeLog: null,
             credits: null
@@ -35,9 +90,8 @@ export default {
         this.mainStore = useMainStore();
         this.settingsStore = useSettingsStore();
 
-        this.$watch("theme", () => {
-            const element = document.getElementById("bootswatch");
-            element.href = `/node_modules/bootswatch/dist/${this.theme}/bootstrap.min.css`;
+        this.$watch("theme", (theme) => {
+            this.bootswatchElement.innerHTML = themes[theme];
         });
 
         this.$watch("mainStore.lastCallAcknowledgmentTime", (lastCallAcknowledgmentTime) => {
@@ -54,10 +108,17 @@ export default {
         this.fetchCredits();
     },
     mounted() {
+        this.bootswatchElement = document.createElement("style");
+        this.bootswatchElement.innerHTML = themes[this.theme];
+        document.head.appendChild(this.bootswatchElement);
+
         const sentToastElement = document.getElementById("sent-toast");
         this.sentToastInstance = Toast.getOrCreateInstance(sentToastElement);
 
         this.checkForUpdates();
+    },
+    beforeUnmount() {
+        this.bootswatchElement.remove();
     },
     methods: {
         async checkForUpdates() {
