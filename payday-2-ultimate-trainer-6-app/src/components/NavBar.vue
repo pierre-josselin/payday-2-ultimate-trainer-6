@@ -53,7 +53,7 @@ export default {
                         <button class="nav-link popover-focus" role="button" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.editor_help')">{{ $t("main.editor") }}</button>
                     </li>
                 </ul>
-                <span>
+                <span class="text-light">
                     <template v-if="mainStore.isOffline">{{ $t("main.offline") }}</template>
                     <template v-else-if="mainStore.isInBootup">{{ $t("main.bootup") }}</template>
                     <template v-else-if="mainStore.isInMainMenu">{{ $t("main.main_menu") }}</template>
