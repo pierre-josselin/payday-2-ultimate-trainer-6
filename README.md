@@ -52,7 +52,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
     - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
     - Open `payday-2-ultimate-trainer-6-main` from your game mods folder
-    - Run `install` file
+    - Run the `install` file
     > :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
 
 ### Usage
@@ -82,7 +82,7 @@ You can access the application from any web browser on the same network.
 - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
 - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
 - Open `payday-2-ultimate-trainer-6-main` from your game mods folder
-- Run `install` file
+- Run the `install` file
 > :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
 
 ## Supported languages
