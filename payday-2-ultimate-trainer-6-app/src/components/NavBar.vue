@@ -5,17 +5,11 @@ import { useMainStore } from "@/stores/main";
 
 import { closeWebSocket } from "@/web-socket";
 
-import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
-import BugIcon from "@/components/icons/BugIcon.vue";
 import ClientIcon from "@/components/icons/ClientIcon.vue";
-import GameRestartRequiredIcon from "@/components/icons/GameRestartRequiredIcon.vue";
 
 export default {
     components: {
-        AntiCheatDetectedIcon,
-        BugIcon,
-        ClientIcon,
-        GameRestartRequiredIcon
+        ClientIcon
     },
     data() {
         return {
@@ -46,7 +40,7 @@ export default {
             </button>
             <div id="navbar-supported-content" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li v-for="( navItem, index ) in  navItems " :key="index" class="nav-item">
+                    <li v-for="( navItem, index ) in navItems " :key="index" class="nav-item">
                         <RouterLink :to="{ name: navItem }" class="nav-link" :class="{ active: $route.name === navItem }">{{ $t(`main.${navItem}`) }}</RouterLink>
                     </li>
                     <li class="nav-item">

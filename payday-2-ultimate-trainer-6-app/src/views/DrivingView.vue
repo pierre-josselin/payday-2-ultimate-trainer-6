@@ -101,21 +101,22 @@ export default {
 
     <div style="max-width: 1000px;" class="container my-5">
         <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">{{ $t("main.driving") }}
+            <div class="card-header d-flex justify-content-between align-items-center">
+{{ $t("main.driving") }}
                 <button type="button" class="btn btn-link btn-sm popover-focus" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.driving_help')">
                     <FontAwesomeIcon icon="fa-solid fa-question" />
                 </button>
             </div>
             <div class="card-body p-4">
-                <div class="alert alert-warning mb-3" v-if="vehiclesToLoad.length">{{ $t("dialogs.vehicle_loading_crash") }} <a href="#" @click="resetVehiclesToLoad">{{ $t("main.reset") }}</a></div>
+                <div v-if="vehiclesToLoad.length" class="alert alert-warning mb-3">{{ $t("dialogs.vehicle_loading_crash") }} <a href="#" @click="resetVehiclesToLoad">{{ $t("main.reset") }}</a></div>
                 <div class="mb-2">
                     <b>{{ $t("main.vehicles_to_load") }}</b>
                     <BugIcon class="ms-3" />
                     <GameRestartRequiredIcon class="ms-3" />
                 </div>
                 <div class="mb-3">
-                    <div class="form-check form-check-inline" v-for="vehicle in vehicles" :key="vehicle.id">
-                        <input :id="vehicle.id" class="form-check-input" type="checkbox" :value="vehicle.id" v-model="vehiclesToLoad" @change="setVehiclesToLoad">
+                    <div v-for="vehicle in vehicles" :key="vehicle.id" class="form-check form-check-inline">
+                        <input :id="vehicle.id" v-model="vehiclesToLoad" class="form-check-input" type="checkbox" :value="vehicle.id" @change="setVehiclesToLoad">
                         <label :for="vehicle.id" class="form-check-label" :class="{ 'text-success': mainStore.isInGame && mainStore.loadedVehicles.includes(vehicle.id) }">{{ $t(vehicle.name) }}</label>
                     </div>
                 </div>

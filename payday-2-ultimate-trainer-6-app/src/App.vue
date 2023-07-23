@@ -226,9 +226,10 @@ export default {
                     <button class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
-                    <p class="mb-4" v-html="$t('dialogs.support_us')"></p>
+                    <p class="mb-4" v-html="$t('dialogs.support_us')" />
                     <GithubButton class="mb-4" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6" data-icon="octicon-star" data-size="large" data-show-count="true">{{ $t("main.support_us") }}</GithubButton>
-                    <div class="fs-1 text-uppercase">{{ $t("main.thank_you") }}
+                    <div class="fs-1 text-uppercase">
+                        {{ $t("main.thank_you") }}
                         <FontAwesomeIcon class="text-danger ms-3" icon="fa-solid fa-heart" />
                     </div>
                 </div>
@@ -252,16 +253,17 @@ export default {
                         <a class="btn btn-link me-2" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new" target="_blank">GitHub ({{ $t("main.faster_answer").toLowerCase() }})</a>
                         <a class="btn btn-link" href="https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html" target="_blank">UnknownCheats</a>
                     </div>
-                    <p class="fs-5">{{ $t("main.game_crash_log") }}
+                    <p class="fs-5">
+                        {{ $t("main.game_crash_log") }}
                         <button class="btn btn-link btn-sm ms-2" @click="mainStore.requestGameCrashLog">
                             <FontAwesomeIcon icon="fa-solid fa-arrows-rotate" />
                         </button>
                     </p>
-                    <div class="alert alert-danger mb-0" v-if="mainStore.gameCrashLog === false">{{ $t("dialogs.game_crash_log_recovery_failed") }}</div>
-                    <div class="d-flex justify-content-center my-4" v-else-if="!mainStore.gameCrashLog">
-                        <div class="spinner-border"></div>
+                    <div v-if="mainStore.gameCrashLog === false" class="alert alert-danger mb-0">{{ $t("dialogs.game_crash_log_recovery_failed") }}</div>
+                    <div v-else-if="!mainStore.gameCrashLog" class="d-flex justify-content-center my-4">
+                        <div class="spinner-border" />
                     </div>
-                    <textarea class="form-control" rows="20" readonly v-else>{{ mainStore.gameCrashLog }}</textarea>
+                    <textarea v-else v-model="mainStore.gameCrashLog" class="form-control" rows="20" readonly />
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>

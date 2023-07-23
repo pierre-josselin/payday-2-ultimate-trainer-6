@@ -292,7 +292,8 @@ export default {
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#slow-motion-tab">{{ $t("main.slow_motion") }}</button>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bags-tab">{{ $t("main.bags") }}
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bags-tab">
+{{ $t("main.bags") }}
                             <BugIcon class="ms-3" />
                             <AntiCheatDetectedIcon class="ms-3" />
                         </button>
@@ -360,8 +361,9 @@ export default {
                                                             <option value="throwables">{{ $t("main.throwables") }}</option>
                                                             <option value="body-bags">{{ $t("main.body_bags") }}</option>
                                                         </select>
-                                                        <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">{{ $t("main.replenish") }}
-                                                            <AntiCheatDetectedIcon class="ms-3" v-if="missionStore.replenishType === 'equipment'" />
+                                                        <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">
+{{ $t("main.replenish") }}
+                                                            <AntiCheatDetectedIcon v-if="missionStore.replenishType === 'equipment'" class="ms-3" />
                                                         </button>
                                                     </div>
                                                 </form>
@@ -466,12 +468,12 @@ export default {
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="btn btn-primary" @click="openAtms" :disabled="!mainStore.isServer">{{ $t("main.open_atms") }}</button>
+                                        <button class="btn btn-primary" :disabled="!mainStore.isServer" @click="openAtms">{{ $t("main.open_atms") }}</button>
                                     </div>
                                 </div>
                                 <div class="col mt-4">
                                     <div class="ratio interaction-button">
-                                        <button class="d-block btn btn-primary" @click="placeShapedCharges" :disabled="!mainStore.isServer">{{ $t("main.place_shaped_charges") }}</button>
+                                        <button class="d-block btn btn-primary" :disabled="!mainStore.isServer" @click="placeShapedCharges">{{ $t("main.place_shaped_charges") }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -494,7 +496,7 @@ export default {
                         </div>
                         <div id="bags-tab" class="tab-pane pt-4" tabindex="0">
                             <div class="alert alert-warning">{{ $t("dialogs.bag_spawn_crash") }}</div>
-                            <input class="form-control mb-3" type="search" v-model="bagSearch" :disabled="!mainStore.isPlaying">
+                            <input v-model="bagSearch" class="form-control mb-3" type="search" :disabled="!mainStore.isPlaying">
                             <div style="max-height: 500px;" class="table-responsive">
                                 <table class="table table-striped table-hover mb-0">
                                     <thead>
@@ -504,7 +506,7 @@ export default {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="bagId in filteredBags" :key="bagId" role="button" @click="throwBag(bagId)" :class="{ disabled: !mainStore.isPlaying }">
+                                        <tr v-for="bagId in filteredBags" :key="bagId" role="button" :class="{ disabled: !mainStore.isPlaying }" @click="throwBag(bagId)">
                                             <td class="bg-transparent">{{ $t(`bags.${bagId}`) }}</td>
                                             <td class="bg-transparent">{{ bagId }}</td>
                                         </tr>
@@ -513,7 +515,7 @@ export default {
                             </div>
                         </div>
                         <div id="special-equipment-tab" class="tab-pane pt-4" tabindex="0">
-                            <input class="form-control mb-3" type="search" v-model="specialEquipmentSearch" :disabled="!mainStore.isPlaying">
+                            <input v-model="specialEquipmentSearch" class="form-control mb-3" type="search" :disabled="!mainStore.isPlaying">
                             <div style="max-height: 500px;" class="table-responsive">
                                 <table class="table table-striped table-hover mb-0">
                                     <thead>
@@ -523,7 +525,7 @@ export default {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="specialEquipmentId in filteredSpecialEquipment" :key="specialEquipmentId" role="button" @click="addSpecialEquipment(specialEquipmentId)" :class="{ disabled: !mainStore.isPlaying }">
+                                        <tr v-for="specialEquipmentId in filteredSpecialEquipment" :key="specialEquipmentId" role="button" :class="{ disabled: !mainStore.isPlaying }" @click="addSpecialEquipment(specialEquipmentId)">
                                             <td class="bg-transparent">{{ $t(`special_equipment.${specialEquipmentId}`) }}</td>
                                             <td class="bg-transparent">{{ specialEquipmentId }}</td>
                                         </tr>
