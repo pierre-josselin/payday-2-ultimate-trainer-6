@@ -45,7 +45,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Download [**Node.js**](https://nodejs.org/en) 18 ([direct download](https://nodejs.org/dist/v18.17.0/node-v18.17.0-x64.msi))
     - Install it leaving all default options
     - **Restart your computer**
-    > :warning: Restarting your computer is required for the Node.js path to be properly configured in Windows. Until you restart, the mod probably won't work.
+    > :warning: Restarting your computer is required for the Node.js path to be properly configured in Windows. Until you restart, the mod probably won't work.<br>
     > :information_source: Please note that this mod might not work with a different version of Node.js.
 - Install [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6)
     - Remove any previous version Ultimate Trainer
