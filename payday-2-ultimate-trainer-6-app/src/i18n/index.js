@@ -12,6 +12,30 @@ import enWeaponMods from "@/locales/en/generated/weapon-mods.json";
 import enBags from "@/locales/en/generated/bags.json";
 import enSpecialEquipment from "@/locales/en/generated/special-equipment.json";
 
+import deMain from "@/locales/de/main.json";
+import deDialogs from "@/locales/de/dialogs.json";
+import deColors from "@/locales/de/generated/colors.json";
+import deMasks from "@/locales/de/generated/masks.json";
+import deMaterials from "@/locales/de/generated/materials.json";
+import deSteamAchievements from "@/locales/de/generated/steam-achievements.json";
+import deTextures from "@/locales/de/generated/textures.json";
+import deTrophies from "@/locales/de/generated/trophies.json";
+import deWeaponMods from "@/locales/de/generated/weapon-mods.json";
+import deBags from "@/locales/de/generated/bags.json";
+import deSpecialEquipment from "@/locales/de/generated/special-equipment.json";
+
+import esMain from "@/locales/es/main.json";
+import esDialogs from "@/locales/es/dialogs.json";
+import esColors from "@/locales/es/generated/colors.json";
+import esMasks from "@/locales/es/generated/masks.json";
+import esMaterials from "@/locales/es/generated/materials.json";
+import esSteamAchievements from "@/locales/es/generated/steam-achievements.json";
+import esTextures from "@/locales/es/generated/textures.json";
+import esTrophies from "@/locales/es/generated/trophies.json";
+import esWeaponMods from "@/locales/es/generated/weapon-mods.json";
+import esBags from "@/locales/es/generated/bags.json";
+import esSpecialEquipment from "@/locales/es/generated/special-equipment.json";
+
 import frMain from "@/locales/fr/main.json";
 import frDialogs from "@/locales/fr/dialogs.json";
 import frColors from "@/locales/fr/generated/colors.json";
@@ -27,18 +51,6 @@ import frSpecialEquipment from "@/locales/fr/generated/special-equipment.json";
 import roMain from "@/locales/ro/main.json";
 import roDialogs from "@/locales/ro/dialogs.json";
 
-import zhMain from "@/locales/zh/main.json";
-import zhDialogs from "@/locales/zh/dialogs.json";
-import zhColors from "@/locales/zh/generated/colors.json";
-import zhMasks from "@/locales/zh/generated/masks.json";
-import zhMaterials from "@/locales/zh/generated/materials.json";
-import zhSteamAchievements from "@/locales/zh/generated/steam-achievements.json";
-import zhTextures from "@/locales/zh/generated/textures.json";
-import zhTrophies from "@/locales/zh/generated/trophies.json";
-import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
-import zhBags from "@/locales/zh/generated/bags.json";
-import zhSpecialEquipment from "@/locales/zh/generated/special-equipment.json";
-
 import ruMain from "@/locales/ru/main.json";
 import ruDialogs from "@/locales/ru/dialogs.json";
 import ruColors from "@/locales/ru/generated/colors.json";
@@ -51,32 +63,20 @@ import ruWeaponMods from "@/locales/ru/generated/weapon-mods.json";
 import ruBags from "@/locales/ru/generated/bags.json";
 import ruSpecialEquipment from "@/locales/ru/generated/special-equipment.json";
 
-import esMain from "@/locales/es/main.json";
-import esDialogs from "@/locales/es/dialogs.json";
-import esColors from "@/locales/es/generated/colors.json";
-import esMasks from "@/locales/es/generated/masks.json";
-import esMaterials from "@/locales/es/generated/materials.json";
-import esSteamAchievements from "@/locales/es/generated/steam-achievements.json";
-import esTextures from "@/locales/es/generated/textures.json";
-import esTrophies from "@/locales/es/generated/trophies.json";
-import esWeaponMods from "@/locales/es/generated/weapon-mods.json";
-import esBags from "@/locales/es/generated/bags.json";
-import esSpecialEquipment from "@/locales/es/generated/special-equipment.json";
-
-import deMain from "@/locales/de/main.json";
-import deDialogs from "@/locales/de/dialogs.json";
-import deColors from "@/locales/de/generated/colors.json";
-import deMasks from "@/locales/de/generated/masks.json";
-import deMaterials from "@/locales/de/generated/materials.json";
-import deSteamAchievements from "@/locales/de/generated/steam-achievements.json";
-import deTextures from "@/locales/de/generated/textures.json";
-import deTrophies from "@/locales/de/generated/trophies.json";
-import deWeaponMods from "@/locales/de/generated/weapon-mods.json";
-import deBags from "@/locales/de/generated/bags.json";
-import deSpecialEquipment from "@/locales/de/generated/special-equipment.json";
-
 import ukMain from "@/locales/uk/main.json";
 import ukDialogs from "@/locales/uk/dialogs.json";
+
+import zhMain from "@/locales/zh/main.json";
+import zhDialogs from "@/locales/zh/dialogs.json";
+import zhColors from "@/locales/zh/generated/colors.json";
+import zhMasks from "@/locales/zh/generated/masks.json";
+import zhMaterials from "@/locales/zh/generated/materials.json";
+import zhSteamAchievements from "@/locales/zh/generated/steam-achievements.json";
+import zhTextures from "@/locales/zh/generated/textures.json";
+import zhTrophies from "@/locales/zh/generated/trophies.json";
+import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
+import zhBags from "@/locales/zh/generated/bags.json";
+import zhSpecialEquipment from "@/locales/zh/generated/special-equipment.json";
 
 export default createI18n({
     locale: "en",
@@ -98,6 +98,32 @@ export default createI18n({
             bags: enBags,
             special_equipment: enSpecialEquipment
         },
+        de: {
+            main: deMain,
+            dialogs: deDialogs,
+            colors: deColors,
+            masks: deMasks,
+            materials: deMaterials,
+            steam_achievements: deSteamAchievements,
+            textures: deTextures,
+            trophies: deTrophies,
+            weapon_mods: deWeaponMods,
+            bags: deBags,
+            special_equipment: deSpecialEquipment
+        },
+        es: {
+            main: esMain,
+            dialogs: esDialogs,
+            colors: esColors,
+            masks: esMasks,
+            materials: esMaterials,
+            steam_achievements: esSteamAchievements,
+            textures: esTextures,
+            trophies: esTrophies,
+            weapon_mods: esWeaponMods,
+            bags: esBags,
+            special_equipment: esSpecialEquipment
+        },
         fr: {
             main: frMain,
             dialogs: frDialogs,
@@ -115,19 +141,6 @@ export default createI18n({
             main: roMain,
             dialogs: roDialogs
         },
-        zh: {
-            main: zhMain,
-            dialogs: zhDialogs,
-            colors: zhColors,
-            masks: zhMasks,
-            materials: zhMaterials,
-            steam_achievements: zhSteamAchievements,
-            textures: zhTextures,
-            trophies: zhTrophies,
-            weapon_mods: zhWeaponMods,
-            bags: zhBags,
-            special_equipment: zhSpecialEquipment
-        },
         ru: {
             main: ruMain,
             dialogs: ruDialogs,
@@ -141,35 +154,22 @@ export default createI18n({
             bags: ruBags,
             special_equipment: ruSpecialEquipment
         },
-        es: {
-            main: esMain,
-            dialogs: esDialogs,
-            colors: esColors,
-            masks: esMasks,
-            materials: esMaterials,
-            steam_achievements: esSteamAchievements,
-            textures: esTextures,
-            trophies: esTrophies,
-            weapon_mods: esWeaponMods,
-            bags: esBags,
-            special_equipment: esSpecialEquipment
-        },
-        de: {
-            main: deMain,
-            dialogs: deDialogs,
-            colors: deColors,
-            masks: deMasks,
-            materials: deMaterials,
-            steam_achievements: deSteamAchievements,
-            textures: deTextures,
-            trophies: deTrophies,
-            weapon_mods: deWeaponMods,
-            bags: deBags,
-            special_equipment: deSpecialEquipment
-        },
         uk: {
             main: ukMain,
             dialogs: ukDialogs
+        },
+        zh: {
+            main: zhMain,
+            dialogs: zhDialogs,
+            colors: zhColors,
+            masks: zhMasks,
+            materials: zhMaterials,
+            steam_achievements: zhSteamAchievements,
+            textures: zhTextures,
+            trophies: zhTrophies,
+            weapon_mods: zhWeaponMods,
+            bags: zhBags,
+            special_equipment: zhSpecialEquipment
         }
     }
 });
