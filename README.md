@@ -50,7 +50,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
     - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
     - Open `payday-2-ultimate-trainer-6-main` from your game mods folder
-    - Run `install.bat`
+    - Run `install`
 
 ### Usage
 
@@ -65,7 +65,7 @@ You can access the application from any web browser on the same network.
 *Icons by [Freepik](https://www.freepik.com)*
 
 - Open the `payday-2-ultimate-trainer-6-main` from your game mods folder
-- Run the `get-remote-url.bat` file
+- Run the `get-remote-url` file
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
 
@@ -78,7 +78,7 @@ You can access the application from any web browser on the same network.
 - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
 - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
 - Open `payday-2-ultimate-trainer-6-main` from your game mods folder
-- Run `install.bat`
+- Run `install`
 
 ## Supported languages
 
