@@ -29,6 +29,8 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 
 ### Installation
 
+[<img src="https://i.imgur.com/i0nsDqD.jpg" width="650">](https://www.youtube.com/watch?v=8BbnMmW9Hmg)
+
 > :exclamation: Installing Ultimate Trainer 6 is different from other mods.<br>Please follow the instructions carefully otherwise it will not work!
 
 > The game folder location is usually:<br>
