@@ -213,6 +213,14 @@ function UT:sendLoadedVehicles()
     UT:sendMessage(message)
 end
 
+function UT:sendGamePaused(value)
+    local message = {
+        type = "game-paused",
+        data = value
+    }
+    UT:sendMessage(message)
+end
+
 function UT:gameEnterEvent()
     UT:sendLoadedVehicles()
 end

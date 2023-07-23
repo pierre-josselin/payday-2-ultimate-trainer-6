@@ -11,6 +11,22 @@ function UT.Hook:localizationManager()
 end
 
 function UT.Hook:menuManager()
+    UT.Utility:cloneClass(MenuManager)
+
+    function MenuManager:open_menu(menuName, ...)
+        if menuName == "menu_pause" and UT.GameUtility:isInHeist() and UT.GameUtility:isInSinglePlayer() then
+            UT:sendGamePaused(true)
+        end
+        MenuManager.orig.open_menu(self, menuName, ...)
+    end
+
+    function MenuManager:close_menu(menuName, ...)
+        if menuName == "menu_pause" and UT.GameUtility:isInHeist() and UT.GameUtility:isInSinglePlayer() then
+            UT:sendGamePaused(false)
+        end
+        MenuManager.orig.close_menu(self, menuName, ...)
+    end
+
     function MenuCallbackHandler:ut_open_app()
         UT:openApp()
     end

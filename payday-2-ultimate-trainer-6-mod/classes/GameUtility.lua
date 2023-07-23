@@ -47,6 +47,10 @@ function UT.GameUtility:isServer()
     return Network:is_server()
 end
 
+function UT.GameUtility:isInSinglePlayer()
+    return Global.game_settings.single_player
+end
+
 function UT.GameUtility:getPlayerUnit()
     return managers.player:player_unit()
 end

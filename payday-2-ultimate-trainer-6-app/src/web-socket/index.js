@@ -87,11 +87,19 @@ export function createWebSocket(options) {
                 mainStore.isServer = Boolean(parseInt(gameContext[7]));
                 break;
             }
+            case "game-paused": {
+                mainStore.isGamePaused = message.data
+                break;
+            }
             case "loaded-vehicles": {
                 mainStore.loadedVehicles = message.data.split(",");
                 break;
             }
             case "game-offline": {
+                if (mainStore.isGamePaused) {
+                    break;
+                }
+
                 mainStore.isOffline = true;
                 mainStore.isInBootup = false;
                 mainStore.isInMainMenu = false;

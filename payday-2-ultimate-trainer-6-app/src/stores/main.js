@@ -13,6 +13,7 @@ export const useMainStore = defineStore("main", {
         isInCustody: false,
         isAtEndGame: false,
         isServer: false,
+        isGamePaused: false,
         loadedVehicles: [],
         lastCallAcknowledgmentTime: null,
         gameCrashLog: null
