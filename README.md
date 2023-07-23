@@ -88,6 +88,18 @@ You can access the application from any web browser on the same network.
 - Run the `install` file
 > :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
 
+### Keybinds
+
+Some features work with keybinds, which you will need to assign in "Options/Mod Keybinds".
+
+| Name                         | Description                           | Recommended key |
+|------------------------------|---------------------------------------|-----------------|
+| Teleport player to crosshair | Teleports the player to the crosshair | N               |
+| Spawn / Spawn                | Spawn selected unit                   | 5               |
+| Editor / Pick                | Pick the unit at crosshair            | F6              |
+| Editor / Spawn               | Spawn picked unit to crosshair        | F7              |
+| Editor / Delete              | Delete spawned unit at crosshair      | F8              |
+
 ## Supported languages
 
 - **English** (Pierre Josselin)
