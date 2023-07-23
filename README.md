@@ -25,6 +25,8 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 - [SuperBLT](https://superblt.znix.xyz)
 - [Node.js](https://nodejs.org/en) 18 (with npm)
 
+> :information_source: Please note that this mod might not work with a different version of Node.js.
+
 ### Installation
 
 > :exclamation: Installing Ultimate Trainer 6 is different from other mods.<br>Please follow the instructions carefully otherwise it will not work!
@@ -35,7 +37,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 > The game mods folder location is usually:<br>
 > C:\Program Files (x86)\Steam\steamapps\common\PAYDAY 2\mods
 
-- Install [**SuperBLT**](https://superblt.znix.xyz)
+- Install [**SuperBLT**](https://superblt.znix.xyz) (you can skip this step if it's already installed)
     - Download and install **Microsoft Visual C++ 2017 Redistributable Package (x86)** ([direct download](https://aka.ms/vs/15/release/VC_redist.x86.exe))
     - Download [**SuperBLT**](https://superblt.znix.xyz) ([direct download](https://sblt-update.znix.xyz/pd2update/download/get.php?src=homepage&id=payday2bltwsockdll))
     - Open the archive and extract the `WSOCK32.dll` file to your game folder
@@ -45,8 +47,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Download [**Node.js**](https://nodejs.org/en) 18 ([direct download](https://nodejs.org/dist/v18.17.0/node-v18.17.0-x64.msi))
     - Install it leaving all default options
     - **Restart your computer**
-    > :warning: Restarting your computer is required for the Node.js path to be properly configured in Windows. Until you restart, the mod probably won't work.<br>
-    > :information_source: Please note that this mod might not work with a different version of Node.js.
+    > :warning: Restarting your computer is required for the Node.js path to be properly configured in Windows. Until you restart, the mod probably won't work.
 - Install [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6)
     - Remove any previous version Ultimate Trainer
     - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
