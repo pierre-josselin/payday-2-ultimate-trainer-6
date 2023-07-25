@@ -177,5 +177,6 @@
     "vehicles_to_load": "Fahrzeuge zum Laden",
     "weapon_mods": "Waffenmods",
     "world_speed": "Weltgeschwindigkeit",
-    "x_ray": "X-Ray"
+    "x_ray": "X-Ray",
+    "hide_my_mod_list": "Hide my mod list"
 }

@@ -177,5 +177,6 @@
     "vehicles_to_load": "Vehículos a cargar",
     "weapon_mods": "Modificaciones de armas",
     "world_speed": "Velocidad del mundo",
-    "x_ray": "Rayos X"
+    "x_ray": "Rayos X",
+    "hide_my_mod_list": "Hide my mod list"
 }

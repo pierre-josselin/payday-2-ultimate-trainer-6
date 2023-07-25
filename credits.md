@@ -44,6 +44,10 @@
 
 ## Indirect contributors
 
+**Dr_Newbie**
+
+- Hide mod list
+
 **rogerxiii**
 
 - Invisible walls keys

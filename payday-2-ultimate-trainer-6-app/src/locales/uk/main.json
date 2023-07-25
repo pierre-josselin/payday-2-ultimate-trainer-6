@@ -177,5 +177,6 @@
     "vehicles_to_load": "Транспортні засоби для завантаження",
     "weapon_mods": "Збройові модифікації",
     "world_speed": "Швидкість світу",
-    "x_ray": "Рентген"
+    "x_ray": "Рентген",
+    "hide_my_mod_list": "Hide my mod list"
 }
