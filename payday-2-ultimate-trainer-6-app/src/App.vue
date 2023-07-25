@@ -295,6 +295,10 @@ body,
     outline: none;
 }
 
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .tooltip-inner {
     color: white !important;
 }
