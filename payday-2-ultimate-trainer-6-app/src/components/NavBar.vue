@@ -11,18 +11,6 @@ export default {
     components: {
         ClientIcon
     },
-    data() {
-        return {
-            navItems: [
-                "career",
-                "environment",
-                "cheats",
-                "mission",
-                "driving",
-                "spawn"
-            ]
-        };
-    },
     created() {
         this.mainStore = useMainStore();
 
@@ -40,11 +28,29 @@ export default {
             </button>
             <div id="navbar-supported-content" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li v-for="( navItem, index ) in navItems " :key="index" class="nav-item">
-                        <RouterLink :to="{ name: navItem }" class="nav-link" :class="{ active: $route.name === navItem }">{{ $t(`main.${navItem}`) }}</RouterLink>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'career' }" class="nav-link">{{ $t("main.career") }}</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'environment' }" class="nav-link">{{ $t("main.environment") }}</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'cheats' }" class="nav-link">{{ $t("main.cheats") }}</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'mission' }" class="nav-link">{{ $t("main.mission") }}</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'driving' }" class="nav-link">{{ $t("main.driving") }}</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'spawn' }" class="nav-link">{{ $t("main.spawn") }}</RouterLink>
                     </li>
                     <li class="nav-item">
                         <button class="nav-link popover-focus" role="button" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.editor_help')">{{ $t("main.editor") }}</button>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'game' }" class="nav-link">{{ $t("main.game") }}</RouterLink>
                     </li>
                 </ul>
                 <span class="text-light">
@@ -65,7 +71,7 @@ export default {
                 <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#report-a-bug-modal" @click="mainStore.requestGameCrashLog">
                     <FontAwesomeIcon icon="fa-solid fa-bug" />
                 </button>
-                <RouterLink :to="{ name: 'settings' }" class="btn btn-primary btn-sm ms-3" :class="{ active: $route.name === 'settings' }">
+                <RouterLink :to="{ name: 'settings' }" class="btn btn-primary btn-sm ms-3">
                     <FontAwesomeIcon icon="fa-solid fa-gear" />
                 </RouterLink>
                 <button class="btn btn-primary btn-sm ms-3" @click="closeWebSocket">
