@@ -9,6 +9,10 @@
 - Korean locale
 - Portuguese (Brasil) locale
 
+### Fixed
+
+- Vapor theme background
+
 ## [6.0.0-beta]
 
 Initial release
