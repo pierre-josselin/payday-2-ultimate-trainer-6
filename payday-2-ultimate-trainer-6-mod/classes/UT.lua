@@ -39,32 +39,34 @@ function UT:init()
         UT.vehicles = UT.Utility:jsonDecode(content)
     end
 
-    local packageManagerMetaTable = getmetatable(PackageManager)
-    local packageManagerScriptData = packageManagerMetaTable.script_data
+    if not UT:getSetting("enable-hide-ultimate-trainer-button") then
+        local packageManagerMetaTable = getmetatable(PackageManager)
+        local packageManagerScriptData = packageManagerMetaTable.script_data
 
-    packageManagerMetaTable.script_data = function(self, typeId, pathId, ...)
-        local data = packageManagerScriptData(self, typeId, pathId, ...)
+        packageManagerMetaTable.script_data = function(self, typeId, pathId, ...)
+            local data = packageManagerScriptData(self, typeId, pathId, ...)
 
-        if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
-            table.insert(data[1][2], 1, {
-                name = "ut_open_app",
-                text_id = "ut_menu_open_app_name",
-                help_id = "ut_menu_open_app_description",
-                callback = "ut_open_app",
-                font = "fonts/font_medium_shadow_mf",
-                _meta = "item"
-            })
+            if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
+                table.insert(data[1][2], 1, {
+                    name = "ut_open_app",
+                    text_id = "ut_menu_open_app_name",
+                    help_id = "ut_menu_open_app_description",
+                    callback = "ut_open_app",
+                    font = "fonts/font_medium_shadow_mf",
+                    _meta = "item"
+                })
 
-            table.insert(data[1][2], 2, {
-                name = "ut_divider_open_app",
-                type = "MenuItemDivider",
-                size = 15,
-                no_text = true,
-                _meta = "item"
-            })
+                table.insert(data[1][2], 2, {
+                    name = "ut_divider_open_app",
+                    type = "MenuItemDivider",
+                    size = 15,
+                    no_text = true,
+                    _meta = "item"
+                })
+            end
+
+            return data
         end
-
-        return data
     end
 end
 

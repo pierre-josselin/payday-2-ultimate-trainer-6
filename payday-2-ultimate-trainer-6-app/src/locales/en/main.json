@@ -178,5 +178,6 @@
     "weapon_mods": "Weapon mods",
     "world_speed": "World speed",
     "x_ray": "X-Ray",
-    "hide_my_mod_list": "Hide my mod list"
+    "hide_my_mod_list": "Hide my mod list",
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
 }

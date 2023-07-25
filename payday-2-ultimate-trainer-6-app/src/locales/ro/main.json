@@ -178,5 +178,6 @@
     "weapon_mods": "Modificări armă",
     "world_speed": "Viteza lumii",
     "x_ray": "Raze-X",
-    "hide_my_mod_list": "Hide my mod list"
+    "hide_my_mod_list": "Hide my mod list",
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
 }
