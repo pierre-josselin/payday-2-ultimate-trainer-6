@@ -295,7 +295,7 @@ body,
     outline: none;
 }
 
-input[type=number] {
+input[type="number"] {
     -moz-appearance: textfield;
 }
 
