@@ -47,7 +47,7 @@ export default {
                         <RouterLink :to="{ name: 'spawn' }" class="nav-link">{{ $t("main.spawn") }}</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link popover-focus" role="button" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.editor_help')">{{ $t("main.editor") }}</button>
+                        <button class="nav-link popover-focus" role="button" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.build_help')">{{ $t("main.build") }}</button>
                     </li>
                     <li class="nav-item">
                         <RouterLink :to="{ name: 'game' }" class="nav-link">{{ $t("main.game") }}</RouterLink>

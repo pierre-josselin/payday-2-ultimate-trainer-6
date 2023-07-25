@@ -44,7 +44,6 @@
     "drive": "驾驶",
     "driving": "驾驶中",
     "early_morning": "清晨",
-    "editor": "编辑器",
     "enable_skill_point_hack": "启用技能点数修改器",
     "end_game": "结束游戏",
     "enemies": "敌人们",
@@ -179,5 +178,6 @@
     "id": "ID",
     "reset": "Reset",
     "hide_my_mod_list": "Hide my mod list",
-    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build"
 }

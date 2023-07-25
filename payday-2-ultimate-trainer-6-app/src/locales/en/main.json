@@ -15,6 +15,7 @@
     "bootup": "Bootup",
     "bright_day": "Bright day",
     "bug": "Bug",
+    "build": "Build",
     "cable_ties": "Cable ties",
     "can_run_directional": "Can run directional",
     "can_run_with_any_bag": "Can run with any bag",
@@ -45,7 +46,6 @@
     "drive": "Drive",
     "driving": "Driving",
     "early_morning": "Early morning",
-    "editor": "Editor",
     "enable_skill_point_hack": "Enable skill point hack",
     "end_game": "End game",
     "enemies": "Enemies",
@@ -65,6 +65,8 @@
     "golf_cart": "Golf cart",
     "hack_computers": "Hack computers",
     "help": "Help",
+    "hide_my_mod_list": "Hide my mod list",
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
     "host": "Host",
     "icon": "Icon",
     "id": "ID",
@@ -177,7 +179,5 @@
     "vehicles_to_load": "Vehicles to load",
     "weapon_mods": "Weapon mods",
     "world_speed": "World speed",
-    "x_ray": "X-Ray",
-    "hide_my_mod_list": "Hide my mod list",
-    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
+    "x_ray": "X-Ray"
 }

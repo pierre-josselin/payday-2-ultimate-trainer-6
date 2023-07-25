@@ -45,7 +45,6 @@
     "drive": "Fahren",
     "driving": "Fahren",
     "early_morning": "Früher Morgen",
-    "editor": "Editor",
     "enable_skill_point_hack": "Aktiviert den Skill-Point-Hack",
     "end_game": "Spiel beenden",
     "enemies": "Feinde",
@@ -179,5 +178,6 @@
     "world_speed": "Weltgeschwindigkeit",
     "x_ray": "X-Ray",
     "hide_my_mod_list": "Hide my mod list",
-    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build"
 }

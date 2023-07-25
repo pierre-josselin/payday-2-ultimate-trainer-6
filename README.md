@@ -96,9 +96,9 @@ Some features work with keybinds, which you will need to assign in "Options/Mod 
 |------------------------------|---------------------------------------|-----------------|
 | Teleport player to crosshair | Teleports the player to the crosshair | N               |
 | Spawn / Spawn                | Spawn selected unit                   | 5               |
-| Editor / Pick                | Pick the unit at crosshair            | F6              |
-| Editor / Spawn               | Spawn picked unit to crosshair        | F7              |
-| Editor / Delete              | Delete spawned unit at crosshair      | F8              |
+| Build / Pick                 | Pick the unit at crosshair            | F6              |
+| Build / Spawn                | Spawn picked unit to crosshair        | F7              |
+| Build / Delete               | Delete spawned unit at crosshair      | F8              |
 
 ## Supported languages
 

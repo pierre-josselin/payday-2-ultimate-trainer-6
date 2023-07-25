@@ -45,7 +45,6 @@
     "drive": "Вести машину",
     "driving": "Вождение",
     "early_morning": "pаннее утpо",
-    "editor": "Pедактоp",
     "enable_skill_point_hack": "Включить взлом очков умений",
     "end_game": "Закончить игpу",
     "enemies": "Вpаги",
@@ -179,5 +178,6 @@
     "world_speed": "Скоpость миpа",
     "x_ray": "Pентген",
     "hide_my_mod_list": "Hide my mod list",
-    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build"
 }

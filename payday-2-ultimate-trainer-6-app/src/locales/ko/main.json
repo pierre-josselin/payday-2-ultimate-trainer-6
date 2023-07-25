@@ -45,7 +45,6 @@
     "drive": "차 운전",
     "driving": "운전",
     "early_morning": "이른 아침",
-    "editor": "수정",
     "enable_skill_point_hack": "스킬 포인트 핵 활성화",
     "end_game": "게임 끝내기",
     "enemies": "적",
@@ -179,5 +178,6 @@
     "world_speed": "월드속도",
     "x_ray": "엑스레이",
     "hide_my_mod_list": "Hide my mod list",
-    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build"
 }

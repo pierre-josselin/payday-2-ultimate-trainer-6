@@ -45,7 +45,6 @@
     "drive": "Conduce",
     "driving": "Conducere",
     "early_morning": "Dimineața devreme",
-    "editor": "Editor",
     "enable_skill_point_hack": "Activati cheat-ul punctelor de abilitate",
     "end_game": "Terminați jocul",
     "enemies": "Inamici",
@@ -179,5 +178,6 @@
     "world_speed": "Viteza lumii",
     "x_ray": "Raze-X",
     "hide_my_mod_list": "Hide my mod list",
-    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu"
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build"
 }

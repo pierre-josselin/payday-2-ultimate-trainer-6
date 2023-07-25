@@ -5,10 +5,10 @@
     "ut_keybinds_teleport_player_to_crosshair_description": "Teletransporta o jogador para a mira",
     "ut_keybinds_spawn_spawn_name": "Spawnar / Spawnar",
     "ut_keybinds_spawn_spawn_description": "Spawnar a unidade selecionada",
-    "ut_keybinds_editor_pick_name": "Editor / Selecionar",
-    "ut_keybinds_editor_pick_description": "Selecionar a unidade na mira",
-    "ut_keybinds_editor_spawn_name": "Editor / Spawnar",
-    "ut_keybinds_editor_spawn_description": "Spawnar a unidade selecionada na mira",
-    "ut_keybinds_editor_delete_name": "Editor / Excluir",
-    "ut_keybinds_editor_delete_description": "Excluir a unidade spawnada na mira"
+    "ut_keybinds_build_pick_name": "Build / Selecionar",
+    "ut_keybinds_build_pick_description": "Selecionar a unidade na mira",
+    "ut_keybinds_build_spawn_name": "Build / Spawnar",
+    "ut_keybinds_build_spawn_description": "Spawnar a unidade selecionada na mira",
+    "ut_keybinds_build_delete_name": "Build / Excluir",
+    "ut_keybinds_build_delete_description": "Excluir a unidade spawnada na mira"
 }

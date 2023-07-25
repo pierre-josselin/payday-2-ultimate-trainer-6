@@ -4,7 +4,7 @@
     "client": "Algunas opciones no estarán disponibles porque no eres el anfitrión de la partida.",
     "connection_failed": "La conexión al server ha fallado. Verifica el anfitrión y el puerto y asegúrate de que el juego esté ejecutandose.",
     "driving_help": "Selecciona los vehículos a cargar y luego reinicia la partida. Los tiempos de carga serán extendidos. En algunos casos, si tienes demaciados vehículos seleccionados, puede que el juego se cierre tras entrar al atraco. Si esto pasa, reduce el número de vehículos para cargar simulaneamente y reinicia el juego. Otros jugadores no verán tu vehículos.",
-    "editor_help": "En partida, puedes seleccionar, spawnear y eliminar cualquier unidad tras presionar el atajo correspondiente que hayas configurado en los atajos de mods. Las unidades que tengan un controno verde serán visibles para otros jugadores mientras que las que tengan un contorno naranja no lo serán.",
+    "build_help": "En partida, puedes seleccionar, spawnear y eliminar cualquier unidad tras presionar el atajo correspondiente que hayas configurado en los atajos de mods. Las unidades que tengan un controno verde serán visibles para otros jugadores mientras que las que tengan un contorno naranja no lo serán.",
     "game_crash_log_recovery_failed": "No se ha podido recuperar el crash log del juego.",
     "game_restart_required": "Esta opción require un reinicio del juego para aplicar cambios.",
     "report_a_bug": "Puedes reportar un error o sugerir nuevas caracteristicas tras seguir uno de los siguientes enlaces (en caso de reportar un crash, no olvides incluir el crash log de tu juego en tu mensaje):",

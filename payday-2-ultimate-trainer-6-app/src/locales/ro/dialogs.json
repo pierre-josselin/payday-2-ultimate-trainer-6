@@ -4,7 +4,7 @@
     "client": "Unele funcții nu vor fi disponibile deoarece sunteți clientul jocului.",
     "connection_failed": "Conexiunea la server a eșuat. Verificați gazda și portul și asigurați-vă că jocul rulează.",
     "driving_help": "Selectați vehiculele de încărcat, apoi reporniți jocul. Timpul de încărcare va fi prelungit. În unele cazuri, dacă ați selectat prea multe vehicule, jocul se poate prăbuși atunci când intri în jaf. Dacă se întâmplă acest lucru, reduceți numărul de vehicule de încărcat simultan și reporniți jocul. Alți jucători nu vă vor vedea vehiculele.",
-    "editor_help": "În joc, puteți alege, genera și șterge orice unitate apăsând combinația de taste corespunzătoare configurată în setările de combinații de taste ale modurilor de joc. Unitățile generate cu un contur verde vor fi vizibile pentru alți jucători, în timp ce cele cu un contur portocaliu nu vor fi vizibile.",
+    "build_help": "În joc, puteți alege, genera și șterge orice unitate apăsând combinația de taste corespunzătoare configurată în setările de combinații de taste ale modurilor de joc. Unitățile generate cu un contur verde vor fi vizibile pentru alți jucători, în timp ce cele cu un contur portocaliu nu vor fi vizibile.",
     "game_crash_log_recovery_failed": "Recuperare a jurnalului de erori al jocului eșuată.",
     "game_restart_required": "Această funcție cere repornirea jocului să aplice schimbările.",
     "report_a_bug": "Puteți raporta un bug sau sugera o funcție nouă urmând unul dintre următoarele linkuri (în cazul unui accident, nu uita să incluzi jurnalul de erori al jocului în mesajul tau):",

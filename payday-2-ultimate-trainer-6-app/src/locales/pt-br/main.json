@@ -45,7 +45,6 @@
     "drive": "Dirigir",
     "driving": "Dirigindo",
     "early_morning": "Madrugada",
-    "editor": "Editor",
     "enable_skill_point_hack": "Habilitar hack de pontos de habilidade",
     "end_game": "Encerrar jogo",
     "enemies": "Inimigos",
@@ -178,5 +177,6 @@
     "vehicles_to_load": "Veículos para carregar",
     "weapon_mods": "Modificações de armas",
     "world_speed": "Velocidade do mundo",
-    "x_ray": "Raio-X"
+    "x_ray": "Raio-X",
+    "build": "Build"
 }
