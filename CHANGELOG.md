@@ -11,6 +11,7 @@
 
 ### Fixed
 
+- Search fields don't work/crash the app
 - Vapor theme background
 
 ## [6.0.0-beta]

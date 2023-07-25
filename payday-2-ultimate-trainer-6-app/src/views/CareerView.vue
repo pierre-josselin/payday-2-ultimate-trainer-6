@@ -40,7 +40,14 @@ export default {
             selectedTrophies: [],
             selectAllSteamAchievements: false,
             steamAchievementsSearch: null,
-            selectedSteamAchievements: []
+            selectedSteamAchievements: [],
+            blackMarketCategoryLocaleKeys: {
+                colors: "colors",
+                masks: "masks",
+                materials: "materials",
+                textures: "textures",
+                weaponMods: "weapon_mods"
+            }
         };
     },
     computed: {
@@ -53,27 +60,45 @@ export default {
                 return this.blackMarketItems[this.blackMarketCategory];
             }
 
-            return Object.entries(this.$i18n.messages.en[this.blackMarketCategory])
-                .filter(([itemId, itemName]) => itemName.toLowerCase().includes(this.blackMarketItemsSearch))
-                .map(([itemId]) => itemId);
+            const filteredBlackMarketItems = [];
+            for (const blackMarketItemId of this.blackMarketItems[this.blackMarketCategory]) {
+                const blackMarketItemName = this.$t(`${this.blackMarketCategoryLocaleKeys[this.blackMarketCategory]}.${blackMarketItemId}`);
+                if (blackMarketItemName.toLowerCase().includes(this.blackMarketItemsSearch.toLowerCase())) {
+                    filteredBlackMarketItems.push(blackMarketItemId);
+                }
+            }
+
+            return filteredBlackMarketItems;
         },
         filteredTrophies() {
             if (!this.trophiesSearch) {
                 return this.trophies;
             }
 
-            return Object.entries(this.$i18n.messages.en.trophies)
-                .filter(([trophyId, trophyName]) => trophyName.toLowerCase().includes(this.trophiesSearch))
-                .map(([trophyId]) => trophyId);
+            const filteredTrophies = [];
+            for (const trophyId of this.trophies) {
+                const trophyName = this.$t(`trophies.${trophyId}`);
+                if (trophyName.toLowerCase().includes(this.trophiesSearch.toLowerCase())) {
+                    filteredTrophies.push(trophyId);
+                }
+            }
+
+            return filteredTrophies;
         },
         filteredSteamAchievements() {
             if (!this.steamAchievementsSearch) {
                 return this.steamAchievements;
             }
 
-            return Object.entries(this.$i18n.messages.en.steam_achievements)
-                .filter(([steamAchievementId, steamAchievementName]) => steamAchievementName.toLowerCase().includes(this.steamAchievementsSearch))
-                .map(([steamAchievementId]) => steamAchievementId);
+            const filteredSteamAchievements = [];
+            for (const steamAchievementId of this.steamAchievements) {
+                const steamAchievementName = this.$t(`steam_achievements.${steamAchievementId}`);
+                if (steamAchievementName.toLowerCase().includes(this.steamAchievementsSearch.toLowerCase())) {
+                    filteredSteamAchievements.push(steamAchievementId);
+                }
+            }
+
+            return filteredSteamAchievements;
         }
     },
     watch: {

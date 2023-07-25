@@ -20,30 +20,42 @@ export default {
     data() {
         return {
             bagSearch: null,
-            specialEquipmentSearch: null,
-            filteredBags: [],
-            filteredSpecialEquipment: []
+            specialEquipmentSearch: null
         };
     },
     computed: {
         noSlowMotionEnabled() {
             return this.settingsStore.getSetting("enable-no-slow-motion");
-        }
-    },
-    watch: {
-        bagSearch(bagSearch) {
-            if (!bagSearch) {
-                this.bagSearch = null;
-            }
-
-            this.filterBags();
         },
-        specialEquipmentSearch(specialEquipmentSearch) {
-            if (!specialEquipmentSearch) {
-                this.specialEquipmentSearch = null;
+        filteredBags() {
+            if (!this.bagSearch) {
+                return this.bags;
             }
 
-            this.filterSpecialEquipment();
+            const filteredBags = [];
+            for (const bagId of this.bags) {
+                const bagName = this.$t(`bags.${bagId}`);
+                if (bagId.toLowerCase().includes(this.bagSearch.toLowerCase()) || bagName.toLowerCase().includes(this.bagSearch.toLowerCase())) {
+                    filteredBags.push(bagId);
+                }
+            }
+
+            return filteredBags;
+        },
+        filteredSpecialEquipment() {
+            if (!this.specialEquipmentSearch) {
+                return this.specialEquipment;
+            }
+
+            const filteredSpecialEquipment = [];
+            for (const specialEquipmentId of this.specialEquipment) {
+                const specialEquipmentName = this.$t(`special_equipment.${specialEquipmentId}`);
+                if (specialEquipmentId.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase()) || specialEquipmentName.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) {
+                    filteredSpecialEquipment.push(specialEquipmentId);
+                }
+            }
+
+            return filteredSpecialEquipment;
         }
     },
     created() {
@@ -59,8 +71,8 @@ export default {
             this.missionStore.slowMotionPlayerSpeed = parseFloat(slowMotionPlayerSpeed);
         });
 
-        this.filterBags();
-        this.filterSpecialEquipment();
+        this.bags = bags;
+        this.specialEquipment = specialEquipment;
     },
     methods: {
         startTheHeist() {
@@ -202,48 +214,6 @@ export default {
         },
         addSpecialEquipment(specialEquipmentId) {
             this.callStore.addCall(["UT:addSpecialEquipment", specialEquipmentId]);
-        },
-        filterBags() {
-            this.filteredBags = [];
-
-            if (!this.bagSearch) {
-                this.filteredBags = bags.sort();
-                return;
-            }
-
-            for (const bagId of Object.values(bags)) {
-                if ((bagId.toLowerCase().includes(this.bagSearch.toLowerCase())) && !this.filteredBags.includes(bagId)) {
-                    this.filteredBags.push(bagId);
-                }
-            }
-
-            const bagMessages = this.$i18n.messages[this.$i18n.locale].bags || this.$i18n.messages[this.$i18n.fallbackLocale].bags;
-            for (const [bagId, bagMessage] of Object.entries(bagMessages)) {
-                if ((bagMessage.toLowerCase().includes(this.bagSearch.toLowerCase())) && !this.filteredBags.includes(bagId)) {
-                    this.filteredBags.push(bagId);
-                }
-            }
-        },
-        filterSpecialEquipment() {
-            this.filteredSpecialEquipment = [];
-
-            if (!this.specialEquipmentSearch) {
-                this.filteredSpecialEquipment = specialEquipment.sort();
-                return;
-            }
-
-            for (const specialEquipmentId of Object.values(specialEquipment)) {
-                if ((specialEquipmentId.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) && !this.filteredSpecialEquipment.includes(specialEquipmentId)) {
-                    this.filteredSpecialEquipment.push(specialEquipmentId);
-                }
-            }
-
-            const specialEquipmentMessages = this.$i18n.messages[this.$i18n.locale].special_equipment || this.$i18n.messages[this.$i18n.fallbackLocale].special_equipment;
-            for (const [specialEquipmentId, specialEquipmentMessage] of Object.entries(specialEquipmentMessages)) {
-                if ((specialEquipmentMessage.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) && !this.filteredSpecialEquipment.includes(specialEquipmentId)) {
-                    this.filteredSpecialEquipment.push(specialEquipmentId);
-                }
-            }
         }
     }
 }
@@ -293,7 +263,7 @@ export default {
                     </li>
                     <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bags-tab">
-{{ $t("main.bags") }}
+                            {{ $t("main.bags") }}
                             <BugIcon class="ms-3" />
                             <AntiCheatDetectedIcon class="ms-3" />
                         </button>
@@ -362,7 +332,7 @@ export default {
                                                             <option value="body-bags">{{ $t("main.body_bags") }}</option>
                                                         </select>
                                                         <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">
-{{ $t("main.replenish") }}
+                                                            {{ $t("main.replenish") }}
                                                             <AntiCheatDetectedIcon v-if="missionStore.replenishType === 'equipment'" class="ms-3" />
                                                         </button>
                                                     </div>
