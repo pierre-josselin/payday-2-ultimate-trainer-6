@@ -49,7 +49,7 @@ export default {
                 </div>
                 <div class="form-check form-switch">
                     <input id="enable-hide-mod-list" v-model="enableHideModList" class="form-check-input" type="checkbox" @change="setHideModList">
-                    <label for="enable-hide-mod-list" class="form-check-label">{{ $t("main.hide_mod_list") }}
+                    <label for="enable-hide-mod-list" class="form-check-label">{{ $t("main.hide_my_mod_list") }}
                         <GameRestartRequiredIcon class="ms-3" />
                     </label>
                 </div>
