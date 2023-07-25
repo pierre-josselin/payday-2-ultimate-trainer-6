@@ -304,11 +304,7 @@ input[type="number"] {
 }
 
 .toast {
-    --bs-toast-max-width: unset;
-}
-
-.popover {
-    --bs-popover-max-width: 300px;
+    --bs-toast-max-width: 200px !important;
 }
 
 .disabled {
