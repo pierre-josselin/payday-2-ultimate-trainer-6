@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**LOUIS522**
+
+- Korean locale
+
 **S0ya13**
 
 - Ukrainian locale

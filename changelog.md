@@ -6,6 +6,7 @@
 
 - Hide mod list
 - Hide Ultimate Trainer button from menu option
+- Korean locale
 
 ## [6.0.0-beta]
 

@@ -89,6 +89,7 @@ export default {
                         <option value="ru">Русский</option>
                         <option value="uk">Українська</option>
                         <option value="zh">中文</option>
+                        <option value="ko">한국어</option>
                     </select>
                 </div>
                 <div class="mb-3">
