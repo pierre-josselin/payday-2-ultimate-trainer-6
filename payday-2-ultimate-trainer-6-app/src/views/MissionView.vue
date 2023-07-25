@@ -29,7 +29,7 @@ export default {
         },
         filteredBags() {
             if (!this.bagSearch) {
-                return this.bags;
+                return this.bags.sort();
             }
 
             const filteredBags = [];
@@ -40,11 +40,11 @@ export default {
                 }
             }
 
-            return filteredBags;
+            return filteredBags.sort();
         },
         filteredSpecialEquipment() {
             if (!this.specialEquipmentSearch) {
-                return this.specialEquipment;
+                return this.specialEquipment.sort();
             }
 
             const filteredSpecialEquipment = [];
@@ -55,7 +55,7 @@ export default {
                 }
             }
 
-            return filteredSpecialEquipment;
+            return filteredSpecialEquipment.sort();
         }
     },
     created() {
