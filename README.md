@@ -142,7 +142,7 @@ You can then publish the updated files via a pull request or more simply by crea
 
 ## Change Log
 
-[Access the change log](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/changelog.md)
+[Access the change log](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/CHANGELOG.md)
 
 ## Credits
 

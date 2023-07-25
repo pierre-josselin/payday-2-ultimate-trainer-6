@@ -9,7 +9,7 @@ import VueMarkdown from "vue-markdown-render";
 import { useMainStore } from "@/stores/main";
 import { useSettingsStore } from "@/stores/settings";
 
-import changeLogPath from "../../changelog.md";
+import changeLogPath from "../../CHANGELOG.md";
 import creditsPath from "../../credits.md";
 
 import cerulean from "bootswatch/dist/cerulean/bootstrap.min.css?raw";
