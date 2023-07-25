@@ -5,7 +5,7 @@
 ### Added
 
 - Hide mod list
-- Hide Ultimate Trainer from menu option
+- Hide Ultimate Trainer from menu
 - Korean locale
 - Portuguese (Brasil) locale
 
