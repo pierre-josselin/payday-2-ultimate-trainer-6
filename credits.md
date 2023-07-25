@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**Webzsz**
+
+- Portuguese (Brasil) locale
+
 **LOUIS522**
 
 - Korean locale

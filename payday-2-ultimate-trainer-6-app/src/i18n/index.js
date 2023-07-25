@@ -90,6 +90,9 @@ import koWeaponMods from "@/locales/ko/generated/weapon-mods.json";
 import koBags from "@/locales/ko/generated/bags.json";
 import koSpecialEquipment from "@/locales/ko/generated/special-equipment.json";
 
+import ptBRMain from "@/locales/pt-br/main.json";
+import ptBRDialogs from "@/locales/pt-br/dialogs.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
@@ -195,6 +198,10 @@ export default createI18n({
             weapon_mods: koWeaponMods,
             bags: koBags,
             special_equipment: koSpecialEquipment
+        },
+        "pt-br": {
+            main: ptBRMain,
+            dialogs: ptBRDialogs
         }
     }
 });

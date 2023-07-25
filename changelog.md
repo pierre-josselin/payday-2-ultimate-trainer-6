@@ -7,6 +7,7 @@
 - Hide mod list
 - Hide Ultimate Trainer button from menu option
 - Korean locale
+- Portuguese (Brasil) locale
 
 ## [6.0.0-beta]
 

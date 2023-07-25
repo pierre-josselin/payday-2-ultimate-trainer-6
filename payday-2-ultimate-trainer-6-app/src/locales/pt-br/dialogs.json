@@ -1,0 +1,16 @@
+{
+    "anti_cheat_detected": "Esta funcionalidade é detectada pelo anti-cheat do jogo. Outros jogadores podem ver você com a etiqueta TRAPACEIRO e você pode ser expulso automaticamente das salas se você não for o anfitrião. Tudo voltará ao normal quando você desativar todas essas funcionalidades.",
+    "bag_spawn_crash": "Se alguém pegar uma bolsa que não deveria existir nesta missão, o jogo dos outros jogadores pode travar.",
+    "bug": "Esta funcionalidade contém erros e pode não funcionar corretamente, bloquear objetivos ou travar o jogo.",
+    "client": "Algumas funcionalidades não estarão disponíveis porque você é cliente do jogo.",
+    "connection_failed": "A conexão com o servidor falhou. Verifique o anfitrião e a porta e certifique-se de que o jogo esteja em execução.",
+    "driving_help": "Selecione os veículos para carregar e reinicie o jogo. O tempo de carregamento será estendido. Em alguns casos, se você selecionar muitos veículos, o jogo pode travar ao entrar no roubo. Se isso acontecer, reduza o número de veículos a serem carregados simultaneamente e reinicie o jogo. Outros jogadores não verão seus veículos.",
+    "editor_help": "No jogo, você pode selecionar, spawnar e deletar qualquer unidade pressionando a tecla correspondente configurada nas configurações dos keybinds dos mods do jogo. Unidades spawnadas com um contorno verde serão visíveis para outros jogadores, enquanto as com um contorno laranja não serão.",
+    "game_crash_log_recovery_failed": "Falha ao recuperar o registro de falhas do jogo.",
+    "game_restart_required": "Esta funcionalidade requer reiniciar o jogo para aplicar as alterações.",
+    "report_a_bug": "Você pode reportar um erro ou sugerir uma nova funcionalidade seguindo um dos seguintes links (no caso de uma falha, não se esqueça de incluir o registro de falhas do jogo em sua mensagem):",
+    "spawn_help": "Selecione uma unidade e depois a crie no jogo pressionando a tecla correspondente configurada nas configurações dos keybinds dos mods do jogo.",
+    "support_us": "Você gosta do Ultimate Trainer 6? É um software gratuito e de código aberto! A melhor maneira de nos apoiar é nos dar uma estrela grátis no GitHub! <br><br>Basta clicar no botão abaixo e depois no botão \"Star\":",
+    "update_available": "Uma atualização está disponível. Instale-a para aproveitar as últimas funcionalidades e correções de bugs.",
+    "vehicle_loading_crash": "O carregamento de veículos está ativado, os tempos de carregamento serão estendidos e seu jogo pode travar ao entrar em um roubo se você tiver selecionado muitos veículos."
+}
