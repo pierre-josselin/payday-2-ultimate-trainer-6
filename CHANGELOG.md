@@ -5,14 +5,14 @@
 ### Added
 
 - Hide mod list
-- Hide Ultimate Trainer button from menu option
+- Hide Ultimate Trainer from menu option
 - Korean locale
 - Portuguese (Brasil) locale
 
 ### Fixed
 
 - Search fields don't work/crash the app
-- Vapor theme background
+- Vapor theme background bugged
 
 ## [6.0.0-beta]
 
