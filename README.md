@@ -70,9 +70,8 @@ You can access the application from any web browser on the same network.
 <img src="https://i.imgur.com/mQTnyQk.png" width="650"><br>
 *Icons by [Freepik](https://www.freepik.com)*
 
-- Open the `payday-2-ultimate-trainer-6-main` from your game mods folder
-- Run the `get-remote-url` file
-> :information_source: If the `get-remote-url` file does not work, open a command prompt from the current directory and type the command `node .\index.js get-remote-url`.
+- Start the game
+- Locate the local network application URL in the console
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
 
