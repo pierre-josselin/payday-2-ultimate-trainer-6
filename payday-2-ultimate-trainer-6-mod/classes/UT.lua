@@ -13,6 +13,7 @@ UT.initialEnvironment = nil
 UT.enableNoClip = false
 UT.noClipSpeed = nil
 UT.playerUnitAliveEventTriggered = false
+UT.enableCarryStacker = false
 
 UT.settings = {}
 UT.backup = {}
@@ -20,6 +21,7 @@ UT.spawnedVehicleUnits = {}
 UT.invisibleWalls = {}
 UT.interactions = {}
 UT.vehicles = {}
+UT.carryStacker = {}
 
 function UT:init()
     UT:loadSettings()
@@ -1115,8 +1117,10 @@ end
 
 function UT:throwBag(bagId)
     UT.Utility:cloneClass(PlayerManager)
-    function PlayerManager:verify_carry()
-        return true
+    if not UT.enableCarryStacker then
+        function PlayerManager:verify_carry()
+            return true
+        end
     end
 
     local carryData = tweak_data.carry[bagId]
@@ -1133,7 +1137,9 @@ function UT:throwBag(bagId)
 
     managers.player:server_drop_carry(bagId, 1, nil, nil, nil, position, rotation, forward, throwDistanceMultiplierUpgradeLevel, nil, localPeer)
 
-    PlayerManager.verify_carry = PlayerManager.orig.verify_carry
+    if not UT.enableCarryStacker then
+        PlayerManager.verify_carry = PlayerManager.orig.verify_carry
+    end
 end
 
 function UT:addSpecialEquipment(specialEquipmentId)
@@ -1249,6 +1255,101 @@ function UT:setSlowMotion(enabled, worldSpeed, playerSpeed)
             managers.time_speed:play_effect("ut_player_slow_motion", effect)
         end
     end
+end
+
+function UT:setCarry(carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier)
+    local data = {
+        carryId = carryId,
+        carryMultiplier = carryMultiplier,
+        dyeInitiated = dyeInitiated,
+        hasDyePack = hasDyePack,
+        dyeValueMultiplier = dyeValueMultiplier
+    }
+    UT.Utility:tableInsert(UT.carryStacker, data)
+end
+
+function UT:dropCarry()
+    if not UT.Utility:isEmptyTable(UT.carryStacker) then
+        UT.Utility:removeLastElementFromTable(UT.carryStacker)
+
+        if not UT.Utility:isEmptyTable(UT.carryStacker) then
+            local data = UT.carryStacker[#UT.carryStacker]
+            managers.player:set_carry(data.carryId, data.carryMultiplier, data.dyeInitiated, data.hasDyePack, data.dyeValueMultiplier, true)
+        end
+    end
+end
+
+function UT:setCarryStacker(enabled)
+    UT.Utility:cloneClass(PlayerManager)
+    UT.Utility:cloneClass(CarryInteractionExt)
+
+    if enabled then
+        if managers.player:is_carrying() then
+            local carryData = managers.player:get_my_carry_data()
+            UT:setCarry(carryData.carry_id, carryData.multiplier, carryData.dye_initiated, carryData.has_dye_pack, carryData.dye_value_multiplier)
+        end
+
+        function PlayerManager:verify_carry(peer, ...)
+            if peer and peer:id() == UT.GameUtility:getLocalPeerId() then
+                return true
+            end
+
+            PlayerManager.orig.verify_carry(self, peer, ...)
+        end
+
+        function CarryInteractionExt:_interact_blocked()
+            local silentBlock = managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit()
+
+            if silentBlock then
+                return true, silentBlock
+            end
+
+            return false
+        end
+
+        function CarryInteractionExt:can_select(player)
+            if managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit() then
+                return false
+            end
+
+            return CarryInteractionExt.super.can_select(self, player)
+        end
+
+        function PlayerManager:set_carry(carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier, ignoreCarryStacker)
+            PlayerManager.orig.set_carry(self, carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier)
+
+            if not ignoreCarryStacker then
+                UT:setCarry(carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier)
+            end
+        end
+
+        function PlayerManager:drop_carry(...)
+            PlayerManager.orig.drop_carry(self, ...)
+            UT:dropCarry()
+        end
+
+        function PlayerManager:force_drop_carry(...)
+            if not UT.Utility:isEmptyTable(UT.carryStacker) then
+                for i = 1, #UT.carryStacker do
+                    PlayerManager.orig.force_drop_carry(self, ...)
+                    UT:dropCarry()
+                end
+            end
+        end
+    else
+        if UT.GameUtility:isPlaying() and not UT.Utility:isEmptyTable(UT.carryStacker) then
+            managers.player:force_drop_carry()
+        end
+
+        PlayerManager.verify_carry = PlayerManager.orig.verify_carry
+        PlayerManager.set_carry = PlayerManager.orig.set_carry
+        PlayerManager.drop_carry = PlayerManager.orig.drop_carry
+        PlayerManager.force_drop_carry = PlayerManager.orig.force_drop_carry
+        CarryInteractionExt._interact_blocked = CarryInteractionExt.orig._interact_blocked
+        CarryInteractionExt.can_select = CarryInteractionExt.orig.can_select
+    end
+
+    UT.enableCarryStacker = enabled
 end
 
 -- Driving

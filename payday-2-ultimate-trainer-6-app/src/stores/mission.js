@@ -9,6 +9,7 @@ export const useMissionStore = defineStore("mission", {
         enableDisableAI: false,
         enableUnlimitedPagers: false,
         enableInstantDrilling: false,
+        enableCarryStacker: false,
         noClipSpeed: 10,
         replenishType: "equipment",
         enableSlowMotion: false,

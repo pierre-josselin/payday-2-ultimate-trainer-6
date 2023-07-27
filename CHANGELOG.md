@@ -6,6 +6,7 @@
 
 - Hide mod list
 - Hide Ultimate Trainer from menu
+- Carry multiple bags
 - Korean locale
 - Portuguese (Brasil) locale
 

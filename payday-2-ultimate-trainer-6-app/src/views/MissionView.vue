@@ -129,6 +129,9 @@ export default {
         setInstantDrilling() {
             this.callStore.addCall(["UT:setInstantDrilling", this.missionStore.enableInstantDrilling]);
         },
+        setCarryStacker() {
+            this.callStore.addCall(["UT:setCarryStacker", this.missionStore.enableCarryStacker]);
+        },
         openDoors() {
             this.callStore.addCall(["UT:openDoors"]);
         },
@@ -375,6 +378,10 @@ export default {
                                     <div class="form-check form-switch mt-3" @change="setInstantDrilling">
                                         <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
                                         <label for="enable-instant-drilling" class="form-check-label">{{ $t("main.instant_drilling") }}</label>
+                                    </div>
+                                    <div class="form-check form-switch mt-3" @change="setCarryStacker">
+                                        <input id="enable-carry-stacker" v-model="missionStore.enableCarryStacker" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                        <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }}</label>
                                     </div>
                                 </div>
                             </div>
