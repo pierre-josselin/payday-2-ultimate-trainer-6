@@ -96,9 +96,9 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 |------------------------------|---------------------------------------|-----------------|
 | Teleport player to crosshair | 传送玩家到十字准星处                    | N               |
 | Spawn / Spawn                | 生成选中单位                           | 5               |
-| Build / Pick                | 选择十字准星处单位                      | F6              |
-| Build / Spawn               | 生成选中在十字准星的单位                | F7              |
-| Build / Delete              | 删除在十字准星的单位                    | F8              |
+| Build / Pick                 | 选择十字准星处单位                      | F6              |
+| Build / Spawn                | 生成选中在十字准星的单位                | F7              |
+| Build / Delete               | 删除在十字准星的单位                    | F8              |
 
 ## 感谢提供翻译的以下人员
 
