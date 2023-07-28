@@ -130,7 +130,7 @@ export default {
             this.callStore.addCall(["UT:setInstantDrilling", this.missionStore.enableInstantDrilling]);
         },
         setCarryStacker() {
-            this.callStore.addCall(["UT:setCarryStacker", this.missionStore.enableCarryStacker]);
+            this.callStore.addCall([this.missionStore.enableCarryStacker ? "UT.CarryStacker.enable" : "UT.CarryStacker.disable"]);
         },
         openDoors() {
             this.callStore.addCall(["UT:openDoors"]);

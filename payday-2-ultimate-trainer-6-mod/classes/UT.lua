@@ -13,7 +13,6 @@ UT.initialEnvironment = nil
 UT.enableNoClip = false
 UT.noClipSpeed = nil
 UT.playerUnitAliveEventTriggered = false
-UT.enableCarryStacker = false
 UT.carryVerifyDisabled = false
 
 UT.settings = {}
@@ -22,7 +21,6 @@ UT.spawnedVehicleUnits = {}
 UT.invisibleWalls = {}
 UT.interactions = {}
 UT.vehicles = {}
-UT.carryStacker = {}
 
 function UT:init()
     UT:loadSettings()
@@ -1258,100 +1256,6 @@ function UT:setSlowMotion(enabled, worldSpeed, playerSpeed)
             managers.time_speed:play_effect("ut_player_slow_motion", effect)
         end
     end
-end
-
-function UT:setCarry(carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier)
-    local data = {
-        carryId = carryId,
-        carryMultiplier = carryMultiplier,
-        dyeInitiated = dyeInitiated,
-        hasDyePack = hasDyePack,
-        dyeValueMultiplier = dyeValueMultiplier
-    }
-    UT.Utility:tableInsert(UT.carryStacker, data)
-end
-
-function UT:dropCarry()
-    if not UT.Utility:isEmptyTable(UT.carryStacker) then
-        UT.Utility:removeLastElementFromTable(UT.carryStacker)
-
-        if not UT.Utility:isEmptyTable(UT.carryStacker) then
-            local data = UT.carryStacker[#UT.carryStacker]
-            managers.player:set_carry(data.carryId, data.carryMultiplier, data.dyeInitiated, data.hasDyePack, data.dyeValueMultiplier, true)
-        end
-    end
-end
-
-function UT:setCarryStacker(enabled)
-    UT.Utility:cloneClass(PlayerManager)
-    UT.Utility:cloneClass(CarryInteractionExt)
-
-    if enabled then
-        if not UT.carryVerifyDisabled then
-            UT:disableCarryVerify()
-        end
-
-        if managers.player:is_carrying() then
-            local carryData = managers.player:get_my_carry_data()
-            UT:setCarry(carryData.carry_id, carryData.multiplier, carryData.dye_initiated, carryData.has_dye_pack, carryData.dye_value_multiplier)
-        end
-
-        function CarryInteractionExt:_interact_blocked()
-            local silentBlock = managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit()
-
-            if silentBlock then
-                return true, silentBlock
-            end
-
-            return false
-        end
-
-        function CarryInteractionExt:can_select(player)
-            if managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit() then
-                return false
-            end
-
-            return CarryInteractionExt.super.can_select(self, player)
-        end
-
-        function PlayerManager:set_carry(carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier, ignoreCarryStacker)
-            PlayerManager.orig.set_carry(self, carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier)
-
-            if not ignoreCarryStacker then
-                UT:setCarry(carryId, carryMultiplier, dyeInitiated, hasDyePack, dyeValueMultiplier)
-            end
-        end
-
-        function PlayerManager:drop_carry(...)
-            PlayerManager.orig.drop_carry(self, ...)
-            UT:dropCarry()
-        end
-
-        function PlayerManager:force_drop_carry(...)
-            if not UT.Utility:isEmptyTable(UT.carryStacker) then
-                while managers.player:is_carrying() do
-                    PlayerManager.orig.force_drop_carry(self, ...)
-                    UT:dropCarry()
-                end
-
-                UT.carryStacker = {}
-            end
-        end
-    else
-        if UT.GameUtility:isPlaying() and managers.player:is_carrying() then
-            managers.player:force_drop_carry()
-        end
-
-        PlayerManager.set_carry = PlayerManager.orig.set_carry
-        PlayerManager.drop_carry = PlayerManager.orig.drop_carry
-        PlayerManager.force_drop_carry = PlayerManager.orig.force_drop_carry
-        CarryInteractionExt._interact_blocked = CarryInteractionExt.orig._interact_blocked
-        CarryInteractionExt.can_select = CarryInteractionExt.orig.can_select
-
-        UT.carryStacker = {}
-    end
-
-    UT.enableCarryStacker = enabled
 end
 
 -- Driving
