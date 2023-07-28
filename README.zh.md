@@ -71,11 +71,10 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 <img src="https://i.imgur.com/mQTnyQk.png" width="650"><br>
 *Icons by [Freepik](https://www.freepik.com)*
 
-- 在mods文件夹中打开 `payday-2-ultimate-trainer-6-main` 文件夹
-- 运行 `get-remote-url` 文件
-> :information_source: 如果 `get-remote-url` 如果文件不起作用，从当前目录打开命令提示符并键入命令 `node .\index.js get-remote-url`.
-- 确认你和mod
-- 在浏览器中访问运行get-remote-url文件所提供的连接
+- Start the game
+- Locate the local network application URL in the console
+- Make sure you are on the same network as the computer where the game is running
+- Access the URL in the device's web browser
 
 > :warning: 目前不支持多设备访问，请只在一个平台访问修改器，抢劫开始后打开修改器也是无效的，请于抢劫前打开修改器。
 
@@ -97,19 +96,22 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 |------------------------------|---------------------------------------|-----------------|
 | Teleport player to crosshair | 传送玩家到十字准星处                    | N               |
 | Spawn / Spawn                | 生成选中单位                           | 5               |
-| Editor / Pick                | 选择十字准星处单位                      | F6              |
-| Editor / Spawn               | 生成选中在十字准星的单位                | F7              |
-| Editor / Delete              | 删除在十字准星的单位                    | F8              |
+| Build / Pick                | 选择十字准星处单位                      | F6              |
+| Build / Spawn               | 生成选中在十字准星的单位                | F7              |
+| Build / Delete              | 删除在十字准星的单位                    | F8              |
 
 ## 感谢提供翻译的以下人员
 
 - **English** (Pierre Josselin)
-- **French** (Pierre Josselin)
-- **Romanian** (GamingResources)
-- **Chinese** (Art3misFowl, ppt)
-- **Russian** (thejuves)
-- **Spanish** (uziel2021)
 - **German** (Alexander100305)
+- **Spanish** (uziel2021)
+- **French** (Pierre Josselin)
+- **Portuguese (Brasil)** (Webzsz)
+- **Romanian** (GamingResources)
+- **Russian** (thejuves)
+- **Ukrainian** (S0ya13)
+- **Chinese** (Art3misFowl, ppt)
+- **Korean** (LOUIS522)
 
 #### 添加更多本地化语言
 
@@ -136,14 +138,14 @@ Example:
 > :warning: 如果您想为该项目做出贡献，我们强烈建议您先创建 [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new) 来与开发者交流您想提供什么。
 
 1. Fork this repository
-2. Create a branch for your feature
+2. **Switch branch to development branch (6.X.X)**
 3. Commit your changes
-4. Push commits to your branch
+4. Push the commits
 5. Open a pull request
 
 ## 升级日志
 
-[Access the change log](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/changelog.md)
+[Access the change log](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/CHANGELOG.md)
 
 ## 制作人员
 
