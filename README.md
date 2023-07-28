@@ -102,12 +102,15 @@ Some features work with keybinds, which you will need to assign in "Options/Mod 
 ## Supported languages
 
 - **English** (Pierre Josselin)
-- **French** (Pierre Josselin)
-- **Romanian** (GamingResources)
-- **Chinese** (Art3misFowl, ppt)
-- **Russian** (thejuves)
-- **Spanish** (uziel2021)
 - **German** (Alexander100305)
+- **Spanish** (uziel2021)
+- **French** (Pierre Josselin)
+- **Portuguese (Brasil)** (Webzsz)
+- **Romanian** (GamingResources)
+- **Russian** (thejuves)
+- **Ukrainian** (S0ya13)
+- **Chinese** (Art3misFowl, ppt)
+- **Korean** (LOUIS522)
 
 #### Add a language
 
@@ -134,9 +137,9 @@ You can then publish the updated files via a pull request or more simply by crea
 > :warning: If you would like to contribute to the project, we strongly recommend you to first create [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new) to discuss what you would like to do.
 
 1. Fork this repository
-2. Create a branch for your feature
+2. **Switch branch to development branch (6.X.X)**
 3. Commit your changes
-4. Push commits to your branch
+4. Push the commits
 5. Open a pull request
 
 ## Change Log
