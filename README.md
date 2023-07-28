@@ -1,3 +1,5 @@
+This document is also available in: [Chinese](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/README.zh.md)
+
 # PAYDAY 2 - Ultimate Trainer 6
 
 <img src="https://i.imgur.com/DSVL8hU.png" width="650">
