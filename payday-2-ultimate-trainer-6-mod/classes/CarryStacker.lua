@@ -124,8 +124,6 @@ function UT.CarryStacker:enable()
         if self._tweak_data_name ~= UT.CarryStacker.bagType then
             self._tweak_data_name = UT.CarryStacker.bagType
         end
-
-        log(self._tweak_data_name)
     end
 end
 
