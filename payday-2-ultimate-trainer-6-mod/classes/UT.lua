@@ -14,6 +14,7 @@ UT.enableNoClip = false
 UT.noClipSpeed = nil
 UT.playerUnitAliveEventTriggered = false
 UT.enableCarryStacker = false
+UT.carryVerifyDisabled = false
 
 UT.settings = {}
 UT.backup = {}
@@ -339,6 +340,15 @@ end
 function UT:disableSentryGunPickup()
     UT.Utility:cloneClass(SentryGunBase)
     function SentryGunBase.on_picked_up() end
+end
+
+function UT:disableCarryVerify()
+    UT.Utility:cloneClass(PlayerManager)
+    function PlayerManager:verify_carry()
+        return true
+    end
+
+    UT.carryVerifyDisabled = true
 end
 
 function UT:getLocale()
@@ -1116,11 +1126,8 @@ function UT:replenishBodyBags()
 end
 
 function UT:throwBag(bagId)
-    UT.Utility:cloneClass(PlayerManager)
-    if not UT.enableCarryStacker then
-        function PlayerManager:verify_carry()
-            return true
-        end
+    if not UT.carryVerifyDisabled then
+        UT:disableCarryVerify()
     end
 
     local carryData = tweak_data.carry[bagId]
@@ -1136,10 +1143,6 @@ function UT:throwBag(bagId)
     local localPeer = managers.network:session():local_peer()
 
     managers.player:server_drop_carry(bagId, 1, nil, nil, nil, position, rotation, forward, throwDistanceMultiplierUpgradeLevel, nil, localPeer)
-
-    if not UT.enableCarryStacker then
-        PlayerManager.verify_carry = PlayerManager.orig.verify_carry
-    end
 end
 
 function UT:addSpecialEquipment(specialEquipmentId)
@@ -1284,17 +1287,13 @@ function UT:setCarryStacker(enabled)
     UT.Utility:cloneClass(CarryInteractionExt)
 
     if enabled then
+        if not UT.carryVerifyDisabled then
+            UT:disableCarryVerify()
+        end
+
         if managers.player:is_carrying() then
             local carryData = managers.player:get_my_carry_data()
             UT:setCarry(carryData.carry_id, carryData.multiplier, carryData.dye_initiated, carryData.has_dye_pack, carryData.dye_value_multiplier)
-        end
-
-        function PlayerManager:verify_carry(peer, ...)
-            if peer and peer:id() == UT.GameUtility:getLocalPeerId() then
-                return true
-            end
-
-            PlayerManager.orig.verify_carry(self, peer, ...)
         end
 
         function CarryInteractionExt:_interact_blocked()
@@ -1330,23 +1329,26 @@ function UT:setCarryStacker(enabled)
 
         function PlayerManager:force_drop_carry(...)
             if not UT.Utility:isEmptyTable(UT.carryStacker) then
-                for i = 1, #UT.carryStacker do
+                while managers.player:is_carrying() do
                     PlayerManager.orig.force_drop_carry(self, ...)
                     UT:dropCarry()
                 end
+
+                UT.carryStacker = {}
             end
         end
     else
-        if UT.GameUtility:isPlaying() and not UT.Utility:isEmptyTable(UT.carryStacker) then
+        if UT.GameUtility:isPlaying() and managers.player:is_carrying() then
             managers.player:force_drop_carry()
         end
 
-        PlayerManager.verify_carry = PlayerManager.orig.verify_carry
         PlayerManager.set_carry = PlayerManager.orig.set_carry
         PlayerManager.drop_carry = PlayerManager.orig.drop_carry
         PlayerManager.force_drop_carry = PlayerManager.orig.force_drop_carry
         CarryInteractionExt._interact_blocked = CarryInteractionExt.orig._interact_blocked
         CarryInteractionExt.can_select = CarryInteractionExt.orig.can_select
+
+        UT.carryStacker = {}
     end
 
     UT.enableCarryStacker = enabled
