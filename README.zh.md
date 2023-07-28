@@ -2,7 +2,7 @@
 
 <img src="https://i.imgur.com/DSVL8hU.png" width="650">
 
-如果你喜欢Ultimate Trainer 6的话请给它一个免费的Githubstar！
+如果你喜欢Ultimate Trainer 6的话请给它一个免费的GithubStar！
 
 <img src="https://i.imgur.com/gxwIB9a.gif">
 
