@@ -1,6 +1,6 @@
 # Change Log
 
-## [6.1.0] - Unreleased
+## [6.1.0] - 2023-07-29
 
 ### Added
 
@@ -20,6 +20,6 @@
 - Search fields don't work/crash the app
 - Vapor theme background bugged
 
-## [6.0.0-beta]
+## [6.0.0-beta] - 2023-07-23
 
 Initial release
