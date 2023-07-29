@@ -123,8 +123,8 @@ export default {
         setDisableAI() {
             this.callStore.addCall(["UT:setDisableAI", this.missionStore.enableDisableAI]);
         },
-        setSuspendPointOfNoReturn() {
-            this.callStore.addCall(["UT:setSuspendPointOfNoReturn", this.missionStore.enableSuspendPointOfNoReturn]);
+        setSuspendPointOfNoReturnTimer() {
+            this.callStore.addCall(["UT:setSuspendPointOfNoReturnTimer", this.missionStore.enableSuspendPointOfNoReturnTimer]);
         },
         setUnlimitedPagers() {
             this.callStore.addCall(["UT:setUnlimitedPagers", this.missionStore.enableUnlimitedPagers]);
@@ -375,8 +375,8 @@ export default {
                                         <label for="enable-disable-ai" class="form-check-label">{{ $t("main.disable_ai") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3">
-                                        <input id="enable-suspend-point-of-no-return" v-model="missionStore.enableSuspendPointOfNoReturn" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setSuspendPointOfNoReturn">
-                                        <label for="enable-suspend-point-of-no-return" class="form-check-label">{{ $t("main.suspend_point_of_no_return") }}</label>
+                                        <input id="enable-suspend-point-of-no-return-timer" v-model="missionStore.enableSuspendPointOfNoReturnTimer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setSuspendPointOfNoReturnTimer">
+                                        <label for="enable-suspend-point-of-no-return-timer" class="form-check-label">{{ $t("main.suspend_point_of_no_return_timer") }}</label>
                                     </div>
                                     <div class="form-check form-switch mt-3">
                                         <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setUnlimitedPagers">

@@ -1039,7 +1039,7 @@ function UT:disableAI()
     end
 end
 
-function UT:setSuspendPointOfNoReturn(enabled)
+function UT:setSuspendPointOfNoReturnTimer(enabled)
     UT.Utility:cloneClass(GroupAIStateBase)
     if enabled then
         function GroupAIStateBase:_update_point_of_no_return() end

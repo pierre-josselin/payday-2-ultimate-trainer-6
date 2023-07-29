@@ -7,7 +7,7 @@
 - Hide mod list
 - Hide Ultimate Trainer from menu
 - Carry multiple bags
-- Suspend point of no return
+- Suspend point of no return timer
 - Korean locale
 - Portuguese (Brasil) locale
 
