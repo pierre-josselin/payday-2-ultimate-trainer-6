@@ -960,6 +960,10 @@ function UT:setNoClip(enabled, speed)
 end
 
 function UT:updateNoClip(speed)
+    if UT.GameUtility:isDriving() then
+        return
+    end
+
     local keyboard = Input:keyboard()
     local speed = keyboard.down(keyboard, UT.GameUtility:idString("left shift")) and speed * 2 or speed
     local x = keyboard.down(keyboard, UT.GameUtility:idString("w")) and 1 or keyboard.down(keyboard, UT.GameUtility:idString("s")) and -1 or 0
