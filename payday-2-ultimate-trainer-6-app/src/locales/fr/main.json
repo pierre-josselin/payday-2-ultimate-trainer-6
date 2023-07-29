@@ -106,6 +106,7 @@
     "name": "Nom",
     "night": "Nuit",
     "no_carry_cooldown": "Pas de délai pour porter",
+    "no_civilian_kill_penalty": "Pas de pénalité pour tuer des civils",
     "no_clip": "No clip",
     "no_clip_speed": "Vitesse du no clip",
     "no_fall_damage": "Pas de dégâts de chute",

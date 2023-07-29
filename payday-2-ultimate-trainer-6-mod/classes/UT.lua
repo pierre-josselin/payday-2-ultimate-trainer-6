@@ -1068,6 +1068,15 @@ function UT:setInstantDrilling(enabled)
     end
 end
 
+function UT:setNoCivilianKillPenalty(enabled)
+    UT.Utility:cloneClass(MoneyManager)
+    if enabled then
+        function MoneyManager:civilian_killed() end
+    else
+        MoneyManager.civilian_killed = MoneyManager.orig.civilian_killed
+    end
+end
+
 function UT:getOutOfCustody()
     IngameWaitingForRespawnState.request_player_spawn()
 end

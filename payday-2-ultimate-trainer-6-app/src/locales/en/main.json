@@ -106,6 +106,7 @@
     "name": "Name",
     "night": "Night",
     "no_carry_cooldown": "No carry cooldown",
+    "no_civilian_kill_penalty": "No civilian kill penalty",
     "no_clip": "No clip",
     "no_clip_speed": "No clip speed",
     "no_fall_damage": "No fall damage",

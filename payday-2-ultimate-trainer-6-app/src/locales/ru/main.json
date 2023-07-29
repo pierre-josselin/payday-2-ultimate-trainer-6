@@ -182,5 +182,6 @@
     "world_speed": "Скоpость миpа",
     "x_ray": "Pентген",
     "beta": "Beta",
-    "suspend_point_of_no_return_timer": "Suspend point of no return timer"
+    "suspend_point_of_no_return_timer": "Suspend point of no return timer",
+    "no_civilian_kill_penalty": "No civilian kill penalty"
 }

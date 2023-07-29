@@ -8,6 +8,7 @@
 - Hide Ultimate Trainer from menu
 - Carry multiple bags
 - Suspend point of no return timer
+- No civilian kill penalty
 - Korean locale
 - Portuguese (Brasil) locale
 

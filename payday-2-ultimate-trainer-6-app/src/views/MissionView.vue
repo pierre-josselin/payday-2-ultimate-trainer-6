@@ -135,6 +135,9 @@ export default {
         setCarryStacker() {
             this.callStore.addCall([this.missionStore.enableCarryStacker ? "UT.CarryStacker.enable" : "UT.CarryStacker.disable"]);
         },
+        setNoCivilianKillPenalty() {
+            this.callStore.addCall(["UT:setNoCivilianKillPenalty", this.missionStore.enableNoCivilianKillPenalty]);
+        },
         openDoors() {
             this.callStore.addCall(["UT:openDoors"]);
         },
@@ -389,6 +392,10 @@ export default {
                                     <div class="form-check form-switch mt-3">
                                         <input id="enable-carry-stacker" v-model="missionStore.enableCarryStacker" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setCarryStacker">
                                         <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }} ({{ $t("main.beta").toLowerCase() }})</label>
+                                    </div>
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-no-civilian-kill-penalty" v-model="missionStore.enableNoCivilianKillPenalty" class="form-check-input" type="checkbox" @change="setNoCivilianKillPenalty">
+                                        <label for="enable-no-civilian-kill-penalty" class="form-check-label">{{ $t("main.no_civilian_kill_penalty") }}</label>
                                     </div>
                                 </div>
                             </div>
