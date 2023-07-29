@@ -11,6 +11,7 @@
 - No civilian kill penalty
 - Remove team AI
 - Spawn explosions
+- Teleport to players
 - Korean locale
 - Portuguese (Brasil) locale
 

@@ -185,5 +185,6 @@
     "suspend_point_of_no_return_timer": "Suspend point of no return timer",
     "no_civilian_kill_penalty": "No civilian kill penalty",
     "remove_team_ai": "Remove team AI",
-    "explosions": "Explosions"
+    "explosions": "Explosions",
+    "teleport_to_player": "Teleport to player"
 }

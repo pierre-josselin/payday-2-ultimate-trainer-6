@@ -1096,6 +1096,24 @@ function UT:setPlayerState(state)
     UT.GameUtility:setPlayerState(state)
 end
 
+function UT:teleportToPlayer(id)
+    local name = managers.criminals:character_name_by_panel_id(id)
+
+    if not name then
+        return
+    end
+
+    local unit = managers.criminals:character_unit_by_name(name)
+
+    if not unit then
+        return
+    end
+
+    local position = unit:position()
+    local rotation = unit:rotation()
+    UT.GameUtility:teleportPlayer(position, rotation)
+end
+
 function UT:replenishHealth()
     local playerUnit = UT.GameUtility:getPlayerUnit()
     playerUnit:character_damage():replenish()

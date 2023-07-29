@@ -195,6 +195,9 @@ export default {
         setPlayerStateStandard() {
             this.callStore.addCall(["UT:setPlayerState", "standard"]);
         },
+        teleportToPlayer(id) {
+            this.callStore.addCall(["UT:teleportToPlayer", id]);
+        },
         replenishHealth() {
             this.callStore.addCall(["UT:replenishHealth"]);
         },
@@ -326,6 +329,14 @@ export default {
                                                         <li><button class="dropdown-item" @click="setPlayerStateMaskOff">{{ $t("main.mask_off") }}</button></li>
                                                         <li><button class="dropdown-item" @click="setPlayerStateStandard">{{ $t("main.standard") }}</button></li>
                                                     </ul>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <div class="btn-group w-100">
+                                                    <button class="btn btn-secondary" disabled>{{ $t("main.teleport_to_player") }}</button>
+                                                    <button class="btn btn-primary" @click="teleportToPlayer(1)" :disabled="!mainStore.isPlaying">1</button>
+                                                    <button class="btn btn-primary" @click="teleportToPlayer(2)" :disabled="!mainStore.isPlaying">2</button>
+                                                    <button class="btn btn-primary" @click="teleportToPlayer(3)" :disabled="!mainStore.isPlaying">3</button>
                                                 </div>
                                             </div>
                                             <div class="mt-3">
