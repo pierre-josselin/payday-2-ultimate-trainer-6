@@ -29,7 +29,8 @@ export default {
         },
         filteredBags() {
             if (!this.bagSearch) {
-                return this.bags.sort();
+                const bags = [...this.bags];
+                return bags.sort();
             }
 
             const filteredBags = [];
@@ -44,7 +45,8 @@ export default {
         },
         filteredSpecialEquipment() {
             if (!this.specialEquipmentSearch) {
-                return this.specialEquipment.sort();
+                const specialEquipment = [...this.specialEquipment];
+                return specialEquipment.sort();
             }
 
             const filteredSpecialEquipment = [];
@@ -334,9 +336,9 @@ export default {
                                             <div class="mt-3">
                                                 <div class="btn-group w-100">
                                                     <button class="btn btn-secondary" disabled>{{ $t("main.teleport_to_player") }}</button>
-                                                    <button class="btn btn-primary" @click="teleportToPlayer(1)" :disabled="!mainStore.isPlaying">1</button>
-                                                    <button class="btn btn-primary" @click="teleportToPlayer(2)" :disabled="!mainStore.isPlaying">2</button>
-                                                    <button class="btn btn-primary" @click="teleportToPlayer(3)" :disabled="!mainStore.isPlaying">3</button>
+                                                    <button class="btn btn-primary" :disabled="!mainStore.isPlaying" @click="teleportToPlayer(1)">1</button>
+                                                    <button class="btn btn-primary" :disabled="!mainStore.isPlaying" @click="teleportToPlayer(2)">2</button>
+                                                    <button class="btn btn-primary" :disabled="!mainStore.isPlaying" @click="teleportToPlayer(3)">3</button>
                                                 </div>
                                             </div>
                                             <div class="mt-3">
