@@ -92,6 +92,9 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 
 某些功能需要使用键绑定，您需要在“选项-模组按键”中进行分配。
 
+> :exclamation: NO KEYBIND IS DEFINED BY DEFAULT, IT'S YOURS TO ASSIGN THEM!<br>
+> The keys mentioned below are just a suggestion.
+
 | Name                         | Description                           | Recommended key |
 |------------------------------|---------------------------------------|-----------------|
 | Teleport player to crosshair | 传送玩家到十字准星处                    | N               |

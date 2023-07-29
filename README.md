@@ -93,6 +93,9 @@ You can access the application from any web browser on the same network.
 
 Some features work with keybinds, which you will need to assign in "Options/Mod Keybinds".
 
+> :exclamation: NO KEYBIND IS DEFINED BY DEFAULT, IT'S YOURS TO ASSIGN THEM!<br>
+> The keys mentioned below are just a suggestion.
+
 | Name                         | Description                           | Recommended key |
 |------------------------------|---------------------------------------|-----------------|
 | Teleport player to crosshair | Teleports the player to the crosshair | N               |
