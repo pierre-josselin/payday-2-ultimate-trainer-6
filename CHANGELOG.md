@@ -9,6 +9,7 @@
 - Carry multiple bags
 - Suspend point of no return timer
 - No civilian kill penalty
+- Remove team AI
 - Korean locale
 - Portuguese (Brasil) locale
 

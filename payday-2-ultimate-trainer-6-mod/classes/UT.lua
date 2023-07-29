@@ -173,7 +173,8 @@ function UT:getGameContext()
         UT.Utility:booleanToInteger(UT.GameUtility:isPlaying()),
         UT.Utility:booleanToInteger(UT.GameUtility:isInCustody()),
         UT.Utility:booleanToInteger(UT.GameUtility:isAtEndGame()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isServer())
+        UT.Utility:booleanToInteger(UT.GameUtility:isServer()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isTeamAIEnabled())
     }
     return UT.Utility:tableJoin(gameContext, ",")
 end
@@ -1036,6 +1037,16 @@ function UT:disableAI()
                 unit:brain():set_active(false)
             end
         end
+    end
+end
+
+function UT:setRemoveTeamAI(enabled)
+    if enabled then
+        for i = 1, tweak_data.max_players - 1 do
+            managers.groupai:state():remove_one_teamAI()
+        end
+    else
+        managers.groupai:state():fill_criminal_team_with_AI()
     end
 end
 

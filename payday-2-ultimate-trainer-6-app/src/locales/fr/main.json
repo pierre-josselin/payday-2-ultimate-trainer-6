@@ -138,6 +138,7 @@
     "remove": "Supprimer",
     "remove_exclamation_marks": "Supprimer les points d'exclamation",
     "remove_invisible_walls": "Supprimer les murs invisibles",
+    "remove_team_ai": "Retirer l'IA de l'équipe",
     "replenish": "Remplir",
     "replenish_ammo": "Remplir les munitions",
     "replenish_health": "Remplir la santé",

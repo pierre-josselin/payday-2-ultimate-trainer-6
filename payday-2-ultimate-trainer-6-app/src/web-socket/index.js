@@ -85,6 +85,7 @@ export function createWebSocket(options) {
                 mainStore.isInCustody = Boolean(parseInt(gameContext[5]));
                 mainStore.isAtEndGame = Boolean(parseInt(gameContext[6]));
                 mainStore.isServer = Boolean(parseInt(gameContext[7]));
+                mainStore.isTeamAIEnabled = Boolean(parseInt(gameContext[8]));
                 break;
             }
             case "game-paused": {

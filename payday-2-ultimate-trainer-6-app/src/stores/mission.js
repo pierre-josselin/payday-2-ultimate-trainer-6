@@ -7,6 +7,7 @@ export const useMissionStore = defineStore("mission", {
         enableNoClip: false,
         enableInvisiblePlayer: false,
         enableDisableAI: false,
+        enableRemoveTeamAI: false,
         enableSuspendPointOfNoReturnTimer: false,
         enableUnlimitedPagers: false,
         enableInstantDrilling: false,

@@ -51,6 +51,10 @@ function UT.GameUtility:isInSinglePlayer()
     return Global.game_settings.single_player
 end
 
+function UT.GameUtility:isTeamAIEnabled()
+    return managers.groupai and managers.groupai:state():team_ai_enabled() or false
+end
+
 function UT.GameUtility:getPlayerUnit()
     return managers.player:player_unit()
 end
