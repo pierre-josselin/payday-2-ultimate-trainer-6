@@ -184,5 +184,6 @@
     "x_ray": "透视",
     "suspend_point_of_no_return_timer": "Suspend point of no return timer",
     "no_civilian_kill_penalty": "No civilian kill penalty",
-    "remove_team_ai": "Remove team AI"
+    "remove_team_ai": "Remove team AI",
+    "explosions": "Explosions"
 }

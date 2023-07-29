@@ -58,7 +58,7 @@ function UT.Spawn.spawnEnemy(id, position, rotation)
     end
 end
 
-function UT.Spawn.spawnPackage(id, position, rotation)
+function UT.Spawn.spawnGagePackage(id, position, rotation)
     UT:setUnlimitedGagePackages(true)
 
     local idString = UT.GameUtility:idString(id)
@@ -101,6 +101,15 @@ function UT.Spawn.spawnEquipment(id, position, rotation)
     end
 end
 
+function UT.Spawn.spawnExplosion(id, position, rotation)
+    local idString = UT.GameUtility:idString(id)
+    local unit = UT.GameUtility:spawnUnit(idString, position, rotation)
+
+    if unit and unit.base and unit:base()._detonate then
+        unit:base():_detonate()
+    end
+end
+
 function UT.Spawn:spawn()
     if not UT.Spawn.id or not UT.Spawn.categoryId or not UT.Spawn.positionType then
         return
@@ -116,8 +125,10 @@ function UT.Spawn:spawn()
     if UT.Spawn.categoryId == "enemies" then
         UT.Spawn.spawnEnemy(UT.Spawn.id, position, rotation)
     elseif UT.Spawn.categoryId == "gage-packages" then
-        UT.Spawn.spawnPackage(UT.Spawn.id, position, rotation)
+        UT.Spawn.spawnGagePackage(UT.Spawn.id, position, rotation)
     elseif UT.Spawn.categoryId == "equipment" then
         UT.Spawn.spawnEquipment(UT.Spawn.id, position, rotation)
+    elseif UT.Spawn.categoryId == "explosions" then
+        UT.Spawn.spawnExplosion(UT.Spawn.id, position, rotation)
     end
 end

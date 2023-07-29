@@ -10,6 +10,7 @@
 - Suspend point of no return timer
 - No civilian kill penalty
 - Remove team AI
+- Spawn explosions
 - Korean locale
 - Portuguese (Brasil) locale
 
