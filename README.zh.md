@@ -59,6 +59,8 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
     - 运行 `install` 文件
     > :information_source: 如果 `install` 如果该文件不起作用，从当前目录打开命令提示符并键入命令 `node .\index.js install`.
 
+> :information_source: Some users encounter an error message when launching the game saying that node was not found. Unfortunately, we do not yet have enough feedback from users to propose a generic solution. If this happens to you, make sure you have restarted your computer and, if the problem persists, open [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new).
+
 ### 正式使用
 
 - 打开游戏

@@ -60,6 +60,8 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Run the `install` file
     > :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
 
+> :information_source: Some users encounter an error message when launching the game saying that node was not found. Unfortunately, we do not yet have enough feedback from users to propose a generic solution. If this happens to you, make sure you have restarted your computer and, if the problem persists, open [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new).
+
 ### Usage
 
 - Start the game
