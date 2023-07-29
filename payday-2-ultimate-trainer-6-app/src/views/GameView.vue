@@ -18,7 +18,7 @@ export default {
     created() {
         this.settingsStore = useSettingsStore();
 
-        this.enablePauseStatsPublishing = this.settingsStore.getSetting("theme");
+        this.enablePauseStatsPublishing = this.settingsStore.getSetting("enable-pause-stats-publishing");
         this.enableHideModList = this.settingsStore.getSetting("enable-hide-mod-list");
     },
     methods: {

@@ -47,7 +47,7 @@ export default {
         this.settingsStore = useSettingsStore();
 
         this.locale = this.settingsStore.getSetting("locale") || this.$i18n.locale;
-        this.theme = this.settingsStore.getSetting("theme");
+        this.theme = this.settingsStore.getSetting("theme") || "darkly";
         this.enableHideUltimateTrainerButton = this.settingsStore.getSetting("enable-hide-ultimate-trainer-button");
     },
     methods: {
