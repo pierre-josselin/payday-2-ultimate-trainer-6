@@ -58,8 +58,11 @@
 
 **rogerxiii**
 
-- Invisible walls keys
 - Skill points hack
+
+**Harfatus**, **DvD**
+
+- Invisible walls keys
 
 **MS HACK**
 
