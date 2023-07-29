@@ -181,5 +181,6 @@
     "vehicles_to_load": "加载车辆",
     "weapon_mods": "武器修改",
     "world_speed": "世界速度",
-    "x_ray": "透视"
+    "x_ray": "透视",
+    "suspend_point_of_no_return": "Suspend point of no return"
 }

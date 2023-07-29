@@ -123,6 +123,9 @@ export default {
         setDisableAI() {
             this.callStore.addCall(["UT:setDisableAI", this.missionStore.enableDisableAI]);
         },
+        setSuspendPointOfNoReturn() {
+            this.callStore.addCall(["UT:setSuspendPointOfNoReturn", this.missionStore.enableSuspendPointOfNoReturn]);
+        },
         setUnlimitedPagers() {
             this.callStore.addCall(["UT:setUnlimitedPagers", this.missionStore.enableUnlimitedPagers]);
         },
@@ -345,42 +348,46 @@ export default {
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
-                                    <div class="form-check form-switch" @change="setXRay">
-                                        <input id="enable-x-ray" v-model="missionStore.enableXRay" class="form-check-input" type="checkbox">
+                                    <div class="form-check form-switch">
+                                        <input id="enable-x-ray" v-model="missionStore.enableXRay" class="form-check-input" type="checkbox" @change="setXRay">
                                         <label for="enable-x-ray" class="form-check-label">{{ $t("main.x_ray") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setPreventAlarmTriggering">
-                                        <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setPreventAlarmTriggering">
                                         <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("main.prevent_alarm_triggering") }}
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying" @change="setInvisiblePlayer">
-                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
+                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setInvisiblePlayer">
                                         <label for="enable-invisible-player" class="form-check-label">{{ $t("main.invisible_player") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying" @change="setNoClip">
-                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
+                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
+                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox" @change="setNoClip">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
                                     <div v-if="missionStore.enableNoClip" class="mt-3">
                                         <label for="no-clip-speed" class="form-label">{{ $t("main.no_clip_speed") }}</label>
                                         <input id="no-clip-speed" v-model="missionStore.noClipSpeed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" :disabled="!mainStore.isPlaying" @change="setNoClip">
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setDisableAI">
-                                        <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setDisableAI">
                                         <label for="enable-disable-ai" class="form-check-label">{{ $t("main.disable_ai") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setUnlimitedPagers">
-                                        <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-suspend-point-of-no-return" v-model="missionStore.enableSuspendPointOfNoReturn" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setSuspendPointOfNoReturn">
+                                        <label for="enable-suspend-point-of-no-return" class="form-check-label">{{ $t("main.suspend_point_of_no_return") }}</label>
+                                    </div>
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setUnlimitedPagers">
                                         <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("main.unlimited_pagers") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setInstantDrilling">
-                                        <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setInstantDrilling">
                                         <label for="enable-instant-drilling" class="form-check-label">{{ $t("main.instant_drilling") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setCarryStacker">
-                                        <input id="enable-carry-stacker" v-model="missionStore.enableCarryStacker" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-carry-stacker" v-model="missionStore.enableCarryStacker" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setCarryStacker">
                                         <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }} ({{ $t("main.beta").toLowerCase() }})</label>
                                     </div>
                                 </div>

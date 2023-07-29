@@ -1039,6 +1039,15 @@ function UT:disableAI()
     end
 end
 
+function UT:setSuspendPointOfNoReturn(enabled)
+    UT.Utility:cloneClass(GroupAIStateBase)
+    if enabled then
+        function GroupAIStateBase:_update_point_of_no_return() end
+    else
+        GroupAIStateBase._update_point_of_no_return = GroupAIStateBase.orig._update_point_of_no_return
+    end
+end
+
 function UT:setUnlimitedPagers(enabled)
     tweak_data.player.alarm_pager.bluff_success_chance = { 1, 1, 1, 1, enabled and 1 or 0 }
 end
