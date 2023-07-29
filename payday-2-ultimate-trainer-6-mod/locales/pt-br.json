@@ -1,0 +1,14 @@
+{
+    "ut_menu_open_app_name": "Ultimate Trainer",
+    "ut_menu_open_app_description": "Abrir o aplicativo Ultimate Trainer",
+    "ut_keybinds_teleport_player_to_crosshair_name": "Teletransportar jogador para a mira",
+    "ut_keybinds_teleport_player_to_crosshair_description": "Teletransporta o jogador para a mira",
+    "ut_keybinds_spawn_spawn_name": "Spawnar / Spawnar",
+    "ut_keybinds_spawn_spawn_description": "Spawnar a unidade selecionada",
+    "ut_keybinds_build_pick_name": "Build / Selecionar",
+    "ut_keybinds_build_pick_description": "Selecionar a unidade na mira",
+    "ut_keybinds_build_spawn_name": "Build / Spawnar",
+    "ut_keybinds_build_spawn_description": "Spawnar a unidade selecionada na mira",
+    "ut_keybinds_build_delete_name": "Build / Excluir",
+    "ut_keybinds_build_delete_description": "Excluir a unidade spawnada na mira"
+}

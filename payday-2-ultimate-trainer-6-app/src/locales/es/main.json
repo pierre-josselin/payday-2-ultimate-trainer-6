@@ -45,7 +45,6 @@
     "drive": "Conducir",
     "driving": "Conducción",
     "early_morning": "Temprano por la mañana",
-    "editor": "Editor",
     "enable_skill_point_hack": "Habilitar hack de puntos de habilidad",
     "end_game": "Finalizar la partida",
     "enemies": "Enemigos",
@@ -177,5 +176,15 @@
     "vehicles_to_load": "Vehículos a cargar",
     "weapon_mods": "Modificaciones de armas",
     "world_speed": "Velocidad del mundo",
-    "x_ray": "Rayos X"
+    "x_ray": "Rayos X",
+    "hide_my_mod_list": "Hide my mod list",
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build",
+    "carry_multiple_bags": "Carry multiple bags",
+    "beta": "Beta",
+    "suspend_point_of_no_return_timer": "Suspend point of no return timer",
+    "no_civilian_kill_penalty": "No civilian kill penalty",
+    "remove_team_ai": "Remove team AI",
+    "explosions": "Explosions",
+    "teleport_to_player": "Teleport to player"
 }

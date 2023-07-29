@@ -5,10 +5,10 @@
     "ut_keybinds_teleport_player_to_crosshair_description": "Телепортує гравця до прицілу",
     "ut_keybinds_spawn_spawn_name": "Породити / Породити",
     "ut_keybinds_spawn_spawn_description": "Породити вибраного юніта",
-    "ut_keybinds_editor_pick_name": "Редактор / Обрати",
-    "ut_keybinds_editor_pick_description": "Вибрати юніта на перехресті прицілу",
-    "ut_keybinds_editor_spawn_name": "Редактор / Породити",
-    "ut_keybinds_editor_spawn_description": "Породити вибраного юніта на перехресті прицілу",
-    "ut_keybinds_editor_delete_name": "Редактор / Видалити",
-    "ut_keybinds_editor_delete_description": "Видалити породженого юніта на перехресті прицілу"
+    "ut_keybinds_build_pick_name": "Build / Обрати",
+    "ut_keybinds_build_pick_description": "Вибрати юніта на перехресті прицілу",
+    "ut_keybinds_build_spawn_name": "Build / Породити",
+    "ut_keybinds_build_spawn_description": "Породити вибраного юніта на перехресті прицілу",
+    "ut_keybinds_build_delete_name": "Build / Видалити",
+    "ut_keybinds_build_delete_description": "Видалити породженого юніта на перехресті прицілу"
 }

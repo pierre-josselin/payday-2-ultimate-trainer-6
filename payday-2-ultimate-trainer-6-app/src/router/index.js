@@ -13,9 +13,11 @@ import CheatsView from "@/views/CheatsView.vue";
 import MissionView from "@/views/MissionView.vue";
 import DrivingView from "@/views/DrivingView.vue";
 import SpawnView from "@/views/SpawnView.vue";
+import GameView from "@/views/GameView.vue";
 import SettingsView from "@/views/SettingsView.vue";
 
 const router = createRouter({
+    linkActiveClass: "active",
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
@@ -62,6 +64,11 @@ const router = createRouter({
             path: "/spawn",
             name: "spawn",
             component: SpawnView
+        },
+        {
+            path: "/game",
+            name: "game",
+            component: GameView
         }
     ]
 });

@@ -6,6 +6,14 @@
 
 ## Direct contributors
 
+**Webzsz**
+
+- Portuguese (Brasil) locale
+
+**LOUIS522**
+
+- Korean locale
+
 **S0ya13**
 
 - Ukrainian locale
@@ -44,10 +52,17 @@
 
 ## Indirect contributors
 
+**Dr_Newbie**
+
+- Hide mod list
+
 **rogerxiii**
 
-- Invisible walls keys
 - Skill points hack
+
+**Harfatus**, **DvD**
+
+- Invisible walls keys
 
 **MS HACK**
 

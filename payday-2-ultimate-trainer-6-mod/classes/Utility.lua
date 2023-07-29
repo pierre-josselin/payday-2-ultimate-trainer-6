@@ -57,6 +57,10 @@ function UT.Utility:tableJoin(_table, separator, startIndex, endIndex)
     return table.concat(_table, separator, startIndex, endIndex)
 end
 
+function UT.Utility:removeLastElementFromTable(_table)
+    return table.remove(_table)
+end
+
 function UT.Utility:jsonEncode(value)
     return json.encode(value)
 end

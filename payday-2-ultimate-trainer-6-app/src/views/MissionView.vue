@@ -20,30 +20,44 @@ export default {
     data() {
         return {
             bagSearch: null,
-            specialEquipmentSearch: null,
-            filteredBags: [],
-            filteredSpecialEquipment: []
+            specialEquipmentSearch: null
         };
     },
     computed: {
         noSlowMotionEnabled() {
             return this.settingsStore.getSetting("enable-no-slow-motion");
-        }
-    },
-    watch: {
-        bagSearch(bagSearch) {
-            if (!bagSearch) {
-                this.bagSearch = null;
-            }
-
-            this.filterBags();
         },
-        specialEquipmentSearch(specialEquipmentSearch) {
-            if (!specialEquipmentSearch) {
-                this.specialEquipmentSearch = null;
+        filteredBags() {
+            if (!this.bagSearch) {
+                const bags = [...this.bags];
+                return bags.sort();
             }
 
-            this.filterSpecialEquipment();
+            const filteredBags = [];
+            for (const bagId of this.bags) {
+                const bagName = this.$t(`bags.${bagId}`);
+                if (bagId.toLowerCase().includes(this.bagSearch.toLowerCase()) || bagName.toLowerCase().includes(this.bagSearch.toLowerCase())) {
+                    filteredBags.push(bagId);
+                }
+            }
+
+            return filteredBags.sort();
+        },
+        filteredSpecialEquipment() {
+            if (!this.specialEquipmentSearch) {
+                const specialEquipment = [...this.specialEquipment];
+                return specialEquipment.sort();
+            }
+
+            const filteredSpecialEquipment = [];
+            for (const specialEquipmentId of this.specialEquipment) {
+                const specialEquipmentName = this.$t(`special_equipment.${specialEquipmentId}`);
+                if (specialEquipmentId.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase()) || specialEquipmentName.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) {
+                    filteredSpecialEquipment.push(specialEquipmentId);
+                }
+            }
+
+            return filteredSpecialEquipment.sort();
         }
     },
     created() {
@@ -59,8 +73,8 @@ export default {
             this.missionStore.slowMotionPlayerSpeed = parseFloat(slowMotionPlayerSpeed);
         });
 
-        this.filterBags();
-        this.filterSpecialEquipment();
+        this.bags = bags;
+        this.specialEquipment = specialEquipment;
     },
     methods: {
         startTheHeist() {
@@ -111,11 +125,23 @@ export default {
         setDisableAI() {
             this.callStore.addCall(["UT:setDisableAI", this.missionStore.enableDisableAI]);
         },
+        setRemoveTeamAI() {
+            this.callStore.addCall(["UT:setRemoveTeamAI", this.missionStore.enableRemoveTeamAI]);
+        },
+        setSuspendPointOfNoReturnTimer() {
+            this.callStore.addCall(["UT:setSuspendPointOfNoReturnTimer", this.missionStore.enableSuspendPointOfNoReturnTimer]);
+        },
         setUnlimitedPagers() {
             this.callStore.addCall(["UT:setUnlimitedPagers", this.missionStore.enableUnlimitedPagers]);
         },
         setInstantDrilling() {
             this.callStore.addCall(["UT:setInstantDrilling", this.missionStore.enableInstantDrilling]);
+        },
+        setCarryStacker() {
+            this.callStore.addCall([this.missionStore.enableCarryStacker ? "UT.CarryStacker.enable" : "UT.CarryStacker.disable"]);
+        },
+        setNoCivilianKillPenalty() {
+            this.callStore.addCall(["UT:setNoCivilianKillPenalty", this.missionStore.enableNoCivilianKillPenalty]);
         },
         openDoors() {
             this.callStore.addCall(["UT:openDoors"]);
@@ -171,6 +197,9 @@ export default {
         setPlayerStateStandard() {
             this.callStore.addCall(["UT:setPlayerState", "standard"]);
         },
+        teleportToPlayer(id) {
+            this.callStore.addCall(["UT:teleportToPlayer", id]);
+        },
         replenishHealth() {
             this.callStore.addCall(["UT:replenishHealth"]);
         },
@@ -202,48 +231,6 @@ export default {
         },
         addSpecialEquipment(specialEquipmentId) {
             this.callStore.addCall(["UT:addSpecialEquipment", specialEquipmentId]);
-        },
-        filterBags() {
-            this.filteredBags = [];
-
-            if (!this.bagSearch) {
-                this.filteredBags = bags.sort();
-                return;
-            }
-
-            for (const bagId of Object.values(bags)) {
-                if ((bagId.toLowerCase().includes(this.bagSearch.toLowerCase())) && !this.filteredBags.includes(bagId)) {
-                    this.filteredBags.push(bagId);
-                }
-            }
-
-            const bagMessages = this.$i18n.messages[this.$i18n.locale].bags || this.$i18n.messages[this.$i18n.fallbackLocale].bags;
-            for (const [bagId, bagMessage] of Object.entries(bagMessages)) {
-                if ((bagMessage.toLowerCase().includes(this.bagSearch.toLowerCase())) && !this.filteredBags.includes(bagId)) {
-                    this.filteredBags.push(bagId);
-                }
-            }
-        },
-        filterSpecialEquipment() {
-            this.filteredSpecialEquipment = [];
-
-            if (!this.specialEquipmentSearch) {
-                this.filteredSpecialEquipment = specialEquipment.sort();
-                return;
-            }
-
-            for (const specialEquipmentId of Object.values(specialEquipment)) {
-                if ((specialEquipmentId.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) && !this.filteredSpecialEquipment.includes(specialEquipmentId)) {
-                    this.filteredSpecialEquipment.push(specialEquipmentId);
-                }
-            }
-
-            const specialEquipmentMessages = this.$i18n.messages[this.$i18n.locale].special_equipment || this.$i18n.messages[this.$i18n.fallbackLocale].special_equipment;
-            for (const [specialEquipmentId, specialEquipmentMessage] of Object.entries(specialEquipmentMessages)) {
-                if ((specialEquipmentMessage.toLowerCase().includes(this.specialEquipmentSearch.toLowerCase())) && !this.filteredSpecialEquipment.includes(specialEquipmentId)) {
-                    this.filteredSpecialEquipment.push(specialEquipmentId);
-                }
-            }
         }
     }
 }
@@ -293,7 +280,7 @@ export default {
                     </li>
                     <li class="nav-item">
                         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bags-tab">
-{{ $t("main.bags") }}
+                            {{ $t("main.bags") }}
                             <BugIcon class="ms-3" />
                             <AntiCheatDetectedIcon class="ms-3" />
                         </button>
@@ -347,6 +334,14 @@ export default {
                                                 </div>
                                             </div>
                                             <div class="mt-3">
+                                                <div class="btn-group w-100">
+                                                    <button class="btn btn-secondary" disabled>{{ $t("main.teleport_to_player") }}</button>
+                                                    <button class="btn btn-primary" :disabled="!mainStore.isPlaying" @click="teleportToPlayer(1)">1</button>
+                                                    <button class="btn btn-primary" :disabled="!mainStore.isPlaying" @click="teleportToPlayer(2)">2</button>
+                                                    <button class="btn btn-primary" :disabled="!mainStore.isPlaying" @click="teleportToPlayer(3)">3</button>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
                                                 <button class="btn btn-primary w-100" :disabled="!mainStore.isPlaying" @click="replenishHealth">{{ $t("main.replenish_health") }}</button>
                                             </div>
                                             <div class="mt-3">
@@ -362,7 +357,7 @@ export default {
                                                             <option value="body-bags">{{ $t("main.body_bags") }}</option>
                                                         </select>
                                                         <button type="submit" class="btn btn-primary" :disabled="!mainStore.isPlaying">
-{{ $t("main.replenish") }}
+                                                            {{ $t("main.replenish") }}
                                                             <AntiCheatDetectedIcon v-if="missionStore.replenishType === 'equipment'" class="ms-3" />
                                                         </button>
                                                     </div>
@@ -372,39 +367,55 @@ export default {
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-4">
-                                    <div class="form-check form-switch" @change="setXRay">
-                                        <input id="enable-x-ray" v-model="missionStore.enableXRay" class="form-check-input" type="checkbox">
+                                    <div class="form-check form-switch">
+                                        <input id="enable-x-ray" v-model="missionStore.enableXRay" class="form-check-input" type="checkbox" @change="setXRay">
                                         <label for="enable-x-ray" class="form-check-label">{{ $t("main.x_ray") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setPreventAlarmTriggering">
-                                        <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-prevent-alarm-triggering" v-model="missionStore.enablePreventAlarmTriggering" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setPreventAlarmTriggering">
                                         <label for="enable-prevent-alarm-triggering" class="form-check-label">{{ $t("main.prevent_alarm_triggering") }}
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying" @change="setInvisiblePlayer">
-                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
+                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setInvisiblePlayer">
                                         <label for="enable-invisible-player" class="form-check-label">{{ $t("main.invisible_player") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying" @change="setNoClip">
-                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox">
+                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
+                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox" @change="setNoClip">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
                                     <div v-if="missionStore.enableNoClip" class="mt-3">
                                         <label for="no-clip-speed" class="form-label">{{ $t("main.no_clip_speed") }}</label>
                                         <input id="no-clip-speed" v-model="missionStore.noClipSpeed" type="number" min="1" max="100" step="1" class="form-control form-control-sm" :disabled="!mainStore.isPlaying" @change="setNoClip">
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setDisableAI">
-                                        <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-disable-ai" v-model="missionStore.enableDisableAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setDisableAI">
                                         <label for="enable-disable-ai" class="form-check-label">{{ $t("main.disable_ai") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setUnlimitedPagers">
-                                        <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-remove-team-ai" v-model="missionStore.enableRemoveTeamAI" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer || !mainStore.isTeamAIEnabled" @change="setRemoveTeamAI">
+                                        <label for="enable-remove-team-ai" class="form-check-label">{{ $t("main.remove_team_ai") }}</label>
+                                    </div>
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-suspend-point-of-no-return-timer" v-model="missionStore.enableSuspendPointOfNoReturnTimer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setSuspendPointOfNoReturnTimer">
+                                        <label for="enable-suspend-point-of-no-return-timer" class="form-check-label">{{ $t("main.suspend_point_of_no_return_timer") }}</label>
+                                    </div>
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-unlimited-pagers" v-model="missionStore.enableUnlimitedPagers" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setUnlimitedPagers">
                                         <label for="enable-unlimited-pagers" class="form-check-label">{{ $t("main.unlimited_pagers") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" @change="setInstantDrilling">
-                                        <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-instant-drilling" v-model="missionStore.enableInstantDrilling" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setInstantDrilling">
                                         <label for="enable-instant-drilling" class="form-check-label">{{ $t("main.instant_drilling") }}</label>
+                                    </div>
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-carry-stacker" v-model="missionStore.enableCarryStacker" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setCarryStacker">
+                                        <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }} ({{ $t("main.beta").toLowerCase() }})</label>
+                                    </div>
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-no-civilian-kill-penalty" v-model="missionStore.enableNoCivilianKillPenalty" class="form-check-input" type="checkbox" @change="setNoCivilianKillPenalty">
+                                        <label for="enable-no-civilian-kill-penalty" class="form-check-label">{{ $t("main.no_civilian_kill_penalty") }}</label>
                                     </div>
                                 </div>
                             </div>

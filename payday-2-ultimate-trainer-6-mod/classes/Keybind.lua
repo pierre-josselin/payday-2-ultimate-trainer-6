@@ -47,7 +47,7 @@ function UT.Keybind:spawnSpawn()
     UT.Spawn:spawn()
 end
 
-function UT.Keybind:editorPick()
+function UT.Keybind:buildPick()
     if not UT.GameUtility:isInHeist() then
         return
     end
@@ -60,10 +60,10 @@ function UT.Keybind:editorPick()
         return
     end
 
-    UT.Editor:pickUnit()
+    UT.Build:pickUnit()
 end
 
-function UT.Keybind:editorSpawn()
+function UT.Keybind:buildSpawn()
     if not UT.GameUtility:isInHeist() then
         return
     end
@@ -76,10 +76,10 @@ function UT.Keybind:editorSpawn()
         return
     end
 
-    UT.Editor:spawnUnit()
+    UT.Build:spawnUnit()
 end
 
-function UT.Keybind:editorDelete()
+function UT.Keybind:buildDelete()
     if not UT.GameUtility:isInHeist() then
         return
     end
@@ -92,5 +92,5 @@ function UT.Keybind:editorDelete()
         return
     end
 
-    UT.Editor:deleteUnit()
+    UT.Build:deleteUnit()
 end

@@ -5,10 +5,10 @@
     "ut_keybinds_teleport_player_to_crosshair_description": "Teleportează jucătorul la țintă",
     "ut_keybinds_spawn_spawn_name": "Generare / Generare",
     "ut_keybinds_spawn_spawn_description": "Generați unitatea selectată",
-    "ut_keybinds_editor_pick_name": "Editor / Alege",
-    "ut_keybinds_editor_pick_description": "Alege unitatea la țintă",
-    "ut_keybinds_editor_spawn_name": "Editor / Generare",
-    "ut_keybinds_editor_spawn_description": "Generați unitatea aleasă la țintă",
-    "ut_keybinds_editor_delete_name": "Editor / Delete",
-    "ut_keybinds_editor_delete_description": "Ștergeți unitatea generată la țintă"
+    "ut_keybinds_build_pick_name": "Build / Alege",
+    "ut_keybinds_build_pick_description": "Alege unitatea la țintă",
+    "ut_keybinds_build_spawn_name": "Build / Generare",
+    "ut_keybinds_build_spawn_description": "Generați unitatea aleasă la țintă",
+    "ut_keybinds_build_delete_name": "Build / Delete",
+    "ut_keybinds_build_delete_description": "Ștergeți unitatea generată la țintă"
 }

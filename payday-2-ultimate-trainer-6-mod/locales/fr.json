@@ -5,10 +5,10 @@
     "ut_keybinds_teleport_player_to_crosshair_description": "Téléporter le joueur au viseur",
     "ut_keybinds_spawn_spawn_name": "Spawn / Faire apparaître",
     "ut_keybinds_spawn_spawn_description": "Faire apparaître l'unité sélectionnée",
-    "ut_keybinds_editor_pick_name": "Éditeur / Choisir",
-    "ut_keybinds_editor_pick_description": "Choisir l'unité au viseur",
-    "ut_keybinds_editor_spawn_name": "Éditeur / Faire apparaître",
-    "ut_keybinds_editor_spawn_description": "Faire apparaître l'unité choisie au viseur",
-    "ut_keybinds_editor_delete_name": "Éditeur / Supprimer",
-    "ut_keybinds_editor_delete_description": "Supprimer l'unité frayée au viseur"
+    "ut_keybinds_build_pick_name": "Construction / Choisir",
+    "ut_keybinds_build_pick_description": "Choisir l'unité au viseur",
+    "ut_keybinds_build_spawn_name": "Construction / Faire apparaître",
+    "ut_keybinds_build_spawn_description": "Faire apparaître l'unité choisie au viseur",
+    "ut_keybinds_build_delete_name": "Construction / Supprimer",
+    "ut_keybinds_build_delete_description": "Supprimer l'unité frayée au viseur"
 }

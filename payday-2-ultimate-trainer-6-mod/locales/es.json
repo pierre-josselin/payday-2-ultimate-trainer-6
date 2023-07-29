@@ -5,10 +5,10 @@
     "ut_keybinds_teleport_player_to_crosshair_description": "Teletransporta el jugador al crosshair",
     "ut_keybinds_spawn_spawn_name": "Spawn / Spawn",
     "ut_keybinds_spawn_spawn_description": "Spawnear unidad seleccionada",
-    "ut_keybinds_editor_pick_name": "Editor / Seleccionar",
-    "ut_keybinds_editor_pick_description": "Seleccionar unidad en el crosshair",
-    "ut_keybinds_editor_spawn_name": "Editor / Spawn",
-    "ut_keybinds_editor_spawn_description": "Spawnear unidad seleccionada en el crosshair",
-    "ut_keybinds_editor_delete_name": "Editor / Borrar",
-    "ut_keybinds_editor_delete_description": "Eliminar unidad spawneada en el crosshair"
+    "ut_keybinds_build_pick_name": "Build / Seleccionar",
+    "ut_keybinds_build_pick_description": "Seleccionar unidad en el crosshair",
+    "ut_keybinds_build_spawn_name": "Build / Spawn",
+    "ut_keybinds_build_spawn_description": "Spawnear unidad seleccionada en el crosshair",
+    "ut_keybinds_build_delete_name": "Build / Borrar",
+    "ut_keybinds_build_delete_description": "Eliminar unidad spawneada en el crosshair"
 }

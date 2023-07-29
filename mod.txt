@@ -2,7 +2,7 @@
     "name": "Ultimate Trainer 6",
     "description": "Ultimate Trainer 6",
     "author": "Pierre Josselin",
-    "version": "6.0.0",
+    "version": "6.1.0",
     "hooks": [
         {
             "hook_id": "core/lib/setups/coresetup",
@@ -67,28 +67,28 @@
             "localized": true
         },
         {
-            "keybind_id": "ut_keybinds_editor_pick",
-            "name": "ut_keybinds_editor_pick_name",
-            "description": "ut_keybinds_editor_pick_description",
-            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/editor/pick.lua",
+            "keybind_id": "ut_keybinds_build_pick",
+            "name": "ut_keybinds_build_pick_name",
+            "description": "ut_keybinds_build_pick_description",
+            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/build/pick.lua",
             "run_in_menu": false,
             "run_in_game": true,
             "localized": true
         },
         {
-            "keybind_id": "ut_keybinds_editor_spawn",
-            "name": "ut_keybinds_editor_spawn_name",
-            "description": "ut_keybinds_editor_spawn_description",
-            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/editor/spawn.lua",
+            "keybind_id": "ut_keybinds_build_spawn",
+            "name": "ut_keybinds_build_spawn_name",
+            "description": "ut_keybinds_build_spawn_description",
+            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/build/spawn.lua",
             "run_in_menu": false,
             "run_in_game": true,
             "localized": true
         },
         {
-            "keybind_id": "ut_keybinds_editor_delete",
-            "name": "ut_keybinds_editor_delete_name",
-            "description": "ut_keybinds_editor_delete_description",
-            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/editor/delete.lua",
+            "keybind_id": "ut_keybinds_build_delete",
+            "name": "ut_keybinds_build_delete_name",
+            "description": "ut_keybinds_build_delete_description",
+            "script_path": "payday-2-ultimate-trainer-6-mod/keybinds/build/delete.lua",
             "run_in_menu": false,
             "run_in_game": true,
             "localized": true

@@ -2,7 +2,7 @@ UT = {}
 
 UT.maxInteger = math.huge
 
-UT.locales = { "en", "de", "es", "fr", "ro", "ru", "uk", "zh" }
+UT.locales = { "en", "de", "es", "fr", "pt-br", "ro", "ru", "uk", "zh", "ko" }
 
 UT.rootPath = nil
 UT.modPath = nil
@@ -13,6 +13,7 @@ UT.initialEnvironment = nil
 UT.enableNoClip = false
 UT.noClipSpeed = nil
 UT.playerUnitAliveEventTriggered = false
+UT.carryVerifyDisabled = false
 
 UT.settings = {}
 UT.backup = {}
@@ -39,32 +40,34 @@ function UT:init()
         UT.vehicles = UT.Utility:jsonDecode(content)
     end
 
-    local packageManagerMetaTable = getmetatable(PackageManager)
-    local packageManagerScriptData = packageManagerMetaTable.script_data
+    if not UT:getSetting("enable-hide-ultimate-trainer-button") then
+        local packageManagerMetaTable = getmetatable(PackageManager)
+        local packageManagerScriptData = packageManagerMetaTable.script_data
 
-    packageManagerMetaTable.script_data = function(self, typeId, pathId, ...)
-        local data = packageManagerScriptData(self, typeId, pathId, ...)
+        packageManagerMetaTable.script_data = function(self, typeId, pathId, ...)
+            local data = packageManagerScriptData(self, typeId, pathId, ...)
 
-        if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
-            table.insert(data[1][2], 1, {
-                name = "ut_open_app",
-                text_id = "ut_menu_open_app_name",
-                help_id = "ut_menu_open_app_description",
-                callback = "ut_open_app",
-                font = "fonts/font_medium_shadow_mf",
-                _meta = "item"
-            })
+            if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
+                table.insert(data[1][2], 1, {
+                    name = "ut_open_app",
+                    text_id = "ut_menu_open_app_name",
+                    help_id = "ut_menu_open_app_description",
+                    callback = "ut_open_app",
+                    font = "fonts/font_medium_shadow_mf",
+                    _meta = "item"
+                })
 
-            table.insert(data[1][2], 2, {
-                name = "ut_divider_open_app",
-                type = "MenuItemDivider",
-                size = 15,
-                no_text = true,
-                _meta = "item"
-            })
+                table.insert(data[1][2], 2, {
+                    name = "ut_divider_open_app",
+                    type = "MenuItemDivider",
+                    size = 15,
+                    no_text = true,
+                    _meta = "item"
+                })
+            end
+
+            return data
         end
-
-        return data
     end
 end
 
@@ -101,8 +104,8 @@ function UT:update()
                 UT:disableAI()
             end
 
-            if UT.Editor.pickedUnit then
-                UT.Editor:drawPickedUnit()
+            if UT.Build.pickedUnit then
+                UT.Build:drawPickedUnit()
             end
         end
     end
@@ -170,7 +173,8 @@ function UT:getGameContext()
         UT.Utility:booleanToInteger(UT.GameUtility:isPlaying()),
         UT.Utility:booleanToInteger(UT.GameUtility:isInCustody()),
         UT.Utility:booleanToInteger(UT.GameUtility:isAtEndGame()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isServer())
+        UT.Utility:booleanToInteger(UT.GameUtility:isServer()),
+        UT.Utility:booleanToInteger(UT.GameUtility:isTeamAIEnabled())
     }
     return UT.Utility:tableJoin(gameContext, ",")
 end
@@ -335,6 +339,15 @@ end
 function UT:disableSentryGunPickup()
     UT.Utility:cloneClass(SentryGunBase)
     function SentryGunBase.on_picked_up() end
+end
+
+function UT:disableCarryVerify()
+    UT.Utility:cloneClass(PlayerManager)
+    function PlayerManager:verify_carry()
+        return true
+    end
+
+    UT.carryVerifyDisabled = true
 end
 
 function UT:getLocale()
@@ -947,6 +960,10 @@ function UT:setNoClip(enabled, speed)
 end
 
 function UT:updateNoClip(speed)
+    if UT.GameUtility:isDriving() then
+        return
+    end
+
     local keyboard = Input:keyboard()
     local speed = keyboard.down(keyboard, UT.GameUtility:idString("left shift")) and speed * 2 or speed
     local x = keyboard.down(keyboard, UT.GameUtility:idString("w")) and 1 or keyboard.down(keyboard, UT.GameUtility:idString("s")) and -1 or 0
@@ -1027,6 +1044,25 @@ function UT:disableAI()
     end
 end
 
+function UT:setRemoveTeamAI(enabled)
+    if enabled then
+        for i = 1, tweak_data.max_players - 1 do
+            managers.groupai:state():remove_one_teamAI()
+        end
+    else
+        managers.groupai:state():fill_criminal_team_with_AI()
+    end
+end
+
+function UT:setSuspendPointOfNoReturnTimer(enabled)
+    UT.Utility:cloneClass(GroupAIStateBase)
+    if enabled then
+        function GroupAIStateBase:_update_point_of_no_return() end
+    else
+        GroupAIStateBase._update_point_of_no_return = GroupAIStateBase.orig._update_point_of_no_return
+    end
+end
+
 function UT:setUnlimitedPagers(enabled)
     tweak_data.player.alarm_pager.bluff_success_chance = { 1, 1, 1, 1, enabled and 1 or 0 }
 end
@@ -1047,12 +1083,39 @@ function UT:setInstantDrilling(enabled)
     end
 end
 
+function UT:setNoCivilianKillPenalty(enabled)
+    UT.Utility:cloneClass(MoneyManager)
+    if enabled then
+        function MoneyManager:civilian_killed() end
+    else
+        MoneyManager.civilian_killed = MoneyManager.orig.civilian_killed
+    end
+end
+
 function UT:getOutOfCustody()
     IngameWaitingForRespawnState.request_player_spawn()
 end
 
 function UT:setPlayerState(state)
     UT.GameUtility:setPlayerState(state)
+end
+
+function UT:teleportToPlayer(id)
+    local name = managers.criminals:character_name_by_panel_id(id)
+
+    if not name then
+        return
+    end
+
+    local unit = managers.criminals:character_unit_by_name(name)
+
+    if not unit then
+        return
+    end
+
+    local position = unit:position()
+    local rotation = unit:rotation()
+    UT.GameUtility:teleportPlayer(position, rotation)
 end
 
 function UT:replenishHealth()
@@ -1112,9 +1175,8 @@ function UT:replenishBodyBags()
 end
 
 function UT:throwBag(bagId)
-    UT.Utility:cloneClass(PlayerManager)
-    function PlayerManager:verify_carry()
-        return true
+    if not UT.carryVerifyDisabled then
+        UT:disableCarryVerify()
     end
 
     local carryData = tweak_data.carry[bagId]
@@ -1130,8 +1192,6 @@ function UT:throwBag(bagId)
     local localPeer = managers.network:session():local_peer()
 
     managers.player:server_drop_carry(bagId, 1, nil, nil, nil, position, rotation, forward, throwDistanceMultiplierUpgradeLevel, nil, localPeer)
-
-    PlayerManager.verify_carry = PlayerManager.orig.verify_carry
 end
 
 function UT:addSpecialEquipment(specialEquipmentId)

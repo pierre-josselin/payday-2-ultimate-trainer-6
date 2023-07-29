@@ -4,24 +4,6 @@ const path = require("path");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
-async function getEnv() {
-    let data;
-    try {
-        data = await fs.readFile(path.join(__dirname, ".env"), { encoding: "utf-8" });
-    } catch (error) {
-        if (error.code === "ENOENT") {
-            throw new Error("The environment file was not found. Did you run the install?");
-        }
-        throw error;
-    }
-
-    return data
-        .split(/\r?\n/)
-        .filter(element => element)
-        .map(element => element.split("="))
-        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
-}
-
 async function install() {
     process.stdout.write("Creating environment file...");
 
@@ -63,33 +45,43 @@ async function install() {
 }
 
 async function run() {
-    const env = await getEnv();
+    let data;
+    try {
+        data = await fs.readFile(path.join(__dirname, ".env"), { encoding: "utf-8" });
+    } catch (error) {
+        if (error.code === "ENOENT") {
+            throw new Error("The environment file was not found.\nDid you run the install script?");
+        }
+        throw error;
+    }
+
+    const env = data
+        .split(/\r?\n/)
+        .filter(element => element)
+        .map(element => element.split("="))
+        .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+
+    if (!env.APP_PORT) {
+        throw new Error("Application port is missing.");
+    }
 
     exec(["cd", `"${path.join(__dirname, "payday-2-ultimate-trainer-6-server")}"`, "&&", "npm", "run", "start"].join(" "));
 
-    const port = env.APP_PORT || 1140;
-    exec(["http-server", "--port", port, "--proxy", `"http://127.0.0.1:${port}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" "));
+    exec(["http-server", "--port", env.APP_PORT, "--proxy", `"http://127.0.0.1:${env.APP_PORT}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" "));
 
-    console.log("Server running...");
-    console.log("Application running...\n");
-    console.log(`http://127.0.0.1:${port}\n`);
-    console.log("Close this window before restarting the game.");
-}
+    console.log("Server & application running...\n");
 
-async function getRemoteURL() {
-    const env = await getEnv();
+    console.log("Application URL:");
 
-    console.log("The app should be accessible from any device on the same network at the following URL:\n");
-
-    const networkInterfaces = Object.values(os.networkInterfaces()).flat(1);
+    let networkInterfaces = Object.values(os.networkInterfaces()).flat(1);
+    networkInterfaces = networkInterfaces.filter(networkInterface => ["IPv4", 4].includes(networkInterface.family));
+    networkInterfaces.sort((a, b) => a.internal < b.internal ? 1 : -1);
 
     for (const networkInterface of networkInterfaces) {
-        const family = typeof networkInterface.family === "string" ? "IPv4" : 4;
-
-        if (!networkInterface.internal && networkInterface.family === family) {
-            console.log(`http://${networkInterface.address}:${env.APP_PORT}`);
-        }
+        console.log(`http://${networkInterface.address}:${env.APP_PORT} (from ${networkInterface.internal ? "this computer" : "local network"})`);
     }
+
+    console.log("\nClose this window before restarting the game.");
 }
 
 async function main() {
@@ -110,10 +102,6 @@ async function main() {
         }
         case "run": {
             await run();
-            break;
-        }
-        case "get-remote-url": {
-            await getRemoteURL();
             break;
         }
         default: {

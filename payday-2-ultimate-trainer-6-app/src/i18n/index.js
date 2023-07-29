@@ -78,6 +78,21 @@ import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
 import zhBags from "@/locales/zh/generated/bags.json";
 import zhSpecialEquipment from "@/locales/zh/generated/special-equipment.json";
 
+import koMain from "@/locales/ko/main.json";
+import koDialogs from "@/locales/ko/dialogs.json";
+import koColors from "@/locales/ko/generated/colors.json";
+import koMasks from "@/locales/ko/generated/masks.json";
+import koMaterials from "@/locales/ko/generated/materials.json";
+import koSteamAchievements from "@/locales/ko/generated/steam-achievements.json";
+import koTextures from "@/locales/ko/generated/textures.json";
+import koTrophies from "@/locales/ko/generated/trophies.json";
+import koWeaponMods from "@/locales/ko/generated/weapon-mods.json";
+import koBags from "@/locales/ko/generated/bags.json";
+import koSpecialEquipment from "@/locales/ko/generated/special-equipment.json";
+
+import ptBRMain from "@/locales/pt-br/main.json";
+import ptBRDialogs from "@/locales/pt-br/dialogs.json";
+
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
@@ -170,6 +185,23 @@ export default createI18n({
             weapon_mods: zhWeaponMods,
             bags: zhBags,
             special_equipment: zhSpecialEquipment
+        },
+        ko: {
+            main: koMain,
+            dialogs: koDialogs,
+            colors: koColors,
+            masks: koMasks,
+            materials: koMaterials,
+            steam_achievements: koSteamAchievements,
+            textures: koTextures,
+            trophies: koTrophies,
+            weapon_mods: koWeaponMods,
+            bags: koBags,
+            special_equipment: koSpecialEquipment
+        },
+        "pt-br": {
+            main: ptBRMain,
+            dialogs: ptBRDialogs
         }
     }
 });

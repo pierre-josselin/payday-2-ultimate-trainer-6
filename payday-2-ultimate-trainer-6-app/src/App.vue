@@ -9,7 +9,7 @@ import VueMarkdown from "vue-markdown-render";
 import { useMainStore } from "@/stores/main";
 import { useSettingsStore } from "@/stores/settings";
 
-import changeLogPath from "../../changelog.md";
+import changeLogPath from "../../CHANGELOG.md";
 import creditsPath from "../../credits.md";
 
 import cerulean from "bootswatch/dist/cerulean/bootstrap.min.css?raw";
@@ -285,8 +285,18 @@ export default {
 </template>
 
 <style>
+html,
+body,
+#app {
+    min-height: 100%;
+}
+
 * {
     outline: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .tooltip-inner {
@@ -294,11 +304,7 @@ export default {
 }
 
 .toast {
-    --bs-toast-max-width: unset;
-}
-
-.popover {
-    --bs-popover-max-width: 300px;
+    --bs-toast-max-width: 200px !important;
 }
 
 .disabled {

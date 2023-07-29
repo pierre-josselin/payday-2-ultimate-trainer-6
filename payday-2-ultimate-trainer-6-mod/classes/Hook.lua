@@ -30,6 +30,20 @@ function UT.Hook:menuManager()
     function MenuCallbackHandler:ut_open_app()
         UT:openApp()
     end
+
+    if UT:getSetting("enable-hide-mod-list") then
+        function MenuCallbackHandler:is_modded_client()
+            return false
+        end
+
+        function MenuCallbackHandler:is_not_modded_client()
+            return true
+        end
+
+        function MenuCallbackHandler:build_mods_list()
+            return {}
+        end
+    end
 end
 
 function UT.Hook:skillTreeManager()

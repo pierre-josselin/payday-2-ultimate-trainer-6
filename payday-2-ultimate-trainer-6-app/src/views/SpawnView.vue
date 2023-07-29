@@ -37,14 +37,19 @@ import blueEagleGagePackageImagePath from "@/assets/images/gage-packages/blue-ea
 import purpleSnakeGagePackageImagePath from "@/assets/images/gage-packages/purple-snake.jpg";
 
 import ammoBagEquipmentImagePath from "@/assets/images/equipment/ammo-bag.png";
-import doctorBagEnemyImagePath from "@/assets/images/equipment/doctor-bag.png";
-import firstAidKitEnemyImagePath from "@/assets/images/equipment/first-aid-kit.png";
-import ordnanceBagEnemyImagePath from "@/assets/images/equipment/ordnance-bag.png";
-import bodyBagCaseEnemyImagePath from "@/assets/images/equipment/body-bag-case.png";
-import ecmJammerEnemyImagePath from "@/assets/images/equipment/ecm-jammer.png";
-import tripMineEnemyImagePath from "@/assets/images/equipment/trip-mine.png";
-import sentryGunEnemyImagePath from "@/assets/images/equipment/sentry-gun.png";
-import suppressedSentryGunEnemyImagePath from "@/assets/images/equipment/suppressed-sentry-gun.png";
+import doctorBagEquipmentImagePath from "@/assets/images/equipment/doctor-bag.png";
+import firstAidKitEquipmentImagePath from "@/assets/images/equipment/first-aid-kit.png";
+import ordnanceBagEquipmentImagePath from "@/assets/images/equipment/ordnance-bag.png";
+import bodyBagCaseEquipmentImagePath from "@/assets/images/equipment/body-bag-case.png";
+import ecmJammerEquipmentImagePath from "@/assets/images/equipment/ecm-jammer.png";
+import tripMineEquipmentImagePath from "@/assets/images/equipment/trip-mine.png";
+import sentryGunEquipmentImagePath from "@/assets/images/equipment/sentry-gun.png";
+import suppressedSentryGunEquipmentImagePath from "@/assets/images/equipment/suppressed-sentry-gun.png";
+
+import fragGrenadeExplosionImagePath from "@/assets/images/explosions/frag-grenade.png";
+import viperGrenadeExplosionImagePath from "@/assets/images/explosions/viper-grenade.png";
+import molotovCocktailExplosionImagePath from "@/assets/images/explosions/molotov-cocktail.png";
+import x1ZapperExplosionImagePath from "@/assets/images/explosions/x1-zapper.png";
 
 export default {
     components: {
@@ -191,35 +196,58 @@ export default {
                         },
                         {
                             id: "doctor-bag",
-                            imagePath: doctorBagEnemyImagePath
+                            imagePath: doctorBagEquipmentImagePath
                         },
                         {
                             id: "first-aid-kit",
-                            imagePath: firstAidKitEnemyImagePath
+                            imagePath: firstAidKitEquipmentImagePath
                         },
                         {
                             id: "ordnance-bag",
-                            imagePath: ordnanceBagEnemyImagePath
+                            imagePath: ordnanceBagEquipmentImagePath
                         },
                         {
                             id: "body-bag-case",
-                            imagePath: bodyBagCaseEnemyImagePath
+                            imagePath: bodyBagCaseEquipmentImagePath
                         },
                         {
                             id: "ecm-jammer",
-                            imagePath: ecmJammerEnemyImagePath
+                            imagePath: ecmJammerEquipmentImagePath
                         },
                         {
                             id: "trip-mine",
-                            imagePath: tripMineEnemyImagePath
+                            imagePath: tripMineEquipmentImagePath
                         },
                         {
                             id: "sentry-gun",
-                            imagePath: sentryGunEnemyImagePath
+                            imagePath: sentryGunEquipmentImagePath
                         },
                         {
                             id: "suppressed-sentry-gun",
-                            imagePath: suppressedSentryGunEnemyImagePath
+                            imagePath: suppressedSentryGunEquipmentImagePath
+                        }
+                    ]
+                },
+                {
+                    id: "explosions",
+                    elementId: "category-explosions",
+                    label: "main.explosions",
+                    units: [
+                        {
+                            id: "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade",
+                            imagePath: fragGrenadeExplosionImagePath
+                        },
+                        {
+                            id: "units/pd2_dlc_pxp1/weapons/wpn_fps_poison_gas_grenade/wpn_third_poison_gas_grenade",
+                            imagePath: viperGrenadeExplosionImagePath
+                        },
+                        {
+                            id: "units/pd2_dlc_bbq/weapons/molotov_cocktail/wpn_molotov_third",
+                            imagePath: molotovCocktailExplosionImagePath
+                        },
+                        {
+                            id: "units/pd2_dlc_sawp/weapons/wpn_launcher_electric/wpn_launcher_electric",
+                            imagePath: x1ZapperExplosionImagePath
                         }
                     ]
                 }
@@ -297,7 +325,7 @@ export default {
                         </div>
                         <div class="row row-cols-2  row-cols-sm-3  row-cols-md-4 row-cols-lg-5">
                             <div v-for="(unit, index) in category.units" :key="index" class="col mt-3" role="button" @click="setId(unit.id)">
-                                <div :style="`background-image: url(${unit.imagePath})`" class="ratio ratio-1x1 border border-3 rounded shadow unit-image" :class="{ 'border-dark': unit.id !== spawnStore.id, 'border-success active': unit.id === spawnStore.id, 'equipment-image': category.id === 'equipment' }" />
+                                <div :style="`background-image: url(${unit.imagePath})`" class="ratio ratio-1x1 border border-3 rounded shadow unit-image" :class="{ 'border-dark': unit.id !== spawnStore.id, 'border-success active': unit.id === spawnStore.id, 'equipment-image': category.id === 'equipment', 'explosion-image': category.id === 'explosions' }" />
                             </div>
                         </div>
                     </div>
@@ -322,8 +350,16 @@ export default {
     filter: none;
 }
 
-.equipment-image {
+.equipment-image,
+.explosion-image {
     background-color: #2d3436;
+}
+
+.equipment-image {
     background-size: 75%;
+}
+
+.explosion-image {
+    background-size: 100%;
 }
 </style>

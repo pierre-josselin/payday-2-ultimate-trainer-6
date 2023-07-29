@@ -45,7 +45,6 @@
     "drive": "Вести машину",
     "driving": "Керування",
     "early_morning": "Ранній ранок",
-    "editor": "Редактор",
     "enable_skill_point_hack": "Увімкнути злам очок навичок",
     "end_game": "Закінчити гру",
     "enemies": "Вороги",
@@ -177,5 +176,15 @@
     "vehicles_to_load": "Транспортні засоби для завантаження",
     "weapon_mods": "Збройові модифікації",
     "world_speed": "Швидкість світу",
-    "x_ray": "Рентген"
+    "x_ray": "Рентген",
+    "hide_my_mod_list": "Hide my mod list",
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build",
+    "carry_multiple_bags": "Carry multiple bags",
+    "beta": "Beta",
+    "suspend_point_of_no_return_timer": "Suspend point of no return timer",
+    "no_civilian_kill_penalty": "No civilian kill penalty",
+    "remove_team_ai": "Remove team AI",
+    "explosions": "Explosions",
+    "teleport_to_player": "Teleport to player"
 }

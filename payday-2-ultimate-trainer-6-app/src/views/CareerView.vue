@@ -33,14 +33,21 @@ export default {
             perkPoints: null,
             blackMarketCategory: "masks",
             selectAllBlackMarketItems: false,
-            blackMarketItemsSearch: null,
+            blackMarketItemSearch: null,
             selectedBlackMarketItems: [],
             selectAllTrophies: false,
-            trophiesSearch: null,
+            trophySearch: null,
             selectedTrophies: [],
             selectAllSteamAchievements: false,
-            steamAchievementsSearch: null,
-            selectedSteamAchievements: []
+            steamAchievementSearch: null,
+            selectedSteamAchievements: [],
+            blackMarketCategoryLocaleKeys: {
+                colors: "colors",
+                masks: "masks",
+                materials: "materials",
+                textures: "textures",
+                weaponMods: "weapon_mods"
+            }
         };
     },
     computed: {
@@ -49,31 +56,49 @@ export default {
                 return null;
             }
 
-            if (!this.blackMarketItemsSearch) {
+            if (!this.blackMarketItemSearch) {
                 return this.blackMarketItems[this.blackMarketCategory];
             }
 
-            return Object.entries(this.$i18n.messages.en[this.blackMarketCategory])
-                .filter(([itemId, itemName]) => itemName.toLowerCase().includes(this.blackMarketItemsSearch))
-                .map(([itemId]) => itemId);
+            const filteredBlackMarketItems = [];
+            for (const blackMarketItemId of this.blackMarketItems[this.blackMarketCategory]) {
+                const blackMarketItemName = this.$t(`${this.blackMarketCategoryLocaleKeys[this.blackMarketCategory]}.${blackMarketItemId}`);
+                if (blackMarketItemName.toLowerCase().includes(this.blackMarketItemSearch.toLowerCase())) {
+                    filteredBlackMarketItems.push(blackMarketItemId);
+                }
+            }
+
+            return filteredBlackMarketItems;
         },
         filteredTrophies() {
-            if (!this.trophiesSearch) {
+            if (!this.trophySearch) {
                 return this.trophies;
             }
 
-            return Object.entries(this.$i18n.messages.en.trophies)
-                .filter(([trophyId, trophyName]) => trophyName.toLowerCase().includes(this.trophiesSearch))
-                .map(([trophyId]) => trophyId);
+            const filteredTrophies = [];
+            for (const trophyId of this.trophies) {
+                const trophyName = this.$t(`trophies.${trophyId}`);
+                if (trophyName.toLowerCase().includes(this.trophySearch.toLowerCase())) {
+                    filteredTrophies.push(trophyId);
+                }
+            }
+
+            return filteredTrophies;
         },
         filteredSteamAchievements() {
-            if (!this.steamAchievementsSearch) {
+            if (!this.steamAchievementSearch) {
                 return this.steamAchievements;
             }
 
-            return Object.entries(this.$i18n.messages.en.steam_achievements)
-                .filter(([steamAchievementId, steamAchievementName]) => steamAchievementName.toLowerCase().includes(this.steamAchievementsSearch))
-                .map(([steamAchievementId]) => steamAchievementId);
+            const filteredSteamAchievements = [];
+            for (const steamAchievementId of this.steamAchievements) {
+                const steamAchievementName = this.$t(`steam_achievements.${steamAchievementId}`);
+                if (steamAchievementName.toLowerCase().includes(this.steamAchievementSearch.toLowerCase())) {
+                    filteredSteamAchievements.push(steamAchievementId);
+                }
+            }
+
+            return filteredSteamAchievements;
         }
     },
     watch: {
@@ -428,7 +453,7 @@ export default {
                                                                 <input v-model="selectAllBlackMarketItems" class="form-check-input" type="checkbox" role="button" @change="toggleAllBlackMarketItems">
                                                             </th>
                                                             <th class="bg-dark">
-                                                                <input v-model="blackMarketItemsSearch" type="search" class="form-control form-control-sm">
+                                                                <input v-model="blackMarketItemSearch" type="search" class="form-control form-control-sm">
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -466,7 +491,7 @@ export default {
                                                             <input v-model="selectAllTrophies" class="form-check-input" type="checkbox" role="button" @change="toggleAllTrophies">
                                                         </th>
                                                         <th class="bg-dark">
-                                                            <input v-model="trophiesSearch" type="search" class="form-control form-control-sm">
+                                                            <input v-model="trophySearch" type="search" class="form-control form-control-sm">
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -495,7 +520,7 @@ export default {
                                                         <th style="width: 40px;" class="bg-dark text-center align-middle">
                                                             <input v-model="selectAllSteamAchievements" class="form-check-input" type="checkbox" role="button" @change="toggleAllSteamAchievements">
                                                         </th>
-                                                        <th class="bg-dark"><input v-model="steamAchievementsSearch" type="search" class="form-control form-control-sm"></th>
+                                                        <th class="bg-dark"><input v-model="steamAchievementSearch" type="search" class="form-control form-control-sm"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

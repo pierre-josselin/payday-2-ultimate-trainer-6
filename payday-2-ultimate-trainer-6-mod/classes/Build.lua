@@ -1,9 +1,9 @@
-UT.Editor = {}
+UT.Build = {}
 
-UT.Editor.pickedUnit = nil
-UT.Editor.spawnedUnits = {}
+UT.Build.pickedUnit = nil
+UT.Build.spawnedUnits = {}
 
-function UT.Editor:pickUnit()
+function UT.Build:pickUnit()
     local crosshairRay = UT.GameUtility:getCrosshairRay()
 
     if not crosshairRay or not crosshairRay.unit then
@@ -16,11 +16,11 @@ function UT.Editor:pickUnit()
         return
     end
 
-    UT.Editor.pickedUnit = unit
+    UT.Build.pickedUnit = unit
 end
 
-function UT.Editor:spawnUnit()
-    if not UT.Editor.pickedUnit then
+function UT.Build:spawnUnit()
+    if not UT.Build.pickedUnit then
         return
     end
 
@@ -33,17 +33,17 @@ function UT.Editor:spawnUnit()
     local position = crosshairRay.position
     local rotation = UT.GameUtility:getPlayerCameraYawRotation()
 
-    local unitId = UT.Editor.pickedUnit:name()
+    local unitId = UT.Build.pickedUnit:name()
     local unit = UT.GameUtility:spawnUnit(unitId, position, rotation)
 
     if not unit then
         return
     end
 
-    UT.Editor.spawnedUnits[UT.Utility:toString(unit)] = unit
+    UT.Build.spawnedUnits[UT.Utility:toString(unit)] = unit
 end
 
-function UT.Editor:deleteUnit()
+function UT.Build:deleteUnit()
     local crosshairRay = UT.GameUtility:getCrosshairRay()
 
     if not crosshairRay or not crosshairRay.unit then
@@ -53,16 +53,16 @@ function UT.Editor:deleteUnit()
     local unit = crosshairRay.unit
     local unitKey = UT.Utility:toString(unit)
 
-    if not UT.Editor.spawnedUnits[unitKey] then
+    if not UT.Build.spawnedUnits[unitKey] then
         return
     end
 
-    UT.Editor.spawnedUnits[unitKey] = nil
+    UT.Build.spawnedUnits[unitKey] = nil
     UT.GameUtility:deleteUnit(unit)
 end
 
-function UT.Editor:drawPickedUnit()
-    local unit = UT.Editor.pickedUnit
+function UT.Build:drawPickedUnit()
+    local unit = UT.Build.pickedUnit
 
     if not UT.GameUtility:isUnitAlive(unit) then
         return

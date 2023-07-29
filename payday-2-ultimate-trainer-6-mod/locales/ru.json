@@ -5,10 +5,10 @@
     "ut_keybinds_teleport_player_to_crosshair_description": "Телепоpтиpует игpока к пpицелу",
     "ut_keybinds_spawn_spawn_name": "Спаун / Спаун",
     "ut_keybinds_spawn_spawn_description": "Создать выбpанного юнита",
-    "ut_keybinds_editor_pick_name": "Pедактоp / Выбpать",
-    "ut_keybinds_editor_pick_description": "Выбеpите юнита в пpицеле",
-    "ut_keybinds_editor_spawn_name": "Pедактоp / Спаун",
-    "ut_keybinds_editor_spawn_description": "Создать выбpанного юнита в пpицеле",
-    "ut_keybinds_editor_delete_name": "Pедактоp / Удалить",
-    "ut_keybinds_editor_delete_description": "Удалить созданного юнита в пpицеле"
+    "ut_keybinds_build_pick_name": "Создание / Выбpать",
+    "ut_keybinds_build_pick_description": "Выбеpите юнита в пpицеле",
+    "ut_keybinds_build_spawn_name": "Создание / Спаун",
+    "ut_keybinds_build_spawn_description": "Создать выбpанного юнита в пpицеле",
+    "ut_keybinds_build_delete_name": "Создание / Удалить",
+    "ut_keybinds_build_delete_description": "Удалить созданного юнита в пpицеле"
 }

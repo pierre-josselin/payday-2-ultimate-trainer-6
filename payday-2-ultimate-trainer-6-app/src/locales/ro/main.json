@@ -45,7 +45,6 @@
     "drive": "Conduce",
     "driving": "Conducere",
     "early_morning": "Dimineața devreme",
-    "editor": "Editor",
     "enable_skill_point_hack": "Activati cheat-ul punctelor de abilitate",
     "end_game": "Terminați jocul",
     "enemies": "Inamici",
@@ -177,5 +176,15 @@
     "vehicles_to_load": "Vehicule de încărcat",
     "weapon_mods": "Modificări armă",
     "world_speed": "Viteza lumii",
-    "x_ray": "Raze-X"
+    "x_ray": "Raze-X",
+    "hide_my_mod_list": "Hide my mod list",
+    "hide_ultimate_trainer_button_from_menu": "Hide Ultimate Trainer button from menu",
+    "build": "Build",
+    "carry_multiple_bags": "Carry multiple bags",
+    "beta": "Beta",
+    "suspend_point_of_no_return_timer": "Suspend point of no return timer",
+    "no_civilian_kill_penalty": "No civilian kill penalty",
+    "remove_team_ai": "Remove team AI",
+    "explosions": "Explosions",
+    "teleport_to_player": "Teleport to player"
 }

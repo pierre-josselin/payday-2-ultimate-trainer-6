@@ -1,3 +1,5 @@
+This document is also available in: [Chinese](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/README.zh.md)
+
 # PAYDAY 2 - Ultimate Trainer 6
 
 <img src="https://i.imgur.com/DSVL8hU.png" width="650">
@@ -58,6 +60,8 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Run the `install` file
     > :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
 
+> :information_source: Some users encounter an error message when launching the game saying that node was not found. Unfortunately, we do not yet have enough feedback from users to propose a generic solution. If this happens to you, make sure you have restarted your computer and, if the problem persists, open [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new).
+
 ### Usage
 
 - Start the game
@@ -70,9 +74,8 @@ You can access the application from any web browser on the same network.
 <img src="https://i.imgur.com/mQTnyQk.png" width="650"><br>
 *Icons by [Freepik](https://www.freepik.com)*
 
-- Open the `payday-2-ultimate-trainer-6-main` from your game mods folder
-- Run the `get-remote-url` file
-> :information_source: If the `get-remote-url` file does not work, open a command prompt from the current directory and type the command `node .\index.js get-remote-url`.
+- Start the game
+- Locate the local network application URL in the console
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
 
@@ -92,23 +95,29 @@ You can access the application from any web browser on the same network.
 
 Some features work with keybinds, which you will need to assign in "Options/Mod Keybinds".
 
+> :exclamation: NO KEYBIND IS DEFINED BY DEFAULT, IT'S YOURS TO ASSIGN THEM!<br>
+> The keys mentioned below are just a suggestion.
+
 | Name                         | Description                           | Recommended key |
 |------------------------------|---------------------------------------|-----------------|
 | Teleport player to crosshair | Teleports the player to the crosshair | N               |
 | Spawn / Spawn                | Spawn selected unit                   | 5               |
-| Editor / Pick                | Pick the unit at crosshair            | F6              |
-| Editor / Spawn               | Spawn picked unit to crosshair        | F7              |
-| Editor / Delete              | Delete spawned unit at crosshair      | F8              |
+| Build / Pick                 | Pick the unit at crosshair            | F6              |
+| Build / Spawn                | Spawn picked unit to crosshair        | F7              |
+| Build / Delete               | Delete spawned unit at crosshair      | F8              |
 
 ## Supported languages
 
 - **English** (Pierre Josselin)
-- **French** (Pierre Josselin)
-- **Romanian** (GamingResources)
-- **Chinese** (Art3misFowl, ppt)
-- **Russian** (thejuves)
-- **Spanish** (uziel2021)
 - **German** (Alexander100305)
+- **Spanish** (uziel2021)
+- **French** (Pierre Josselin)
+- **Portuguese (Brasil)** (Webzsz)
+- **Romanian** (GamingResources)
+- **Russian** (thejuves)
+- **Ukrainian** (S0ya13)
+- **Chinese** (Art3misFowl, ppt)
+- **Korean** (LOUIS522)
 
 #### Add a language
 
@@ -135,14 +144,14 @@ You can then publish the updated files via a pull request or more simply by crea
 > :warning: If you would like to contribute to the project, we strongly recommend you to first create [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new) to discuss what you would like to do.
 
 1. Fork this repository
-2. Create a branch for your feature
+2. **Switch branch to development branch (6.X.X)**
 3. Commit your changes
-4. Push commits to your branch
+4. Push the commits
 5. Open a pull request
 
 ## Change Log
 
-[Access the change log](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/changelog.md)
+[Access the change log](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/CHANGELOG.md)
 
 ## Credits
 
