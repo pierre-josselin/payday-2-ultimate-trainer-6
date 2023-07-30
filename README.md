@@ -127,7 +127,7 @@ If you wish to contribute to the project by adding a new language, you can do so
 - [payday-2-ultimate-trainer-6-app/src/locales/en/dialogs.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-app/src/locales/en/dialogs.json)
 - [main/payday-2-ultimate-trainer-6-mod/locales/en.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-mod/locales/en.json)
 
-> :warning: Please only convert values, not keys, and keep capitals.<br>
+> :warning: Please only translate values, not keys, and keep capitals.<br>
 
 Example:
 
