@@ -55,7 +55,7 @@
     "equipment": "设备",
     "faster_answer": "快速回答对讲机",
     "fire_rate_multiplier": "射速倍数",
-    "foggy_night": "雾夜",
+    "foggy_night": "大雾夜",
     "forklift": "叉车",
     "gage_packages": "盖奇包裹",
     "game": "游戏",
@@ -98,7 +98,7 @@
     "materials": "材料",
     "mid_day": "中午",
     "mission": "任务",
-    "misty_night": "厚雾夜",
+    "misty_night": "雾夜",
     "money": "钱",
     "morning": "早晨",
     "move_speed_multiplier": "移动速度倍数",
@@ -182,9 +182,9 @@
     "weapon_mods": "武器修改",
     "world_speed": "世界速度",
     "x_ray": "透视",
-    "suspend_point_of_no_return_timer": "Suspend point of no return timer",
-    "no_civilian_kill_penalty": "No civilian kill penalty",
-    "remove_team_ai": "Remove team AI",
-    "explosions": "Explosions",
-    "teleport_to_player": "Teleport to player"
+    "suspend_point_of_no_return_timer": "暂停撤离倒计时",
+    "no_civilian_kill_penalty": "没有平民击杀惩罚",
+    "remove_team_ai": "移除团队中的AI",
+    "explosions": "爆炸",
+    "teleport_to_player": "传送至玩家处"
 }
