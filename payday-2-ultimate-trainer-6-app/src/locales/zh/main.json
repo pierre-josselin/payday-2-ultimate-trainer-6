@@ -185,6 +185,6 @@
     "suspend_point_of_no_return_timer": "暂停撤离倒计时",
     "no_civilian_kill_penalty": "没有平民击杀惩罚",
     "remove_team_ai": "移除团队中的AI",
-    "explosions": "爆炸物",
+    "explosions": "投掷物",
     "teleport_to_player": "传送至玩家处"
 }
