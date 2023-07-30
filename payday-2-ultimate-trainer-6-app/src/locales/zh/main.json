@@ -52,7 +52,7 @@
     "end_game": "结束游戏",
     "enemies": "敌人们",
     "environment": "天气",
-    "equipment": "设备",
+    "equipment": "随身装备",
     "faster_answer": "快速回答对讲机",
     "fire_rate_multiplier": "射速倍数",
     "foggy_night": "大雾夜",
@@ -185,6 +185,6 @@
     "suspend_point_of_no_return_timer": "暂停撤离倒计时",
     "no_civilian_kill_penalty": "没有平民击杀惩罚",
     "remove_team_ai": "移除团队中的AI",
-    "explosions": "爆炸",
+    "explosions": "爆炸物",
     "teleport_to_player": "传送至玩家处"
 }
