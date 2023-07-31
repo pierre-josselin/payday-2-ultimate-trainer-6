@@ -1,5 +1,7 @@
 # Change Log
 
+## [6.2.0] - Unreleased
+
 ## [6.1.0] - 2023-07-29
 
 ### Added
