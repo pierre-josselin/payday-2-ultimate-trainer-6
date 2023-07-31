@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**nattsuiy**
+
+- Japanese locale
+
 **Webzsz**
 
 - Portuguese (Brasil) locale

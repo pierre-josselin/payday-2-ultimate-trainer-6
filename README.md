@@ -117,6 +117,7 @@ Some features work with keybinds, which you will need to assign in "Options/Mod 
 - **Russian** (thejuves)
 - **Ukrainian** (S0ya13)
 - **Chinese** (Art3misFowl, ppt)
+- **Japanese** (nattsuiy)
 - **Korean** (LOUIS522)
 
 #### Add a language

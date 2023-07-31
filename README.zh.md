@@ -116,6 +116,7 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 - **Russian** (thejuves)
 - **Ukrainian** (S0ya13)
 - **Chinese** (Art3misFowl, ppt)
+- **Japanese** (nattsuiy)
 - **Korean** (LOUIS522)
 
 #### 添加更多本地化语言
