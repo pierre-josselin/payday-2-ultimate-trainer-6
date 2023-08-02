@@ -4,14 +4,23 @@ const ws = require("ws");
 
 class WebSocketServer {
     handlers = {
-        call: (data) => {
+        call: (ws, data) => {
             this.callManager.addCall(data);
         },
-        settings: (data) => {
+        settings: (ws, data) => {
             this.settingsManager.setSettings(data);
             this.settingsManager.saveSettings();
+
+            this.server.clients.forEach((client) => {
+                if (client !== ws) {
+                    client.send(JSON.stringify({
+                        type: "settings",
+                        data: this.settingsManager.getSettings()
+                    }));
+                }
+            });
         },
-        "request-game-crash-log": (data, ws) => {
+        "request-game-crash-log": (ws, data) => {
             let gameCrashLog = false;
             try {
                 gameCrashLog = fs.readFileSync(path.join(process.env.LOCALAPPDATA, "PAYDAY 2", "crash.txt"), { encoding: "utf8" });
@@ -45,7 +54,7 @@ class WebSocketServer {
                     return;
                 }
 
-                handler(data, ws);
+                handler(ws, data);
             });
 
             ws.send(JSON.stringify({
