@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-xl bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <span class="navbar-brand">Ultimate Trainer 6</span>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-supported-content">
