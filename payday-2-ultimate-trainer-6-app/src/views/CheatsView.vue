@@ -328,7 +328,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-2">
-                                <input v-model="settingsStore.moveSpeedMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setMoveSpeedMultiplier">
+                                <input v-model="settingsStore.moveSpeedMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" max="999" step="1" @change="setMoveSpeedMultiplier">
                             </div>
                         </div>
                     </div>
@@ -341,7 +341,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-2">
-                                <input v-model="settingsStore.throwDistanceMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setThrowDistanceMultiplier">
+                                <input v-model="settingsStore.throwDistanceMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" max="999" step="1" @change="setThrowDistanceMultiplier">
                             </div>
                         </div>
                     </div>
@@ -354,7 +354,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-2">
-                                <input v-model="settingsStore.fireRateMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setFireRateMultiplier">
+                                <input v-model="settingsStore.fireRateMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" max="999" step="1" @change="setFireRateMultiplier">
                             </div>
                         </div>
                     </div>
@@ -367,7 +367,7 @@ export default {
                                 </div>
                             </div>
                             <div class="col-2">
-                                <input v-model="settingsStore.damageMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" step="1" @change="setDamageMultiplier">
+                                <input v-model="settingsStore.damageMultiplier" type="number" class="form-control form-control-sm border-0 shadow-none bg-transparent text-reset text-end" min="1" max="999" step="1" @change="setDamageMultiplier">
                             </div>
                         </div>
                     </div>
