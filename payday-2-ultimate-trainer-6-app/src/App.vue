@@ -81,16 +81,17 @@ export default {
             credits: null
         };
     },
-    computed: {
-        theme() {
-            return this.settingsStore.getSetting("theme") || "darkly";
-        }
-    },
     created() {
         this.mainStore = useMainStore();
         this.settingsStore = useSettingsStore();
 
-        this.$watch("theme", (theme) => {
+        this.settingsStore.subscribe();
+
+        this.$watch("settingsStore.locale", (locale) => {
+            this.$i18n.locale = locale;
+        });
+
+        this.$watch("settingsStore.theme", (theme) => {
             this.bootswatchElement.innerHTML = themes[theme];
         });
 
@@ -109,7 +110,7 @@ export default {
     },
     mounted() {
         this.bootswatchElement = document.createElement("style");
-        this.bootswatchElement.innerHTML = themes[this.theme];
+        this.bootswatchElement.innerHTML = themes[this.settingsStore.theme];
         document.head.appendChild(this.bootswatchElement);
 
         const sentToastElement = document.getElementById("sent-toast");

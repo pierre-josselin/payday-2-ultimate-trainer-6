@@ -24,9 +24,6 @@ export default {
         };
     },
     computed: {
-        noSlowMotionEnabled() {
-            return this.settingsStore.getSetting("enable-no-slow-motion");
-        },
         filteredBags() {
             if (!this.bagSearch) {
                 const bags = [...this.bags];
@@ -490,7 +487,7 @@ export default {
                             </div>
                         </div>
                         <div id="slow-motion-tab" class="tab-pane pt-4" tabindex="0">
-                            <fieldset :disabled="noSlowMotionEnabled && !missionStore.enableSlowMotion">
+                            <fieldset :disabled="settingsStore.enableNoSlowMotion && !missionStore.enableSlowMotion">
                                 <div class="form-check form-switch mb-3">
                                     <input id="enable-slow-motion" v-model="missionStore.enableSlowMotion" class="form-check-input" type="checkbox" @change="setSlowMotion">
                                     <label for="enable-slow-motion" class="form-check-label">{{ $t("main.slow_motion") }}</label>
