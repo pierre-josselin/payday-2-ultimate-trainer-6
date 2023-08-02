@@ -119,6 +119,19 @@ export function createWebSocket(options) {
                 setTimeout(() => mainStore.gameCrashLog = message.data, 500);
                 break;
             }
+            case "store": {
+                switch (message.data.name) {
+                    case "mission": {
+                        missionStore.setState(message.data.state);
+                        break;
+                    }
+                    case "spawn": {
+                        spawnStore.setState(message.data.state);
+                        break;
+                    }
+                }
+                break;
+            }
         }
     });
 }

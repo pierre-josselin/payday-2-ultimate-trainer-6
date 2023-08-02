@@ -31,6 +31,16 @@ class WebSocketServer {
                 type: "game-crash-log",
                 data: gameCrashLog
             }));
+        },
+        store: (ws, data) => {
+            this.server.clients.forEach((client) => {
+                if (client !== ws) {
+                    client.send(JSON.stringify({
+                        type: "store",
+                        data
+                    }));
+                }
+            });
         }
     };
 

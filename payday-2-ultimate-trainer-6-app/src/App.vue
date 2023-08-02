@@ -8,6 +8,8 @@ import VueMarkdown from "vue-markdown-render";
 
 import { useMainStore } from "@/stores/main";
 import { useSettingsStore } from "@/stores/settings";
+import { useMissionStore } from "@/stores/mission";
+import { useSpawnStore } from "@/stores/spawn";
 
 import changeLogPath from "../../CHANGELOG.md";
 import creditsPath from "../../credits.md";
@@ -84,8 +86,12 @@ export default {
     created() {
         this.mainStore = useMainStore();
         this.settingsStore = useSettingsStore();
+        this.missionStore = useMissionStore();
+        this.spawnStore = useSpawnStore();
 
         this.settingsStore.subscribe();
+        this.missionStore.subscribe();
+        this.spawnStore.subscribe();
 
         this.$watch("settingsStore.locale", (locale) => {
             this.$i18n.locale = locale;

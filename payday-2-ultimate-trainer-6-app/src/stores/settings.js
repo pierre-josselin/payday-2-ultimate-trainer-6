@@ -109,7 +109,7 @@ export const useSettingsStore = defineStore("settings", {
                 ws.send(JSON.stringify(data));
 
                 callStore.addCall(["UT:requestSettings"]);
-            })
+            });
         },
         getSettings() {
             const settings = {};
