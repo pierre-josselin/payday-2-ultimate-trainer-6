@@ -108,9 +108,9 @@ import koSpecialEquipment from "@/locales/ko/generated/special-equipment.json";
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
-    silentTranslationWarn: true,
-    silentFallbackWarn: true,
-    warnHtmlInMessage: "off",
+    missingWarn: false,
+    fallbackWarn: false,
+    warnHtmlMessage: false,
     messages: {
         en: {
             main: enMain,
