@@ -4,6 +4,8 @@
 
 ### Added
 
+- Sync between app instances (use the app from multiple devices at the same time)
+- Japanese locale
 - Test script
 
 ## [6.1.0] - 2023-07-29
