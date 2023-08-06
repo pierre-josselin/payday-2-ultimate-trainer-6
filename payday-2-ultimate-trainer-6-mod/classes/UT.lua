@@ -119,6 +119,10 @@ function UT:runServer()
     os.execute("start /B node \"" .. UT.rootPath:gsub("/", "\\") .. "\\index.js\" run")
 end
 
+function UT:runTest()
+    os.execute("start /B node \"" .. UT.rootPath:gsub("/", "\\") .. "\\index.js\" test & pause >nul")
+end
+
 function UT:requestCalls()
     local url = UT_SERVER_URL .. "/calls"
     local callback = function(data)

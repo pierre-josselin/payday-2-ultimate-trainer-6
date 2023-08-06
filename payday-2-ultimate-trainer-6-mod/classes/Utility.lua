@@ -89,8 +89,12 @@ function UT.Utility:httpRequest(url, callback)
     dohttpreq(url, callback)
 end
 
+function UT.Utility:fileExists(filePath)
+    return io.file_is_readable(filePath)
+end
+
 function UT.Utility:readFile(filePath)
-    if not io.file_is_readable(filePath) then
+    if not UT.Utility:fileExists(filePath) then
         return false
     end
     local file = io.open(filePath, "r")
@@ -110,6 +114,10 @@ function UT.Utility:writeFile(filePath, content, mode)
     file:write(content)
     file:close()
     return true
+end
+
+function UT.Utility:removeFile(filePath)
+    return os.remove(filePath) == true
 end
 
 function UT.Utility:getClock()

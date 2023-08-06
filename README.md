@@ -86,6 +86,38 @@ You can access the application from any web browser on the same network.
 - Close the game and the console
 - Follow the [installation instructions](#installation) again (you can skip **SuperBLT** and **Node.js** installation)
 
+#### Troubleshooting
+
+This mod is used by many people without any problem.<br>If it doesn't work for you, most likely you didn't follow the installation instructions properly.
+
+- Have you installed Node.js 18?
+- Did you restart your computer after installing Node.js?
+- Did you install the project by running the `install` script?
+- No error occurred while running the `install` script?
+
+If you can answer *yes* to all the previous points, here are solutions to the most frequently encountered problems:
+
+- **The *Ultimate Trainer* button does not appear in the game's main menu**
+
+    You've probably not extracted the project in the right place.
+
+    You need to extract the `payday-2-ultimate-trainer-6-main` folder to the game `mods` folder.<br>
+    The `payday-2-ultimate-trainer-6-main` folder must directly contain the project files such as `README` or `LICENSE` without going through subfolders.<br>
+    Also, if the `mods` folder does not exist in the game folder, you probably did not install **SuperBLT** correctly.
+
+- **The application page shows an error**
+
+    Run a test:
+
+    - Close the game and any open console
+    - Create an empty `test.txt` file (lowercase) inside of `payday-2-ultimate-trainer-6-main`
+    - Run the game (it will probably get stuck on a black screen)
+    - A console will open in the background after a while, use *ALT* + *TAB* to access it
+
+    Once the test is complete, copy the entire contents of the console and paste it somewhere we can see it, for example by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
+
+If you still can't solve your problem, don't hesitate to create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) by detailing your problem as much as possible, with screenshots it's even better.
+
 ## Supported languages
 
 - **English** (Pierre Josselin)
@@ -118,11 +150,11 @@ Example:
 }
 ```
 
-You can then publish the updated files via a pull request or more simply by creating a [new issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new).
+You can then publish the updated files via a pull request or more simply by creating an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues).
 
 ## Contributing
 
-> :warning: If you would like to contribute to the project, we strongly recommend you to first create [an issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new) to discuss what you would like to do.
+> :warning: If you would like to contribute to the project, we strongly recommend you to first create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) to discuss what you would like to do.
 
 1. Fork this repository
 2. **Switch to development branch (6.X.X)**

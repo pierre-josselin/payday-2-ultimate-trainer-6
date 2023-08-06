@@ -121,7 +121,13 @@ end
 function UT.Hook:bootupState()
     UT.Utility:cloneClass(BootupState)
     function BootupState:setup()
-        if not UT_DEV then
+        if UT.Utility:fileExists(UT.rootPath:gsub("/", "\\") .. "\\test.txt") then
+            UT.Utility:removeFile(UT.rootPath:gsub("/", "\\") .. "\\test.txt")
+            UT:runTest()
+        elseif UT.Utility:fileExists(UT.rootPath:gsub("/", "\\") .. "\\test.txt.txt") then
+            UT.Utility:removeFile(UT.rootPath:gsub("/", "\\") .. "\\test.txt.txt")
+            UT:runTest()
+        elseif not UT_DEV then
             UT:runServer()
         end
         BootupState.orig.setup(self)

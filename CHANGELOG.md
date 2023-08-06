@@ -2,6 +2,10 @@
 
 ## [6.2.0] - Unreleased
 
+### Added
+
+- Test script
+
 ## [6.1.0] - 2023-07-29
 
 ### Added
