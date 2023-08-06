@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**thejuves**, **chromKa**
+
+- Russian locale
+
 **nattsuiy**
 
 - Japanese locale
@@ -30,10 +34,6 @@
 
 - Spanish locale
 - Help to add items to game menus
-
-**thejuves**
-
-- Russian locale
 
 **Art3misFowl**, **ppt**
 
