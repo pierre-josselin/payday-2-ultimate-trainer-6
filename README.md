@@ -69,6 +69,8 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 - Start the game
 - Click on *Ultimate Trainer* in the game menu to open the app
 
+> :information_source: If something doesn't work, see the [troubleshooting section](#troubleshooting).
+
 #### Access the app from another device (laptop, phone, tablet...)
 
 You can access the application from any web browser on the same network.
@@ -86,7 +88,7 @@ You can access the application from any web browser on the same network.
 - Close the game and the console
 - Follow the [installation instructions](#installation) again (you can skip **SuperBLT** and **Node.js** installation)
 
-#### Troubleshooting
+### Troubleshooting
 
 This mod is used by many people without any problem.<br>If it doesn't work for you, most likely you didn't follow the installation instructions properly.
 
