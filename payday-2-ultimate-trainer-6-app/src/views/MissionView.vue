@@ -408,7 +408,9 @@ export default {
                                     </div>
                                     <div class="form-check form-switch mt-3">
                                         <input id="enable-carry-stacker" v-model="missionStore.enableCarryStacker" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setCarryStacker">
-                                        <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }} ({{ $t("main.beta").toLowerCase() }})</label>
+                                        <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }} ({{ $t("main.beta").toLowerCase() }})
+                                            <AntiCheatDetectedIcon class="ms-3" />
+                                        </label>
                                     </div>
                                     <div class="form-check form-switch mt-3">
                                         <input id="enable-no-civilian-kill-penalty" v-model="missionStore.enableNoCivilianKillPenalty" class="form-check-input" type="checkbox" @change="setNoCivilianKillPenalty">
