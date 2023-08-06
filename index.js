@@ -67,7 +67,7 @@ async function install() {
 async function run() {
     console.log("--- RUN ---\n");
 
-    const env = getEnv();
+    const env = await getEnv();
 
     exec(["cd", `"${path.join(__dirname, "payday-2-ultimate-trainer-6-server")}"`, "&&", "npm", "run", "start"].join(" "));
 
