@@ -99,14 +99,6 @@ This mod is used by many people without any problem.<br>If it doesn't work for y
 
 If you can answer *yes* to all the previous points, here are solutions to the most frequently encountered problems:
 
-- **The *Ultimate Trainer* button does not appear in the game's main menu**
-
-    You've probably not extracted the project in the right place.
-
-    You need to extract the `payday-2-ultimate-trainer-6-main` folder to the game `mods` folder.<br>
-    The `payday-2-ultimate-trainer-6-main` folder must directly contain the project files such as `README` or `LICENSE` without going through subfolders.<br>
-    Also, if the `mods` folder does not exist in the game folder, you probably did not install **SuperBLT** correctly.
-
 - **The application page shows an error**
 
     Run a test:
@@ -119,6 +111,14 @@ If you can answer *yes* to all the previous points, here are solutions to the mo
     Once the test is complete, copy the entire contents of the console and paste it somewhere we can see it, for example by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
 
     > :warning: Remember to close the console after saving the test results.
+
+- **The *Ultimate Trainer* button does not appear in the game's main menu**
+
+    You've probably not extracted the project in the right place.
+
+    You need to extract the `payday-2-ultimate-trainer-6-main` folder to the game `mods` folder.<br>
+    The `payday-2-ultimate-trainer-6-main` folder must directly contain the project files such as `README` or `LICENSE` without going through subfolders.<br>
+    Also, if the `mods` folder does not exist in the game folder, you probably did not install **SuperBLT** correctly.
 
 If you still can't solve your problem, don't hesitate to create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) by detailing your problem as much as possible, with screenshots it's even better.
 
