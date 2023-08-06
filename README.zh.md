@@ -155,7 +155,7 @@ Example:
 
 ## 制作人员
 
-[Access the credits](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/credits.md)
+[Access the credits](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/CREDITS.md)
 
 ## License
 

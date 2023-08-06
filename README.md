@@ -153,7 +153,7 @@ You can then publish the updated files via a pull request or more simply by crea
 
 ## Credits
 
-[Access the credits](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/credits.md)
+[Access the credits](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/CREDITS.md)
 
 ## License
 

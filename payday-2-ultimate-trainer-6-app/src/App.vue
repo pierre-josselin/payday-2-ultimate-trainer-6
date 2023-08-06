@@ -12,7 +12,7 @@ import { useMissionStore } from "@/stores/mission";
 import { useSpawnStore } from "@/stores/spawn";
 
 import changeLogPath from "../../CHANGELOG.md";
-import creditsPath from "../../credits.md";
+import creditsPath from "../../CREDITS.md";
 
 import cerulean from "bootswatch/dist/cerulean/bootstrap.min.css?raw";
 import cosmo from "bootswatch/dist/cosmo/bootstrap.min.css?raw";
