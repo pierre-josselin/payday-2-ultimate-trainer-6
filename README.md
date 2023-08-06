@@ -52,7 +52,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
     - Install it leaving all default options
     - **Restart your computer**
     > :warning: Restarting your computer is required for the Node.js path to be properly configured in Windows. Until you restart, the mod probably won't work.
-- Install [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6)
+- <a name="install-ultimate-trainer-6">Install [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6)</a>
     - Remove any previous version Ultimate Trainer
     - Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
     - Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
@@ -66,6 +66,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 
 - Start the game
 - Click on *Ultimate Trainer* in the game menu to open the app
+- Follow the [*Install Ultimate Trainer 6* section](#install-ultimate-trainer-6) again
 
 #### Access the app from another device (laptop, phone, tablet...)
 
@@ -85,11 +86,7 @@ You can access the application from any web browser on the same network.
 
 - Close the game and the console
 - Remove the previous versions of **Ultimate Trainer 6**
-- Download the latest version of [**Ultimate Trainer 6**](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6) ([direct download](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/archive/refs/heads/main.zip))
-- Open the `payday-2-ultimate-trainer-6-main.zip` archive and extract the `payday-2-ultimate-trainer-6-main` folder to the game mods folder
-- Open `payday-2-ultimate-trainer-6-main` from your game mods folder
-- Run the `install` file
-> :information_source: If the `install` file does not work, open a command prompt from the current directory and type the command `node .\index.js install`.
+- 
 
 ### Keybinds
 
