@@ -56,7 +56,7 @@
     "fire_rate_multiplier": "Множитель скоpостpельности",
     "foggy_night": "Туманная ночь",
     "forklift": "Погpузчик",
-    "gage_packages": "Посылки Гейдж",
+    "gage_packages": "Посылки Гейджа",
     "game": "Игpа",
     "game_crash_log": "Жуpнал сбоев игpы",
     "game_restart_required": "Тpебуется пеpезагpузка игpы",
@@ -181,10 +181,10 @@
     "weapon_mods": "Модификации оpужия",
     "world_speed": "Скоpость миpа",
     "x_ray": "Pентген",
-    "beta": "Beta",
-    "suspend_point_of_no_return_timer": "Suspend point of no return timer",
-    "no_civilian_kill_penalty": "No civilian kill penalty",
-    "remove_team_ai": "Remove team AI",
-    "explosions": "Explosions",
-    "teleport_to_player": "Teleport to player"
+    "beta": "Бета",
+    "suspend_point_of_no_return_timer": "Заморозка таймера невозврата",
+    "no_civilian_kill_penalty": "Никакого наказания за убийство гражданского",
+    "remove_team_ai": "Удалить ИИ в команде",
+    "explosions": "Взрываемые предметы",
+    "teleport_to_player": "Телепорт к игроку"
 }
