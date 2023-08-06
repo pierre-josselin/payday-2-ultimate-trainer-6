@@ -116,6 +116,8 @@ If you can answer *yes* to all the previous points, here are solutions to the mo
 
     Once the test is complete, copy the entire contents of the console and paste it somewhere we can see it, for example by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
 
+    > :warning: Remember to close the console after saving the test results.
+
 If you still can't solve your problem, don't hesitate to create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) by detailing your problem as much as possible, with screenshots it's even better.
 
 ## Supported languages
