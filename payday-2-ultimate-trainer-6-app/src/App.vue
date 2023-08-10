@@ -6,6 +6,7 @@ import Modal from "bootstrap/js/dist/modal";
 import Toast from "bootstrap/js/dist/toast";
 import VueMarkdown from "vue-markdown-render";
 
+import { useAppStore } from "@/stores/app";
 import { useMainStore } from "@/stores/main";
 import { useSettingsStore } from "@/stores/settings";
 import { useMissionStore } from "@/stores/mission";
@@ -84,6 +85,7 @@ export default {
         };
     },
     created() {
+        this.appStore = useAppStore();
         this.mainStore = useMainStore();
         this.settingsStore = useSettingsStore();
         this.missionStore = useMissionStore();
@@ -101,12 +103,8 @@ export default {
             this.bootswatchElement.innerHTML = themes[theme];
         });
 
-        this.$watch("mainStore.lastCallAcknowledgmentTime", (lastCallAcknowledgmentTime) => {
-            if (lastCallAcknowledgmentTime !== null) {
-                if (!this.firstCallAcknowledgmentIgnored) {
-                    this.firstCallAcknowledgmentIgnored = true;
-                    return;
-                }
+        this.$watch("mainStore.lastCallsReceivedTime", (lastCallsReceivedTime) => {
+            if (lastCallsReceivedTime !== null) {
                 this.sentToastInstance.show()
             }
         });
@@ -262,15 +260,15 @@ export default {
                     </div>
                     <p class="fs-5">
                         {{ $t("main.game_crash_log") }}
-                        <button class="btn btn-link btn-sm ms-2" @click="mainStore.requestGameCrashLog">
+                        <button class="btn btn-link btn-sm ms-2" @click="appStore.requestGameCrashLog">
                             <FontAwesomeIcon icon="fa-solid fa-arrows-rotate" />
                         </button>
                     </p>
-                    <div v-if="mainStore.gameCrashLog === false" class="alert alert-danger mb-0">{{ $t("dialogs.game_crash_log_recovery_failed") }}</div>
-                    <div v-else-if="!mainStore.gameCrashLog" class="d-flex justify-content-center my-4">
+                    <div v-if="appStore.gameCrashLog === false" class="alert alert-danger mb-0">{{ $t("dialogs.game_crash_log_recovery_failed") }}</div>
+                    <div v-else-if="!appStore.gameCrashLog" class="d-flex justify-content-center my-4">
                         <div class="spinner-border" />
                     </div>
-                    <textarea v-else v-model="mainStore.gameCrashLog" class="form-control" rows="20" readonly />
+                    <textarea v-else v-model="appStore.gameCrashLog" class="form-control" rows="20" readonly />
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("main.close") }}</button>

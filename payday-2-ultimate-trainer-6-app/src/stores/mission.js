@@ -32,16 +32,13 @@ export const useMissionStore = defineStore("mission", {
                 }
 
                 const ws = getWebSocket();
-
-                const data = {
+                ws.send(JSON.stringify({
                     type: "store",
                     data: {
                         name: "mission",
                         state: this.$state
                     }
-                };
-
-                ws.send(JSON.stringify(data));
+                }));
             });
         },
         setState(state) {

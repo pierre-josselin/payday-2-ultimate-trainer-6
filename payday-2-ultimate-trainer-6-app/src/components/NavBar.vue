@@ -1,6 +1,7 @@
 <script>
 import { RouterLink } from "vue-router";
 
+import { useAppStore } from "@/stores/app";
 import { useMainStore } from "@/stores/main";
 
 import { closeWebSocket } from "@/web-socket";
@@ -12,6 +13,7 @@ export default {
         ClientIcon
     },
     created() {
+        this.appStore = useAppStore();
         this.mainStore = useMainStore();
 
         this.closeWebSocket = closeWebSocket;
@@ -68,7 +70,7 @@ export default {
                 <a class="btn btn-primary btn-sm ms-3" :href="REPOSITORY_URL" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
                 </a>
-                <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#report-a-bug-modal" @click="mainStore.requestGameCrashLog">
+                <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#report-a-bug-modal" @click="appStore.requestGameCrashLog">
                     <FontAwesomeIcon icon="fa-solid fa-bug" />
                 </button>
                 <RouterLink :to="{ name: 'settings' }" class="btn btn-primary btn-sm ms-3">

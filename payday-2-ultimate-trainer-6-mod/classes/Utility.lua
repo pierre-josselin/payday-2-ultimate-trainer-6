@@ -57,6 +57,22 @@ function UT.Utility:tableJoin(_table, separator, startIndex, endIndex)
     return table.concat(_table, separator, startIndex, endIndex)
 end
 
+function UT.Utility:tableCompare(table1, table2)
+    for key, value in pairs(table1) do
+        if table2[key] ~= value then
+            return false
+        end
+    end
+
+    for key, value in pairs(table2) do
+        if table1[key] ~= value then
+            return false
+        end
+    end
+
+    return true
+end
+
 function UT.Utility:removeLastElementFromTable(_table)
     return table.remove(_table)
 end
@@ -67,6 +83,14 @@ end
 
 function UT.Utility:jsonDecode(value)
     return json.decode(value)
+end
+
+function UT.Utility:base64Encode(value)
+    return base64.encode(value)
+end
+
+function UT.Utility:base64Decode(value)
+    return base64.decode(value)
 end
 
 function UT.Utility:buildQueryString(query)

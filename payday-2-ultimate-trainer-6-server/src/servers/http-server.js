@@ -1,43 +1,78 @@
 const http = require("http");
 const url = require("url");
 
-class HttpServer {
-    lastCallRequestTime = -1;
+module.exports = class HttpServer {
+    lastCallRequestTime = null;
 
     routes = {
-        "/calls": {
+        "/get-calls": {
             method: "GET",
             handler: (request, response) => {
                 const calls = this.callManager.getCalls();
                 const body = JSON.stringify(calls);
 
+                this.lastCallRequestTime = Date.now();
+
                 response.setHeader("Content-Type", "application/json");
                 response.writeHead(200);
                 response.end(body);
 
-                if (calls.length) {
-                    this.messageManager.sendMessage({
-                        type: "call-acknowledge",
-                        data: Date.now()
-                    });
+                if (calls.length > 0) {
+                    this.mainStore.state.lastCallsReceivedTime = this.lastCallRequestTime;
+                    this.webSocketServer.sendMessageToAllClients("store", { name: "main", state: this.mainStore.state });
                 }
-            }
-        },
-        "/settings": {
-            method: "GET",
-            handler: (request, response) => {
-                const settings = this.settingsManager.getSettings();
-                const body = JSON.stringify(settings);
-
-                response.setHeader("Content-Type", "application/json");
-                response.writeHead(200);
-                response.end(body);
             }
         },
         "/send-message": {
             method: "GET",
             handler: (request, response) => {
-                this.messageManager.sendMessage(request.query);
+                const body = request.query.body;
+                const message = JSON.parse(atob(body));
+                const { type, data } = message;
+
+                switch (type) {
+                    case "game-context": {
+                        if (this.mainStore.state.isInHeist && !data.isInHeist) {
+                            this.mainStore.state.loadedVehicles = [];
+                            this.missionStore.reset();
+                            this.spawnStore.reset();
+
+                            this.webSocketServer.sendMessageToAllClients("store", { name: "mission", state: this.missionStore.state });
+                            this.webSocketServer.sendMessageToAllClients("store", { name: "spawn", state: this.spawnStore.state });
+                        }
+
+                        this.mainStore.state.isOffline = false;
+                        this.mainStore.state.isInBootup = data.isInBootup;
+                        this.mainStore.state.isInMainMenu = data.isInMainMenu;
+                        this.mainStore.state.isInGame = data.isInGame;
+                        this.mainStore.state.isInHeist = data.isInHeist;
+                        this.mainStore.state.isPlaying = data.isPlaying;
+                        this.mainStore.state.isInCustody = data.isInCustody;
+                        this.mainStore.state.isAtEndGame = data.isAtEndGame;
+                        this.mainStore.state.isServer = data.isServer;
+                        this.mainStore.state.isTeamAIEnabled = data.isTeamAIEnabled;
+
+                        this.webSocketServer.sendMessageToAllClients("store", { name: "main", state: this.mainStore.state });
+                        break;
+                    }
+                    case "game-paused": {
+                        this.mainStore.state.isGamePaused = data;
+
+                        this.webSocketServer.sendMessageToAllClients("store", { name: "main", state: this.mainStore.state });
+                        break;
+                    }
+                    case "loaded-vehicles": {
+                        this.mainStore.state.loadedVehicles = data.loadedVehicles;
+
+                        this.webSocketServer.sendMessageToAllClients("store", { name: "main", state: this.mainStore.state });
+                        break;
+                    }
+                    default: {
+                        response.writeHead(400);
+                        response.end();
+                        return;
+                    }
+                }
 
                 response.writeHead(204);
                 response.end();
@@ -45,32 +80,44 @@ class HttpServer {
         }
     };
 
-    constructor(port, callManager, settingsManager, messageManager) {
+    constructor(port, webSocketServer, managers, stores) {
         this.port = port;
-        this.callManager = callManager;
-        this.settingsManager = settingsManager;
-        this.messageManager = messageManager;
+        this.webSocketServer = webSocketServer;
+
+        this.callManager = managers.callManager;
+
+        this.mainStore = stores.mainStore;
+        this.missionStore = stores.missionStore;
+        this.spawnStore = stores.spawnStore;
 
         this.httpRequestListener = this.httpRequestListener.bind(this);
         this.server = http.createServer(this.httpRequestListener);
 
         setInterval(() => {
-            if (this.lastCallRequestTime !== -1 && Date.now() - this.lastCallRequestTime > 1500) {
-                this.messageManager.sendMessage({
-                    type: "game-offline",
-                    data: true
-                });
-                this.lastCallRequestTime = -1;
+            if (this.lastCallRequestTime !== null && Date.now() - this.lastCallRequestTime > 1500) {
+                if (!this.mainStore.state.isGamePaused) {
+                    this.mainStore.state.isOffline = true;
+                    this.mainStore.state.isInBootup = false;
+                    this.mainStore.state.isInMainMenu = false;
+                    this.mainStore.state.isInGame = false;
+                    this.mainStore.state.isInHeist = false;
+                    this.mainStore.state.isPlaying = false;
+                    this.mainStore.state.isInCustody = false;
+                    this.mainStore.state.isAtEndGame = false;
+
+                    this.webSocketServer.sendMessageToAllClients("store", { name: "main", state: this.mainStore.state });
+                    this.callManager.addCall(["UT:sendGameContext"]);
+                }
+                this.lastCallRequestTime = null;
             }
-        }, 1000);
+        }, 100);
     }
 
     httpRequestListener(request, response) {
-        const parsedURL = url.parse(request.url, true);
-        request.path = parsedURL.pathname;
-        request.query = parsedURL.query;
+        const { pathname: path, query } = url.parse(request.url, true);
+        request.query = query;
 
-        const route = this.routes[request.path];
+        const route = this.routes[path];
 
         if (!route) {
             response.writeHead(404);
@@ -78,22 +125,16 @@ class HttpServer {
             return;
         }
 
-        if (request.method !== route.method) {
+        if (request.method.toUpperCase() !== route.method.toUpperCase()) {
             response.writeHead(405);
             response.end();
             return;
         }
 
-        if (request.path) {
-            this.lastCallRequestTime = Date.now();
-        }
-
         route.handler(request, response);
-    };
+    }
 
     run() {
         this.server.listen(this.port);
     }
 }
-
-module.exports = HttpServer;

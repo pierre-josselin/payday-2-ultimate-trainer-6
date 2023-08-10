@@ -73,7 +73,7 @@ end
 
 function UT:update()
     local gameContext = UT:getGameContext()
-    if gameContext ~= UT.gameContext then
+    if not UT.gameContext or not UT.Utility:tableCompare(gameContext, UT.gameContext) then
         UT.gameContext = gameContext
         UT:sendGameContext()
     end
@@ -124,7 +124,7 @@ function UT:runTest()
 end
 
 function UT:requestCalls()
-    local url = UT_SERVER_URL .. "/calls"
+    local url = UT_SERVER_URL .. "/get-calls"
     local callback = function(data)
         if not data then
             return
@@ -142,21 +142,6 @@ function UT:requestCalls()
     UT.lastCallClock = UT.Utility:getClock()
 end
 
-function UT:requestSettings()
-    local url = UT_SERVER_URL .. "/settings"
-    local callback = function(data)
-        if not data then
-            return
-        end
-        local settings = UT.Utility:jsonDecode(data)
-        if not settings then
-            return
-        end
-        UT.settings = settings
-    end
-    UT.Utility:httpRequest(url, callback)
-end
-
 function UT:loadSettings()
     local content = UT.Utility:readFile(UT.rootPath .. "/settings.json")
     if content then
@@ -169,39 +154,32 @@ function UT:getSetting(name)
 end
 
 function UT:getGameContext()
-    local gameContext = {
-        UT.Utility:booleanToInteger(UT.GameUtility:isInBootup()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isInMainMenu()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isInGame()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isInHeist()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isPlaying()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isInCustody()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isAtEndGame()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isServer()),
-        UT.Utility:booleanToInteger(UT.GameUtility:isTeamAIEnabled())
+    return {
+        isInBootup = UT.GameUtility:isInBootup(),
+        isInMainMenu = UT.GameUtility:isInMainMenu(),
+        isInGame = UT.GameUtility:isInGame(),
+        isInHeist = UT.GameUtility:isInHeist(),
+        isPlaying = UT.GameUtility:isPlaying(),
+        isInCustody = UT.GameUtility:isInCustody(),
+        isAtEndGame = UT.GameUtility:isAtEndGame(),
+        isServer = UT.GameUtility:isServer(),
+        isTeamAIEnabled = UT.GameUtility:isTeamAIEnabled()
     }
-    return UT.Utility:tableJoin(gameContext, ",")
 end
 
-function UT:sendMessage(message)
-    local queryString = UT.Utility:buildQueryString(message)
+function UT:sendMessage(type, data)
+    local message = { type = type, data = data }
+    local body = UT.Utility:base64Encode(UT.Utility:jsonEncode(message))
+    local queryString = UT.Utility:buildQueryString({ body = body })
     local url = UT_SERVER_URL .. "/send-message?" .. queryString
     UT.Utility:httpRequest(url)
 end
 
 function UT:sendGameContext()
-    local message = {
-        type = "game-context",
-        data = UT:getGameContext()
-    }
-    UT:sendMessage(message)
+    UT:sendMessage("game-context", UT:getGameContext())
 end
 
 function UT:sendLoadedVehicles()
-    if not UT.GameUtility:isInGame() then
-        return
-    end
-
     local loadedVehicles = {}
 
     for id, unitId in pairs(UT.vehicles) do
@@ -214,19 +192,11 @@ function UT:sendLoadedVehicles()
         return
     end
 
-    local message = {
-        type = "loaded-vehicles",
-        data = UT.Utility:tableJoin(loadedVehicles, ",")
-    }
-    UT:sendMessage(message)
+    UT:sendMessage("loaded-vehicles", loadedVehicles)
 end
 
 function UT:sendGamePaused(value)
-    local message = {
-        type = "game-paused",
-        data = value
-    }
-    UT:sendMessage(message)
+    UT:sendMessage("game-paused", value)
 end
 
 function UT:gameEnterEvent()

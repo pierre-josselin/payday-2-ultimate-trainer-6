@@ -1,4 +1,4 @@
-class CallManager {
+module.exports = class CallManager {
     calls = [];
 
     addCall(call) {
@@ -6,10 +6,6 @@ class CallManager {
     }
 
     getCalls() {
-        const calls = this.calls;
-        this.calls = [];
-        return calls;
+        return this.calls.splice(0, this.calls.length);
     }
 }
-
-module.exports = CallManager;

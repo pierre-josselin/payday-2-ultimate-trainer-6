@@ -20,16 +20,13 @@ export const useSpawnStore = defineStore("spawn", {
                 }
 
                 const ws = getWebSocket();
-
-                const data = {
+                ws.send(JSON.stringify({
                     type: "store",
                     data: {
                         name: "spawn",
                         state: this.$state
                     }
-                };
-
-                ws.send(JSON.stringify(data));
+                }));
             });
         },
         setState(state) {

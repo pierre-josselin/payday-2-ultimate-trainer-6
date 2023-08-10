@@ -1,7 +1,6 @@
-import { defineStore } from "pinia";
-
-export const useMainStore = defineStore("main", {
-    state: () => ({
+module.exports = class MainStore {
+    state = {};
+    defaultState = {
         isOffline: true,
         isInBootup: false,
         isInMainMenu: false,
@@ -15,14 +14,17 @@ export const useMainStore = defineStore("main", {
         isGamePaused: false,
         loadedVehicles: [],
         lastCallsReceivedTime: null
-    }),
-    actions: {
-        setState(state) {
-            for (const [name, value] of Object.entries(state)) {
-                if (name in this.$state) {
-                    this.$state[name] = value;
-                }
-            }
-        }
+    };
+
+    constructor() {
+        this.reset();
     }
-});
+
+    reset() {
+        this.state = { ...this.defaultState };
+    }
+
+    setState(state) {
+        this.state = { ...state };
+    }
+};

@@ -6,12 +6,10 @@ export const useCallStore = defineStore("calls", {
     actions: {
         addCall(call) {
             const ws = getWebSocket();
-
-            const data = {
+            ws.send(JSON.stringify({
                 type: "call",
                 data: call
-            };
-            ws.send(JSON.stringify(data));
+            }));
         }
     }
 });

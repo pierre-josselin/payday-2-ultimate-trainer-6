@@ -6,6 +6,8 @@ end
 
 local modPath = rootPath .. "/payday-2-ultimate-trainer-6-mod"
 
+dofile(modPath .. "/libraries/base64.lua")
+
 dofile(modPath .. "/classes/UT.lua")
 
 dofile(modPath .. "/classes/Build.lua")
