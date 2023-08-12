@@ -142,6 +142,9 @@ async function test() {
 }
 
 async function main() {
+    // Prevent window from closing
+    setInterval(() => { }, 60000);
+
     console.log("PAYDAY 2 - Ultimate Trainer 6\n");
 
     if (process.platform !== "win32") {
