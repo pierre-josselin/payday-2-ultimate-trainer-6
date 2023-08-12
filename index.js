@@ -132,7 +132,7 @@ async function test() {
         await new Promise(resolve => setTimeout(resolve, 5000));
 
         if (result.error) {
-            throw new Error(result);
+            throw new Error(`${result.stdout}\n${result.stderr}`);
         }
 
         process.stdout.write(" OK\n");
