@@ -4,7 +4,8 @@
 
 ### Added
 
-- Sync between app instances (use the app from multiple devices at the same time)
+- Custom keybinds
+- Sync between app instances
 - Japanese locale
 - Test script
 
