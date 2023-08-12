@@ -14,6 +14,7 @@ import MissionView from "@/views/MissionView.vue";
 import DrivingView from "@/views/DrivingView.vue";
 import SpawnView from "@/views/SpawnView.vue";
 import GameView from "@/views/GameView.vue";
+import KeybindsView from "@/views/KeybindsView.vue";
 import SettingsView from "@/views/SettingsView.vue";
 
 const router = createRouter({
@@ -69,6 +70,11 @@ const router = createRouter({
             path: "/game",
             name: "game",
             component: GameView
+        },
+        {
+            path: "/keybinds",
+            name: "keybinds",
+            component: KeybindsView
         }
     ]
 });

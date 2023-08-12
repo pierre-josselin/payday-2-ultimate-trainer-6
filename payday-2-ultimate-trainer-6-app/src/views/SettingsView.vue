@@ -11,8 +11,6 @@ export default {
     },
     data() {
         return {
-            locale: null,
-            theme: null,
             themes: [
                 "darkly",
                 "cyborg",
@@ -39,31 +37,11 @@ export default {
                 "united",
                 "yeti",
                 "zephyr"
-            ],
-            enableHideUltimateTrainerButton: false
+            ]
         };
     },
     created() {
         this.settingsStore = useSettingsStore();
-
-        this.locale = this.settingsStore.getSetting("locale") || this.$i18n.locale;
-        this.theme = this.settingsStore.getSetting("theme") || "darkly";
-        this.enableHideUltimateTrainerButton = this.settingsStore.getSetting("enable-hide-ultimate-trainer-button");
-    },
-    methods: {
-        setLocale() {
-            this.$i18n.locale = this.locale;
-            this.settingsStore.setSetting("locale", this.locale);
-            this.settingsStore.saveSettings();
-        },
-        setTheme() {
-            this.settingsStore.setSetting("theme", this.theme);
-            this.settingsStore.saveSettings();
-        },
-        setHideUltimateTrainerButton() {
-            this.settingsStore.setSetting("enable-hide-ultimate-trainer-button", this.enableHideUltimateTrainerButton);
-            this.settingsStore.saveSettings();
-        }
     }
 }
 </script>
@@ -80,7 +58,7 @@ export default {
             <div class="card-body p-4">
                 <div class="mb-3">
                     <label for="locale" class="form-label">{{ $t("main.language") }}</label>
-                    <select id="locale" v-model="locale" class="form-select" @change="setLocale">
+                    <select id="locale" v-model="settingsStore.locale" class="form-select">
                         <option value="en">English</option>
                         <option value="de">Deutsch</option>
                         <option value="es">Español</option>
@@ -90,17 +68,18 @@ export default {
                         <option value="ru">Русский</option>
                         <option value="uk">Українська</option>
                         <option value="zh">中文</option>
+                        <option value="ja">日本語</option>
                         <option value="ko">한국어</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="theme" class="form-label">{{ $t("main.app_theme") }}</label>
-                    <select id="theme" v-model="theme" class="form-select" @change="setTheme">
-                        <option v-for="_theme in themes" :key="_theme" :value="_theme">{{ _theme.capitalize() }}</option>
+                    <select id="theme" v-model="settingsStore.theme" class="form-select">
+                        <option v-for="theme in themes" :key="theme" :value="theme">{{ theme.capitalize() }}</option>
                     </select>
                 </div>
                 <div class="form-check form-switch">
-                    <input id="enable-hide-ultimate-trainer-button" v-model="enableHideUltimateTrainerButton" class="form-check-input" type="checkbox" @change="setHideUltimateTrainerButton">
+                    <input id="enable-hide-ultimate-trainer-button" v-model="settingsStore.enableHideUltimateTrainerButton" class="form-check-input" type="checkbox">
                     <label for="enable-hide-ultimate-trainer-button" class="form-check-label">{{ $t("main.hide_ultimate_trainer_button_from_menu") }}
                         <GameRestartRequiredIcon class="ms-3" />
                     </label>

@@ -1,5 +1,14 @@
 # Change Log
 
+## [6.2.0] - 2023-08-12
+
+### Added
+
+- Custom keybinds
+- Sync between app instances
+- Japanese locale
+- Test script
+
 ## [6.1.0] - 2023-07-29
 
 ### Added

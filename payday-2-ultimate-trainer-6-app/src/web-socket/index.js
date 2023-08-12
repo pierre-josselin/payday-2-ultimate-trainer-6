@@ -1,5 +1,6 @@
 import { ref } from "vue";
 
+import { useAppStore } from "@/stores/app";
 import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
@@ -14,6 +15,7 @@ export function getWebSocket() {
 }
 
 export function createWebSocket(options) {
+    const appStore = useAppStore();
     const mainStore = useMainStore();
     const callStore = useCallStore();
     const settingsStore = useSettingsStore();
@@ -26,17 +28,9 @@ export function createWebSocket(options) {
     ws.addEventListener("open", () => {
         connected.value = true;
         options.connectionErrorCallback = null;
-        callStore.addCall(["UT:sendGameContext"]);
-        callStore.addCall(["UT:sendLoadedVehicles"]);
 
-        // Wait for settings
         setTimeout(() => {
             options.router.push({ name: "home" });
-
-            const locale = settingsStore.getSetting("locale");
-            if (locale && options.i18n.locale !== locale) {
-                options.i18n.locale = locale;
-            }
         }, 500);
     });
 
@@ -58,70 +52,33 @@ export function createWebSocket(options) {
     });
 
     ws.addEventListener("message", (messageEvent) => {
-        const rawMessage = messageEvent.data;
-        const message = JSON.parse(rawMessage);
+        const { type, data } = JSON.parse(messageEvent.data);
 
-        if (!message || !message.type || !("data" in message)) {
-            return;
-        }
-
-        switch (message.type) {
-            case "game-context": {
-                const gameContext = message.data.split(",");
-
-                const isInHeist = Boolean(parseInt(gameContext[3]));
-                if (mainStore.isInHeist && !isInHeist) {
-                    missionStore.$reset();
-                    spawnStore.$reset();
-                    mainStore.loadedVehicles = [];
+        switch (type) {
+            case "store": {
+                const { name, state } = data;
+                switch (name) {
+                    case "main": {
+                        mainStore.setState(state);
+                        break;
+                    }
+                    case "mission": {
+                        missionStore.setState(state);
+                        break;
+                    }
+                    case "settings": {
+                        settingsStore.setState(state);
+                        break;
+                    }
+                    case "spawn": {
+                        spawnStore.setState(state);
+                        break;
+                    }
                 }
-
-                mainStore.isOffline = false;
-                mainStore.isInBootup = Boolean(parseInt(gameContext[0]));
-                mainStore.isInMainMenu = Boolean(parseInt(gameContext[1]));
-                mainStore.isInGame = Boolean(parseInt(gameContext[2]));
-                mainStore.isInHeist = Boolean(parseInt(gameContext[3]));
-                mainStore.isPlaying = Boolean(parseInt(gameContext[4]));
-                mainStore.isInCustody = Boolean(parseInt(gameContext[5]));
-                mainStore.isAtEndGame = Boolean(parseInt(gameContext[6]));
-                mainStore.isServer = Boolean(parseInt(gameContext[7]));
-                mainStore.isTeamAIEnabled = Boolean(parseInt(gameContext[8]));
-                break;
-            }
-            case "game-paused": {
-                mainStore.isGamePaused = message.data
-                break;
-            }
-            case "loaded-vehicles": {
-                mainStore.loadedVehicles = message.data.split(",");
-                break;
-            }
-            case "game-offline": {
-                if (mainStore.isGamePaused) {
-                    break;
-                }
-
-                mainStore.isOffline = true;
-                mainStore.isInBootup = false;
-                mainStore.isInMainMenu = false;
-                mainStore.isInGame = false;
-                mainStore.isInHeist = false;
-                mainStore.isPlaying = false;
-                mainStore.isInCustody = false;
-                mainStore.isAtEndGame = false;
-                callStore.addCall(["UT:sendGameContext"]);
-                break;
-            }
-            case "settings": {
-                settingsStore.setSettings(message.data);
-                break;
-            }
-            case "call-acknowledge": {
-                mainStore.lastCallAcknowledgmentTime = message.data;
                 break;
             }
             case "game-crash-log": {
-                setTimeout(() => mainStore.gameCrashLog = message.data, 500);
+                setTimeout(() => appStore.gameCrashLog = data, 500);
                 break;
             }
         }

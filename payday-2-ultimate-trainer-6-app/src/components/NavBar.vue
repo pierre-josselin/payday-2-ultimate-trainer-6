@@ -1,6 +1,7 @@
 <script>
 import { RouterLink } from "vue-router";
 
+import { useAppStore } from "@/stores/app";
 import { useMainStore } from "@/stores/main";
 
 import { closeWebSocket } from "@/web-socket";
@@ -12,6 +13,7 @@ export default {
         ClientIcon
     },
     created() {
+        this.appStore = useAppStore();
         this.mainStore = useMainStore();
 
         this.closeWebSocket = closeWebSocket;
@@ -20,7 +22,7 @@ export default {
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-xl bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <span class="navbar-brand">Ultimate Trainer 6</span>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-supported-content">
@@ -52,6 +54,9 @@ export default {
                     <li class="nav-item">
                         <RouterLink :to="{ name: 'game' }" class="nav-link">{{ $t("main.game") }}</RouterLink>
                     </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'keybinds' }" class="nav-link">{{ $t("main.keybinds") }}</RouterLink>
+                    </li>
                 </ul>
                 <span class="text-light">
                     <template v-if="mainStore.isOffline">{{ $t("main.offline") }}</template>
@@ -68,7 +73,7 @@ export default {
                 <a class="btn btn-primary btn-sm ms-3" :href="REPOSITORY_URL" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
                 </a>
-                <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#report-a-bug-modal" @click="mainStore.requestGameCrashLog">
+                <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#report-a-bug-modal" @click="appStore.requestGameCrashLog">
                     <FontAwesomeIcon icon="fa-solid fa-bug" />
                 </button>
                 <RouterLink :to="{ name: 'settings' }" class="btn btn-primary btn-sm ms-3">

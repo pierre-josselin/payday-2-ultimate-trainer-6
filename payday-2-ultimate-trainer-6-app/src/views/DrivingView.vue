@@ -23,7 +23,6 @@ export default {
     },
     data() {
         return {
-            vehiclesToLoad: [],
             vehicles: [
                 {
                     id: "sport-car",
@@ -67,24 +66,10 @@ export default {
         this.mainStore = useMainStore();
         this.callStore = useCallStore();
         this.settingsStore = useSettingsStore();
-
-        if (this.settingsStore.getSetting("vehicles-to-load")) {
-            this.vehiclesToLoad = this.settingsStore.getSetting("vehicles-to-load");
-        }
     },
     methods: {
-        setVehiclesToLoad() {
-            if (this.vehiclesToLoad.length) {
-                this.settingsStore.setSetting("vehicles-to-load", this.vehiclesToLoad);
-            } else {
-                this.settingsStore.deleteSetting("vehicles-to-load");
-            }
-            this.settingsStore.saveSettings();
-        },
         resetVehiclesToLoad() {
-            this.vehiclesToLoad = [];
-            this.settingsStore.deleteSetting("vehicles-to-load");
-            this.settingsStore.saveSettings();
+            this.settingsStore.vehiclesToLoad = [];
         },
         spawnAndDriveVehicle(id) {
             this.callStore.addCall(["UT:spawnAndDriveVehicle", id]);
@@ -102,13 +87,13 @@ export default {
     <div style="max-width: 1000px;" class="container my-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-{{ $t("main.driving") }}
+                {{ $t("main.driving") }}
                 <button type="button" class="btn btn-link btn-sm popover-focus" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.driving_help')">
                     <FontAwesomeIcon icon="fa-solid fa-question" />
                 </button>
             </div>
             <div class="card-body p-4">
-                <div v-if="vehiclesToLoad.length" class="alert alert-warning mb-3">{{ $t("dialogs.vehicle_loading_crash") }} <a href="#" @click="resetVehiclesToLoad">{{ $t("main.reset") }}</a></div>
+                <div v-if="settingsStore.vehiclesToLoad.length" class="alert alert-warning mb-3">{{ $t("dialogs.vehicle_loading_crash") }} <a href="#" @click="resetVehiclesToLoad">{{ $t("main.reset") }}</a></div>
                 <div class="mb-2">
                     <b>{{ $t("main.vehicles_to_load") }}</b>
                     <BugIcon class="ms-3" />
@@ -116,7 +101,7 @@ export default {
                 </div>
                 <div class="mb-3">
                     <div v-for="vehicle in vehicles" :key="vehicle.id" class="form-check form-check-inline">
-                        <input :id="vehicle.id" v-model="vehiclesToLoad" class="form-check-input" type="checkbox" :value="vehicle.id" @change="setVehiclesToLoad">
+                        <input :id="vehicle.id" v-model="settingsStore.vehiclesToLoad" class="form-check-input" type="checkbox" :value="vehicle.id">
                         <label :for="vehicle.id" class="form-check-label" :class="{ 'text-success': mainStore.isInGame && mainStore.loadedVehicles.includes(vehicle.id) }">{{ $t(vehicle.name) }}</label>
                     </div>
                 </div>

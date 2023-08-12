@@ -3,6 +3,7 @@ import NavBar from "@/components/NavBar.vue";
 import AntiCheatDetectedIcon from "@/components/icons/AntiCheatDetectedIcon.vue";
 
 import { useMainStore } from "@/stores/main";
+import { useSettingsStore } from "@/stores/settings";
 import { useCallStore } from "@/stores/calls";
 import { useSpawnStore } from "@/stores/spawn";
 
@@ -256,6 +257,7 @@ export default {
     },
     created() {
         this.mainStore = useMainStore();
+        this.settingsStore = useSettingsStore();
         this.callStore = useCallStore();
         this.spawnStore = useSpawnStore();
 
@@ -281,6 +283,12 @@ export default {
         },
         setConfig() {
             this.callStore.addCall(["UT.Spawn:setConfig", this.spawnStore.id, this.spawnStore.categoryId, this.spawnStore.positionType, this.spawnStore.convertedEnemies]);
+        },
+        isSpawnKeybindDefined() {
+            if (!this.settingsStore.keybinds.length) {
+                return false;
+            }
+            return this.settingsStore.keybinds.some(keybind => keybind.name === "spawn-spawn");
         }
     }
 }
@@ -292,12 +300,13 @@ export default {
     <div class="container my-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-{{ $t("main.spawn") }}
+                {{ $t("main.spawn") }}
                 <button type="button" class="btn btn-link btn-sm popover-focus" data-bs-toggle="popover" :data-bs-title="$t('main.help')" :data-bs-content="$t('dialogs.spawn_help')">
                     <FontAwesomeIcon icon="fa-solid fa-question" />
                 </button>
             </div>
             <fieldset class="card-body p-4" :class="{ disabled: !mainStore.isPlaying || !mainStore.isServer }" :disabled="!mainStore.isPlaying || !mainStore.isServer">
+                <div v-if="!isSpawnKeybindDefined()" class="alert alert-info">{{ $t("dialogs.set_spawn_keybind") }}</div>
                 <div class="mb-3">
                     <label class="form-label me-4">{{ $t("main.position") }}</label>
                     <div class="form-check form-check-inline">

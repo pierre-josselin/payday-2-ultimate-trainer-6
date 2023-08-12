@@ -24,9 +24,6 @@ export default {
         };
     },
     computed: {
-        noSlowMotionEnabled() {
-            return this.settingsStore.getSetting("enable-no-slow-motion");
-        },
         filteredBags() {
             if (!this.bagSearch) {
                 const bags = [...this.bags];
@@ -377,12 +374,12 @@ export default {
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
-                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setInvisiblePlayer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer || !mainStore.isPlaying" @change="setInvisiblePlayer">
                                         <label for="enable-invisible-player" class="form-check-label">{{ $t("main.invisible_player") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
-                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox" @change="setNoClip">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox" :disabled="!mainStore.isPlaying" @change="setNoClip">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
                                     <div v-if="missionStore.enableNoClip" class="mt-3">
@@ -411,7 +408,9 @@ export default {
                                     </div>
                                     <div class="form-check form-switch mt-3">
                                         <input id="enable-carry-stacker" v-model="missionStore.enableCarryStacker" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setCarryStacker">
-                                        <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }} ({{ $t("main.beta").toLowerCase() }})</label>
+                                        <label for="enable-carry-stacker" class="form-check-label">{{ $t("main.carry_multiple_bags") }} ({{ $t("main.beta").toLowerCase() }})
+                                            <AntiCheatDetectedIcon class="ms-3" />
+                                        </label>
                                     </div>
                                     <div class="form-check form-switch mt-3">
                                         <input id="enable-no-civilian-kill-penalty" v-model="missionStore.enableNoCivilianKillPenalty" class="form-check-input" type="checkbox" @change="setNoCivilianKillPenalty">
@@ -490,7 +489,7 @@ export default {
                             </div>
                         </div>
                         <div id="slow-motion-tab" class="tab-pane pt-4" tabindex="0">
-                            <fieldset :disabled="noSlowMotionEnabled && !missionStore.enableSlowMotion">
+                            <fieldset :disabled="settingsStore.enableNoSlowMotion && !missionStore.enableSlowMotion">
                                 <div class="form-check form-switch mb-3">
                                     <input id="enable-slow-motion" v-model="missionStore.enableSlowMotion" class="form-check-input" type="checkbox" @change="setSlowMotion">
                                     <label for="enable-slow-motion" class="form-check-label">{{ $t("main.slow_motion") }}</label>

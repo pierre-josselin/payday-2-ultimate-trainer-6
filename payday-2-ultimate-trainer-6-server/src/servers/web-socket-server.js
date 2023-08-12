@@ -2,33 +2,77 @@ const fs = require("fs");
 const path = require("path");
 const ws = require("ws");
 
-class WebSocketServer {
+module.exports = class WebSocketServer {
     handlers = {
-        call: (data) => {
+        "call": (ws, data) => {
             this.callManager.addCall(data);
         },
-        settings: (data) => {
-            this.settingsManager.setSettings(data);
-            this.settingsManager.saveSettings();
+        "store": (ws, data) => {
+            const { name, state } = data;
+            switch (name) {
+                case "main": {
+                    this.mainStore.setState(state);
+                    break;
+                }
+                case "mission": {
+                    this.missionStore.setState(state);
+                    break;
+                }
+                case "settings": {
+                    this.settingsStore.setState(state);
+                    this.settingsStore.saveSettings();
+                    this.callManager.addCall(["UT:loadSettings"]);
+                    break;
+                }
+                case "spawn": {
+                    this.spawnStore.setState(state);
+                    break;
+                }
+            }
+            this.sendMessageToAllClientsExceptOne("store", data, ws);
         },
-        "request-game-crash-log": (data, ws) => {
+        "request-game-crash-log": (ws) => {
             let gameCrashLog = false;
             try {
-                gameCrashLog = fs.readFileSync(path.join(process.env.LOCALAPPDATA, "PAYDAY 2", "crash.txt"), { encoding: "utf8" });
-            } catch (error) {
-            }
+                gameCrashLog = fs.readFileSync(path.join(process.env.LOCALAPPDATA, "PAYDAY 2", "crash.txt"), { encoding: "utf8", flag: "r" });
+            } catch (error) { }
 
-            ws.send(JSON.stringify({
-                type: "game-crash-log",
-                data: gameCrashLog
-            }));
+            this.sendMessage("game-crash-log", gameCrashLog, ws);
         }
     };
 
-    constructor(port, callManager, settingsManager) {
+    constructor(port, managers, stores) {
         this.port = port;
-        this.callManager = callManager;
-        this.settingsManager = settingsManager;
+
+        this.callManager = managers.callManager;
+
+        this.mainStore = stores.mainStore;
+        this.missionStore = stores.missionStore;
+        this.settingsStore = stores.settingsStore;
+        this.spawnStore = stores.spawnStore;
+    }
+
+    sendMessage(type, data, client) {
+        const message = { type, data };
+        client.send(JSON.stringify(message));
+    }
+
+    sendMessageToAllClients(type, data) {
+        if (this.server) {
+            this.server.clients.forEach((client) => {
+                this.sendMessage(type, data, client);
+            });
+        }
+    }
+
+    sendMessageToAllClientsExceptOne(type, data, excludedClient) {
+        if (this.server) {
+            this.server.clients.forEach((client) => {
+                if (!excludedClient || excludedClient !== client) {
+                    this.sendMessage(type, data, client);
+                }
+            });
+        }
     }
 
     run() {
@@ -36,24 +80,20 @@ class WebSocketServer {
             port: this.port
         });
 
-        this.server.on("connection", ws => {
-            ws.on("message", message => {
-                const { type, data } = JSON.parse(message);
+        this.server.on("connection", (ws) => {
+            ws.on("message", (rawMessage) => {
+                const { type, data } = JSON.parse(rawMessage);
                 const handler = this.handlers[type];
 
-                if (!handler) {
-                    return;
+                if (handler) {
+                    handler(ws, data);
                 }
-
-                handler(data, ws);
             });
 
-            ws.send(JSON.stringify({
-                type: "settings",
-                data: this.settingsManager.getSettings()
-            }));
+            this.sendMessage("store", { name: "main", state: this.mainStore.state }, ws);
+            this.sendMessage("store", { name: "mission", state: this.missionStore.state }, ws);
+            this.sendMessage("store", { name: "settings", state: this.settingsStore.state }, ws);
+            this.sendMessage("store", { name: "spawn", state: this.spawnStore.state }, ws);
         });
     }
 }
-
-module.exports = WebSocketServer;

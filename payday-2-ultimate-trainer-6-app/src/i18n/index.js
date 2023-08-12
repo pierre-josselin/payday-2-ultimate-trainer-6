@@ -48,6 +48,9 @@ import frWeaponMods from "@/locales/fr/generated/weapon-mods.json";
 import frBags from "@/locales/fr/generated/bags.json";
 import frSpecialEquipment from "@/locales/fr/generated/special-equipment.json";
 
+import ptBRMain from "@/locales/pt-br/main.json";
+import ptBRDialogs from "@/locales/pt-br/dialogs.json";
+
 import roMain from "@/locales/ro/main.json";
 import roDialogs from "@/locales/ro/dialogs.json";
 
@@ -78,6 +81,18 @@ import zhWeaponMods from "@/locales/zh/generated/weapon-mods.json";
 import zhBags from "@/locales/zh/generated/bags.json";
 import zhSpecialEquipment from "@/locales/zh/generated/special-equipment.json";
 
+import jaMain from "@/locales/ja/main.json";
+import jaDialogs from "@/locales/ja/dialogs.json";
+import jaColors from "@/locales/ja/generated/colors.json";
+import jaMasks from "@/locales/ja/generated/masks.json";
+import jaMaterials from "@/locales/ja/generated/materials.json";
+import jaSteamAchievements from "@/locales/ja/generated/steam-achievements.json";
+import jaTextures from "@/locales/ja/generated/textures.json";
+import jaTrophies from "@/locales/ja/generated/trophies.json";
+import jaWeaponMods from "@/locales/ja/generated/weapon-mods.json";
+import jaBags from "@/locales/ja/generated/bags.json";
+import jaSpecialEquipment from "@/locales/ja/generated/special-equipment.json";
+
 import koMain from "@/locales/ko/main.json";
 import koDialogs from "@/locales/ko/dialogs.json";
 import koColors from "@/locales/ko/generated/colors.json";
@@ -90,15 +105,12 @@ import koWeaponMods from "@/locales/ko/generated/weapon-mods.json";
 import koBags from "@/locales/ko/generated/bags.json";
 import koSpecialEquipment from "@/locales/ko/generated/special-equipment.json";
 
-import ptBRMain from "@/locales/pt-br/main.json";
-import ptBRDialogs from "@/locales/pt-br/dialogs.json";
-
 export default createI18n({
     locale: "en",
     fallbackLocale: "en",
-    silentTranslationWarn: true,
-    silentFallbackWarn: true,
-    warnHtmlInMessage: "off",
+    missingWarn: false,
+    fallbackWarn: false,
+    warnHtmlMessage: false,
     messages: {
         en: {
             main: enMain,
@@ -152,6 +164,10 @@ export default createI18n({
             bags: frBags,
             special_equipment: frSpecialEquipment
         },
+        "pt-br": {
+            main: ptBRMain,
+            dialogs: ptBRDialogs
+        },
         ro: {
             main: roMain,
             dialogs: roDialogs
@@ -186,6 +202,19 @@ export default createI18n({
             bags: zhBags,
             special_equipment: zhSpecialEquipment
         },
+        ja: {
+            main: jaMain,
+            dialogs: jaDialogs,
+            colors: jaColors,
+            masks: jaMasks,
+            materials: jaMaterials,
+            steam_achievements: jaSteamAchievements,
+            textures: jaTextures,
+            trophies: jaTrophies,
+            weapon_mods: jaWeaponMods,
+            bags: jaBags,
+            special_equipment: jaSpecialEquipment
+        },
         ko: {
             main: koMain,
             dialogs: koDialogs,
@@ -198,10 +227,6 @@ export default createI18n({
             weapon_mods: koWeaponMods,
             bags: koBags,
             special_equipment: koSpecialEquipment
-        },
-        "pt-br": {
-            main: ptBRMain,
-            dialogs: ptBRDialogs
         }
     }
 });

@@ -1,0 +1,19 @@
+{
+    "anti_cheat_detected": "この機能はゲームのアンチチートシステムによって検知されています。他のプレイヤーからはあなたにチーターのタグがついているように見え、ロビー参加時に自動的にキックされるかもしれません。この機能を無効にすると元通りに戻ります。",
+    "bag_spawn_crash": "誰かがこのミッションで存在しないバッグを拾うと、他のプレイヤーのゲームがクラッシュする可能性があります。",
+    "bug": "この機能はバグを含んでおり、正常に動作しないかもしれません、ゲームが正常に進まなくなる、クラッシュなどが起こり得ます。",
+    "build_help": "ゲーム中にMODキー設定から設定したキーを押すことで、選ぶ・スポーン・削除をすることができます。緑色の線で囲まれているユニットは他のプレイヤーから見えますが、オレンジ色の線で囲まれているユニットは見えません。",
+    "client": "ゲームのクライアントであるため、いくつかの機能は利用できなくなっています。",
+    "connection_failed": "サーバーとの接続に失敗しました。ゲームが起動していることや、ホストとポート番号を確認してください。",
+    "driving_help": "選択した乗り物を再起動時に読み込みます。ロード時間が長くなり、選択した乗り物が多い場合はハイスト開始時にゲームがクラッシュする可能性があります。もしそのようなことが起こったら、読み込む乗り物の量を減らしてください。他のプレイヤーからは乗り物は見えません。",
+    "game_crash_log_recovery_failed": "ゲームのクラッシュログの復元に失敗しました。",
+    "game_restart_required": "変更を適用するにはゲームを再起動してください。",
+    "report_a_bug": "以下のリンクからバグや提案を送信することができます（クラッシュした場合は、クラッシュログも添えることを忘れずに）:",
+    "spawn_help": "スポーンさせたいユニットを選び、ゲーム内のMODキー設定から設定したキーを押すことでスポーンさせることができます。",
+    "support_us": "Ultimate Trainer 6が気に入りましたか？これは無料でオープンソースのソフトウェアです！GitHubでスターをクリックするだけで開発の支えになります！<br><br>下にある \"Star\" ボタンをクリックするだけです:",
+    "update_available": "アップデートがあります。最新の機能やバグ修正を適用するには最新バージョンをインストールしてください。",
+    "vehicle_loading_crash": "乗り物の読み込みが有効になっています。ロード時間が長くなり、選択した乗り物が多い場合はハイスト開始時にゲームがクラッシュする可能性があります。",
+    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
+    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
+    "keys_info": "Please note the keys are based on a US keyboard."
+}

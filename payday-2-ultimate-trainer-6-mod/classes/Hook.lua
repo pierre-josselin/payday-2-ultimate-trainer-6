@@ -5,8 +5,7 @@ function UT.Hook:localizationManager()
     function LocalizationManager:init(...)
         LocalizationManager.orig.init(self, ...)
 
-        local locale = UT:getLocale()
-        self:load_localization_file(UT.modPath .. "/locales/" .. locale .. ".json")
+        self:add_localized_strings({ ultimate_trainer = "Ultimate Trainer" }, true)
     end
 end
 
@@ -121,7 +120,13 @@ end
 function UT.Hook:bootupState()
     UT.Utility:cloneClass(BootupState)
     function BootupState:setup()
-        if not UT_DEV then
+        if UT.Utility:fileExists(UT.rootPath:gsub("/", "\\") .. "\\test.txt") then
+            UT.Utility:removeFile(UT.rootPath:gsub("/", "\\") .. "\\test.txt")
+            UT:runTest()
+        elseif UT.Utility:fileExists(UT.rootPath:gsub("/", "\\") .. "\\test.txt.txt") then
+            UT.Utility:removeFile(UT.rootPath:gsub("/", "\\") .. "\\test.txt.txt")
+            UT:runTest()
+        elseif not UT_DEV then
             UT:runServer()
         end
         BootupState.orig.setup(self)

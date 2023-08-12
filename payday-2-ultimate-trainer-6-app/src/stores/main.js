@@ -1,7 +1,5 @@
 import { defineStore } from "pinia";
 
-import { getWebSocket } from "@/web-socket";
-
 export const useMainStore = defineStore("main", {
     state: () => ({
         isOffline: true,
@@ -16,19 +14,15 @@ export const useMainStore = defineStore("main", {
         isTeamAIEnabled: false,
         isGamePaused: false,
         loadedVehicles: [],
-        lastCallAcknowledgmentTime: null,
-        gameCrashLog: null
+        lastCallsReceivedTime: null
     }),
     actions: {
-        requestGameCrashLog() {
-            this.gameCrashLog = null;
-
-            const ws = getWebSocket();
-
-            const data = {
-                type: "request-game-crash-log"
-            };
-            ws.send(JSON.stringify(data));
+        setState(state) {
+            for (const [name, value] of Object.entries(state)) {
+                if (name in this.$state) {
+                    this.$state[name] = value;
+                }
+            }
         }
     }
 });

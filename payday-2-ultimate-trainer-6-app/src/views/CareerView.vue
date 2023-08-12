@@ -28,8 +28,6 @@ export default {
             spendingMoney: null,
             offshoreMoney: null,
             continentalCoins: null,
-            enableSkillPointHack: null,
-            skillPoints: null,
             perkPoints: null,
             blackMarketCategory: "masks",
             selectAllBlackMarketItems: false,
@@ -116,8 +114,11 @@ export default {
         this.trophies = trophies;
         this.steamAchievements = steamAchievements;
 
-        this.enableSkillPointHack = this.settingsStore.getSetting("enable-skill-point-hack");
-        this.skillPoints = this.settingsStore.getSetting("skill-points");
+        this.$watch("settingsStore.skillPoints", (skillPoints) => {
+            if (!skillPoints) {
+                this.settingsStore.skillPoints = null;
+            }
+        });
     },
     methods: {
         setLevel() {
@@ -173,14 +174,6 @@ export default {
                 this.callStore.addCall(["UT.GameUtility:refreshPlayerProfileGUI"]);
             }
             this.callStore.addCall(["UT.GameUtility:saveProgress"]);
-        },
-        setSkillPointHack() {
-            if (!this.enableSkillPointHack || this.skillPoints === "") {
-                this.skillPoints = null;
-            }
-            this.settingsStore.setSetting("enable-skill-point-hack", this.enableSkillPointHack);
-            this.settingsStore.setSetting("skill-points", this.skillPoints);
-            this.settingsStore.saveSettings();
         },
         addPerkPoints() {
             this.callStore.addCall(["UT:addPerkPoints", this.perkPoints]);
@@ -405,14 +398,14 @@ export default {
                                 </form>
                             </div>
                             <div id="skill-points-tab" class="tab-pane" tabindex="0">
-                                <div class="form-check form-switch mb-3" @change="setSkillPointHack">
-                                    <input id="enable-skill-point-hack" v-model="enableSkillPointHack" class="form-check-input" type="checkbox">
+                                <div class="form-check form-switch mb-3">
+                                    <input id="enable-skill-point-hack" v-model="settingsStore.enableSkillPointHack" class="form-check-input" type="checkbox">
                                     <label for="enable-skill-point-hack" class="form-check-label">{{ $t("main.enable_skill_point_hack") }}</label>
                                     <GameRestartRequiredIcon class="ms-3" />
                                 </div>
-                                <div class="row align-items-end">
+                                <div>
                                     <label for="skill-points" class="form-label">{{ $t("main.skill_points") }}</label>
-                                    <input id="skill-points" v-model="skillPoints" type="number" min="0" max="690" step="1" class="form-control" :disabled="!enableSkillPointHack" @change="setSkillPointHack">
+                                    <input id="skill-points" v-model="settingsStore.skillPoints" type="number" min="0" max="690" step="1" class="form-control" :disabled="!settingsStore.enableSkillPointHack" @change="setSkillPointHack">
                                 </div>
                             </div>
                             <div id="perk-points-tab" class="tab-pane" tabindex="0">

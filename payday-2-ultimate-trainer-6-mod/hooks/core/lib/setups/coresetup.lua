@@ -6,6 +6,8 @@ end
 
 local modPath = rootPath .. "/payday-2-ultimate-trainer-6-mod"
 
+dofile(modPath .. "/libraries/base64.lua")
+
 dofile(modPath .. "/classes/UT.lua")
 
 dofile(modPath .. "/classes/Build.lua")
@@ -16,6 +18,11 @@ dofile(modPath .. "/classes/Keybind.lua")
 dofile(modPath .. "/classes/Log.lua")
 dofile(modPath .. "/classes/Spawn.lua")
 dofile(modPath .. "/classes/Utility.lua")
+
+UT_APP_URL = "http://127.0.0.1:1140"
+UT_SERVER_URL = "http://127.0.0.1:1139"
+UT_CALLS_REQUESTS_PER_SECOND = 10
+UT_LOG_LEVEL = UT.Log.INFO
 
 dofile(modPath .. "/config.lua")
 
