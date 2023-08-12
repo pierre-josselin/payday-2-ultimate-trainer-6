@@ -28,7 +28,7 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 ### Prerequisites
 
 - Windows 10/11
-- PAYDAY 2 on Steam (not tested on Epic)
+- PAYDAY 2 on Steam (might work with Epic)
 - [SuperBLT](https://superblt.znix.xyz)
 - [Node.js](https://nodejs.org/en) 18 (with npm)
 
@@ -83,34 +83,40 @@ You can access the application from any web browser on the same network.
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
 
+> :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks.
+
 ### Update
 
 - Close the game and the console
-- Follow the [installation instructions](#installation) again (you can skip **SuperBLT** and **Node.js** installation)
+- Backup the `settings.json` file if you want to keep your settings
+- Follow the [installation instructions](#installation) again (you can skip the **SuperBLT** and **Node.js** installation)
+- Restore the `settings.json` file
 
 ### Troubleshooting
 
-This mod is used by many people without any problem.<br>If it doesn't work for you, most likely you didn't follow the installation instructions properly.
+This mod is used by many people without any problem.<br>If it doesn't work for you, please check the following:
 
-- Have you installed Node.js 18?
-- Did you restart your computer after installing Node.js?
-- Did you install the project by running the `install` script?
-- No error occurred while running the `install` script?
+1. Have you installed Node.js 18 leaving default options?
+2. Did you restart your computer after Node.js installation?
+3. Did you install the mod by running the `install` file?
+4. Did any error occurred while running the `install` file?
 
-If you can answer *yes* to all the previous points, here are solutions to the most frequently encountered problems:
+Here are the most common problems encountered:
 
-- **The application page shows an error**
+- **A message like "Windows cannot find node" appears when starting the game**
 
-    Run a test:
+    Follow [this YouTube tutorial](https://www.youtube.com/watch?v=sQXWVrb52kw)<br>*Mpemba Inc.*
+
+    > :warning: You will need to **restart your computer** after following the tutorial.
+
+- **The application page shows an error (e.g. "unable to connect to server")**
 
     - Close the game and any open console
     - Create an empty `test.txt` file (lowercase) inside of `payday-2-ultimate-trainer-6-main`
     - Run the game (it will probably get stuck on a black screen)
     - A console will open in the background after a while, use *ALT* + *TAB* to access it
 
-    Once the test is complete, copy the entire contents of the console and paste it somewhere we can see it, for example by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
-
-    > :warning: Remember to close the console after saving the test results.
+    This will test the different parts of the mod. Once the test is complete, copy the entire contents of the console and share it with us, by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
 
 - **The *Ultimate Trainer* button does not appear in the game's main menu**
 
@@ -140,11 +146,10 @@ If you still can't solve your problem, don't hesitate to create an [issue](https
 
 If you wish to contribute to the project by adding a new language, you can do so by translating the following English files into your native language:
 
-- [payday-2-ultimate-trainer-6-app/src/locales/en/main.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-app/src/locales/en/main.json)
-- [payday-2-ultimate-trainer-6-app/src/locales/en/dialogs.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-app/src/locales/en/dialogs.json)
-- [payday-2-ultimate-trainer-6-mod/locales/en.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-mod/locales/en.json)
+- [main.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-app/src/locales/en/main.json)
+- [dialogs.json](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/blob/main/payday-2-ultimate-trainer-6-app/src/locales/en/dialogs.json)
 
-> :warning: Please only translate values, not keys, and keep capitals.<br>
+> :warning: Please only translate values, not keys, and keep capitals.
 
 Example:
 
