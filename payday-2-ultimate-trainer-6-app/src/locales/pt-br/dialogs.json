@@ -12,5 +12,8 @@
     "spawn_help": "Selecione uma unidade e depois a crie no jogo pressionando a tecla correspondente configurada nas configurações dos keybinds dos mods do jogo.",
     "support_us": "Você gosta do Ultimate Trainer 6? É um software gratuito e de código aberto! A melhor maneira de nos apoiar é nos dar uma estrela grátis no GitHub! <br><br>Basta clicar no botão abaixo e depois no botão \"Star\":",
     "update_available": "Uma atualização está disponível. Instale-a para aproveitar as últimas funcionalidades e correções de bugs.",
-    "vehicle_loading_crash": "O carregamento de veículos está ativado, os tempos de carregamento serão estendidos e seu jogo pode travar ao entrar em um roubo se você tiver selecionado muitos veículos."
+    "vehicle_loading_crash": "O carregamento de veículos está ativado, os tempos de carregamento serão estendidos e seu jogo pode travar ao entrar em um roubo se você tiver selecionado muitos veículos.",
+    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
+    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
+    "keys_info": "Please note the keys are based on a US keyboard."
 }

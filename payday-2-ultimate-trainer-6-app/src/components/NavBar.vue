@@ -54,6 +54,9 @@ export default {
                     <li class="nav-item">
                         <RouterLink :to="{ name: 'game' }" class="nav-link">{{ $t("main.game") }}</RouterLink>
                     </li>
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'keybinds' }" class="nav-link">{{ $t("main.keybinds") }}</RouterLink>
+                    </li>
                 </ul>
                 <span class="text-light">
                     <template v-if="mainStore.isOffline">{{ $t("main.offline") }}</template>

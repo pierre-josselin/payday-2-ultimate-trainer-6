@@ -186,5 +186,19 @@
     "vehicles_to_load": "加载车辆",
     "weapon_mods": "武器修改",
     "world_speed": "世界速度",
-    "x_ray": "透视"
+    "x_ray": "透视",
+    "add_a_keybind": "Add a keybind",
+    "keybinds": "Keybinds",
+    "key": "Key",
+    "action": "Action",
+    "type": "Type",
+    "teleport_to_crosshair": "Teleport to crosshair",
+    "start_the_heist": "Start the heist",
+    "restart_the_heist": "Restart the heist",
+    "finish_the_heist": "Finish the heist",
+    "leave_the_heist": "Leave the heist",
+    "pick": "Pick",
+    "delete": "Delete",
+    "throw_bag": "Throw bag",
+    "add_special_equipment": "Add special equipment"
 }

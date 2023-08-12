@@ -201,7 +201,7 @@ export default {
         </div>
     </div>
 
-    <div id="update-available-modal" class="modal" tabindex="-1">
+    <div id="update-available-modal" class="modal fade" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -338,5 +338,10 @@ input[type="number"] {
 
 .markdown h6 {
     font-size: 0.5rem;
+}
+
+.table th,
+.table td {
+    box-shadow: none !important;
 }
 </style>

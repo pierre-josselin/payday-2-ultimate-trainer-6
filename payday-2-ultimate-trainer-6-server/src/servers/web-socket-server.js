@@ -20,6 +20,8 @@ module.exports = class WebSocketServer {
                 }
                 case "settings": {
                     this.settingsStore.setState(state);
+                    this.settingsStore.saveSettings();
+                    this.callManager.addCall(["UT:loadSettings"]);
                     break;
                 }
                 case "spawn": {

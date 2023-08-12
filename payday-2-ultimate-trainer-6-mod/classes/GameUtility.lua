@@ -55,6 +55,39 @@ function UT.GameUtility:isTeamAIEnabled()
     return managers.groupai and managers.groupai:state():team_ai_enabled() or false
 end
 
+function UT.GameUtility:isInPauseMenu()
+    if managers.menu then
+        local menu = managers.menu:active_menu()
+        if menu and menu.name and menu.name == "menu_pause" then
+            return true
+        end
+    end
+    return false
+end
+
+function UT.GameUtility:isInChat()
+    if managers.hud and managers.hud:chat_focus() then
+        return true
+    end
+    if managers.menu_component and managers.menu_component:input_focut_game_chat_gui() then
+        return true
+    end
+    return false
+end
+
+function UT.GameUtility:isListeningToInput()
+    if managers.menu then
+        local menu = managers.menu:active_menu()
+        if menu and menu.renderer then
+            local nodeGUI = menu.renderer:active_node_gui()
+            if nodeGUI and nodeGUI._listening_to_input then
+                return true
+            end
+        end
+    end
+    return false
+end
+
 function UT.GameUtility:getPlayerUnit()
     return managers.player:player_unit()
 end

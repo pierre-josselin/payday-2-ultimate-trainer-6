@@ -5,8 +5,7 @@ function UT.Hook:localizationManager()
     function LocalizationManager:init(...)
         LocalizationManager.orig.init(self, ...)
 
-        local locale = UT:getLocale()
-        self:load_localization_file(UT.modPath .. "/locales/" .. locale .. ".json")
+        self:add_localized_strings({ ultimate_trainer = "Ultimate Trainer" }, true)
     end
 end
 

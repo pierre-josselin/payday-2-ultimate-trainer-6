@@ -2,8 +2,6 @@ UT = {}
 
 UT.maxInteger = math.huge
 
-UT.locales = { "en", "de", "es", "fr", "pt-br", "ro", "ru", "uk", "zh", "ja", "ko" }
-
 UT.rootPath = nil
 UT.modPath = nil
 UT.gameContext = nil
@@ -14,6 +12,17 @@ UT.enableNoClip = false
 UT.noClipSpeed = nil
 UT.playerUnitAliveEventTriggered = false
 UT.carryVerifyDisabled = false
+
+UT.xRayEnabled = false
+UT.preventAlarmTriggeringEnabled = false
+UT.invisiblePlayerEnabled = false
+UT.noClipEnabled = false
+UT.disableAIEnabled = false
+UT.removeTeamAIEnabled = false
+UT.suspendPointOfNoReturnTimerEnabled = false
+UT.unlimitedPagersEnabled = false
+UT.instantDrillingEnabled = false
+UT.noCivilianKillPenaltyEnabled = false
 
 UT.settings = {}
 UT.backup = {}
@@ -50,8 +59,8 @@ function UT:init()
             if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
                 table.insert(data[1][2], 1, {
                     name = "ut_open_app",
-                    text_id = "ut_menu_open_app_name",
-                    help_id = "ut_menu_open_app_description",
+                    text_id = "ultimate_trainer",
+                    help_id = "ultimate_trainer",
                     callback = "ut_open_app",
                     font = "fonts/font_medium_shadow_mf",
                     _meta = "item"
@@ -69,6 +78,8 @@ function UT:init()
             return data
         end
     end
+
+    UT.Keybind:init()
 end
 
 function UT:update()
@@ -100,7 +111,7 @@ function UT:update()
                 end
             end
 
-            if UT.enableDisableAi then
+            if UT.enableDisableAI then
                 UT:disableAI()
             end
 
@@ -109,6 +120,8 @@ function UT:update()
             end
         end
     end
+
+    UT.Keybind:update()
 end
 
 function UT:openApp()
@@ -197,6 +210,11 @@ end
 
 function UT:sendGamePaused(value)
     UT:sendMessage("game-paused", value)
+end
+
+function UT:sendStorePropertyValue(storeName, propertyName, propertyValue)
+    local data = { storeName = storeName, propertyName = propertyName, propertyValue = propertyValue }
+    UT:sendMessage("store-property-value", data)
 end
 
 function UT:gameEnterEvent()
@@ -322,10 +340,6 @@ function UT:disableCarryVerify()
     end
 
     UT.carryVerifyDisabled = true
-end
-
-function UT:getLocale()
-    return UT:getSetting("locale") or "en"
 end
 
 -- Career
@@ -864,9 +878,8 @@ function UT:convertAllEnemies()
 end
 
 function UT:setXRay(enabled)
+    UT.Utility:cloneClass(EnemyManager)
     if enabled then
-        UT.Utility:cloneClass(EnemyManager)
-
         for key, data in pairs(managers.enemy:all_civilians()) do
             data.unit:contour():add("mark_enemy", false, UT.maxInteger)
         end
@@ -916,6 +929,7 @@ function UT:setXRay(enabled)
         EnemyManager.on_enemy_died = EnemyManager.orig.on_enemy_died
         EnemyManager.on_civilian_died = EnemyManager.orig.on_civilian_died
     end
+    UT.xRayEnabled = enabled
 end
 
 function UT:setPreventAlarmTriggering(enabled)
@@ -925,12 +939,14 @@ function UT:setPreventAlarmTriggering(enabled)
     else
         GroupAIStateBase.on_police_called = GroupAIStateBase.orig.on_police_called
     end
+    UT.preventAlarmTriggeringEnabled = enabled
 end
 
 function UT:setNoClip(enabled, speed)
     UT.noClipSpeed = speed
     UT.enableNoClip = enabled
     UT:setNoFallDamage(enabled or UT:getSetting("enable-no-fall-damage"))
+    UT.noClipEnabled = enabled
 end
 
 function UT:updateNoClip(speed)
@@ -965,10 +981,12 @@ function UT:setInvisiblePlayer(enabled)
         groupAIState._attention_objects.all[playerUnitKey] = UT.backup.playerAttentionObject
         groupAIState:on_AI_attention_changed(playerUnitKey)
     end
+
+    UT.invisiblePlayerEnabled = enabled
 end
 
 function UT:setDisableAI(enabled)
-    UT.enableDisableAi = enabled
+    UT.enableDisableAI = enabled
     if not enabled then
         for key, value in pairs(managers.enemy:all_civilians()) do
             value.unit:brain():set_active(true)
@@ -988,6 +1006,7 @@ function UT:setDisableAI(enabled)
             end
         end
     end
+    UT.disableAIEnabled = enabled
 end
 
 function UT:disableAI()
@@ -1026,6 +1045,7 @@ function UT:setRemoveTeamAI(enabled)
     else
         managers.groupai:state():fill_criminal_team_with_AI()
     end
+    UT.removeTeamAIEnabled = enabled
 end
 
 function UT:setSuspendPointOfNoReturnTimer(enabled)
@@ -1035,10 +1055,12 @@ function UT:setSuspendPointOfNoReturnTimer(enabled)
     else
         GroupAIStateBase._update_point_of_no_return = GroupAIStateBase.orig._update_point_of_no_return
     end
+    UT.suspendPointOfNoReturnTimerEnabled = enabled
 end
 
 function UT:setUnlimitedPagers(enabled)
     tweak_data.player.alarm_pager.bluff_success_chance = { 1, 1, 1, 1, enabled and 1 or 0 }
+    UT.unlimitedPagersEnabled = enabled
 end
 
 function UT:setInstantDrilling(enabled)
@@ -1055,6 +1077,7 @@ function UT:setInstantDrilling(enabled)
         TimerGui._set_jamming_values = TimerGui.orig._set_jamming_values
         TimerGui.start = TimerGui.orig.start
     end
+    UT.instantDrillingEnabled = enabled
 end
 
 function UT:setNoCivilianKillPenalty(enabled)
@@ -1064,6 +1087,7 @@ function UT:setNoCivilianKillPenalty(enabled)
     else
         MoneyManager.civilian_killed = MoneyManager.orig.civilian_killed
     end
+    UT.noCivilianKillPenaltyEnabled = enabled
 end
 
 function UT:getOutOfCustody()
@@ -1292,6 +1316,12 @@ function UT:spawnAndDriveVehicle(vehicleId)
         return
     end
 
+    local idString = UT.GameUtility:idString(unitId)
+
+    if not UT.GameUtility:isUnitLoaded(idString) then
+        return
+    end
+
     if UT.GameUtility:isDriving() then
         UT.GameUtility:setPlayerState("standard")
     end
@@ -1317,7 +1347,6 @@ function UT:spawnAndDriveVehicle(vehicleId)
         end
     end
 
-    local idString = UT.GameUtility:idString(unitId)
     local position = UT.GameUtility:getPlayerPosition()
     local rotation = UT.GameUtility:getPlayerCameraYawRotation()
     local vehicleUnit = UT.GameUtility:spawnUnit(idString, position, rotation)
@@ -1348,4 +1377,27 @@ function UT:removeSpawnedVehicles()
     end
 
     UT.spawnedVehicleUnits = {}
+end
+
+function UT:teleportToCrosshair()
+    if UT.GameUtility:isDriving() then
+        return
+    end
+
+    if UT.GameUtility:isPlayerUsingZipline() then
+        return
+    end
+
+    local crosshairRay = UT.GameUtility:getCrosshairRay()
+
+    if not crosshairRay then
+        return
+    end
+
+    local offset = Vector3()
+    mvector3.set(offset, UT.GameUtility:getPlayerCameraForward())
+    mvector3.multiply(offset, 150)
+    mvector3.add(crosshairRay.hit_position, offset)
+
+    UT.GameUtility:teleportPlayer(crosshairRay.hit_position, UT.GameUtility:getPlayerCameraRotation())
 end

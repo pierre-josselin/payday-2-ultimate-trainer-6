@@ -67,6 +67,33 @@ module.exports = class HttpServer {
                         this.webSocketServer.sendMessageToAllClients("store", { name: "main", state: this.mainStore.state });
                         break;
                     }
+                    case "store-property-value": {
+                        switch (data.storeName) {
+                            case "mission": {
+                                this.missionStore.state[data.propertyName] = data.propertyValue;
+                                this.webSocketServer.sendMessageToAllClients("store", { name: "mission", state: this.missionStore.state });
+                                break;
+                            }
+                            case "spawn": {
+                                this.spawnStore.state[data.propertyName] = data.propertyValue;
+                                this.webSocketServer.sendMessageToAllClients("store", { name: "spawn", state: this.spawnStore.state });
+                                break;
+                            }
+                            case "settings": {
+                                this.settingsStore.state[data.propertyName] = data.propertyValue;
+                                this.webSocketServer.sendMessageToAllClients("store", { name: "settings", state: this.settingsStore.state });
+                                this.settingsStore.saveSettings();
+                                this.callManager.addCall(["UT:loadSettings"]);
+                                break;
+                            }
+                            default: {
+                                response.writeHead(400);
+                                response.end();
+                                break;
+                            }
+                        }
+                        break;
+                    }
                     default: {
                         response.writeHead(400);
                         response.end();
@@ -89,6 +116,7 @@ module.exports = class HttpServer {
         this.mainStore = stores.mainStore;
         this.missionStore = stores.missionStore;
         this.spawnStore = stores.spawnStore;
+        this.settingsStore = stores.settingsStore;
 
         this.httpRequestListener = this.httpRequestListener.bind(this);
         this.server = http.createServer(this.httpRequestListener);

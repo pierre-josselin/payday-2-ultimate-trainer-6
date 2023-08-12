@@ -12,5 +12,8 @@
     "support_us": "Gefällt dir Ultimate Trainer 6? Es ist kostenlos und Open-Source! Der beste Weg, uns zu unterstützen, ist, uns einen kostenlosen GitHub-Stern zu geben!<br><br>Klicke einfach auf den Button unten und dann auf den \"Stern\"-Button:",
     "update_available": "Ein Update ist verfügbar. Installieren Sie es, um von den neuesten Funktionen und Fehlerbehebungen zu profitieren.",
     "vehicle_loading_crash": "Das Laden von Fahrzeugen ist aktiviert. Die Ladezeiten verlängern sich und das Spiel kann beim Einstieg in einen Raubüberfall abstürzen, wenn Sie zu viele Fahrzeuge ausgewählt haben.",
-    "bag_spawn_crash": "If someone picks up a bag that is not supposed to exist in this mission, the game of other players could crash."
+    "bag_spawn_crash": "If someone picks up a bag that is not supposed to exist in this mission, the game of other players could crash.",
+    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
+    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
+    "keys_info": "Please note the keys are based on a US keyboard."
 }

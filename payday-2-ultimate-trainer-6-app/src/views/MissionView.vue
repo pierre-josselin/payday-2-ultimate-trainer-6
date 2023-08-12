@@ -374,12 +374,12 @@ export default {
                                             <BugIcon class="ms-3" />
                                         </label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
-                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer" @change="setInvisiblePlayer">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-invisible-player" v-model="missionStore.enableInvisiblePlayer" class="form-check-input" type="checkbox" :disabled="!mainStore.isServer || !mainStore.isPlaying" @change="setInvisiblePlayer">
                                         <label for="enable-invisible-player" class="form-check-label">{{ $t("main.invisible_player") }}</label>
                                     </div>
-                                    <div class="form-check form-switch mt-3" :disabled="!mainStore.isPlaying">
-                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox" @change="setNoClip">
+                                    <div class="form-check form-switch mt-3">
+                                        <input id="enable-no-clip" v-model="missionStore.enableNoClip" class="form-check-input" type="checkbox" :disabled="!mainStore.isPlaying" @change="setNoClip">
                                         <label for="enable-no-clip" class="form-check-label">{{ $t("main.no_clip") }}</label>
                                     </div>
                                     <div v-if="missionStore.enableNoClip" class="mt-3">

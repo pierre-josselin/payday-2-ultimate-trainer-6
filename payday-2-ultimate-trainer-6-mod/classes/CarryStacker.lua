@@ -1,5 +1,7 @@
 UT.CarryStacker = {}
 
+UT.CarryStacker.enabled = false
+
 UT.CarryStacker.bags = {}
 UT.CarryStacker.bagType = "light"
 
@@ -125,6 +127,8 @@ function UT.CarryStacker:enable()
             self._tweak_data_name = UT.CarryStacker.bagType
         end
     end
+
+    UT.CarryStacker.enabled = true
 end
 
 function UT.CarryStacker:disable()
@@ -144,4 +148,6 @@ function UT.CarryStacker:disable()
     PlayerCarry.update = PlayerCarry.orig.update
 
     UT.CarryStacker.bags = {}
+
+    UT.CarryStacker.enabled = false
 end

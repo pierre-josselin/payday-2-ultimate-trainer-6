@@ -47,7 +47,7 @@ export default {
 </script>
 
 <template>
-    <div id="connection-failed-modal" class="modal" tabindex="-1">
+    <div id="connection-failed-modal" class="modal fade" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

@@ -12,5 +12,8 @@
     "spawn_help": "유닛을 선택한 다음 게임 모드 키바인딩 설정에서 구성된 해당 키바인딩을 눌러 게임 내에서 장치를 생성합니다.",
     "support_us": "Ultimate Trainer 6을 좋아하나요? 이것은 자유로운 오픈 소스 소프트웨어입니다! 우리를 지원하는 가장 좋은 방법은 우리에게 깃허브에서 별은 주는겁니다!<br><br>아래 버튼을 클릭하고 다음 버튼을 클릭하기만 하면 됩니다! \"Star\" button:",
     "update_available": "업데이트를 사용할 수 있습니다. 최신 기능과 버그 수정을 활용하기 위해 설치하세요.",
-    "vehicle_loading_crash": "차량 적재가 활성화되고, 적재 시간이 연장되며, 너무 많은 차량을 선택한 경우 도난에 들어갈 때 게임이 충돌할 수 있습니다."
+    "vehicle_loading_crash": "차량 적재가 활성화되고, 적재 시간이 연장되며, 너무 많은 차량을 선택한 경우 도난에 들어갈 때 게임이 충돌할 수 있습니다.",
+    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
+    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
+    "keys_info": "Please note the keys are based on a US keyboard."
 }

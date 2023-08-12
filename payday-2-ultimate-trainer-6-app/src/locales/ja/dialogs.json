@@ -12,5 +12,8 @@
     "spawn_help": "スポーンさせたいユニットを選び、ゲーム内のMODキー設定から設定したキーを押すことでスポーンさせることができます。",
     "support_us": "Ultimate Trainer 6が気に入りましたか？これは無料でオープンソースのソフトウェアです！GitHubでスターをクリックするだけで開発の支えになります！<br><br>下にある \"Star\" ボタンをクリックするだけです:",
     "update_available": "アップデートがあります。最新の機能やバグ修正を適用するには最新バージョンをインストールしてください。",
-    "vehicle_loading_crash": "乗り物の読み込みが有効になっています。ロード時間が長くなり、選択した乗り物が多い場合はハイスト開始時にゲームがクラッシュする可能性があります。"
+    "vehicle_loading_crash": "乗り物の読み込みが有効になっています。ロード時間が長くなり、選択した乗り物が多い場合はハイスト開始時にゲームがクラッシュする可能性があります。",
+    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
+    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
+    "keys_info": "Please note the keys are based on a US keyboard."
 }

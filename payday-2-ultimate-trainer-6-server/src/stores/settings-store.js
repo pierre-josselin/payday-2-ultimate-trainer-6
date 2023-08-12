@@ -45,7 +45,10 @@ module.exports = class SettingsStore {
 
         // Game
         enablePauseStatsPublishing: false,
-        enableHideModList: false
+        enableHideModList: false,
+
+        // Keybinds
+        keybinds: []
     };
 
     settingNamesByVariableNames = {
@@ -82,7 +85,8 @@ module.exports = class SettingsStore {
         damageMultiplier: "damage-multiplier",
         vehiclesToLoad: "vehicles-to-load",
         enablePauseStatsPublishing: "enable-pause-stats-publishing",
-        enableHideModList: "enable-hide-mod-list"
+        enableHideModList: "enable-hide-mod-list",
+        keybinds: "keybinds"
     };
 
     constructor(settingsFilePath) {
@@ -97,7 +101,6 @@ module.exports = class SettingsStore {
 
     setState(state) {
         this.state = { ...state };
-        this.saveSettings();
     }
 
     loadSettings() {

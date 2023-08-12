@@ -49,7 +49,10 @@ export const useSettingsStore = defineStore("settings", {
 
         // Game
         enablePauseStatsPublishing: false,
-        enableHideModList: false
+        enableHideModList: false,
+
+        // Keybinds
+        keybinds: []
     }),
     actions: {
         subscribe() {
