@@ -67,6 +67,12 @@ async function install() {
 async function run() {
     console.log("--- RUN ---\n");
 
+    try {
+        await fs.readFile(path.join(__dirname, "installed"));
+    } catch (error) {
+        throw new Error("The project is not installed.\nPlease install it following the instructions.");
+    }
+
     const env = await getEnv();
 
     exec(["cd", `"${path.join(__dirname, "payday-2-ultimate-trainer-6-server")}"`, "&&", "npm", "run", "start"].join(" "));
