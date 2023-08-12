@@ -62,7 +62,7 @@ module.exports = class HttpServer {
                         break;
                     }
                     case "loaded-vehicles": {
-                        this.mainStore.state.loadedVehicles = data.loadedVehicles;
+                        this.mainStore.state.loadedVehicles = data;
 
                         this.webSocketServer.sendMessageToAllClients("store", { name: "main", state: this.mainStore.state });
                         break;
