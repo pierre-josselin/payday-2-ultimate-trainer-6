@@ -306,7 +306,7 @@ export default {
                 </button>
             </div>
             <fieldset class="card-body p-4" :class="{ disabled: !mainStore.isPlaying || !mainStore.isServer }" :disabled="!mainStore.isPlaying || !mainStore.isServer">
-                <div class="alert alert-info" v-if="!isSpawnKeybindDefined()">{{ $t("dialogs.set_spawn_keybind") }}</div>
+                <div v-if="!isSpawnKeybindDefined()" class="alert alert-info">{{ $t("dialogs.set_spawn_keybind") }}</div>
                 <div class="mb-3">
                     <label class="form-label me-4">{{ $t("main.position") }}</label>
                     <div class="form-check form-check-inline">

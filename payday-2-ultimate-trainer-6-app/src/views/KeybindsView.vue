@@ -404,42 +404,42 @@ export default {
             <form class="modal-content" @submit.prevent="addKeybind">
                 <div class="modal-header">
                     <h5 class="modal-title">{{ $t("main.add_a_keybind") }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" />
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="category" class="form-label">{{ $t("main.category") }}</label>
-                        <select id="category" class="form-select" v-model="selectedCategory" required>
+                        <select id="category" v-model="selectedCategory" class="form-select" required>
                             <option v-for="category in categories" :key="category" :value="category">{{ $t(`main.${category}`) }}</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="action" class="form-label">{{ $t("main.action") }}</label>
-                        <select id="action" class="form-select" v-model="selectedAction" required>
+                        <select id="action" v-model="selectedAction" class="form-select" required>
                             <option v-for="action in actions[selectedCategory]" :key="action" :value="action">{{ locales[action] }}</option>
                         </select>
                     </div>
-                    <div class="mb-3" v-if="selectedAction === 'throw-bag'">
+                    <div v-if="selectedAction === 'throw-bag'" class="mb-3">
                         <label for="bag-argument" class="form-label">{{ $t("main.type") }}</label>
-                        <select id="bag-argument" class="form-select" v-model="selectedArgument" required>
+                        <select id="bag-argument" v-model="selectedArgument" class="form-select" required>
                             <option v-for="bag in bags" :key="bag" :value="bag">{{ $t(`bags.${bag}`) }} ({{ bag }})</option>
                         </select>
                     </div>
-                    <div class="mb-3" v-else-if="selectedAction === 'add-special-equipment'">
+                    <div v-else-if="selectedAction === 'add-special-equipment'" class="mb-3">
                         <label for="special-equipment-argument" class="form-label">{{ $t("main.type") }}</label>
-                        <select id="special-equipment-argument" class="form-select" v-model="selectedArgument" required>
+                        <select id="special-equipment-argument" v-model="selectedArgument" class="form-select" required>
                             <option v-for="_specialEquipment in specialEquipment" :key="_specialEquipment" :value="_specialEquipment">{{ $t(`special_equipment.${_specialEquipment}`) }} ({{ _specialEquipment }})</option>
                         </select>
                     </div>
-                    <div class="mb-3" v-else-if="selectedAction === 'spawn-and-drive-vehicle'">
+                    <div v-else-if="selectedAction === 'spawn-and-drive-vehicle'" class="mb-3">
                         <label for="vehicle-argument" class="form-label">{{ $t("main.type") }}</label>
-                        <select id="vehicle-argument" class="form-select" v-model="selectedArgument" required>
+                        <select id="vehicle-argument" v-model="selectedArgument" class="form-select" required>
                             <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{ $t(vehicle.name) }}</option>
                         </select>
                     </div>
                     <div>
                         <label for="key" class="form-label">{{ $t("main.key") }}</label>
-                        <select id="key" class="form-select" v-model="selectedKey" required>
+                        <select id="key" v-model="selectedKey" class="form-select" required>
                             <option v-for="key in keys" :value="key">{{ key.toUpperCase() }}</option>
                         </select>
                         <div class="form-text">{{ $t("dialogs.keys_info") }}</div>
@@ -456,25 +456,25 @@ export default {
     <div style="max-width: 800px;" class="container my-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span>{{ $t("main.keybinds") }}<span class="ms-2" v-if="settingsStore.keybinds.length">({{ settingsStore.keybinds.length }})</span></span>
+                <span>{{ $t("main.keybinds") }}<span v-if="settingsStore.keybinds.length" class="ms-2">({{ settingsStore.keybinds.length }})</span></span>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#add-keybind-modal">
                     <FontAwesomeIcon icon="fa-solid fa-plus" />
                 </button>
             </div>
             <div class="card-body p-4">
-                <div class="alert alert-info mb-0" v-if="!settingsStore.keybinds.length">{{ $t("dialogs.no_keybinds") }}</div>
-                <div class="table-responsive" v-else>
+                <div v-if="!settingsStore.keybinds.length" class="alert alert-info mb-0">{{ $t("dialogs.no_keybinds") }}</div>
+                <div v-else class="table-responsive">
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr>
                                 <th class="bg-transparent">{{ $t("main.name") }}</th>
                                 <th class="bg-transparent">{{ $t("main.key") }}</th>
-                                <th class="bg-transparent"></th>
+                                <th class="bg-transparent" />
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(keybind, index) in settingsStore.keybinds">
-                                <td class="bg-transparent">{{ locales[keybind.name] }}<span class="ms-2" v-if="keybind.argument">({{ keybind.argument }})</span></td>
+                                <td class="bg-transparent">{{ locales[keybind.name] }}<span v-if="keybind.argument" class="ms-2">({{ keybind.argument }})</span></td>
                                 <td class="bg-transparent text-uppercase">{{ keybind.key }}</td>
                                 <td class="bg-transparent text-end">
                                     <button class="btn btn-danger btn-sm" @click="removeKeybind(index)">
