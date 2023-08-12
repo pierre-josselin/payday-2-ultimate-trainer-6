@@ -50,33 +50,7 @@ function UT:init()
     end
 
     if not UT:getSetting("enable-hide-ultimate-trainer-button") then
-        local packageManagerMetaTable = getmetatable(PackageManager)
-        local packageManagerScriptData = packageManagerMetaTable.script_data
-
-        packageManagerMetaTable.script_data = function(self, typeId, pathId, ...)
-            local data = packageManagerScriptData(self, typeId, pathId, ...)
-
-            if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
-                table.insert(data[1][2], 1, {
-                    name = "ut_open_app",
-                    text_id = "ultimate_trainer",
-                    help_id = "ultimate_trainer",
-                    callback = "ut_open_app",
-                    font = "fonts/font_medium_shadow_mf",
-                    _meta = "item"
-                })
-
-                table.insert(data[1][2], 2, {
-                    name = "ut_divider_open_app",
-                    type = "MenuItemDivider",
-                    size = 15,
-                    no_text = true,
-                    _meta = "item"
-                })
-            end
-
-            return data
-        end
+        UT:loadUltimateTrainerMenuButton()
     end
 
     UT.Keybind:init()
@@ -122,6 +96,36 @@ function UT:update()
     end
 
     UT.Keybind:update()
+end
+
+function UT:loadUltimateTrainerMenuButton()
+    local packageManagerMetaTable = getmetatable(PackageManager)
+    local packageManagerScriptData = packageManagerMetaTable.script_data
+
+    packageManagerMetaTable.script_data = function(self, typeId, pathId, ...)
+        local data = packageManagerScriptData(self, typeId, pathId, ...)
+
+        if typeId == Idstring("menu") and (pathId == Idstring("gamedata/menus/start_menu") or pathId == Idstring("gamedata/menus/pause_menu")) then
+            table.insert(data[1][2], 1, {
+                name = "ut_open_app",
+                text_id = "ultimate_trainer",
+                help_id = "ultimate_trainer",
+                callback = "ut_open_app",
+                font = "fonts/font_medium_shadow_mf",
+                _meta = "item"
+            })
+
+            table.insert(data[1][2], 2, {
+                name = "ut_divider_open_app",
+                type = "MenuItemDivider",
+                size = 15,
+                no_text = true,
+                _meta = "item"
+            })
+        end
+
+        return data
+    end
 end
 
 function UT:openApp()
