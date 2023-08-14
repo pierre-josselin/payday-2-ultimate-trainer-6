@@ -137,7 +137,7 @@ If you still can't solve your problem, don't hesitate to create an [issue](https
 - **French** (Pierre Josselin)
 - **Portuguese (Brasil)** (Webzsz)
 - **Romanian** (GamingResources)
-- **Russian** (thejuves)
+- **Russian** (thejuves, chromKa)
 - **Ukrainian** (S0ya13)
 - **Chinese** (Art3misFowl, ppt)
 - **Japanese** (nattsuiy)
