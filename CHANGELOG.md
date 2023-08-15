@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.3.0] - Unreleased
+
+### Fixed
+
+- Bug with http-server for some users
+
 ## [6.2.0] - 2023-08-12
 
 ### Added
