@@ -103,13 +103,13 @@ This mod is used by many people without any problem.<br>If it doesn't work for y
 
 Here are the most common problems encountered:
 
-- **A message like "Windows cannot find node" appears when starting the game**
+- <a name="troubleshooting-node-not-found">**A message like "Windows cannot find node" appears when starting the game**</a>
 
     Follow [this YouTube tutorial](https://www.youtube.com/watch?v=sQXWVrb52kw)<br>*Mpemba Inc.*
 
-    > :warning: You will need to **restart your computer** after following the tutorial.
+    > :warning: You will probably need to **restart your computer** after following the tutorial.
 
-- **The application page shows an error (e.g. "unable to connect to server")**
+- <a name="troubleshooting-server-not-running">**The application page shows an error (e.g. "Unable to connect to server")**</a>
 
     - Close the game and any open console
     - Create an empty `test.txt` file (lowercase) inside of `payday-2-ultimate-trainer-6-main`
@@ -118,7 +118,7 @@ Here are the most common problems encountered:
 
     This will test the different parts of the mod. Once the test is complete, copy the entire contents of the console and share it with us, by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
 
-- **The *Ultimate Trainer* button does not appear in the game's main menu**
+- <a name="troubleshooting-missing-button">**The *Ultimate Trainer* button does not appear in the game's main menu**</a>
 
     You've probably not extracted the project in the right place.
 
