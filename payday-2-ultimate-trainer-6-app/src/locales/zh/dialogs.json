@@ -13,7 +13,7 @@
     "support_us": "你喜欢Ultimate Trainer 6吗？它是开源且免费的！赞助我们最好的方式是在Github给我们点一个Star!<br><br>简单的点击一下 \"Star\" 按钮就可以赞助我们了！(:",
     "update_available": "有更新可用，获取更新来获得最新功能以及Bug修复。",
     "vehicle_loading_crash": "载具加载已启用，如果加载过多载具你的游戏在进入抢劫任务时可能会崩溃。",
-    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
-    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
-    "keys_info": "Please note the keys are based on a US keyboard."
+    "no_keybinds": "你还没有绑定任何按键。按 \"+\" 键来绑定第一个。",
+    "set_spawn_keybind": "你还没有绑定生成单位的按键。在 \"Keybinds\" 页面中，按 \"+\" 键, 选择 \"Spawn\" 类别并选择操作，选择一个按键并点击 \"Add\" 按钮。",
+    "keys_info": "请注意，按键均基于美式键盘布局。"
 }
