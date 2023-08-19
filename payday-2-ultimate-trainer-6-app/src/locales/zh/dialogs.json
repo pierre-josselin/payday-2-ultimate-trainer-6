@@ -8,12 +8,12 @@
     "driving_help": "选择载具加载并重新开始任务，加载的时间也许会被延长，在一些情况下，如果你进入抢劫时选择过多载具可能会导致游戏崩溃，如果发生此情况，你需要减少生成载具的数量并重新开始任务，请注意其他玩家并不会看到你生成的载具。",
     "game_crash_log_recovery_failed": "恢复游戏崩溃日志失败。",
     "game_restart_required": "这个功能需重启游戏来启用。",
+    "keys_info": "请注意，按键均基于美式键盘布局。",
+    "no_keybinds": "你还没有绑定任何按键。按 \"+\" 键来绑定第一个。",
     "report_a_bug": "你可以反馈bug或者提出对于新旧功能的期望与建议，在以下连接中反馈（游戏崩溃反馈需要带着游戏崩溃日志反馈！）):",
+    "set_spawn_keybind": "你还没有绑定生成单位的按键。在 \"Keybinds\" 页面中，按 \"+\" 键, 选择 \"Spawn\" 类别并选择操作，选择一个按键并点击 \"Add\" 按钮。",
     "spawn_help": "选择一个单位并在游戏中生成它，通过按下在Keybind中的绑定的键位来进行生成",
     "support_us": "你喜欢Ultimate Trainer 6吗？它是开源且免费的！赞助我们最好的方式是在Github给我们点一个Star!<br><br>简单的点击一下 \"Star\" 按钮就可以赞助我们了！(:",
     "update_available": "有更新可用，获取更新来获得最新功能以及Bug修复。",
-    "vehicle_loading_crash": "载具加载已启用，如果加载过多载具你的游戏在进入抢劫任务时可能会崩溃。",
-    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
-    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
-    "keys_info": "Please note the keys are based on a US keyboard."
+    "vehicle_loading_crash": "载具加载已启用，如果加载过多载具你的游戏在进入抢劫任务时可能会崩溃。"
 }
