@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**Art3misFowl**, **ppt**, **PlayerBotPro**
+
+- Chinese locale
+
 **thejuves**, **chromKa**
 
 - Russian locale
@@ -34,10 +38,6 @@
 
 - Spanish locale
 - Help to add items to game menus
-
-**Art3misFowl**, **ppt**
-
-- Chinese locale
 
 **GamingResources**
 
