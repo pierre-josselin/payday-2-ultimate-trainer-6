@@ -135,6 +135,7 @@ If you still can't solve your problem, don't hesitate to create an [issue](https
 - **German** (Alexander100305)
 - **Spanish** (uziel2021)
 - **French** (Pierre Josselin)
+- **Polish** (POLSKAGUROA)
 - **Portuguese (Brasil)** (Webzsz)
 - **Romanian** (GamingResources)
 - **Russian** (thejuves, chromKa)

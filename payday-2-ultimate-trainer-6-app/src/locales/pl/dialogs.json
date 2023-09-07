@@ -1,0 +1,19 @@
+{
+    "anti_cheat_detected": "Ta funkcja jest wykrywana przez system antycheat gry. Inni gracze mogą widzieć cię z oznaczeniem CHEATER, a jeśli nie jesteś gospodarzem, możesz zostać automatycznie wyrzucony z lobby. Wszystko wróci do normy po wyłączeniu wszystkich tych funkcji.",
+    "bag_spawn_crash": "Jeśli ktoś podniesie torbę, która nie powinna istnieć w tej misji, gra innych graczy może się zawiesić.",
+    "bug": "Ta funkcja zawiera błędy i może nie działać poprawnie, blokować cele lub powodować awarie gry.",
+    "build_help": "W grze możesz wybierać, przywoływać i usuwać dowolne jednostki, naciskając odpowiedni przycisk przypisany w ustawieniach. Przywołane jednostki z zielonym zarysem będą widoczne dla innych graczy, podczas gdy te z pomarańczowym zarysem nie będą.",
+    "client": "Niektóre funkcje nie będą dostępne, ponieważ jesteś klientem gry.",
+    "connection_failed": "Połączenie z serwerem nie powiodło się. Sprawdź gospodarza i port, upewnij się, że gra jest uruchomiona.",
+    "driving_help": "Wybierz pojazdy do przywołania, a następnie zrestartuj grę. Czas ładowania zostanie wydłużony. W niektórych przypadkach, jeśli wybrałeś zbyt wiele pojazdów, gra może się zawiesić podczas wejścia do napadu. Jeśli się to stanie, zmniejsz liczbę pojazdów do jednoczesnego przywołania i zrestartuj grę. Inni gracze nie zobaczą twoich pojazdów.",
+    "game_crash_log_recovery_failed": "Nie udało się odzyskać logów awarii gry.",
+    "game_restart_required": "Ta funkcja wymaga ponownego uruchomienia gry, aby wprowadzić zmiany.",
+    "keys_info": "Pamiętaj, że przypisane klawisze są oparte na amerykańskim formacie klawiatury.",
+    "no_keybinds": "Nie zdefiniowałeś jeszcze klawisza do przypisania. Naciśnij przycisk \"+\", aby dodać pierwszy.",
+    "report_a_bug": "Możesz zgłosić błąd lub zaproponować nową funkcję, klikając na jeden z poniższych linków (w przypadku wywalenia sie gry, nie zapomnij dołączyć logi z danego momentu do wiadomości):",
+    "set_spawn_keybind": "Nie ustawiłeś jeszcze przycisku do przywoływania. Przejdź do zakładki \"Przypisanie klawiszy\", naciśnij przycisk \"+\", wybierz kategorię \"Przywoływanie\", wybierz klawisz i naciśnij przycisk \"Dodaj\".",
+    "spawn_help": "Wybierz jednostkę, a następnie przywołaj ją w grze, naciskając odpowiedni przycisk przypisany w ustawieniach klawiszy modyfikacji gry.",
+    "support_us": "Lubisz Ultimate Trainer 6? To darmowe i otwarte oprogramowanie! Najlepszym sposobem, aby nas wesprzeć, jest dodanie gwiazdki na GitHubie!<br><br>Wystarczy kliknąć poniższy przycisk, a następnie przycisk \"Star\":",
+    "update_available": "Dostępna jest aktualizacja. Zainstaluj ją, aby skorzystać z najnowszych funkcji i poprawek błędów.",
+    "vehicle_loading_crash": "Wczytywanie pojazdów jest włączone, co wydłuży czasy ładowania, a twoja gra może się zawiesić podczas wejścia do napadu, jeśli wybrałeś zbyt wiele pojazdów."
+}

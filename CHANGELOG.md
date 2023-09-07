@@ -2,6 +2,10 @@
 
 ## [6.3.0] - Unreleased
 
+### Added
+
+- Polish locale
+
 ### Fixed
 
 - Bug with http-server for some users
