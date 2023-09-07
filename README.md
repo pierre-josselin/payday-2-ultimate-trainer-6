@@ -83,7 +83,7 @@ You can access the application from any web browser on the same network.
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
 
-> :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks. <br> Note: NordVPN Tunnel splitting may cuase issues for some users.
+> :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks.<br>Also, using a VPN might cause issues.
 
 ### Update
 
