@@ -8,7 +8,7 @@
 
 ### Fixed
 
-- Bug with http-server for some users
+- Issues with http-server
 
 ## [6.2.0] - 2023-08-12
 
