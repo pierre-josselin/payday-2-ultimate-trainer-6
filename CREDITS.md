@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**S0ya13**, **SirConfusion**
+
+- Ukrainian locale
+
 **Art3misFowl**, **ppt**, **PlayerBotPro**
 
 - Chinese locale
@@ -25,10 +29,6 @@
 **LOUIS522**
 
 - Korean locale
-
-**S0ya13**
-
-- Ukrainian locale
 
 **Alexander100305**
 
