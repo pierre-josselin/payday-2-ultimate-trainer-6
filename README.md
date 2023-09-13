@@ -88,9 +88,9 @@ You can access the application from any web browser on the same network.
 ### Update
 
 - Close the game and the console
-- Backup the `settings.json` file if you want to keep your settings
+- Backup the `settings.json` and `addons.json` files if you want to keep your configuration
 - Follow the [installation instructions](#installation) again (you can skip the **SuperBLT** and **Node.js** installation)
-- Restore the `settings.json` file
+- Restore the `settings.json` and `addons.json` files
 
 ### Troubleshooting
 

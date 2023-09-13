@@ -89,9 +89,9 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 ### 如何升级？
 
 - 关闭游戏及控制台
-- Backup the `settings.json` file if you want to keep your settings
+- Backup the `settings.json` and `addons.json` files if you want to keep your configuration
 - Follow the [installation instructions](#installation) again (you can skip the **SuperBLT** and **Node.js** installation)
-- Restore the `settings.json` file
+- Restore the `settings.json` and `addons.json` files
 
 ### Troubleshooting
 
