@@ -167,8 +167,8 @@ Example:
 
 > :warning: 如果您想为该项目做出贡献，我们强烈建议您先创建 [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new) 来与开发者交流您想提供什么。
 
-1. Fork this repository
-2. **Switch to development branch (dev)**
+1. Fork this repository **(uncheck "Copy the `master` branch only")**
+2. **Switch to development branch `dev`**
 3. Commit your changes
 4. Push the commits
 5. Open a pull request
