@@ -12,7 +12,8 @@
 ### Fixed
 
 - Issues with http-server
-- Bug with spawn tab
+- Bug with spawn tab after heist restart or leave
+- Crash when spawning a unit after the original has disappeared (build)
 
 ## [6.2.0] - 2023-08-12
 
