@@ -639,6 +639,14 @@ UT.Keybind.actions = {
         callback = function()
             UT:teleportToCrosshair()
         end
+    },
+
+    -- Addons
+    ["run-keybind-addon"] = {
+        conditions = {},
+        callback = function(addonId)
+            UT:runKeybindAddon(addonId)
+        end
     }
 }
 
@@ -648,7 +656,7 @@ function UT.Keybind:init()
 end
 
 function UT.Keybind:update()
-    if not UT.Keybind.keyboard then
+    if not UT.Keybind.keyboard or not UT.Keybind.mouse then
         return
     end
 
@@ -663,9 +671,21 @@ function UT.Keybind:update()
             goto continue
         end
 
-        local keyIdString = UT.GameUtility:idString(keybind.key)
-        if not keyIdString or not UT.Keybind.keyboard:down(keyIdString) then
-            goto continue
+        local key = keybind.key
+        if UT.Utility:stringStartsWith(key, "mouse ") then
+            if not UT.Utility:stringStartsWith(key, "mouse wheel ") then
+                key = UT.Utility:subString(key, 7)
+            end
+
+            local keyIdString = UT.GameUtility:idString(key)
+            if not keyIdString or not UT.Keybind.mouse:down(keyIdString) then
+                goto continue
+            end
+        else
+            local keyIdString = UT.GameUtility:idString(key)
+            if not keyIdString or not UT.Keybind.keyboard:down(keyIdString) then
+                goto continue
+            end
         end
 
         local action = UT.Keybind.actions[keybind.name]
@@ -712,6 +732,16 @@ function UT.Keybind:update()
         local id = UT.Keybind.keyboard:button_name(key)
         local name = UT.Keybind.keyboard:button_name_str(id)
         if name and name ~= "" then
+            UT.Keybind.keysDown[name] = true
+        end
+    end
+    for index, key in pairs(UT.Keybind.mouse:down_list()) do
+        local id = UT.Keybind.mouse:button_name(key)
+        local name = UT.Keybind.mouse:button_name_str(id)
+        if name and name ~= "" then
+            if not UT.Utility:stringStartsWith(name, "mouse wheel ") then
+                name = "mouse " .. name
+            end
             UT.Keybind.keysDown[name] = true
         end
     end

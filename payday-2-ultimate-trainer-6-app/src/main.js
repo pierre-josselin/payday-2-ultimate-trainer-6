@@ -1,4 +1,4 @@
-const REPOSITORY_CURRENT_TAG = "6.2.0";
+const REPOSITORY_CURRENT_TAG = "6.3.0";
 const REPOSITORY_URL = "https://github.com/pierre-josselin/payday-2-ultimate-trainer-6";
 const GITHUB_API_REPOSITORY_TAGS_URL = "https://api.github.com/repos/pierre-josselin/payday-2-ultimate-trainer-6/tags";
 
@@ -7,14 +7,14 @@ import { createPinia } from "pinia";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo, faUserSlash, faHeart, faArrowsRotate, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo, faUserSlash, faHeart, faArrowsRotate, faPlus, faTrashAlt, faPenToSquare, faFloppyDisk, faCheck, faPause } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import App from "@/App.vue";
 import i18n from "@/i18n";
 import router from "@/router";
 
-library.add(faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo, faUserSlash, faHeart, faArrowsRotate, faPlus, faTrashAlt, faGithub);
+library.add(faRightFromBracket, faTriangleExclamation, faBug, faPlay, faRotateRight, faFlag, faPersonRunning, faKey, faGear, faQuestion, faCircleCheck, faCircleXmark, faCircleInfo, faUserSlash, faHeart, faArrowsRotate, faPlus, faTrashAlt, faPenToSquare, faFloppyDisk, faCheck, faPause, faGithub);
 
 Object.defineProperty(String.prototype, "capitalize", {
     value: function () {

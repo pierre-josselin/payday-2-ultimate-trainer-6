@@ -4,6 +4,7 @@ import { useAppStore } from "@/stores/app";
 import { useMainStore } from "@/stores/main";
 import { useCallStore } from "@/stores/calls";
 import { useSettingsStore } from "@/stores/settings";
+import { useAddonsStore } from "@/stores/addons";
 import { useMissionStore } from "@/stores/mission";
 import { useSpawnStore } from "@/stores/spawn";
 
@@ -19,6 +20,7 @@ export function createWebSocket(options) {
     const mainStore = useMainStore();
     const callStore = useCallStore();
     const settingsStore = useSettingsStore();
+    const addonsStore = useAddonsStore();
     const missionStore = useMissionStore();
     const spawnStore = useSpawnStore();
 
@@ -47,6 +49,7 @@ export function createWebSocket(options) {
         mainStore.$reset();
         callStore.$reset();
         settingsStore.$reset();
+        addonsStore.$reset();
         missionStore.$reset();
         spawnStore.$reset();
     });
@@ -58,6 +61,10 @@ export function createWebSocket(options) {
             case "store": {
                 const { name, state } = data;
                 switch (name) {
+                    case "addons": {
+                        addonsStore.setState(state);
+                        break;
+                    }
                     case "main": {
                         mainStore.setState(state);
                         break;

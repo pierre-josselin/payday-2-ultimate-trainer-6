@@ -9,6 +9,7 @@ import VueMarkdown from "vue-markdown-render";
 import { useAppStore } from "@/stores/app";
 import { useMainStore } from "@/stores/main";
 import { useSettingsStore } from "@/stores/settings";
+import { useAddonsStore } from "@/stores/addons";
 import { useMissionStore } from "@/stores/mission";
 import { useSpawnStore } from "@/stores/spawn";
 
@@ -88,10 +89,12 @@ export default {
         this.appStore = useAppStore();
         this.mainStore = useMainStore();
         this.settingsStore = useSettingsStore();
+        this.addonsStore = useAddonsStore();
         this.missionStore = useMissionStore();
         this.spawnStore = useSpawnStore();
 
         this.settingsStore.subscribe();
+        this.addonsStore.subscribe();
         this.missionStore.subscribe();
         this.spawnStore.subscribe();
 
@@ -343,5 +346,9 @@ input[type="number"] {
 .table th,
 .table td {
     box-shadow: none !important;
+}
+
+.code-editor .border {
+    border: none !important;
 }
 </style>

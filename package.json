@@ -1,6 +1,6 @@
 {
   "name": "payday-2-ultimate-trainer-6",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues"
   },
-  "homepage": "https://github.com/pierre-josselin/payday-2-ultimate-trainer-6#readme"
+  "homepage": "https://github.com/pierre-josselin/payday-2-ultimate-trainer-6#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
 }

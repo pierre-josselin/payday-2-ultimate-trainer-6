@@ -2,9 +2,9 @@ module.exports = class SpawnStore {
     state = {};
     defaultState = {
         id: null,
-        categoryId: null,
-        positionType: null,
-        convertedEnemies: null
+        categoryId: "enemies",
+        positionType: "on-crosshair",
+        convertedEnemies: false
     };
 
     constructor() {

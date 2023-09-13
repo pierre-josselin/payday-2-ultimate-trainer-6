@@ -10,6 +10,12 @@ module.exports = class WebSocketServer {
         "store": (ws, data) => {
             const { name, state } = data;
             switch (name) {
+                case "addons": {
+                    this.addonsStore.setState(state);
+                    this.addonsStore.saveAddons();
+                    this.callManager.addCall(["UT:loadAddons"]);
+                    break;
+                }
                 case "main": {
                     this.mainStore.setState(state);
                     break;
@@ -46,6 +52,7 @@ module.exports = class WebSocketServer {
 
         this.callManager = managers.callManager;
 
+        this.addonsStore = stores.addonsStore;
         this.mainStore = stores.mainStore;
         this.missionStore = stores.missionStore;
         this.settingsStore = stores.settingsStore;
@@ -90,6 +97,7 @@ module.exports = class WebSocketServer {
                 }
             });
 
+            this.sendMessage("store", { name: "addons", state: this.addonsStore.state }, ws);
             this.sendMessage("store", { name: "main", state: this.mainStore.state }, ws);
             this.sendMessage("store", { name: "mission", state: this.missionStore.state }, ws);
             this.sendMessage("store", { name: "settings", state: this.settingsStore.state }, ws);
