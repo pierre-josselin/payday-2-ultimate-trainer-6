@@ -13,11 +13,11 @@
     "update_available": "Ein Update ist verfügbar. Installieren Sie es, um von den neuesten Funktionen und Fehlerbehebungen zu profitieren.",
     "vehicle_loading_crash": "Das Laden von Fahrzeugen ist aktiviert. Die Ladezeiten verlängern sich und das Spiel kann beim Einstieg in einen Raubüberfall abstürzen, wenn Sie zu viele Fahrzeuge ausgewählt haben.",
     "bag_spawn_crash": "If someone picks up a bag that is not supposed to exist in this mission, the game of other players could crash.",
-    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
-    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
+    "no_keybinds": "You haven't yet defined a Keybind. Press the + button to add a first one.",
+    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the + button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
     "keys_info": "Please note the keys are based on a US keyboard.",
     "code_not_saved_confirm": "You have not saved your code, your modifications will be lost. Are you sure you want to leave the page?",
     "delete_addon_confirm": "Are you sure you want to delete this addon?",
-    "no_addons": "You haven't yet created an Addon. Press the \"+\" button to add a first one.",
+    "no_addons": "You haven't yet created an Addon. Press the + button to add a first one.",
     "hook_id_allowed_characters": "Lowercase alphanumeric characters, slashes and underscores."
 }

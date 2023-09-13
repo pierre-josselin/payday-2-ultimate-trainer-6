@@ -13,11 +13,11 @@
     "support_us": "Você gosta do Ultimate Trainer 6? É um software gratuito e de código aberto! A melhor maneira de nos apoiar é nos dar uma estrela grátis no GitHub! <br><br>Basta clicar no botão abaixo e depois no botão \"Star\":",
     "update_available": "Uma atualização está disponível. Instale-a para aproveitar as últimas funcionalidades e correções de bugs.",
     "vehicle_loading_crash": "O carregamento de veículos está ativado, os tempos de carregamento serão estendidos e seu jogo pode travar ao entrar em um roubo se você tiver selecionado muitos veículos.",
-    "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
-    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the \"+\" button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
+    "no_keybinds": "You haven't yet defined a Keybind. Press the + button to add a first one.",
+    "set_spawn_keybind": "You haven't yet set the key to spawn the units. Go to the \"Keybinds\" tab, press the + button, select the \"Spawn\" category and action, choose a key and press \"Add\" button.",
     "keys_info": "Please note the keys are based on a US keyboard.",
     "code_not_saved_confirm": "You have not saved your code, your modifications will be lost. Are you sure you want to leave the page?",
     "delete_addon_confirm": "Are you sure you want to delete this addon?",
-    "no_addons": "You haven't yet created an Addon. Press the \"+\" button to add a first one.",
+    "no_addons": "You haven't yet created an Addon. Press the + button to add a first one.",
     "hook_id_allowed_characters": "Lowercase alphanumeric characters, slashes and underscores."
 }
