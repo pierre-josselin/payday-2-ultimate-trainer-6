@@ -167,7 +167,7 @@ You can then publish the updated files via a pull request or more simply by crea
 > :warning: If you would like to contribute to the project, we strongly recommend you to first create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) to discuss what you would like to do.
 
 1. Fork this repository
-2. **Switch to development branch (6.X.X)**
+2. **Switch to development branch (dev)**
 3. Commit your changes
 4. Push the commits
 5. Open a pull request
