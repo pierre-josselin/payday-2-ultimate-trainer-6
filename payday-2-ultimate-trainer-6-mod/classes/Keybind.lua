@@ -639,6 +639,14 @@ UT.Keybind.actions = {
         callback = function()
             UT:teleportToCrosshair()
         end
+    },
+
+    -- Addons
+    ["run-keybind-addon"] = {
+        conditions = {},
+        callback = function(addonId)
+            UT:runKeybindAddon(addonId)
+        end
     }
 }
 

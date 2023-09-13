@@ -1,5 +1,6 @@
 <script>
 import { useSettingsStore } from "@/stores/settings";
+import { useAddonsStore } from "@/stores/addons";
 
 import NavBar from "@/components/NavBar.vue";
 
@@ -225,6 +226,9 @@ export default {
                     "build-pick",
                     "build-spawn",
                     "build-delete"
+                ],
+                addons: [
+                    "run-keybind-addon"
                 ]
             },
             locales: {
@@ -317,7 +321,8 @@ export default {
                 "spawn-spawn": this.$t("main.spawn"),
                 "build-pick": this.$t("main.pick"),
                 "build-spawn": this.$t("main.spawn"),
-                "build-delete": this.$t("main.delete")
+                "build-delete": this.$t("main.delete"),
+                "run-keybind-addon": this.$t("main.run_addon")
             },
             vehicles: [
                 {
@@ -352,6 +357,15 @@ export default {
         };
     },
     computed: {
+        addons() {
+            const addons = [];
+            this.addonsStore.addons.forEach(addon => {
+                if (addon.type == "keybind") {
+                    addons.push(addon);
+                }
+            });
+            return addons;
+        },
         categories() {
             return Object.keys(this.actions);
         }
@@ -367,6 +381,7 @@ export default {
     },
     created() {
         this.settingsStore = useSettingsStore();
+        this.addonsStore = useAddonsStore();
 
         this.bags = [...bags].sort();
         this.specialEquipment = [...specialEquipment].sort();
@@ -391,6 +406,10 @@ export default {
         },
         removeKeybind(index) {
             this.settingsStore.keybinds.splice(index, 1);
+        },
+        getKeybindAddonName(addonId) {
+            const addon = this.addonsStore.getAddonById(addonId);
+            return addon && addon.type == "keybind" ? addon.name : this.$t("main.not_found").toLowerCase();
         }
     }
 }
@@ -437,6 +456,12 @@ export default {
                             <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{ $t(vehicle.name) }}</option>
                         </select>
                     </div>
+                    <div v-else-if="selectedAction === 'run-keybind-addon'" class="mb-3">
+                        <label for="addon-argument" class="form-label">{{ $t("main.addon") }}</label>
+                        <select id="addon-argument" v-model="selectedArgument" class="form-select" required>
+                            <option v-for="addon in addons" :key="addon.id" :value="addon.id">{{ $t(addon.name) }}</option>
+                        </select>
+                    </div>
                     <div>
                         <label for="key" class="form-label">{{ $t("main.key") }}</label>
                         <select id="key" v-model="selectedKey" class="form-select" required>
@@ -474,7 +499,10 @@ export default {
                         </thead>
                         <tbody>
                             <tr v-for="(keybind, index) in settingsStore.keybinds">
-                                <td class="bg-transparent">{{ locales[keybind.name] }}<span v-if="keybind.argument" class="ms-2">({{ keybind.argument }})</span></td>
+                                <td class="bg-transparent">
+                                    <span>{{ locales[keybind.name] }}</span>
+                                    <span v-if="keybind.argument" class="ms-2">({{ keybind.name == "run-keybind-addon" ? getKeybindAddonName(keybind.argument) : keybind.argument }})</span>
+                                </td>
                                 <td class="bg-transparent text-uppercase">{{ keybind.key }}</td>
                                 <td class="bg-transparent text-end">
                                     <button class="btn btn-danger btn-sm" @click="removeKeybind(index)">
