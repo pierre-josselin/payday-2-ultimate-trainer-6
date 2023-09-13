@@ -200,5 +200,17 @@
     "vehicles_to_load": "Тpанспоpтные сpедства для загpузки",
     "weapon_mods": "Модификации оpужия",
     "world_speed": "Скоpость миpа",
-    "x_ray": "Pентген"
+    "x_ray": "Pентген",
+    "addons": "Addons",
+    "keybind": "Keybind",
+    "hook": "Hook",
+    "persist": "Persist",
+    "applied": "Applied",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "exit": "Exit",
+    "enable": "Enable",
+    "create_an_addon": "Create an addon",
+    "hook_id": "Hook ID"
 }

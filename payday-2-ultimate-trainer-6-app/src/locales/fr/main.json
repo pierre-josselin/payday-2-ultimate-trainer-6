@@ -200,5 +200,17 @@
     "vehicles_to_load": "Véhicules à charger",
     "weapon_mods": "Modifications d'armes",
     "world_speed": "Vitesse du monde",
-    "x_ray": "Rayons X"
+    "x_ray": "Rayons X",
+    "addons": "Addons",
+    "keybind": "Keybind",
+    "hook": "Hook",
+    "persist": "Persist",
+    "applied": "Applied",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "exit": "Exit",
+    "enable": "Enable",
+    "create_an_addon": "Create an addon",
+    "hook_id": "Hook ID"
 }

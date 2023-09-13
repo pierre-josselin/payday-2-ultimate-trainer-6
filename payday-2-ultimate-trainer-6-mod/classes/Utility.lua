@@ -8,6 +8,10 @@ function UT.Utility:deepClone(element)
     return deep_clone(element)
 end
 
+function UT.Utility:isString(value)
+    return type(value) == "string"
+end
+
 function UT.Utility:toString(value)
     return tostring(value)
 end
@@ -38,6 +42,13 @@ end
 
 function UT.Utility:isEmptyTable(value)
     return next(value) == nil
+end
+
+function UT.Utility:toLowerCase(value)
+    if not UT.Utility:isString(value) then
+        return nil
+    end
+    return string.lower(value)
 end
 
 function UT.Utility:inTable(element, table)
@@ -146,4 +157,10 @@ end
 
 function UT.Utility:getClock()
     return os.clock()
+end
+
+function UT.Utility:evaluateCode(code)
+    local func = loadstring(code)
+    assert(func)
+    func()
 end

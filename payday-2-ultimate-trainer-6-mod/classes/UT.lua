@@ -31,8 +31,11 @@ UT.invisibleWalls = {}
 UT.interactions = {}
 UT.vehicles = {}
 
+UT.addons = {}
+
 function UT:init()
     UT:loadSettings()
+    UT:loadAddons()
 
     local content = UT.Utility:readFile(UT.modPath .. "/data/invisible-walls.json")
     if content then
@@ -96,6 +99,13 @@ function UT:update()
     end
 
     UT.Keybind:update()
+
+    local addons = UT:getPersistAddons()
+    for index, addon in pairs(addons) do
+        if addon.enable and addon.code then
+            UT.Utility:evaluateCode(addon.code)
+        end
+    end
 end
 
 function UT:loadUltimateTrainerMenuButton()
@@ -168,6 +178,62 @@ end
 
 function UT:getSetting(name)
     return UT.settings[name]
+end
+
+function UT:loadAddons()
+    local content = UT.Utility:readFile(UT.rootPath .. "/addons.json")
+    if content then
+        local data = UT.Utility:jsonDecode(content)
+        UT.addons = data.addons
+    end
+end
+
+function UT:getAddonsByType(type)
+    local addons = {}
+    for index, addon in pairs(UT.addons) do
+        if addon.type == type then
+            UT.Utility:tableInsert(addons, addon)
+        end
+    end
+    return addons
+end
+
+function UT:getKeybindAddons()
+    return UT:getAddonsByType("keybind")
+end
+
+function UT:getHookAddons()
+    return UT:getAddonsByType("hook")
+end
+
+function UT:getPersistAddons()
+    return UT:getAddonsByType("persist")
+end
+
+function UT:getKeybindAddon(addonId)
+    local addons = UT:getKeybindAddons()
+    for index, addon in pairs(addons) do
+        if addon.id == addonId then
+            return addon
+        end
+    end
+    return nil
+end
+
+function UT:runKeybindAddon(addonId)
+    local addon = UT:getKeybindAddon(addonId)
+    if addon and addon.enable and addon.code then
+        UT.Utility:evaluateCode(addon.code)
+    end
+end
+
+function UT:runHookAddons(hookId)
+    local addons = UT:getHookAddons()
+    for index, addon in pairs(addons) do
+        if UT.Utility:toLowerCase(addon.hookId) == UT.Utility:toLowerCase(hookId) and addon.enable and addon.code then
+            UT.Utility:evaluateCode(addon.code)
+        end
+    end
 end
 
 function UT:getGameContext()

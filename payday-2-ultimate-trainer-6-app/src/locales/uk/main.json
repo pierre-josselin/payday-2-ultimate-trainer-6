@@ -200,5 +200,17 @@
     "vehicles_to_load": "Транспортні засоби для завантаження",
     "weapon_mods": "Збройові модифікації",
     "world_speed": "Швидкість світу",
-    "x_ray": "Рентген"
+    "x_ray": "Рентген",
+    "addons": "Addons",
+    "keybind": "Keybind",
+    "hook": "Hook",
+    "persist": "Persist",
+    "applied": "Applied",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "exit": "Exit",
+    "enable": "Enable",
+    "create_an_addon": "Create an addon",
+    "hook_id": "Hook ID"
 }

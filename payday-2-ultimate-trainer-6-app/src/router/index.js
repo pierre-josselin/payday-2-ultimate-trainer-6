@@ -17,6 +17,11 @@ import GameView from "@/views/GameView.vue";
 import KeybindsView from "@/views/KeybindsView.vue";
 import SettingsView from "@/views/SettingsView.vue";
 
+import AddonsIndexView from "@/views/addons/AddonsIndexView.vue";
+import AddonsCreateView from "@/views/addons/AddonsCreateView.vue";
+import AddonsShowView from "@/views/addons/AddonsShowView.vue";
+import AddonsEditView from "@/views/addons/AddonsEditView.vue";
+
 const router = createRouter({
     linkActiveClass: "active",
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +80,26 @@ const router = createRouter({
             path: "/keybinds",
             name: "keybinds",
             component: KeybindsView
+        },
+        {
+            path: "/addons",
+            name: "addons.index",
+            component: AddonsIndexView
+        },
+        {
+            path: "/addons/create",
+            name: "addons.create",
+            component: AddonsCreateView
+        },
+        {
+            path: "/addons/:addonId",
+            name: "addons.show",
+            component: AddonsShowView
+        },
+        {
+            path: "/addons/:addonId/edit",
+            name: "addons.edit",
+            component: AddonsEditView
         }
     ]
 });

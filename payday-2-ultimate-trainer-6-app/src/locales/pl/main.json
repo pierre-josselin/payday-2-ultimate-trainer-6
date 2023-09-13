@@ -200,5 +200,17 @@
     "vehicles_to_load": "Pojazdy do załadowania",
     "weapon_mods": "Modyfikacje broni",
     "world_speed": "Prędkość świata",
-    "x_ray": "X-ray"
+    "x_ray": "X-ray",
+    "addons": "Addons",
+    "keybind": "Keybind",
+    "hook": "Hook",
+    "persist": "Persist",
+    "applied": "Applied",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "exit": "Exit",
+    "enable": "Enable",
+    "create_an_addon": "Create an addon",
+    "hook_id": "Hook ID"
 }

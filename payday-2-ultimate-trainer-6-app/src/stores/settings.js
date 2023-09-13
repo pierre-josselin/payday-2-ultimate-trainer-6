@@ -10,6 +10,7 @@ export const useSettingsStore = defineStore("settings", {
         // Global
         locale: "en",
         theme: "darkly",
+        codeEditorTheme: "github-dark",
         enableHideUltimateTrainerButton: false,
 
         // Career

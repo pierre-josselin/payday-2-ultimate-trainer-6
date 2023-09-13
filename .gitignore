@@ -1,6 +1,7 @@
 node_modules/
 /.env
 /settings.json
+/addons.json
 /test.txt
 /installed
 /payday-2-ultimate-trainer-6-mod/config.lua

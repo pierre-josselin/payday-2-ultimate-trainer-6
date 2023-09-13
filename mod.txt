@@ -39,6 +39,10 @@
         {
             "hook_id": "lib/states/ingamewaitingforplayers",
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/states/ingamewaitingforplayers.lua"
+        },
+        {
+            "hook_id": "*",
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/all.lua"
         }
     ],
     "persist_scripts": [
