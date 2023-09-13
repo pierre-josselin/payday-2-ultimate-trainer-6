@@ -73,7 +73,7 @@ export default {
         </div>
         <div class="mb-3" v-if="addon.type == 'hook'">
             <label for="hook-id" class="form-label">{{ $t("main.hook_id") }}</label>
-            <input id="hook-id" type="text" class="form-control" pattern="[a-z0-9\/]+" :title="$t('dialogs.hook_id_allowed_characters')" v-model="addon.hookId" required>
+            <input id="hook-id" type="text" class="form-control" pattern="[a-z0-9_\-\/]+" :title="$t('dialogs.hook_id_allowed_characters')" v-model="addon.hookId" required>
         </div>
         <div class="form-check mb-3">
             <input id="enable" type="checkbox" class="form-check-input" v-model="addon.enable">

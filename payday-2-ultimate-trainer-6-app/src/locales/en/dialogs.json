@@ -10,7 +10,7 @@
     "driving_help": "Select the vehicles to load then restart the game. The loading time will be extended. In some cases, if you have selected too many vehicles, your game may crash when entering the heist. If this happens, reduce the number of vehicles to load simultaneously and restart the game. Other players will not see your vehicles.",
     "game_crash_log_recovery_failed": "Failed to recover the game crash log.",
     "game_restart_required": "This feature requires restarting the game to apply changes.",
-    "hook_id_allowed_characters": "Lowercase alphanumeric characters and slashes.",
+    "hook_id_allowed_characters": "Lowercase alphanumeric characters, slashes and underscores.",
     "keys_info": "Please note the keys are based on a US keyboard.",
     "no_addons": "You haven't yet created an Addon. Press the \"+\" button to add a first one.",
     "no_keybinds": "You haven't yet defined a Keybind. Press the \"+\" button to add a first one.",
