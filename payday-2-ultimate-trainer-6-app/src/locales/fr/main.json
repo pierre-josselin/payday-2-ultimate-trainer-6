@@ -212,5 +212,8 @@
     "exit": "Exit",
     "enable": "Enable",
     "create_an_addon": "Create an addon",
-    "hook_id": "Hook ID"
+    "hook_id": "Hook ID",
+    "run_addon": "Run addon",
+    "addon": "Addon",
+    "not_found": "Not found"
 }
