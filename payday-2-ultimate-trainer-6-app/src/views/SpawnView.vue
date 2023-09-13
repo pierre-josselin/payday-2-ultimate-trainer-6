@@ -260,16 +260,6 @@ export default {
         this.settingsStore = useSettingsStore();
         this.callStore = useCallStore();
         this.spawnStore = useSpawnStore();
-
-        if (this.spawnStore.categoryId === null) {
-            this.spawnStore.categoryId = this.categories[0].id;
-        }
-        if (this.spawnStore.positionType === null) {
-            this.spawnStore.positionType = "on-crosshair";
-        }
-        if (this.spawnStore.convertedEnemies === null) {
-            this.spawnStore.convertedEnemies = false;
-        }
     },
     methods: {
         setId(id) {

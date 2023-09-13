@@ -12,6 +12,7 @@
 ### Fixed
 
 - Issues with http-server
+- Bug with spawn tab
 
 ## [6.2.0] - 2023-08-12
 
