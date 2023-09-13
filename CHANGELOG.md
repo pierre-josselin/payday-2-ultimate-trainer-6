@@ -4,6 +4,7 @@
 
 ### Added
 
+- Addons
 - Polish locale
 
 ### Fixed
