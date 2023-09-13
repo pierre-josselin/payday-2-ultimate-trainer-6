@@ -30,6 +30,10 @@ app.config.globalProperties.REPOSITORY_CURRENT_TAG = REPOSITORY_CURRENT_TAG;
 app.config.globalProperties.REPOSITORY_URL = REPOSITORY_URL;
 app.config.globalProperties.GITHUB_API_REPOSITORY_TAGS_URL = GITHUB_API_REPOSITORY_TAGS_URL;
 
+app.config.globalProperties.deepClone = function (object) {
+    return JSON.parse(JSON.stringify(object));
+};
+
 app.use(pinia);
 app.use(i18n);
 app.use(router);

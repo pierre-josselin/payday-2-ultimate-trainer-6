@@ -46,11 +46,11 @@ export default {
     },
     methods: {
         createAddon() {
-            this.addonsStore.createAddon(structuredClone(toRaw(this.addon)));
+            this.addonsStore.createAddon(this.deepClone(toRaw(this.addon)));
             this.$router.push({ name: "addons.show", params: { addonId: this.addon.id } });
         },
         updateAddon() {
-            this.addonsStore.updateAddon(structuredClone(toRaw(this.addon)));
+            this.addonsStore.updateAddon(this.deepClone(toRaw(this.addon)));
             this.$router.push({ name: "addons.show", params: { addonId: this.addon.id } });
         }
     }
