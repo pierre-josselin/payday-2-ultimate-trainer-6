@@ -6,6 +6,7 @@
     "client": "Some features will not be available because you are client of the game.",
     "code_not_saved_confirm": "You have not saved your code, your modifications will be lost. Are you sure you want to leave the page?",
     "connection_failed": "The connection to the server failed. Check the host and port and make sure the game is running.",
+    "custom_keys_info": "You have enabled custom keys. Use this only if you haven't found your key in the list.",
     "delete_addon_confirm": "Are you sure you want to delete this addon?",
     "driving_help": "Select the vehicles to load then restart the game. The loading time will be extended. In some cases, if you have selected too many vehicles, your game may crash when entering the heist. If this happens, reduce the number of vehicles to load simultaneously and restart the game. Other players will not see your vehicles.",
     "game_crash_log_recovery_failed": "Failed to recover the game crash log.",

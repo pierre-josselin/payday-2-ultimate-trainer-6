@@ -17,6 +17,7 @@ export default {
             selectedAction: null,
             selectedArgument: null,
             selectedKey: null,
+            setCustomKey: false,
             keys: [
                 "applications",
                 "backspace",
@@ -384,6 +385,11 @@ export default {
         },
         selectedAction() {
             this.selectedArgument = null;
+        },
+        setCustomKey(setCustomKey) {
+            if (!setCustomKey) {
+                this.selectedKey = null;
+            }
         }
     },
     created() {
@@ -408,6 +414,7 @@ export default {
             this.selectedAction = null;
             this.selectedArgument = null;
             this.selectedKey = null;
+            this.setCustomKey = false;
 
             document.documentElement.querySelector("#close-add-keybind-modal").click();
         },
@@ -469,12 +476,22 @@ export default {
                             <option v-for="addon in addons" :key="addon.id" :value="addon.id">{{ $t(addon.name) }}</option>
                         </select>
                     </div>
-                    <div>
+                    <div class="mb-3" v-if="setCustomKey">
+                        <label for="key" class="form-label">{{ $t("main.key") }}</label>
+                        <input id="key" type="text" v-model="selectedKey" class="form-control text-uppercase" required>
+                        <div class="form-text">{{ $t("dialogs.keys_info") }}</div>
+                        <div class="alert alert-info mt-3">{{ $t("dialogs.custom_keys_info") }}</div>
+                    </div>
+                    <div class="mb-3" v-else>
                         <label for="key" class="form-label">{{ $t("main.key") }}</label>
                         <select id="key" v-model="selectedKey" class="form-select" required>
                             <option v-for="key in keys" :value="key">{{ key.toUpperCase() }}</option>
                         </select>
                         <div class="form-text">{{ $t("dialogs.keys_info") }}</div>
+                    </div>
+                    <div class="form-check">
+                        <input id="set-custom-key" type="checkbox" class="form-check-input" v-model="setCustomKey">
+                        <label for="set-custom-key" class="form-check-label">{{ $t("main.custom_key") }}</label>
                     </div>
                 </div>
                 <div class="modal-footer">

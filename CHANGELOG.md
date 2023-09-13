@@ -5,7 +5,8 @@
 ### Added
 
 - Addons
-- Mouse buttons keybinds support
+- Mouse buttons support (keybinds)
+- Custom keys support (keybinds)
 - Polish locale
 
 ### Fixed
