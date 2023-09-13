@@ -121,7 +121,14 @@ export default {
                 "w",
                 "x",
                 "y",
-                "z"
+                "z",
+                "mouse wheel up",
+                "mouse wheel down",
+                "mouse 0",
+                "mouse 1",
+                "mouse 2",
+                "mouse 3",
+                "mouse 4"
             ],
             actions: {
                 default: [

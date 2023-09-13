@@ -5,6 +5,7 @@
 ### Added
 
 - Addons
+- Mouse buttons keybinds support
 - Polish locale
 
 ### Fixed
