@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.3.1] - 2023-09-17
+
+### Fixed
+
+- Potential bug due to the code editor
+
 ## [6.3.0] - 2023-09-13
 
 ### Added
