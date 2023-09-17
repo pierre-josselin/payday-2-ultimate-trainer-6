@@ -6,6 +6,7 @@ module.exports = class SettingsStore {
         // Global
         locale: "en",
         theme: "darkly",
+        codeEditorTheme: "github-dark",
         enableHideUltimateTrainerButton: false,
 
         // Career
@@ -54,6 +55,7 @@ module.exports = class SettingsStore {
     settingNamesByVariableNames = {
         locale: "locale",
         theme: "theme",
+        codeEditorTheme: "code-editor-theme",
         enableHideUltimateTrainerButton: "enable-hide-ultimate-trainer-button",
         enableSkillPointHack: "enable-skill-point-hack",
         skillPoints: "skill-points",

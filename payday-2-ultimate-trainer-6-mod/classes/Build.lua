@@ -20,7 +20,7 @@ function UT.Build:pickUnit()
 end
 
 function UT.Build:spawnUnit()
-    if not UT.Build.pickedUnit then
+    if not UT.Build.pickedUnit or not UT.GameUtility:isUnitAlive(UT.Build.pickedUnit) then
         return
     end
 

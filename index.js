@@ -31,9 +31,9 @@ async function install() {
 
     process.stdout.write(" OK\n");
 
-    process.stdout.write("Installing http-server...");
+    process.stdout.write("Installing project (http-server)...");
 
-    await exec(["npm", "install", "-g", "http-server@14.1.1"].join(" "));
+    await exec(["cd", `"${__dirname}"`, "&&", "npm", "install"].join(" "));
 
     process.stdout.write(" OK\n");
 
@@ -77,7 +77,7 @@ async function run() {
 
     exec(["cd", `"${path.join(__dirname, "payday-2-ultimate-trainer-6-server")}"`, "&&", "npm", "run", "start"].join(" "));
 
-    exec(["http-server", "--port", env.APP_PORT, "--proxy", `"http://127.0.0.1:${env.APP_PORT}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" "));
+    exec(["node", `"${path.join(__dirname, "node_modules", "http-server", "bin", "http-server")}"`, "--port", env.APP_PORT, "--proxy", `"http://127.0.0.1:${env.APP_PORT}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" "));
 
     console.log("Server & application running...\n");
 
@@ -117,7 +117,7 @@ async function test() {
     const tests = [
         {
             message: "Testing application web server...",
-            command: ["http-server", "--port", env.APP_PORT, "--proxy", `"http://127.0.0.1:${env.APP_PORT}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" ")
+            command: ["node", `"${path.join(__dirname, "node_modules", "http-server", "bin", "http-server")}"`, "--port", env.APP_PORT, "--proxy", `"http://127.0.0.1:${env.APP_PORT}?"`, `"${path.join(__dirname, "payday-2-ultimate-trainer-6-app", "dist")}"`].join(" ")
         },
         {
             message: "Testing server...",

@@ -200,5 +200,21 @@
     "pick": "Pick",
     "delete": "Delete",
     "throw_bag": "Throw bag",
-    "add_special_equipment": "Add special equipment"
+    "add_special_equipment": "Add special equipment",
+    "addons": "Addons",
+    "keybind": "Keybind",
+    "hook": "Hook",
+    "persist": "Persist",
+    "applied": "Applied",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "exit": "Exit",
+    "enable": "Enable",
+    "create_an_addon": "Create an addon",
+    "hook_id": "Hook ID",
+    "run_addon": "Run addon",
+    "addon": "Addon",
+    "not_found": "Not found",
+    "custom_key": "Custom key"
 }

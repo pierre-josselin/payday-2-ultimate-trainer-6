@@ -1,5 +1,6 @@
 <script>
 import { useSettingsStore } from "@/stores/settings";
+import { useAddonsStore } from "@/stores/addons";
 
 import NavBar from "@/components/NavBar.vue";
 
@@ -16,6 +17,7 @@ export default {
             selectedAction: null,
             selectedArgument: null,
             selectedKey: null,
+            setCustomKey: false,
             keys: [
                 "applications",
                 "backspace",
@@ -120,7 +122,14 @@ export default {
                 "w",
                 "x",
                 "y",
-                "z"
+                "z",
+                "mouse wheel up",
+                "mouse wheel down",
+                "mouse 0",
+                "mouse 1",
+                "mouse 2",
+                "mouse 3",
+                "mouse 4"
             ],
             actions: {
                 default: [
@@ -225,6 +234,9 @@ export default {
                     "build-pick",
                     "build-spawn",
                     "build-delete"
+                ],
+                addons: [
+                    "run-keybind-addon"
                 ]
             },
             locales: {
@@ -317,7 +329,8 @@ export default {
                 "spawn-spawn": this.$t("main.spawn"),
                 "build-pick": this.$t("main.pick"),
                 "build-spawn": this.$t("main.spawn"),
-                "build-delete": this.$t("main.delete")
+                "build-delete": this.$t("main.delete"),
+                "run-keybind-addon": this.$t("main.run_addon")
             },
             vehicles: [
                 {
@@ -352,6 +365,15 @@ export default {
         };
     },
     computed: {
+        addons() {
+            const addons = [];
+            this.addonsStore.addons.forEach(addon => {
+                if (addon.type == "keybind") {
+                    addons.push(addon);
+                }
+            });
+            return addons;
+        },
         categories() {
             return Object.keys(this.actions);
         }
@@ -363,10 +385,16 @@ export default {
         },
         selectedAction() {
             this.selectedArgument = null;
+        },
+        setCustomKey(setCustomKey) {
+            if (!setCustomKey) {
+                this.selectedKey = null;
+            }
         }
     },
     created() {
         this.settingsStore = useSettingsStore();
+        this.addonsStore = useAddonsStore();
 
         this.bags = [...bags].sort();
         this.specialEquipment = [...specialEquipment].sort();
@@ -386,11 +414,16 @@ export default {
             this.selectedAction = null;
             this.selectedArgument = null;
             this.selectedKey = null;
+            this.setCustomKey = false;
 
             document.documentElement.querySelector("#close-add-keybind-modal").click();
         },
         removeKeybind(index) {
             this.settingsStore.keybinds.splice(index, 1);
+        },
+        getKeybindAddonName(addonId) {
+            const addon = this.addonsStore.getAddonById(addonId);
+            return addon && addon.type == "keybind" ? addon.name : this.$t("main.not_found").toLowerCase();
         }
     }
 }
@@ -437,12 +470,28 @@ export default {
                             <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{ $t(vehicle.name) }}</option>
                         </select>
                     </div>
-                    <div>
+                    <div v-else-if="selectedAction === 'run-keybind-addon'" class="mb-3">
+                        <label for="addon-argument" class="form-label">{{ $t("main.addon") }}</label>
+                        <select id="addon-argument" v-model="selectedArgument" class="form-select" required>
+                            <option v-for="addon in addons" :key="addon.id" :value="addon.id">{{ $t(addon.name) }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" v-if="setCustomKey">
+                        <label for="key" class="form-label">{{ $t("main.key") }}</label>
+                        <input id="key" type="text" v-model="selectedKey" class="form-control text-uppercase" required>
+                        <div class="form-text">{{ $t("dialogs.keys_info") }}</div>
+                        <div class="alert alert-info mt-3">{{ $t("dialogs.custom_keys_info") }}</div>
+                    </div>
+                    <div class="mb-3" v-else>
                         <label for="key" class="form-label">{{ $t("main.key") }}</label>
                         <select id="key" v-model="selectedKey" class="form-select" required>
                             <option v-for="key in keys" :value="key">{{ key.toUpperCase() }}</option>
                         </select>
                         <div class="form-text">{{ $t("dialogs.keys_info") }}</div>
+                    </div>
+                    <div class="form-check">
+                        <input id="set-custom-key" type="checkbox" class="form-check-input" v-model="setCustomKey">
+                        <label for="set-custom-key" class="form-check-label">{{ $t("main.custom_key") }}</label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -474,7 +523,10 @@ export default {
                         </thead>
                         <tbody>
                             <tr v-for="(keybind, index) in settingsStore.keybinds">
-                                <td class="bg-transparent">{{ locales[keybind.name] }}<span v-if="keybind.argument" class="ms-2">({{ keybind.argument }})</span></td>
+                                <td class="bg-transparent">
+                                    <span>{{ locales[keybind.name] }}</span>
+                                    <span v-if="keybind.argument" class="ms-2">({{ keybind.name == "run-keybind-addon" ? getKeybindAddonName(keybind.argument) : keybind.argument }})</span>
+                                </td>
                                 <td class="bg-transparent text-uppercase">{{ keybind.key }}</td>
                                 <td class="bg-transparent text-end">
                                     <button class="btn btn-danger btn-sm" @click="removeKeybind(index)">

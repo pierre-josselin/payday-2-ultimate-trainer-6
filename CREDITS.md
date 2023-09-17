@@ -6,6 +6,14 @@
 
 ## Direct contributors
 
+**S0ya13**, **SirConfusion**
+
+- Ukrainian locale
+
+**Art3misFowl**, **ppt**, **PlayerBotPro**
+
+- Chinese locale
+
 **thejuves**, **chromKa**
 
 - Russian locale
@@ -22,10 +30,6 @@
 
 - Korean locale
 
-**S0ya13**
-
-- Ukrainian locale
-
 **Alexander100305**
 
 - German locale
@@ -34,10 +38,6 @@
 
 - Spanish locale
 - Help to add items to game menus
-
-**Art3misFowl**, **ppt**
-
-- Chinese locale
 
 **GamingResources**
 

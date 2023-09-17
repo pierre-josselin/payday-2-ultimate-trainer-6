@@ -1,5 +1,20 @@
 # Change Log
 
+## [6.3.0] - 2023-09-13
+
+### Added
+
+- Addons
+- Mouse buttons support (keybinds)
+- Custom keys support (keybinds)
+- Polish locale
+
+### Fixed
+
+- Issues with http-server
+- Bug with spawn tab after heist restart or leave
+- Crash when spawning a unit after the original has disappeared (build)
+
 ## [6.2.0] - 2023-08-12
 
 ### Added

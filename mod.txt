@@ -2,7 +2,7 @@
     "name": "Ultimate Trainer 6",
     "description": "Ultimate Trainer 6",
     "author": "Pierre Josselin",
-    "version": "6.2.0",
+    "version": "6.3.0",
     "hooks": [
         {
             "hook_id": "core/lib/setups/coresetup",
@@ -39,6 +39,10 @@
         {
             "hook_id": "lib/states/ingamewaitingforplayers",
             "script_path": "payday-2-ultimate-trainer-6-mod/hooks/lib/states/ingamewaitingforplayers.lua"
+        },
+        {
+            "hook_id": "*",
+            "script_path": "payday-2-ultimate-trainer-6-mod/hooks/all.lua"
         }
     ],
     "persist_scripts": [

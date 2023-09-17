@@ -83,14 +83,14 @@ You can access the application from any web browser on the same network.
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
 
-> :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks. <br> Note: NordVPN Tunnel splitting may cuase issues for some users.
+> :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks.<br>Also, using a VPN might cause issues.
 
 ### Update
 
 - Close the game and the console
-- Backup the `settings.json` file if you want to keep your settings
+- Backup the `settings.json` and `addons.json` files if you want to keep your configuration
 - Follow the [installation instructions](#installation) again (you can skip the **SuperBLT** and **Node.js** installation)
-- Restore the `settings.json` file
+- Restore the `settings.json` and `addons.json` files
 
 ### Troubleshooting
 
@@ -103,13 +103,13 @@ This mod is used by many people without any problem.<br>If it doesn't work for y
 
 Here are the most common problems encountered:
 
-- **A message like "Windows cannot find node" appears when starting the game**
+- <a name="troubleshooting-node-not-found">**A message like "Windows cannot find node" appears when starting the game**</a>
 
     Follow [this YouTube tutorial](https://www.youtube.com/watch?v=sQXWVrb52kw)<br>*Mpemba Inc.*
 
-    > :warning: You will need to **restart your computer** after following the tutorial.
+    > :warning: You will probably need to **restart your computer** after following the tutorial.
 
-- **The application page shows an error (e.g. "unable to connect to server")**
+- <a name="troubleshooting-server-not-running">**The application page shows an error (e.g. "Unable to connect to server")**</a>
 
     - Close the game and any open console
     - Create an empty `test.txt` file (lowercase) inside of `payday-2-ultimate-trainer-6-main`
@@ -118,7 +118,7 @@ Here are the most common problems encountered:
 
     This will test the different parts of the mod. Once the test is complete, copy the entire contents of the console and share it with us, by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
 
-- **The *Ultimate Trainer* button does not appear in the game's main menu**
+- <a name="troubleshooting-missing-button">**The *Ultimate Trainer* button does not appear in the game's main menu**</a>
 
     You've probably not extracted the project in the right place.
 
@@ -134,11 +134,12 @@ If you still can't solve your problem, don't hesitate to create an [issue](https
 - **German** (Alexander100305)
 - **Spanish** (uziel2021)
 - **French** (Pierre Josselin)
+- **Polish** (POLSKAGUROA)
 - **Portuguese (Brasil)** (Webzsz)
 - **Romanian** (GamingResources)
-- **Russian** (thejuves)
-- **Ukrainian** (S0ya13)
-- **Chinese** (Art3misFowl, ppt)
+- **Russian** (thejuves, chromKa)
+- **Ukrainian** (S0ya13, SirConfusion)
+- **Chinese** (Art3misFowl, ppt, PlayerBotPro)
 - **Japanese** (nattsuiy)
 - **Korean** (LOUIS522)
 
@@ -165,8 +166,8 @@ You can then publish the updated files via a pull request or more simply by crea
 
 > :warning: If you would like to contribute to the project, we strongly recommend you to first create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) to discuss what you would like to do.
 
-1. Fork this repository
-2. **Switch to development branch (6.X.X)**
+1. Fork this repository **(uncheck "Copy the `master` branch only")**
+2. **Switch to development branch `dev`**
 3. Commit your changes
 4. Push the commits
 5. Open a pull request

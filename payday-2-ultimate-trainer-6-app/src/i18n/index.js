@@ -48,6 +48,18 @@ import frWeaponMods from "@/locales/fr/generated/weapon-mods.json";
 import frBags from "@/locales/fr/generated/bags.json";
 import frSpecialEquipment from "@/locales/fr/generated/special-equipment.json";
 
+import plMain from "@/locales/pl/main.json";
+import plDialogs from "@/locales/pl/dialogs.json";
+import plColors from "@/locales/pl/generated/colors.json";
+import plMasks from "@/locales/pl/generated/masks.json";
+import plMaterials from "@/locales/pl/generated/materials.json";
+import plSteamAchievements from "@/locales/pl/generated/steam-achievements.json";
+import plTextures from "@/locales/pl/generated/textures.json";
+import plTrophies from "@/locales/pl/generated/trophies.json";
+import plWeaponMods from "@/locales/pl/generated/weapon-mods.json";
+import plBags from "@/locales/pl/generated/bags.json";
+import plSpecialEquipment from "@/locales/pl/generated/special-equipment.json";
+
 import ptBRMain from "@/locales/pt-br/main.json";
 import ptBRDialogs from "@/locales/pt-br/dialogs.json";
 
@@ -163,6 +175,19 @@ export default createI18n({
             weapon_mods: frWeaponMods,
             bags: frBags,
             special_equipment: frSpecialEquipment
+        },
+        pl: {
+            main: plMain,
+            dialogs: plDialogs,
+            colors: plColors,
+            masks: plMasks,
+            materials: plMaterials,
+            steam_achievements: plSteamAchievements,
+            textures: plTextures,
+            trophies: plTrophies,
+            weapon_mods: plWeaponMods,
+            bags: plBags,
+            special_equipment: plSpecialEquipment
         },
         "pt-br": {
             main: ptBRMain,
