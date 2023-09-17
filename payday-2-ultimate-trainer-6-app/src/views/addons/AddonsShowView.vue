@@ -1,4 +1,5 @@
 <script>
+import hljs from "highlight.js";
 import CodeEditor from "simple-code-editor";
 
 import { useMainStore } from "@/stores/main";
