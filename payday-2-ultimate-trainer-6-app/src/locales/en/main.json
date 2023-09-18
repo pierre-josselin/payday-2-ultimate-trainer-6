@@ -37,6 +37,7 @@
     "client": "Client",
     "close": "Close",
     "cloudy_day": "Cloudy day",
+    "code_editor_theme": "Code editor theme",
     "colors": "Colors",
     "connect": "Connect",
     "connection_failed": "Connection failed",
