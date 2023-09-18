@@ -2,7 +2,7 @@
     "name": "Ultimate Trainer 6",
     "description": "Ultimate Trainer 6",
     "author": "Pierre Josselin",
-    "version": "6.4.0",
+    "version": "6.3.2",
     "hooks": [
         {
             "hook_id": "core/lib/setups/coresetup",
