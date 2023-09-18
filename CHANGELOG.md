@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.4.0] - Unreleased
+
+### Added
+
+- Turkish locale
+
 ## [6.3.1] - 2023-09-17
 
 ### Fixed

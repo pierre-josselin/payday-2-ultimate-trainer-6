@@ -66,6 +66,9 @@ import ptBRDialogs from "@/locales/pt-br/dialogs.json";
 import roMain from "@/locales/ro/main.json";
 import roDialogs from "@/locales/ro/dialogs.json";
 
+import trMain from "@/locales/tr/main.json";
+import trDialogs from "@/locales/tr/dialogs.json";
+
 import ruMain from "@/locales/ru/main.json";
 import ruDialogs from "@/locales/ru/dialogs.json";
 import ruColors from "@/locales/ru/generated/colors.json";
@@ -196,6 +199,10 @@ export default createI18n({
         ro: {
             main: roMain,
             dialogs: roDialogs
+        },
+        tr: {
+            main: trMain,
+            dialogs: trDialogs
         },
         ru: {
             main: ruMain,

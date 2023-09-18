@@ -316,6 +316,7 @@ export default {
                         <option value="pl">Polski</option>
                         <option value="pt-br">Português (Brasil)</option>
                         <option value="ro">Română</option>
+                        <option value="tr">Türkçe</option>
                         <option value="ru">Русский</option>
                         <option value="uk">Українська</option>
                         <option value="zh">中文</option>

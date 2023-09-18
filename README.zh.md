@@ -138,6 +138,7 @@ If you still can't solve your problem, don't hesitate to create an [issue](https
 - **Polish** (POLSKAGUROA)
 - **Portuguese (Brasil)** (Webzsz)
 - **Romanian** (GamingResources)
+- **Turkish** (Berkay211)
 - **Russian** (thejuves, chromKa)
 - **Ukrainian** (S0ya13, SirConfusion)
 - **Chinese** (Art3misFowl, ppt, PlayerBotPro)

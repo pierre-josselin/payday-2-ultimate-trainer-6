@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**Berkay211**
+
+- Turkish locale
+
 **S0ya13**, **SirConfusion**
 
 - Ukrainian locale
