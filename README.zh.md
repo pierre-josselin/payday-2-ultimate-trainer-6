@@ -93,6 +93,8 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 - Follow the [installation instructions](#installation) again (you can skip the **SuperBLT** and **Node.js** installation)
 - Restore the `settings.json` and `addons.json` files
 
+> :information_source: If after updating you still get the "Update available" message (this happens regularly with the Steam browser), please close all tabs where the application is open and try again. If the problem persists, delete your browser cache (for Steam browser, go to *Settings*, *In Game*, locate *Delete Web Browser Data* and click on *Delete* button).
+
 ### Troubleshooting
 
 This mod is used by many people without any problem.<br>If it doesn't work for you, please check the following:
