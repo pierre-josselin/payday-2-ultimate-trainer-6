@@ -92,6 +92,8 @@ You can access the application from any web browser on the same network.
 - Follow the [installation instructions](#installation) again (you can skip the **SuperBLT** and **Node.js** installation)
 - Restore the `settings.json` and `addons.json` files
 
+> :information_source: If after updating you still get the "Update available" message (this happens regularly with the Steam browser), please close all tabs where the application is open and try again. If the problem persists, delete your browser cache (for Steam browser, go to *Settings*, *In Game*, locate *Delete Web Browser Data* and click on *Delete* button).
+
 ### Troubleshooting
 
 This mod is used by many people without any problem.<br>If it doesn't work for you, please check the following:
@@ -137,6 +139,7 @@ If you still can't solve your problem, don't hesitate to create an [issue](https
 - **Polish** (POLSKAGUROA)
 - **Portuguese (Brasil)** (Webzsz)
 - **Romanian** (GamingResources)
+- **Turkish** (Berkay211)
 - **Russian** (thejuves, chromKa)
 - **Ukrainian** (S0ya13, SirConfusion)
 - **Chinese** (Art3misFowl, ppt, PlayerBotPro)

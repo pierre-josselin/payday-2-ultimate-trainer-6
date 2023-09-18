@@ -216,5 +216,6 @@
     "run_addon": "Run addon",
     "addon": "Addon",
     "not_found": "Not found",
-    "custom_key": "Custom key"
+    "custom_key": "Custom key",
+    "code_editor_theme": "Code editor theme"
 }

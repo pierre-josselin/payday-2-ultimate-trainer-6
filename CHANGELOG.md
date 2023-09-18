@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.3.2] - 2023-09-18
+
+### Added
+
+- Turkish locale
+
 ## [6.3.1] - 2023-09-17
 
 ### Fixed
