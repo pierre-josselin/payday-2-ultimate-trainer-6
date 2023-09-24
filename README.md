@@ -69,6 +69,8 @@ Ultimate Trainer 6 is a revolutionary mod for PAYDAY 2. It includes a complete c
 - Start the game
 - Click on *Ultimate Trainer* in the game menu to open the app
 
+ℹ️ For some (Windows 11?) users, the server does not start automatically. If when you launch the game, no console opens, create an empty text file named `developer`, inside the `mods` folder.
+
 > :information_source: If something doesn't work, see the [troubleshooting section](#troubleshooting).
 
 #### Access the app from another device (laptop, phone, tablet...)
@@ -82,8 +84,6 @@ You can access the application from any web browser on the same network.
 - Locate the local network application URL in the console
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
-
-ℹ️ For some (Windows 11?) users, the server does not start automatically. If when you launch the game, no console opens, create an empty text file named `developer`, inside the `mods` folder.
 
 > :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks.<br>Also, using a VPN might cause issues.
 

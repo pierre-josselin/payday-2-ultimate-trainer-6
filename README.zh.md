@@ -70,6 +70,8 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 - 打开游戏
 - 在游戏主界面点击最上方 *Ultimate Trainer* 来使用修改器
 
+ℹ️ For some (Windows 11?) users, the server does not start automatically. If when you launch the game, no console opens, create an empty text file named `developer`, inside the `mods` folder.
+
 > :information_source: If something doesn't work, see the [troubleshooting section](#troubleshooting).
 
 #### 从其他设备（笔记本电脑、手机、平板电脑...）访问Ultimate Trainer 6
@@ -83,8 +85,6 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 - Locate the local network application URL in the console
 - Make sure you are on the same network as the computer where the game is running
 - Access the URL in the device's web browser
-
-ℹ️ For some (Windows 11?) users, the server does not start automatically. If when you launch the game, no console opens, create an empty text file named `developer`, inside the `mods` folder.
 
 > :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks.<br>Also, using a VPN might cause issues.
 
