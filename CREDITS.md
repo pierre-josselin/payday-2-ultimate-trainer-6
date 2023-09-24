@@ -6,6 +6,10 @@
 
 ## Direct contributors
 
+**airblizzard**
+
+- Help for debugging
+
 **Berkay211**
 
 - Turkish locale
