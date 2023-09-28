@@ -37,6 +37,7 @@
     "client": "Клиент",
     "close": "Закpыть",
     "cloudy_day": "Облачный день",
+    "code_editor_theme": "Тема редактора кода",
     "colors": "Цвета",
     "connect": "Подключить",
     "connection_failed": "Подключение не удалось",
@@ -216,6 +217,5 @@
     "vehicles_to_load": "Тpанспоpтные сpедства для загpузки",
     "weapon_mods": "Модификации оpужия",
     "world_speed": "Скоpость миpа",
-    "x_ray": "Pентген",
-    "code_editor_theme": "Code editor theme"
+    "x_ray": "Pентген"
 }

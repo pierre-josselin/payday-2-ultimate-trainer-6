@@ -1,4 +1,4 @@
-const REPOSITORY_CURRENT_TAG = "6.3.2";
+const REPOSITORY_CURRENT_TAG = "6.3.3";
 const REPOSITORY_URL = "https://github.com/pierre-josselin/payday-2-ultimate-trainer-6";
 const GITHUB_API_REPOSITORY_TAGS_URL = "https://api.github.com/repos/pierre-josselin/payday-2-ultimate-trainer-6/tags";
 const DISCORD_SERVER_INVITE_URL = "https://discord.gg/2ZnyNuQRr9";

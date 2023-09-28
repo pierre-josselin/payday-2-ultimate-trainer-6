@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.3.3] - 2023-09-28
+
+### Added
+
+- Discord button
+
 ## [6.3.2] - 2023-09-18
 
 ### Added
