@@ -258,7 +258,8 @@ export default {
                 <div class="modal-body">
                     <p>{{ $t("dialogs.report_a_bug") }}</p>
                     <div class="mb-3">
-                        <a class="btn btn-link me-2" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new" target="_blank">GitHub ({{ $t("main.faster_answer").toLowerCase() }})</a>
+                        <a class="btn btn-link me-2" :href="DISCORD_SERVER_INVITE_URL" target="_blank">Discord</a>
+                        <a class="btn btn-link me-2" href="https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues/new" target="_blank">GitHub</a>
                         <a class="btn btn-link" href="https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html" target="_blank">UnknownCheats</a>
                     </div>
                     <p class="fs-5">

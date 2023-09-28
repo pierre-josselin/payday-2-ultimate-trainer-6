@@ -120,7 +120,7 @@ Here are the most common problems encountered:
     - Run the game (it will probably get stuck on a black screen)
     - A console will open in the background after a while, use *ALT* + *TAB* to access it
 
-    This will test the different parts of the mod. Once the test is complete, copy the entire contents of the console and share it with us, by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
+    This will test the different parts of the mod. Once the test is complete, copy the entire contents of the console and share it with us, by contacting us on the [official Discord server](https://discord.gg/2ZnyNuQRr9), by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
 
 - <a name="troubleshooting-missing-button">**The *Ultimate Trainer* button does not appear in the game's main menu**</a>
 
@@ -131,6 +131,12 @@ Here are the most common problems encountered:
     Also, if the `mods` folder does not exist in the game folder, you probably did not install **SuperBLT** correctly.
 
 If you still can't solve your problem, don't hesitate to create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) by detailing your problem as much as possible, with screenshots it's even better.
+
+## Contact us
+
+- [Discord](https://discord.gg/2ZnyNuQRr9)
+- [GitHub](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues)
+- [UnknownCheats](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html)
 
 ## Supported languages
 
