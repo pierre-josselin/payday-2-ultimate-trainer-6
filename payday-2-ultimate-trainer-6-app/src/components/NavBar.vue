@@ -73,6 +73,9 @@ export default {
                 <button class="btn btn-primary btn-sm ms-3" data-bs-toggle="modal" data-bs-target="#support-us-modal">
                     <FontAwesomeIcon class="text-danger" icon="fa-solid fa-heart" />
                 </button>
+                <a class="btn btn-primary btn-sm ms-3" :href="DISCORD_SERVER_INVITE_URL" target="_blank">
+                    <FontAwesomeIcon icon="fa-brands fa-discord" />
+                </a>
                 <a class="btn btn-primary btn-sm ms-3" :href="REPOSITORY_URL" target="_blank">
                     <FontAwesomeIcon icon="fa-brands fa-github" />
                 </a>
