@@ -28,7 +28,7 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 ### 前置必要工作
 
 - Windows 10/11
-- PAYDAY 2 on Steam (might work with Epic)
+- 在Steam购买的PAYDAY 2 (也许会在epic端可用)
 - [SuperBLT](https://superblt.znix.xyz)
 - [Node.js](https://nodejs.org/en) 18 (with npm)
 
@@ -70,9 +70,9 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 - 打开游戏
 - 在游戏主界面点击最上方 *Ultimate Trainer* 来使用修改器
 
-ℹ️ For some (Windows 11?) users, the server does not start automatically. If when you launch the game, no console opens, create an empty text file named `developer`, inside the `mods` folder.
+ℹ️ 对于某些（Windows 11？）用户，服务器不会自动启动。如果启动游戏时没有打开任何控制台，请在`mods`文件夹中创建一个名为`developer`的空文本文件。
 
-> :information_source: If something doesn't work, see the [troubleshooting section](#troubleshooting).
+> :information_source:如果出现问题，请参阅 [troubleshooting section](#troubleshooting).
 
 #### 从其他设备（笔记本电脑、手机、平板电脑...）访问Ultimate Trainer 6
 
@@ -81,59 +81,59 @@ Ultimate Trainer 6 是 PAYDAY 2 的革命性模组。它包含一整套作弊和
 <img src="https://i.imgur.com/mQTnyQk.png" width="650"><br>
 *Icons by [Freepik](https://www.freepik.com)*
 
-- Start the game
-- Locate the local network application URL in the console
-- Make sure you are on the same network as the computer where the game is running
-- Access the URL in the device's web browser
+- 开始游戏
+- 在控制台中找到本地网络应用程序URL
+- 确保您与运行游戏的计算机在同一网络上
+- 访问web浏览器中的URL
 
-> :information_source: If it doesn't work, make sure a firewall isn't blocking incoming connections on your computer.<br>Please note that this probably won't work on public, school, or corporate networks.<br>Also, using a VPN might cause issues.
+> :information_source: 如果不起作用，请确保防火墙没有阻止计算机上的传入连接<br>请注意，这可能不适用于公共、学校或企业网络<br>此外，使用VPN可能会导致问题。
 
 ### 如何升级？
 
 - 关闭游戏及控制台
-- Backup the `settings.json` and `addons.json` files if you want to keep your configuration
-- Follow the [installation instructions](#installation) again (you can skip the **SuperBLT** and **Node.js** installation)
-- Restore the `settings.json` and `addons.json` files
+- 备份 `settings.json` 和 `addons.json` 这两个文件如果你想保存你的配置。
+- 跟随 [installation instructions](#installation)  (你可以跳过 **SuperBLT** 和 **Node.js** 安装步骤)
+- 保存 `settings.json` 和 `addons.json` 文件
 
-> :information_source: If after updating you still get the "Update available" message (this happens regularly with the Steam browser), please close all tabs where the application is open and try again. If the problem persists, delete your browser cache (for Steam browser, go to *Settings*, *In Game*, locate *Delete Web Browser Data* and click on *Delete* button).
+> :information_source: 如果升级后仍出现 "Update available" 消息 (通常出现在Steam内部浏览器), 关闭所有标签页并重试。 如果问题仍然存在, 删除浏览器缓存 (对于Steam 浏览器, 去 *设置*, *游戏中*, 定位到 *删除网页浏览器数据* 点击 *删除* 按钮).
 
 ### Troubleshooting
 
-This mod is used by many people without any problem.<br>If it doesn't work for you, please check the following:
+这个mod使用的人相当多，并没有任何问题。<br>如果对你不起作用，请检查以下内容:
 
-1. Have you installed Node.js 18 leaving default options?
-2. Did you restart your computer after Node.js installation?
-3. Did you install the mod by running the `install` file?
-4. Did any error occurred while running the `install` file?
+1.你有没有安装Node.js 18时使用默认选项？
+2.安装Node.js后，您是否重新启动了计算机？
+3.你是通过运行`install`文件来安装mod的吗？
+4.运行`install`文件时是否出现任何错误？
 
-Here are the most common problems encountered:
+以下是遇到的最常见问题:
 
 - <a name="troubleshooting-node-not-found">**A message like "Windows cannot find node" appears when starting the game**</a>
 
-    Follow [this YouTube tutorial](https://www.youtube.com/watch?v=sQXWVrb52kw)<br>*Mpemba Inc.*
+    跟随 [this YouTube tutorial](https://www.youtube.com/watch?v=sQXWVrb52kw)<br>*Mpemba Inc.*
 
-    > :warning: You will probably need to **restart your computer** after following the tutorial.
+    > :警告：在完成教程后，您可能需要**重新启动计算机**。
 
-- <a name="troubleshooting-server-not-running">**The application page shows an error (e.g. "Unable to connect to server")**</a>
+- <a name="troubleshooting-server-not-running">**应用程序页面显示错误 (e.g. "Unable to connect to server")**</a>
 
-    - Close the game and any open console
-    - Create an empty `test.txt` file (lowercase) inside of `payday-2-ultimate-trainer-6-main`
-    - Run the game (it will probably get stuck on a black screen)
-    - A console will open in the background after a while, use *ALT* + *TAB* to access it
+    - 关闭游戏和任何打开的控制台
+    - 创建一个空白的`test.txt` 文件 (注意小写) 在 `payday-2-ultimate-trainer-6-main`里
+    - 启动游戏 (可能会卡在黑屏上)
+    - 一段时间后，控制台将在后台打开，使用*ALT*+*TAB*访问它
 
-    This will test the different parts of the mod. Once the test is complete, copy the entire contents of the console and share it with us, by contacting us on the [official Discord server](https://discord.gg/2ZnyNuQRr9), by creating a [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), by commenting this [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) or by replying the [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
+    这将测试mod的不同部分。测试完成后，通过在 [official Discord server](https://discord.gg/2ZnyNuQRr9), 通过创建一个 [GitHub issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues), 在这里讨论 [YouTube video](https://www.youtube.com/watch?v=8BbnMmW9Hmg) 或者在这里回应 [UnknownCheats thread](https://www.unknowncheats.me/forum/payday-2-a/588542-payday-2-ultimate-trainer-6-a.html).
 
-- <a name="troubleshooting-missing-button">**The *Ultimate Trainer* button does not appear in the game's main menu**</a>
+- <a name="troubleshooting-missing-button">**此 *Ultimate Trainer* 按钮不在主菜单中出现**</a>
 
-    You've probably not extracted the project in the right place.
+    您可能没有将项目解压到正确的位置。
 
-    You need to extract the `payday-2-ultimate-trainer-6-main` folder to the game `mods` folder.<br>
-    The `payday-2-ultimate-trainer-6-main` folder must directly contain the project files such as `README` or `LICENSE` without going through subfolders.<br>
-    Also, if the `mods` folder does not exist in the game folder, you probably did not install **SuperBLT** correctly.
+    你需要解压 `payday-2-ultimate-trainer-6-main` 文件夹到游戏 `mods` 文件夹.<br>
+    此 `payday-2-ultimate-trainer-6-main` 文件夹必须直接包含项目文件，例如 `README` 或 `LICENSE` 而无需浏览子文件夹。<br>
+    相同，如果 `mods` 文件夹在游戏文件夹中不存在，您可能没有安装 **SuperBLT** correctly.
 
-If you still can't solve your problem, don't hesitate to create an [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) by detailing your problem as much as possible, with screenshots it's even better.
+如果您仍然无法解决问题，请毫不犹豫地创建 [issue](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues) 通过屏幕截图尽可能详细地描述你的问题，效果会更好。
 
-## Contact us
+## 和我们交流
 
 - [Discord](https://discord.gg/2ZnyNuQRr9)
 - [GitHub](https://github.com/pierre-josselin/payday-2-ultimate-trainer-6/issues)
